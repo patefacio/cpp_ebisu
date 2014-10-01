@@ -7,6 +7,7 @@ final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])
   ..headers = [
     header('utils')
+    ..headers = [ 'cmath', 'iostream' ]
     ..customBlocks = [ fcbPreNamespace, fcbPostNamespace, fcbBeginNamespace, fcbEndNamespace ]
     ..classes = [
       class_('block_indenter')..customBlocks = [ clsPreDecl, clsPublic, clsPostDecl ],
@@ -14,8 +15,8 @@ final utils = lib('utils')
       class_('fixed_size_char_array'),
       class_('version_control_commit'),
       class_('histogram')
-      ..customBlocks = [ clsProtected ]
-      ..template = 'typename T = double'
+      ..customBlocks = [ clsProtected, clsPreDecl ]
+      ..template = ['typename T = double', 'typename T2 = int']
       ..members = [
         member('num_bins')..init = 20..access = ro,
         member('results')

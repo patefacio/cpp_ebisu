@@ -1,5 +1,9 @@
 #ifndef __FCS_UTILS_UTILS_HPP__
 #define __FCS_UTILS_UTILS_HPP__
+
+#include <cmath>
+#include <iostream>
+
 // custom <FcbPreNamespace utils>
 // end <FcbPreNamespace utils>
 
@@ -36,7 +40,10 @@ namespace utils {
   {
 
   };
-  template< typename T = double >
+  // custom <ClsPreDecl Histogram>
+  // end <ClsPreDecl Histogram>
+
+  template< typename T = double, typename T2 = int >
   class Histogram
   {
 
