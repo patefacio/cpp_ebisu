@@ -1,5 +1,6 @@
 #ifndef __FCS_RAII_CHANGE_TRACKER_HPP__
 #define __FCS_RAII_CHANGE_TRACKER_HPP__
+
 namespace fcs {
 namespace raii {
   class Change_tracker

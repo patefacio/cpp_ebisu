@@ -5,6 +5,10 @@ packages:
     description: browser
     source: hosted
     version: "0.10.0+2"
+  collection:
+    description: collection
+    source: hosted
+    version: "1.0.0"
   ebisu:
     description:
       path: "/Users/dbdavidson/dev/open_source/ebisu"

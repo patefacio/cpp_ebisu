@@ -1,0 +1,46 @@
+
+ctor_default/default_init implies a constructor with no arguments
+needed (i.e. default ctor)
+
+inline void ctor_default_init()
+
+This is often used when default initializing something that has the
+ability to get what it needs without additional user ctor
+args. Examples are: mongoid::Connection_registry - which gets all
+initialization it needs from ini files. Another example is
+Environment, which requires no arguments because it reads the
+environment data from the process.
+
+
+ctor_member/ctor_member_init implies the one constructor that has some
+arguments passed in with the ugly tieing of that inclusion onto the
+members instead of a disctinc Ctor class. It is common that to
+initialize an instance you need the data passed in. These occur all
+over:
+
+    explicit Block_tick_tracker(
+      std::ostream * outstream = &std::cout,
+      char const * stream_label = 0,
+      ticks * saved_tick_count = 0,
+      boost::int64_t iteration_count = 0
+    ) :
+      outstream_(outstream),
+      stream_label_(stream_label),
+      saved_tick_count_(saved_tick_count),
+      iteration_count_(iteration_count),
+      initial_ticks_(0),
+      final_ticks_(0)
+    {
+      ctor_member_init();
+    }
+
+In this case a bunch of fields are required to create the valid
+object. Note this is actually also a default ctor since all args are
+defaulted you can create as Block_tick_tracker() (even though codegen
+does not think of it that way since it is the single "member
+initializing" ctor). The way the defaults are applied in this
+member_init ctor is by decorating the members with either member_ctor
+or meber_ctor_defaulted.
+
+If I go with Ctor class, it can have a code block so the
+implementation can be injected and a protect block provided.

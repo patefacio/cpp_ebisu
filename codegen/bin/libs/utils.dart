@@ -1,7 +1,7 @@
-library fcs.libs.utils;
+library bin.utils;
 
 import 'package:ebisu_cpp/cpp.dart';
-import 'package:fcs/installation.dart';
+import '../installation.dart';
 
 final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])

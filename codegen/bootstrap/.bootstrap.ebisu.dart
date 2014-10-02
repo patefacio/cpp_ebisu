@@ -15,14 +15,6 @@ void main() {
     ..pubSpec.addDependency(new PubDependency('ebisu'))
     ..pubSpec.addDependency(new PubDependency('ebisu_cpp'))
     ..pubSpec.addDependency(new PubDependency('path'))
-    ..rootPath = here
-    ..libraries = [
-      library('system'),
-      library('installation')..imports = imports,
-      library('libs')..imports = [ 'package:fcs/installation.dart' ],
-      library('apps'),
-      library('scripts'),
-      library('tests'),
-    ];
+    ..rootPath = here;
   ebisu.generate();
 }

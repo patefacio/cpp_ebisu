@@ -1,16 +1,8 @@
-library fcs.installation;
+library installation;
 
 import 'package:ebisu_cpp/cpp.dart';
-// custom <additional imports>
-
 import 'dart:io';
 import 'package:id/id.dart';
-import 'package:path/path.dart';
-import 'package:fcs/libs.dart' as libs;
-
-// end <additional imports>
-
-// custom <library installation>
 
 String _getPath() {
   final script = Platform.script.path;
@@ -20,10 +12,3 @@ String _getPath() {
 final installation = new Installation(new Id('fcs'))
   ..root = _getPath();
 
-main() {
-  libs.addItems();
-  installation.generateItems();
-}
-
-
-// end <library installation>

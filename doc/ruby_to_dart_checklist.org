@@ -1,0 +1,214 @@
+Porting code generation from ruby to dart. Want to ensure all
+functionality is justified and tracked.
+
+** Class Generation
+
+| Attribute(s)                                       | Status | Description                                                                                                                                                      |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name/brief/descr                                   | X      | Now id/brief/doc                                                                                                                                                 |
+| template_decls                                     | X      | Now is 'template = 'typename T = double' or [ 'typename T = double' ]                                                                                            |
+| cpp_root_path                                      | X      | Not needed. Was used to change path of output                                                                                                                    |
+| header_path, impl_path                             | X      | *calculated* Not needed                                                                                                                                          |
+| namespace                                          |        | Exists on class and lib. In class stated user supplied, but never supplied on class, only lib and app                                                            |
+| header_only                                        |        | Likely unnecessary. Won't create impl                                                                                                                            |
+| header_filename, impl_filename                     |        | No longer needed as Header/Impl are classes and id identifies it                                                                                                 |
+| cpp_class_type                                     | X      | Now struct can be set if desired                                                                                                                                 |
+| no_class                                           |        | Not needed with Lib/Header/Impl approach                                                                                                                         |
+| lib_private                                        |        | Likely not needed. Was used to create a private header (maybe with classes) that would not be distributed. (Not used but could easily be added later)            |
+| is_namespace_header                                |        | Sample lib_environment. Puts the header directly in namespace[-1], by treating it as api_header                                                                  |
+| is_api_header                                      |        | The class is not a class but a holder for a header representing the api (sets no_class to true)                                                                  |
+| api_header                                         |        | Set to the header for the api which is included first by all headers                                                                                             |
+| api_decl                                           | Defer  | *Windows* text for api decl macro                                                                                                                                |
+| nested_classes                                     |        | Likely not needed - but currently used (lib_h5.rb) and should be easy                                                                                            |
+| to_string_list                                     |        | provides member_names_list and to_string_list, so vectors of class can be stored in vectors of string lists                                                      |
+| boost_exception                                    |        | derives from boost::exception and std::exception virtually                                                                                                       |
+| boost_noncopyable                                  |        | derives from boost_noncopyable                                                                                                                                   |
+| version_control_commit                             |        | Stuff commit number in output                                                                                                                                    |
+| header_as_include                                  |        | Probably not necessary - heavy stuff where lambda used because of ruby init timing issues. Given class returns the path to its header as would appear in include |
+| template_specializations                           |        | Could be interesting for advanced - looks like was hooks for specialized template stuff                                                                          |
+| streamable_friend_decl_required                    |        | Very likely unneeded since streamers will work one way only with definition in header                                                                            |
+| file_level_consts                                  |        | Global const vars inside the namespace before class definition: (e.g. delimited_file_table_model.hpp has 'char const DELIMITER_COMMA(',');')                     |
+| public_static_consts                               |        | List of consts at front of class definition (e.g. 'static const int BUFFER_SIZE = ARRAY_SIZE' in fixed_size_char_array.hpp)                                      |
+| no_block_indenter                                  |        | Block_indenter is used pervasively. However, Delimited_file_reader_options specifically has no_block_indenter set                                                |
+| accessor_docs                                      |        | If true will add comments for accessors of methods on class.                                                                                                     |
+| * Unit Test *                                      |        |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| include_unit_test                                  |        | If true includes unit test. (e.g. lib/fcs/raii/unit_test/test_change_until_end_of_block.cpp is generated for fcs/raii/change_until_end_of_block.hpp)             |
+| unit_test_includes                                 |        | List of includes for unit test                                                                                                                                   |
+|                                                    |        |                                                                                                                                                                  |
+| * CTOR *                                           |        |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| explicit                                           |        | If true makes ctor explicit - but which ctor? (not used)                                                                                                         |
+| ctor_default_is_private, ctor_default_is_protected |        | Makes default ctor private/protected (then appends public:) (not used)                                                                                           |
+| ctor_default                                       |        | Provides empty default ctor initializing all members as specified                                                                                                |
+| ctor_default_decl                                  |        | Ends up setting ctor_default=true so quite messy (not used)                                                                                                      |
+| ctor_default_init_method                           |        |                                                                                                                                                                  |
+| ctor_default_init_inline_method                    |        | Sets declare_ctor_default_init_inline to true                                                                                                                    |
+| ctor_member_init_(inline_)method                   |        | Adds method ctor_member_init which is called from member_init ctor                                                                                               |
+| additional_ctor_parms                              |        | used specifically for ctor_member_init to pass in additional parms                                                                                               |
+| additional_ctor_parms_come_second                  |        | If true additional parms come after member init ctor parms                                                                                                       |
+| ctor_copy_init_method(_inline)                     |        | Sets declare_ctor_copy_init                                                                                                                                      |
+| declare_ctor_default_init(_inline)                 |        | *calculaed* If true adds decl ctor_default_init(); I think this was to get around c++ lack of constructor forwarding??                                           |
+| declare_ctor_copy_init(_inline)                    |        | Does not look to be used                                                                                                                                         |
+| declare_ctor_member_init(_inline)                  |        | Used throughout, declares ctor_member_init and defines with protect block                                                                                        |
+|                                                    |        | Useful to hide initialization impl (e.g. Q_environment ctor_member_init populates GUI with env data)                                                             |
+| ctor_default_init_section                          |        | For those cases where you want to write custom code in a protect block                                                                                           |
+| ctor_copy_init_section                             |        | ''                                                                                                                                                               |
+| ctor_member_init_section                           |        | ''                                                                                                                                                               |
+| ctor_copy                                          |        | Provides copy ctor initializing all members (not used!!! - but still required)                                                                                   |
+| ctor_copy_decl                                     |        | Provides copy ctor prototype and implementation must be provided by user                                                                                         |
+| ctor_member                                        |        | If true forces addition of member initializing ctor (does not make much sense) (not used)                                                                        |
+| time_ctor_init                                     |        | If true times init code                                                                                                                                          |
+| log_ctor                                           |        |                                                                                                                                                                  |
+| ctor_member_template_decls                         |        | Used in lib_utils Histogram. Allows ctor_member to be templated.                                                                                                 |
+| friend_decls                                       |        | List of friend decls of class (example lib_linux.rb)                                                                                                             |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| * DTOR *                                           |        |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| log_dtor                                           |        |                                                                                                                                                                  |
+| dtor_decl                                          |        | If true '~...();' in header (user must define in impl)                                                                                                           |
+| dtor_virtual_inline_noop                           |        | If true 'virtual ~...() = 0'                                                                                                                                     |
+| dtor_virtual_decl                                  |        | If true 'virtual ~...();'                                                                                                                                        |
+| dtor_impl                                          |        | Generates dtor in impl file (with logging based on log_dtor)                                                                                                     |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| typedef_ptr/typedef_const_ptr                      | X      | Now *forwardPtrs* a List<PtrType> where PtrType {sptr,uptr,scptr,ucptr}                                                                                          |
+| public_header_section                              |        | *Class.customBlocks* clsPublic                                                                                                                                   |
+| protected_header_section                           |        | *Class.customBlocks* clsProtected                                                                                                                                |
+| private_header_section                             |        | *Class.customBlocks* clsPrivate                                                                                                                                  |
+| global_forward_section                             |        | *CppFile.customBlocks* fcbPreNamespace (e.g. otl_utils.hpp, block_rusage_tracker.hpp) works -> inside ifdef, after includes, apidecl, forwarddecls, namespace    |
+| class_forward_section                              |        | ???? Ignore for now                                                                                                                                              |
+| pre_class_section                                  |        | *Class.customBlocks* clsPreDecl                                                                                                                                  |
+| post_class_section                                 |        | *Class.customBlocks* clsPostDecl                                                                                                                                 |
+| serialize_followup_section                         |        | ???? Ignore for now                                                                                                                                              |
+| header_namespace_begin_section                     |        | *CppFile.customBlocks* fcbBeginNamespace                                                                                                                         |
+| header_pre_namespace_section                       |        | *CppFile.customBlocks* fcbPreNamespace                                                                                                                           |
+| header_post_namespace_section                      |        | *CppFile.customBlocks* fcbPostNamespace                                                                                                                          |
+| header_namespace_end_section                       |        | *CppFile.customBlocks* fcbEndNamespace                                                                                                                           |
+| * Serialization *                                  |        |                                                                                                                                                                  |
+| (xml?text?binary?boost)_serializable               |        |                                                                                                                                                                  |
+| serialized_bases                                   |        | If needed Base.isSerailized                                                                                                                                      |
+| bases_public bases_public_virtual                  |        |                                                                                                                                                                  |
+| bases_private bases_private_virtual                |        |                                                                                                                                                                  |
+| bases_protected bases_proteced_virtual             |        |                                                                                                                                                                  |
+| * Forward Class Decls*                             |        |                                                                                                                                                                  |
+| forward_class_decls                                |        | (e.g [ 'H5::H5File ] becomes namespace H5 { class H5File; })                                                                                                     |
+| forward_class_decls_parsed *not user supplied*     |        |                                                                                                                                                                  |
+| namespace_forward_class_decls                      |        | Not used                                                                                                                                                         |
+| enums                                              |        | Class.enums                                                                                                                                                      |
+| forward_enums                                      |        | CppFile.enums (need to add)                                                                                                                                      |
+| ** Typedefs **                                     |        |                                                                                                                                                                  |
+| forward_typedefs                                   |        | ??? forwardUsings ???                                                                                                                                            |
+| public_typedefs                                    |        | Declared in the class for the class's use                                                                                                                        |
+| post_class_typedefs                                |        |                                                                                                                                                                  |
+| ** Comparable **                                   |        |                                                                                                                                                                  |
+| comparable                                         |        | *Class.methods* _less_                                                                                                                                           |
+| comparable_bases                                   | 0      | Base.isComparable (defaulted true)                                                                                                                               |
+| memcmp_comparable                                  |        | ??? TBD                                                                                                                                                          |
+| public_members, protected_members, private_members |        | *calculated*                                                                                                                                                     |
+| * Streaming *                                      |        |                                                                                                                                                                  |
+| streamable streamable_inline                       |        | only provide inline streamables                                                                                                                                  |
+| streamable_custom                                  |        | the custom versions just provide empty method with protect block                                                                                                 |
+| streamable_inline_custom                           |        |                                                                                                                                                                  |
+| streamed_bases                                     |        | Base.isStreamed (default true)                                                                                                                                   |
+| streamers_included                                 |        | If true includes fcs/utils/streamers/containers.hpp                                                                                                              |
+| members                                            |        | members                                                                                                                                                          |
+| singleton                                          |        | makes class a singleton                                                                                                                                          |
+| ** Additions (ie injecting generated code) **      |        | examples (lib_linux.rb (additions_private_header, additions_public_header), lib_utils.rb (additions_header_namespace)                                            |
+|                                                    |        | lib_utils.rb is nice example of generating patheos macros                                                                                                        |
+| additions_public_header                            |        | *Class.codeBlock[clsPublic]*                                                                                                                                     |
+| additions_protected_header                         |        | *Class.codeBlock[clsProtected]*                                                                                                                                  |
+| additions_private_header                           |        | *Class.codeBlock[clsPrivate]*                                                                                                                                    |
+| additions_pre_include_header                       |        | Likely overkill but *CppFile.codeBlock[fcbPreNamespace]* may work                                                                                                |
+| additions_pre_include_impl                         |        | Likely overkill but *CppFile.codeBlock[fcbPreNamespace]* may work                                                                                                |
+| additions_impl                                     |        | Likely overkill - if generating impl not many ordering dependencies within file                                                                                  |
+| additions_header_namespace                         |        | *CppFile.codeBlock[fcbBeginNamespace]*                                                                                                                           |
+| additions_header_pre_namespace                     |        | *CppFile.codeBlock[fcbPreNamespace]*                                                                                                                             |
+| additions_header_pre_namespace_impl                |        | *CppFile.codeBlock[fcbPreNamespace]*                                                                                                                             |
+| additions_header_post_namespace                    |        | *CppFile.codeBlock[fcbPostNamespace]*                                                                                                                            |
+| additions_header_post_class                        |        | *Class.codeBlock[clsPostDecl]*                                                                                                                                   |
+| additions_namespace_forward_class                  |        | Used by database to inject value_field_update_class                                                                                                              |
+| header_includes                                    |        | Header.headers                                                                                                                                                   |
+| impl_includes                                      |        | Impl.implHeaders                                                                                                                                                 |
+| op_equal                                           |        | Method.EQUAL                                                                                                                                                     |
+| hide_op_equal                                      |        | Not used - if true puts definition in impl                                                                                                                       |
+| additional_classes                                 |        | Not needed since classes are placed in headers directly                                                                                                          |
+| additional_classes_come_first                      |        | Not needed as full control of order is provided                                                                                                                  |
+| impl_classes, impl_class                           |        | Not needed since classes are placed in impl directly                                                                                                             |
+|                                                    |        | See .../src/tree_path_model.cpp as the one example of an impl_class                                                                                              |
+| fully_qualified_name (calculated)                  |        | Likely overkill - was used in property serialization                                                                                                             |
+| reconstitute                                       |        | private: void reconstitute() { new (this) ...(); }                                                                                                               |
+| debug_dump                                         |        | utility for gdb dump, not used but interesting                                                                                                                   |
+|                                                    |        |                                                                                                                                                                  |
+| * PIMPL *                                          | Defer  |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pimpl_ptr                                          |        | Class will derive from boost::pimpl< >::pointer_ptr                                                                                                              |
+| pimpl_value                                        |        | Class will derive from boost::pimpl< >::pointer_value                                                                                                            |
+| pimpl_typedefs                                     |        | TBD                                                                                                                                                              |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| property_tree                                      | Defer  |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hdf5_log_support                                   | Defer  |                                                                                                                                                                  |
+| hdf5_log_groups                                    | Defer  |                                                                                                                                                                  |
+| hdf5_log_group_manager                             | Defer  |                                                                                                                                                                  |
+| * QT **                                            |        |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| qt_forward_class_decls                             | Defer  |                                                                                                                                                                  |
+| q_object                                           | Defer  |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| disable_windows_warnings                           | Defer  | Support for suppressing warnings in Windows/VS                                                                                                                   |
+| * Observer Pattern *                               |        |                                                                                                                                                                  |
+|----------------------------------------------------+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| observer_of                                        |        |                                                                                                                                                                  |
+| observer_of_inline                                 |        |                                                                                                                                                                  |
+| signaller_of                                       |        |                                                                                                                                                                  |
+
+TODO:
+- add forwardDecls, usings, consts (constexprs?), enums to header (or
+  should I add it to CppFile for private enums in impl?)
+- decide if streamer should be a method like less, move, etc
+- find new/latest singleton idiom
+- add private Headers object to header and impl. These need to be
+  augmented with header requirements of all classes. Old way was
+  different because a Class was a header that optionally had
+  additional classes in it. The new way will be:
+
+  header has Headers
+  class has Headers
+- Need to iron out how impls will be "created". There is an aspect of
+  auto-creation (via impl_classes). One way is each header can
+  optionally have impl_classes. If it has any then there is a Impl
+  created with same id as header and those classes are placed
+  there. The cost of not doing the simple impl_classes nested in the
+  header class is that you have to create an impl object. But this is
+  not really so bad. So you have
+  ..headers = [ header('utils')... ]
+  ..impls = [ impl('utils')... ]
+
+  This very little extra work and much more flexible in that you can
+  name impl files how you like. However flexibility in naming is not
+  good.
+- Decide if nested class support is worth it
+- Namespace. If provided on lib can be forwarded to header and
+  impls. This binding implies that all classes in a lib are in the
+  same namespace. So if creating a namespace heirarchy [ fcs, utils ],
+  [ fcs, utils, exceptions ], etc, then the set of namespaces kind of
+  drives the library structure. An alternative is have namespace on
+  header and impl. Then one lib could have multiple namespaces. Actual
+  c++ libraries have no concept of namespace anyway - except just what
+  it does to the symbol names. So, while namespace at header and impl
+  provides more flexibility and maybe better matches actuality
+  (i.e. libs don't know namespaces), by putting the namespace at the
+  lib level ensures consistency. Well, by that logic headers don't
+  belong to a library either. But, lets go with every header belongs
+  to a lib. Given that the setup where the lib passes itself to all of
+  its headers and impls so they can get the namespace from it works.
+- If I go with Ctor class, I should allow hiding of
+  implementation. Maybe it does not make sense to get overconcerned
+  with hiding operator==,operator<,operator<< because with this code
+  generation it is deterministic. But constructors might need some
+  hand coded implemenetation and if so, the ability to hide could be
+  useful.
+- Originally I had (default_ctor, member_init_ctor, copy_ctor) and all
+  were controlled with sets if different attributes directly on the
+  class. This is ugly and difficult to keep straight. Also, things can
+  be improved with constructor forwarding.

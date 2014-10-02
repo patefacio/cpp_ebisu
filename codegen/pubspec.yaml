@@ -9,6 +9,9 @@ dependencies:
   path: ">=1.2.2 < 1.10.0"
 
 # custom <fcs dependencies>
+
+  collection: ">=1.0.0"
+
 # end <fcs dependencies>
 
 dev_dependencies:
