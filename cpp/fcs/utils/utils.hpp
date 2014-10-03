@@ -37,6 +37,8 @@ namespace utils {
   // custom <ClsPreDecl Histogram>
   // end <ClsPreDecl Histogram>
 
+  template< typename T = double,
+            typename T2 = int >
   class Histogram
   {
   public:
@@ -106,7 +108,7 @@ namespace utils {
     int num_bins_ { 20 };
     Result_vector_t results_ { Result_vector_t(num_bins_,999) };
     double pi_;
-    somenumtype & pid_ { (3.14**2.0) };
+    somenumtype & pid_;
     std::string goo_ { "Fooberger" };
 
   };

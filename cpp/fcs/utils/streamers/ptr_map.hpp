@@ -8,8 +8,47 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  // custom <FcbBeginNamespace ptrMap>
-  // end <FcbBeginNamespace ptrMap>
+  // custom <FcbBeginNamespace ptr_map>
+
+  //! Support for streaming boost::ptr_map
+  template < typename K, typename V, typename PR, typename CLONE_ALLOC, typename ALLOC >
+  inline std::ostream& operator<<(std::ostream& out, boost::ptr_map< K,V,PR,CLONE_ALLOC,ALLOC > const& m) {
+    typename boost::ptr_map< K,V,PR,CLONE_ALLOC,ALLOC >::const_iterator it(m.begin());
+    typename boost::ptr_map< K,V,PR,CLONE_ALLOC,ALLOC >::const_iterator end(m.end());
+    out << '[';
+    for(; it != end; ++it) {
+      out << '(' << it->first << "=>";
+      if(it->second) {
+        out << *it->second;
+      } else {
+        out << "<null>";
+      }
+      out << "),";
+    }
+    out << ']';
+    return out;
+  }
+
+  //! Support for streaming boost::ptr_multimap
+  template < typename K, typename V, typename PR, typename CLONE_ALLOC, typename ALLOC >
+  inline std::ostream& operator<<(std::ostream& out, boost::ptr_multimap< K,V,PR,CLONE_ALLOC,ALLOC > const& m) {
+    typename boost::ptr_map< K,V,PR,CLONE_ALLOC,ALLOC >::const_iterator it(m.begin());
+    typename boost::ptr_map< K,V,PR,CLONE_ALLOC,ALLOC >::const_iterator end(m.end());
+    out << '[';
+    for(; it != end; ++it) {
+      out << '(' << it->first << "=>";
+      if(it->second) {
+        out << *it->second;
+      } else {
+        out << "<null>";
+      }
+      out << "),";
+    }
+    out << ']';
+    return out;
+  }
+
+  // end <FcbBeginNamespace ptr_map>
 
 } // namespace streamers
 } // namespace utils

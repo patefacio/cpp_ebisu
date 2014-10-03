@@ -8,8 +8,14 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  // custom <FcbBeginNamespace ptrSet>
-  // end <FcbBeginNamespace ptrSet>
+  // custom <FcbBeginNamespace ptr_set>
+
+  //! Support for streaming boost::ptr_set
+  template < typename K, typename V, typename PR, typename ALLOC >
+  inline std::ostream& operator<<(std::ostream& out, boost::ptr_set< K,V,PR,ALLOC > const& s) {
+    return print_scalar_collection(out, s);
+  }
+  // end <FcbBeginNamespace ptr_set>
 
 } // namespace streamers
 } // namespace utils
