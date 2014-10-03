@@ -1,7 +1,7 @@
 library bin.utils;
 
 import 'package:ebisu_cpp/cpp.dart';
-import '../installation.dart';
+import '../../lib/installation.dart';
 
 final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])
@@ -15,7 +15,15 @@ final utils = lib('utils')
       class_('fixed_size_char_array'),
       class_('version_control_commit'),
       class_('histogram')
+      ..assignCopy.useDefault = true
+      ..assignMove.delete = true
+      ..dtor.useDefault = true
+      ..enums = [ enum_('foo')..values = ['red', 'green' ] ]
       ..customBlocks = [ clsProtected, clsPreDecl ]
+      ..defaultCtor.hasCustom = true
+      ..copyCtor.hasCustom = true
+      ..opEqual
+      ..opLess
       ..template = ['typename T = double', 'typename T2 = int']
       ..members = [
         member('num_bins')..init = 20..access = ro,

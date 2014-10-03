@@ -5,7 +5,6 @@ namespace fcs {
 namespace raii {
   class Change_tracker
   {
-
   private:
     T saved_value_ {};
     T target_ {};
@@ -13,7 +12,6 @@ namespace raii {
   };
   class Change_tracker_next_value
   {
-
   };
 } // namespace raii
 } // namespace fcs

@@ -5,7 +5,6 @@ namespace fcs {
 namespace raii {
   class Change_until_end_of_block
   {
-
   };
 } // namespace raii
 } // namespace fcs

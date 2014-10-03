@@ -1,5 +1,4 @@
-import 'package:ebisu_cpp/cpp.dart';
-import 'installation.dart';
+import '../lib/installation.dart';
 
 addItems() {
 }

@@ -1,7 +1,7 @@
 library bin.raii;
 
 import 'package:ebisu_cpp/cpp.dart';
-import '../installation.dart';
+import '../../lib/installation.dart';
 
 final raii = lib('raii')
   ..namespace = namespace([ 'fcs', 'raii' ])

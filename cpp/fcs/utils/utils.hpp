@@ -17,12 +17,9 @@ namespace utils {
 
   class Block_indenter
   {
-
   public:
   // custom <ClsPublic Block_indenter>
   // end <ClsPublic Block_indenter>
-
-
 
   };
   // custom <ClsPostDecl Block_indenter>
@@ -30,24 +27,57 @@ namespace utils {
 
   class Value_min_max
   {
-
   };
   class Fixed_size_char_array
   {
-
   };
   class Version_control_commit
   {
-
   };
   // custom <ClsPreDecl Histogram>
   // end <ClsPreDecl Histogram>
 
-  template< typename T = double, typename T2 = int >
   class Histogram
   {
-
   public:
+    enum Foo {
+      Red_e,
+      Green_e
+    };
+
+    Histogram() {
+      // custom <Histogram defaultCtor>
+      // end <Histogram defaultCtor>
+    }
+    Histogram(Histogram const& other) {
+      // custom <Histogram copyCtor>
+      // end <Histogram copyCtor>
+    }
+    Histogram& operator=(Histogram const&) = default;
+    Histogram& operator=(Histogram &&) = delete;
+    ~Histogram() = default;
+    bool operator==(Histogram const& rhs) {
+      return this == &rhs ||
+        (num_bins_ == rhs.num_bins_ &&
+        results_ == rhs.results_ &&
+        pi_ == rhs.pi_ &&
+        pid_ == rhs.pid_ &&
+        goo_ == rhs.goo_ &&
+        moo_ == rhs.moo_ &&
+        zoo_ == rhs.zoo_);
+    }
+    bool operator<(Histogram const& rhs) {
+      return num_bins_ != rhs.num_bins_? num_bins_ < rhs.num_bins_ : (
+        results_ != rhs.results_? results_ < rhs.results_ : (
+        pi_ != rhs.pi_? pi_ < rhs.pi_ : (
+        pid_ != rhs.pid_? pid_ < rhs.pid_ : (
+        goo_ != rhs.goo_? goo_ < rhs.goo_ : (
+        moo_ != rhs.moo_? moo_ < rhs.moo_ : (
+        zoo_ != rhs.zoo_? zoo_ < rhs.zoo_ : (
+        false)))))));
+    }
+
+
     std::string moo_ { "falal" };
 
     //! getter for num_bins_ (access is Ro)
@@ -65,7 +95,6 @@ namespace utils {
     std::string & goo() const { return goo_; }
     //! setter for goo_ (access is Rw)
     void goo(std::string & goo) { goo_ = goo; }
-
 
   protected:
     // custom <ClsProtected Histogram>

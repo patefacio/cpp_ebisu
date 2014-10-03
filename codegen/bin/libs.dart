@@ -1,9 +1,16 @@
+import '../lib/installation.dart';
 import 'libs/utils.dart' as utils;
 import 'libs/raii.dart' as raii;
 
+addItems() {
+  utils.addItems();
+  raii.addItems();
+}
+
 main() {
-  utils.main();
-  raii.main();
+  addItems();
+  print(installation);
+  installation.generateItems();
 }
 
 // end <library libs>
