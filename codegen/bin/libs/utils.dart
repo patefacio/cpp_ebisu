@@ -39,7 +39,43 @@ final utils = lib('utils')
     ]
   ];
 
-addItems() => installation.addLib(utils);
+final streamers_table = lib('table')
+  ..namespace = namespace(['fcs','utils','streamers', 'table'])
+  ..headers = [
+    header('table')
+    ..headers = [
+      'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
+      'vector', 'algorithm', 'iostream',
+    ]
+  ];
+
+final _namespace = namespace(['fcs','utils','streamers']);
+final _core = 'fcs/utils/streamers/streamers.hpp';
+final _containers = {
+  'vector' : [ _core, 'iosfwd', 'vector' ],
+  'set' : [ _core, 'iosfwd', 'set' ],
+  'map' : [ _core, 'iosfwd', 'map' ],
+  'list' : [ _core, 'iosfwd', 'list' ],
+  'deque' : [ _core, 'iosfwd', 'deque' ],
+  'ptr_map' : [ _core, 'boost/ptr_container/ptr_map.hpp', 'iosfwd' ],
+  'ptr_set' : [ _core, 'boost/ptr_container/ptr_set.hpp', 'iosfwd' ],
+  'ptr_vector' : [ _core, 'boost/ptr_container/ptr_vector.hpp', 'iosfwd' ],
+};
+
+addItems() {
+  installation
+  ..addLib(utils)
+  ..addLib(streamers_table);
+
+  _containers.forEach((c, headers) =>
+      installation.addLib(lib(c)
+          ..namespace = _namespace
+          ..headers = [
+            header(c)
+            ..headers = headers
+            ..customBlocks = [fcbBeginNamespace]
+          ]));
+}
 
 main() {
   addItems();
