@@ -25,10 +25,23 @@ namespace table {
       MatrixContainer const & matrix_container,
       String_list_t const & header = String_list_t()) :
       matrix_container_ { matrix_container },
-      header_ { header }) {
+      header_ { header } {
     }
 
-    operator<<(TBD)
+    friend inline
+    std::ostream& operator<<(std::ostream &out, Table_streamer const& item) {
+      using fcs::utils::streamers::operator<<;
+      fcs::utils::Block_indenter indenter;
+      char const* indent(indenter.current_indentation_text());
+      out << '\n' << indent << "Table_streamer(" << &item << ") {";
+      out << '\n' << indent << "  matrix_container:" << item.matrix_container_;
+      out << '\n' << indent << "  header:" << item.header_;
+      out << '\n' << indent << "}\n";
+      return out;
+    }
+
+    // custom <ClsPublic Table_streamer>
+    // end <ClsPublic Table_streamer>
 
   private:
     //! Matrix with data to stream
@@ -37,6 +50,7 @@ namespace table {
     String_list_t const& header_;
 
   };
+
 } // namespace table
 } // namespace streamers
 } // namespace utils

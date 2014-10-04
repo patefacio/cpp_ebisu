@@ -8,35 +8,61 @@ final utils = lib('utils')
   ..headers = [
     header('utils')
     ..headers = [ 'cmath', 'iostream' ]
-    ..customBlocks = [ fcbPreNamespace, fcbPostNamespace, fcbBeginNamespace, fcbEndNamespace ]
+    ..customBlocks = [ ]
     ..classes = [
       class_('block_indenter')..customBlocks = [ clsPreDecl, clsPublic, clsPostDecl ],
       class_('value_min_max'),
       class_('fixed_size_char_array'),
       class_('version_control_commit'),
-      class_('histogram')
-      ..assignCopy.useDefault = true
-      ..assignMove.delete = true
-      ..dtor.useDefault = true
-      ..enums = [ enum_('foo')..values = ['red', 'green' ] ]
-      ..customBlocks = [ clsProtected, clsPreDecl ]
-      ..defaultCtor.hasCustom = true
-      ..copyCtor.hasCustom = true
-      ..opEqual
-      ..opLess
-      ..template = ['typename T = double', 'typename T2 = int']
+    ],
+    header('histogram')
+    ..headers = [ 'fcs/utils/block_indenter.hpp',
+      'fcs/utils/streamers/containers.hpp',
+      'boost/accumulators/accumulators.hpp',
+      'boost/accumulators/statistics/density.hpp',
+      'boost/algorithm/minmax_element.hpp',
+      'iostream',
+      'vector'
+    ]
+    ..classes = [
+      class_('histogram_statistical')
+      ..template = ['typename T = double' ]
+      ..customBlocks = [ clsPublic ]
+      ..usings = [
+        '''
+Accumulator_t = boost::accumulators::accumulator_set<
+  T,
+  boost::accumulators::features< boost::accumulators::tag::density >
+>''',
+        '''
+Hist_results_t = boost::iterator_range<
+  typename std::vector< std::pair< T, T > >::iterator
+>''',
+      ]
       ..members = [
         member('num_bins')..init = 20..access = ro,
-        member('results')
-        ..type = 'Result_vector_t'..initText = 'Result_vector_t(num_bins_,999)'..access = ro,
-        member('pi')..type = 'double'..access = rw..noInit = true,
-        member('pid')..type = 'somenumtype'..initText = '(3.14**2.0)'
-        ..refType = ref..byRef = true,
-        member('goo')..byRef = true..access = rw..init = 'Fooberger',
-        member('moo')..init = 'falal'..access = null,
-        member('zoo')..init = 'falal'..cppAccess = protected,
+        member('cache_size')..init = 10..access = ro,
+        member('accumulator')..type = 'Accumulator_t'..access = ro
+        ..initText = '''
+
+  boost::accumulators::tag::density::num_bins = num_bins_,
+  boost::accumulators::tag::density::cache_size = cache_size_''',
       ],
+      class_('histogram')
+      ..usings = [ 'Result_vector_t = vector< T >' ]
+      ..template = ['typename T = double' ]
+      ..opOut
+      ..members = [
+        member('num_bins')..init = 20..access = ro,
+        member('results')..type = 'Result_vector_t'..initText = 'Result_vector_t(num_bins_)'..access = ro,
+      ]
+      ..memberCtors = [
+        memberCtor([ 'num_bins' ], { 'num_bins' : 20 }, ['IT begin', 'IT end'])
+        ..template = 'typename IT'
+        ..hasCustom = true,
+      ]
     ]
+
   ];
 
 final streamers_table = lib('table')
@@ -55,6 +81,7 @@ final streamers_table = lib('table')
         'typename MatrixContainer',
         'typename T = typename MatrixContainer::value_type::value_type'
       ]
+      ..customBlocks = [ clsPublic ]
       ..opOut
       ..members = [
         member('matrix_container')
