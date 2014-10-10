@@ -24,6 +24,13 @@ namespace utils {
       typename std::vector< std::pair< T, T > >::iterator
     >;
 
+    Histogram_statistical(
+      int num_bins = 20,
+      int cache_size = 10) :
+      num_bins_ { num_bins },
+      cache_size_ { cache_size } {
+    }
+
     // custom <ClsPublic Histogram_statistical>
 
     void operator()(T item) {
@@ -42,8 +49,8 @@ namespace utils {
     Accumulator_t accumulator() const { return accumulator_; }
 
   private:
-    int num_bins_ { 20 };
-    int cache_size_ { 10 };
+    int const num_bins_;
+    int const cache_size_;
     Accumulator_t accumulator_ { 
       boost::accumulators::tag::density::num_bins = num_bins_,
       boost::accumulators::tag::density::cache_size = cache_size_ };
@@ -91,7 +98,7 @@ namespace utils {
     Result_vector_t results() const { return results_; }
 
   private:
-    int num_bins_ { 20 };
+    int const num_bins_ { 20 };
     Result_vector_t results_ { Result_vector_t(num_bins_) };
 
   };

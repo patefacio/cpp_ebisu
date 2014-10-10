@@ -6,11 +6,25 @@ import '../../lib/installation.dart';
 final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])
   ..headers = [
+    header('block_indenter')
+    ..headers = [
+      'boost/thread/tss.hpp'
+    ]
+    ..classes = [
+      class_('block_current_indent')
+      ..isSingleton = true
+      ..customBlocks = [ clsPublic, clsPrivate ]
+      ..members = [
+        member('indentation_length')
+        ..type = 'boost::thread_specific_ptr< int >'
+      ],
+      class_('block_indenter')
+      ..customBlocks = [ clsPublic ]
+    ],
     header('utils')
     ..headers = [ 'cmath', 'iostream' ]
     ..customBlocks = [ ]
     ..classes = [
-      class_('block_indenter')..customBlocks = [ clsPreDecl, clsPublic, clsPostDecl ],
       class_('value_min_max'),
       class_('fixed_size_char_array'),
       class_('version_control_commit'),
@@ -40,20 +54,23 @@ Hist_results_t = boost::iterator_range<
 >''',
       ]
       ..members = [
-        member('num_bins')..init = 20..access = ro,
-        member('cache_size')..init = 10..access = ro,
+        member('num_bins')..access = ro..type = 'int'..noInit = true..isConst = true,
+        member('cache_size')..access = ro..type = 'int'..noInit = true..isConst = true,
         member('accumulator')..type = 'Accumulator_t'..access = ro
         ..initText = '''
 
   boost::accumulators::tag::density::num_bins = num_bins_,
   boost::accumulators::tag::density::cache_size = cache_size_''',
+      ]
+      ..memberCtors = [
+        memberCtor([ 'num_bins', 'cache_size' ], { 'num_bins': '20', 'cache_size' : '10' })
       ],
       class_('histogram')
       ..usings = [ 'Result_vector_t = vector< T >' ]
       ..template = ['typename T = double' ]
       ..opOut
       ..members = [
-        member('num_bins')..init = 20..access = ro,
+        member('num_bins')..init = 20..access = ro..isConst = true,
         member('results')..type = 'Result_vector_t'..initText = 'Result_vector_t(num_bins_)'..access = ro,
       ]
       ..memberCtors = [

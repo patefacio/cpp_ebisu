@@ -10,9 +10,11 @@ namespace raii {
     T target_ {};
 
   };
+
   class Change_tracker_next_value
   {
   };
+
 } // namespace raii
 } // namespace fcs
 #endif // __FCS_RAII_CHANGE_TRACKER_HPP__
