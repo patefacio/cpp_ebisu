@@ -146,5 +146,5 @@ addItems() {
 
 main() {
   addItems();
-  installation.generateItems();
+  installation.generate();
 }

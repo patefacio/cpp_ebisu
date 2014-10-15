@@ -9,5 +9,5 @@ addItems() => installation.addApp(date_time_converter);
 
 main() {
   addItems();
-  installation.generateItems();
+  installation.generate();
 }

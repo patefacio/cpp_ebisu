@@ -9,5 +9,5 @@ addItems() => installation.addApp(display_csv);
 
 main() {
   addItems();
-  installation.generateItems();
+  installation.generate();
 }

@@ -25,5 +25,5 @@ addItems() => installation.addLib(raii);
 
 main() {
   addItems();
-  installation.generateItems();
+  installation.generate();
 }
