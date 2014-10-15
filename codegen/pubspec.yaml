@@ -10,7 +10,7 @@ dependencies:
 
 # custom <fcs dependencies>
 
-  collection: ">=0.9.4 <0.10.0"
+  collection: ">=1.0.0"
 
 # end <fcs dependencies>
 
@@ -25,3 +25,4 @@ transformers:
 
 # custom <fcs transformers>
 # end <fcs transformers>
+

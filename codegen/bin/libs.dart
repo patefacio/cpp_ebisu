@@ -10,7 +10,7 @@ addItems() {
 main() {
   addItems();
   print(installation);
-  installation.generateItems();
+  installation.generate();
 }
 
 // end <library libs>
