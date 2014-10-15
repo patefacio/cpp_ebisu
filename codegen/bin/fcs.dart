@@ -6,5 +6,7 @@ import 'package:ebisu_cpp/cpp.dart';
 main() {
   libs.main();
   apps.main();
-  schemas.main();
+  schemas
+    .main()
+    .then((_) => print('Schema code generated!!!'));
 }
