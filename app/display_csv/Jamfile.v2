@@ -1,5 +1,5 @@
 import os ;
-project date_time_converter
+project display_csv
     :
     :
     ;
@@ -10,7 +10,7 @@ SOURCES =
 ;
 
 exe date_time_converter
-    : date_time_converter.cpp
+    : display_csv.cpp
       $(SOURCES).cpp
       /site-config//boost_program_options
       /site-config//boost_date_time
@@ -23,13 +23,13 @@ exe date_time_converter
       <variant>release:<define>NDEBUG
     ;
 
-install install_app : date_time_converter :
+install install_app : display_csv :
    <link>static
       <variant>debug:<location>$(FCS_INSTALL_PATH)/static/debug
       <variant>release:<location>$(FCS_INSTALL_PATH)/static/release
 ;
 
-install install_app : date_time_converter :
+install install_app : display_csv :
    <link>shared
       <variant>debug:<location>$(FCS_INSTALL_PATH)/shared/debug
       <variant>release:<location>$(FCS_INSTALL_PATH)/shared/release
