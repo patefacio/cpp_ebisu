@@ -60,6 +60,7 @@ namespace utils {
 
   };
 
+
   class Block_indenter
   {
   public:
@@ -80,6 +81,7 @@ namespace utils {
     // end <ClsPublic Block_indenter>
 
   };
+
 
 } // namespace utils
 } // namespace fcs

@@ -19,7 +19,6 @@ namespace utils {
       T,
       boost::accumulators::features< boost::accumulators::tag::density >
     >;
-
     using Hist_results_t = boost::iterator_range<
       typename std::vector< std::pair< T, T > >::iterator
     >;
@@ -47,7 +46,6 @@ namespace utils {
 
     //! getter for accumulator_ (access is Ro)
     Accumulator_t accumulator() const { return accumulator_; }
-
   private:
     int const num_bins_;
     int const cache_size_;
@@ -56,6 +54,7 @@ namespace utils {
       boost::accumulators::tag::density::cache_size = cache_size_ };
 
   };
+
 
   template< typename T = double >
   class Histogram
@@ -90,18 +89,17 @@ namespace utils {
       out << '\n' << indent << "}\n";
       return out;
     }
-
     //! getter for num_bins_ (access is Ro)
     int num_bins() const { return num_bins_; }
 
     //! getter for results_ (access is Ro)
     Result_vector_t results() const { return results_; }
-
   private:
     int const num_bins_ { 20 };
     Result_vector_t results_ { Result_vector_t(num_bins_) };
 
   };
+
 
 } // namespace utils
 } // namespace fcs

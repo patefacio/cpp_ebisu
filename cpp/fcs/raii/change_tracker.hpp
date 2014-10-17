@@ -11,9 +11,11 @@ namespace raii {
 
   };
 
+
   class Change_tracker_next_value
   {
   };
+
 
 } // namespace raii
 } // namespace fcs

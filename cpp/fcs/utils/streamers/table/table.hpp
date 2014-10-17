@@ -39,7 +39,6 @@ namespace table {
       out << '\n' << indent << "}\n";
       return out;
     }
-
     // custom <ClsPublic Table_streamer>
     // end <ClsPublic Table_streamer>
 
@@ -50,6 +49,7 @@ namespace table {
     String_list_t const& header_;
 
   };
+
 
 } // namespace table
 } // namespace streamers

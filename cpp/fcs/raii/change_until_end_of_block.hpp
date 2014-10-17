@@ -7,6 +7,7 @@ namespace raii {
   {
   };
 
+
 } // namespace raii
 } // namespace fcs
 #endif // __FCS_RAII_CHANGE_UNTIL_END_OF_BLOCK_HPP__

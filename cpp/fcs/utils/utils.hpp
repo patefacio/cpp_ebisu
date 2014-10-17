@@ -10,13 +10,16 @@ namespace utils {
   {
   };
 
+
   class Fixed_size_char_array
   {
   };
 
+
   class Version_control_commit
   {
   };
+
 
 } // namespace utils
 } // namespace fcs
