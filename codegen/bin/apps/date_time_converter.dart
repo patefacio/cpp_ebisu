@@ -4,6 +4,7 @@ import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';
 
 final date_time_converter = app('date_time_converter')
+  ..descr = 'App for converting between various forms of date/time'
   ..args = [
     arg('timestamp')
     ..descr = 'Some form of date or timestamp'
