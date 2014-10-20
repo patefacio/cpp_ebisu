@@ -1,3 +1,4 @@
+#include "fcs/utils/streamers/containers.hpp"
 #include <boost/program_options.hpp>
 #include <string>
 #include <vector>
@@ -10,25 +11,8 @@ namespace h5ds2csv {
   public:
     Program_options(int argc, char** argv) {
       using namespace boost::program_options;
-      static options_description options {
-        R"(
-    Converts data_sets in hdf5 files to csv
-
-    Allowed Options:
-    )"
-      };
-      if(options.options().empty()) {
-        options.add_options()
-        ("help,h", "Display help information")
-        ("data-set,d", value< std::vector< std::string > >(),
-          "Name of data_set to make into csv")
-        ("input-file,i", value< std::vector< std::string > >(),
-          "Name of hdf5 file containing data_set(s)")
-        ("output-file,o", value< std::string >(),
-          "Name of hdf5 file containing data_set(s)");
-      }
       variables_map parsed_options;
-      store(parse_command_line(argc, argv, options), parsed_options);
+      store(parse_command_line(argc, argv, description()), parsed_options);
       if(parsed_options.count("help") > 0) {
         help_ = true;
         return;
@@ -54,7 +38,46 @@ namespace h5ds2csv {
       }
 
     }
+
+    static boost::program_options::options_description const& description() {
+      using namespace boost::program_options;
+      static options_description options {
+        R"(
+    Converts data_sets in hdf5 files to csv
+
+    Allowed Options)"
+      };
+      if(options.options().empty()) {
+        options.add_options()
+        ("help,h", "Display help information")
+        ("data-set,d", value< std::vector< std::string > >(),
+          "Name of data_set to make into csv")
+        ("input-file,i", value< std::vector< std::string > >(),
+          "Name of hdf5 file containing data_set(s)")
+        ("output-file,o", value< std::string >(),
+          "Name of hdf5 file containing data_set(s)");
+      }
+      return options;
+    }
+
+    static void show_help(std::ostream& out) {
+      out << description();
+      out.flush();
+    }
+
+    //! getter for help_ (access is Ro)
+    bool help() const { return help_; }
+
+    //! getter for data_set_ (access is Ro)
+    std::vector< std::string > data_set() const { return data_set_; }
+
+    //! getter for input_file_ (access is Ro)
+    std::vector< std::string > input_file() const { return input_file_; }
+
+    //! getter for output_file_ (access is Ro)
+    std::string output_file() const { return output_file_; }
     friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
+      using fcs::utils::streamers::operator<<;
       out << '\n' << "help:" << item.help_;
       out << '\n' << "data_set:" << item.data_set_;
       out << '\n' << "input_file:" << item.input_file_;
@@ -77,7 +100,19 @@ namespace h5ds2csv {
 
 int main(int argc, char** argv) {
   using namespace fcs::app::h5ds2csv;
-  Program_options options = { argc, argv };
+  try{
+    Program_options options = { argc, argv };
+    if(options.help()) {
+      Program_options::show_help(std::cout);
+      return 0;
+    }
+
+    std::cout << options << std::endl;
+  } catch(std::exception const& e) {
+    std::cout << "Caught exception: " << e.what() << std::endl;
+    Program_options::show_help(std::cout);
+    return -1;
+  }
 
   return 0;
 }
