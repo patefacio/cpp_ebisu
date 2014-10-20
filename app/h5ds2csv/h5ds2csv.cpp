@@ -1,3 +1,7 @@
+#include <boost/program_options.hpp>
+#include <string>
+#include <vector>
+
 namespace fcs {
 namespace app {
 namespace h5ds2csv {
@@ -6,14 +10,14 @@ namespace h5ds2csv {
   public:
     Program_options(int argc, char** argv) {
       using namespace boost::program_options;
-      static option_description options {
+      static options_description options {
         R"(
     Converts data_sets in hdf5 files to csv
 
     Allowed Options:
     )"
       };
-      if(options.options.empty()) {
+      if(options.options().empty()) {
         options.add_options()
         ("help,h", "Display help information")
         ("data-set,d", value< std::vector< std::string > >(),
@@ -21,7 +25,7 @@ namespace h5ds2csv {
         ("input-file,i", value< std::vector< std::string > >(),
           "Name of hdf5 file containing data_set(s)")
         ("output-file,o", value< std::string >(),
-          "Name of hdf5 file containing data_set(s)")
+          "Name of hdf5 file containing data_set(s)");
       }
       variables_map parsed_options;
       store(parse_command_line(argc, argv, options), parsed_options);
@@ -49,6 +53,21 @@ namespace h5ds2csv {
           .as< std::string >();
       }
 
+    }
+    friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
+      out << '\n' << "help:" << item.help_;
+      out << '\n' << "data_set:" << item.data_set_;
+      out << '\n' << "input_file:" << item.input_file_;
+      out << '\n' << "output_file:" << item.output_file_;
+      return out;
+    }
+
+  private:
+    bool help_ {};
+    std::vector< std::string > data_set_ {};
+    std::vector< std::string > input_file_ {};
+    std::string output_file_ {};
+
   };
 
 
@@ -57,7 +76,7 @@ namespace h5ds2csv {
 } // namespace fcs
 
 int main(int argc, char** argv) {
-  using fcs::app::h5ds2csv;
+  using namespace fcs::app::h5ds2csv;
   Program_options options = { argc, argv };
 
   return 0;

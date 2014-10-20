@@ -137,11 +137,29 @@ addItems() {
   _containers.forEach((c, headers) =>
       installation.addLib(lib(c)
           ..namespace = _namespace
-          ..headers = [
+          ..headers = ([
             header(c)
             ..headers = headers
             ..customBlocks = [fcbBeginNamespace]
-          ]));
+          ]..addAll(
+            [
+              header('containers')
+              ..headers = [
+                'fcs/utils/streamers/list.hpp',
+                'fcs/utils/streamers/vector.hpp',
+                'fcs/utils/streamers/deque.hpp',
+                'fcs/utils/streamers/set.hpp',
+                'fcs/utils/streamers/map.hpp',
+              ],
+              header('streamers')
+              ..customBlocks = [ fcbBeginNamespace ]
+              ..headers = [
+                'memory',
+                'iosfwd',
+                'sstream',
+              ]
+            ]
+            ))));
 }
 
 main() {
