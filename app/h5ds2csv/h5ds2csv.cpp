@@ -15,6 +15,7 @@ namespace h5ds2csv {
       };
       if(options.options.empty()) {
         options.add_options()
+        ("help,h", "Display help information")
         ("data-set,d", value< std::vector< std::string > >(),
           "Name of data_set to make into csv")
         ("input-file,i", value< std::vector< std::string > >(),
@@ -24,9 +25,29 @@ namespace h5ds2csv {
       }
       variables_map parsed_options;
       store(parse_command_line(argc, argv, options), parsed_options);
-    }
+      if(parsed_options.count("help") > 0) {
+        help_ = true;
+        return;
+      }
 
+      if(parsed_options.count("data_set") > 0) {
+        data_set_ = parsed_options["data_set"]
+          .as< std::vector< std::string > >();
+      }
 
+      if(parsed_options.count("input_file") > 0) {
+        input_file_ = parsed_options["input_file"]
+          .as< std::vector< std::string > >();
+      } else {
+        std::ostringstream msg;
+        msg << "h5ds2csv option 'input_file' is required";
+        throw std::runtime_error(msg.str());
+      }
+
+      if(parsed_options.count("output_file") > 0) {
+        output_file_ = parsed_options["output_file"]
+          .as< std::string >();
+      }
 
   };
 

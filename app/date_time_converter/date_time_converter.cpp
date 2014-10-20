@@ -15,11 +15,21 @@ namespace date_time_converter {
       };
       if(options.options.empty()) {
         options.add_options()
-        ("timestamp", value< std::vector< bool > >(), "Some form of date or timestamp")
+        ("help,h", "Display help information")
+        ("timestamp", value< std::vector< std::string > >(),
+          "Some form of date or timestamp")
       }
-    }
+      variables_map parsed_options;
+      store(parse_command_line(argc, argv, options), parsed_options);
+      if(parsed_options.count("help") > 0) {
+        help_ = true;
+        return;
+      }
 
-
+      if(parsed_options.count("timestamp") > 0) {
+        timestamp_ = parsed_options["timestamp"]
+          .as< std::vector< std::string > >();
+      }
 
   };
 
