@@ -64,6 +64,9 @@ int main(int argc, char** argv) {
     }
 
     std::cout << options << std::endl;
+    // custom <main>
+    // end <main>
+
   } catch(std::exception const& e) {
     std::cout << "Caught exception: " << e.what() << std::endl;
     Program_options::show_help(std::cout);

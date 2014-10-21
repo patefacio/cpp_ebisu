@@ -69,13 +69,13 @@ namespace h5ds2csv {
     bool help() const { return help_; }
 
     //! getter for data_set_ (access is Ro)
-    std::vector< std::string > data_set() const { return data_set_; }
+    std::vector< std::string > const& data_set() const { return data_set_; }
 
     //! getter for input_file_ (access is Ro)
-    std::vector< std::string > input_file() const { return input_file_; }
+    std::vector< std::string > const& input_file() const { return input_file_; }
 
     //! getter for output_file_ (access is Ro)
-    std::string output_file() const { return output_file_; }
+    std::string const& output_file() const { return output_file_; }
     friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
       using fcs::utils::streamers::operator<<;
       out << '\n' << "help:" << item.help_;
@@ -108,6 +108,9 @@ int main(int argc, char** argv) {
     }
 
     std::cout << options << std::endl;
+    // custom <main>
+    // end <main>
+
   } catch(std::exception const& e) {
     std::cout << "Caught exception: " << e.what() << std::endl;
     Program_options::show_help(std::cout);

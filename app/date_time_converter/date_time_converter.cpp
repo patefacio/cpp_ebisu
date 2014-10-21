@@ -36,7 +36,7 @@ namespace date_time_converter {
       if(options.options().empty()) {
         options.add_options()
         ("help,h", "Display help information")
-        ("timestamp", value< std::vector< std::string > >(),
+        ("timestamp,t", value< std::vector< std::string > >(),
           "Some form of date or timestamp");
       }
       return options;
@@ -51,7 +51,7 @@ namespace date_time_converter {
     bool help() const { return help_; }
 
     //! getter for timestamp_ (access is Ro)
-    std::vector< std::string > timestamp() const { return timestamp_; }
+    std::vector< std::string > const& timestamp() const { return timestamp_; }
     friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
       using fcs::utils::streamers::operator<<;
       out << '\n' << "help:" << item.help_;
@@ -80,6 +80,14 @@ int main(int argc, char** argv) {
     }
 
     std::cout << options << std::endl;
+    // custom <main>
+
+    for(auto const& ts : options.timestamp()) {
+      std::cout << "Converting " << ts << std::endl;
+    }
+
+    // end <main>
+
   } catch(std::exception const& e) {
     std::cout << "Caught exception: " << e.what() << std::endl;
     Program_options::show_help(std::cout);
