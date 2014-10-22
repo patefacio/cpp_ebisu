@@ -1,3 +1,5 @@
+library libs;
+
 import '../lib/installation.dart';
 import 'libs/utils.dart' as utils;
 import 'libs/raii.dart' as raii;

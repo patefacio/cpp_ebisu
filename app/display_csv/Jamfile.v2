@@ -6,16 +6,15 @@ project display_csv
 ENV_CXXFLAGS = [ os.environ CXXFLAGS ] ;
 ENV_LINKFLAGS = [ os.environ LINKFLAGS ] ;
 SOURCES =
-     date_time_converter_program_options
+     display_csv
 ;
 
 exe date_time_converter
     : display_csv.cpp
       $(SOURCES).cpp
-      /site-config//boost_program_options
       /site-config//boost_date_time
       /site-config//boost_regex
-      $(PANTHEIOS_LIBS)
+      /site-config//boost_program_options
     : <define>DEBUG_FCS_STARTUP
       <cxxflags>$(ENV_CXXFLAGS)
       <linkflags>$(ENV_LINKFLAGS)

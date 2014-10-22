@@ -12,7 +12,7 @@ final timestamp = lib('timestamp')
       'Timestamp_t = boost::posix_time::ptime',
       'Time_duration_t = boost::posix_time::time_duration',
     ]
-    ..headers = [
+    ..includes = [
       'boost/date_time/microsec_time_clock.hpp',
       'boost/date_time/posix_time/posix_time.hpp',
       'boost/date_time/c_local_time_adjustor.hpp',
@@ -27,7 +27,7 @@ final conversion = lib('conversion')
     ..usings = [
       'Date_t = boost::gregorian::date',
     ]
-    ..headers = [
+    ..includes = [
       'fcs/timestamp/timestamp.hpp',
       'boost/date_time/posix_time/time_formatters.hpp',
       'regex',

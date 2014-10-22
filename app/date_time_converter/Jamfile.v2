@@ -6,7 +6,7 @@ project date_time_converter
 ENV_CXXFLAGS = [ os.environ CXXFLAGS ] ;
 ENV_LINKFLAGS = [ os.environ LINKFLAGS ] ;
 SOURCES =
-     date_time_converter_program_options
+     date_time_converter
 ;
 
 exe date_time_converter
@@ -15,7 +15,6 @@ exe date_time_converter
       /site-config//boost_program_options
       /site-config//boost_date_time
       /site-config//boost_regex
-      $(PANTHEIOS_LIBS)
     : <define>DEBUG_FCS_STARTUP
       <cxxflags>$(ENV_CXXFLAGS)
       <linkflags>$(ENV_LINKFLAGS)

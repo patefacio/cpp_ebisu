@@ -7,7 +7,7 @@ final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])
   ..headers = [
     header('block_indenter')
-    ..headers = [
+    ..includes = [
       'boost/thread/tss.hpp'
     ]
     ..classes = [
@@ -22,7 +22,7 @@ final utils = lib('utils')
       ..customBlocks = [ clsPublic ]
     ],
     header('utils')
-    ..headers = [ 'cmath', 'iostream' ]
+    ..includes = [ 'cmath', 'iostream' ]
     ..customBlocks = [ ]
     ..classes = [
       class_('value_min_max'),
@@ -30,7 +30,7 @@ final utils = lib('utils')
       class_('version_control_commit'),
     ],
     header('histogram')
-    ..headers = [ 'fcs/utils/block_indenter.hpp',
+    ..includes = [ 'fcs/utils/block_indenter.hpp',
       'fcs/utils/streamers/containers.hpp',
       'boost/accumulators/accumulators.hpp',
       'boost/accumulators/statistics/density.hpp',
@@ -92,7 +92,7 @@ final streamers_table = lib('table')
       'String_matrix_t = std::vector< String_list_t >',
       'Size_list_t = std::vector< size_t >',
     ]
-    ..headers = [
+    ..includes = [
       'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
       'vector', 'algorithm', 'iostream',
     ]
@@ -142,17 +142,17 @@ addItems() {
   ..addLib(utils)
   ..addLib(streamers_table);
 
-  _containers.forEach((c, headers) =>
+  _containers.forEach((c, includes) =>
       installation.addLib(lib(c)
           ..namespace = _namespace
           ..headers = ([
             header(c)
-            ..headers = headers
+            ..includes = includes
             ..customBlocks = [fcbBeginNamespace]
           ]..addAll(
             [
               header('containers')
-              ..headers = [
+              ..includes = [
                 'fcs/utils/streamers/list.hpp',
                 'fcs/utils/streamers/vector.hpp',
                 'fcs/utils/streamers/deque.hpp',
@@ -161,7 +161,7 @@ addItems() {
               ],
               header('streamers')
               ..customBlocks = [ fcbBeginNamespace ]
-              ..headers = [
+              ..includes = [
                 'memory',
                 'iosfwd',
                 'sstream',

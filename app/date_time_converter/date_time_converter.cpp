@@ -53,7 +53,6 @@ namespace date_time_converter {
     | 20010101T000000             | 20010101T000000        | 2001-Jan-01 00:00:00        | 2001-Jan-01 | 2451911 | 51910     |
 
 
-
     Allowed Options)"
       };
       if(options.options().empty()) {

@@ -6,16 +6,13 @@ project h5ds2csv
 ENV_CXXFLAGS = [ os.environ CXXFLAGS ] ;
 ENV_LINKFLAGS = [ os.environ LINKFLAGS ] ;
 SOURCES =
-     date_time_converter_program_options
+     h5ds2csv
 ;
 
 exe date_time_converter
     : h5ds2csv.cpp
       $(SOURCES).cpp
       /site-config//boost_program_options
-      /site-config//boost_date_time
-      /site-config//boost_regex
-      $(PANTHEIOS_LIBS)
     : <define>DEBUG_FCS_STARTUP
       <cxxflags>$(ENV_CXXFLAGS)
       <linkflags>$(ENV_LINKFLAGS)

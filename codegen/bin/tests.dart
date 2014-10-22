@@ -1,3 +1,5 @@
+library tests;
+
 import '../lib/installation.dart';
 
 addItems() {
