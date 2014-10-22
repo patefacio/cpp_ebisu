@@ -87,18 +87,26 @@ final streamers_table = lib('table')
   ..headers = [
     header('table')
     ..customBlocks = [fcbBeginNamespace]
+    ..usings = [
+      'String_list_t = std::vector< std::string >',
+      'String_matrix_t = std::vector< String_list_t >',
+      'Size_list_t = std::vector< size_t >',
+    ]
     ..headers = [
       'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
       'vector', 'algorithm', 'iostream',
     ]
     ..classes = [
       class_('table_streamer')
+      ..usings = [
+        'Row_container_t = typename MatrixContainer::value_type',
+      ]
       ..brief = 'Outputs data in tabular format - like output from database query'
       ..template = [
-        'typename MatrixContainer',
+        'typename MatrixContainer = String_matrix_t',
         'typename T = typename MatrixContainer::value_type::value_type'
       ]
-      ..customBlocks = [ clsPublic ]
+      ..customBlocks = [ clsPublic, clsPreDecl ]
       ..opOut
       ..members = [
         member('matrix_container')

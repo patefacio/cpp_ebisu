@@ -16,7 +16,6 @@ final timestamp = lib('timestamp')
       'boost/date_time/microsec_time_clock.hpp',
       'boost/date_time/posix_time/posix_time.hpp',
       'boost/date_time/c_local_time_adjustor.hpp',
-      'boost/date_time/local_time_adjustor.hpp',
     ]
   ];
 
