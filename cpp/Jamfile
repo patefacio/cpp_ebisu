@@ -1,0 +1,38 @@
+import package ;
+import common ;
+import os ;
+import feature : set-default ;
+
+constant FCS_INSTALL_PATH : /home/dbdavidson/fcs_install ;
+constant TOP : /home/dbdavidson/fcs/cpp ;
+
+local rule explicit-alias ( id : targets + )
+{
+    alias $(id) : $(targets) ;
+    explicit $(id) ;
+}
+
+project fcs_projects
+        : requirements
+          <define>BOOST_ALL_DYN_LINK
+          <define>OTL_ODBC_UNIX
+          <define>BOOST_FILESYSTEM_VERSION=2
+          <variant>debug:<define>DEBUG
+          <toolset>gcc:<cxxflags>-Wno-invalid-offsetof
+          <toolset>gcc:<cxxflags>-Wno-deprecated-declarations
+          <toolset>gcc:<cxxflags>-std=c++11
+          <toolset>darwin:<cxxflags>-std=c++11
+          <linkflags>-lpthread
+          <include>$(BOOST_INCLUDE_PATH)
+          <tag>@$(__name__).tag
+          <include>.
+          <toolset>intel:<cxxflags>-std=c++0x
+          <toolset>intel:<cxxflags>-Qoption,cpp,--rvalue_ctor_is_not_copy_ctor
+          <toolset>intel:<define>BOOST_CALLBACK_EXPLICIT_COPY_CONSTRUCTOR
+          <toolset>intel:<linkflags>-i-static
+          <toolset>intel:<linkflags>-i-static
+          <library>/site-config//boost_thread
+          <library>/site-config//boost_system
+        :
+        : build-dir ../../build-dir
+        ;
