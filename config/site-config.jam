@@ -1,0 +1,19 @@
+import project ;
+import feature ;
+import os ;
+
+project site-config ;
+
+path-constant BOOST_LIB_PATH : /usr/local/Cellar/boost/1.55.0/lib/ ;
+
+lib boost_program_options : : <file>$(BOOST_LIB_PATH)/libboost_program_options-mt.a <variant>debug ;
+lib boost_program_options : : <file>$(BOOST_LIB_PATH)/libboost_program_options-mt.a <variant>profile ;
+lib boost_program_options : : <file>$(BOOST_LIB_PATH)/libboost_program_options-mt.a <variant>release ;
+
+lib boost_date_time : : <file>$(BOOST_LIB_PATH)/libboost_date_time-mt.a <variant>debug ;
+lib boost_date_time : : <file>$(BOOST_LIB_PATH)/libboost_date_time-mt.a <variant>profile ;
+lib boost_date_time : : <file>$(BOOST_LIB_PATH)/libboost_date_time-mt.a <variant>release ;
+
+lib boost_regex : : <file>$(BOOST_LIB_PATH)/libboost_regex-mt.a <variant>debug ;
+lib boost_regex : : <file>$(BOOST_LIB_PATH)/libboost_regex-mt.a <variant>profile ;
+lib boost_regex : : <file>$(BOOST_LIB_PATH)/libboost_regex-mt.a <variant>release ;

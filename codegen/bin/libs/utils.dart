@@ -142,32 +142,33 @@ addItems() {
   ..addLib(utils)
   ..addLib(streamers_table);
 
-  _containers.forEach((c, includes) =>
-      installation.addLib(lib(c)
-          ..namespace = _namespace
-          ..headers = ([
-            header(c)
-            ..includes = includes
-            ..customBlocks = [fcbBeginNamespace]
-          ]..addAll(
-            [
-              header('containers')
-              ..includes = [
-                'fcs/utils/streamers/list.hpp',
-                'fcs/utils/streamers/vector.hpp',
-                'fcs/utils/streamers/deque.hpp',
-                'fcs/utils/streamers/set.hpp',
-                'fcs/utils/streamers/map.hpp',
-              ],
-              header('streamers')
-              ..customBlocks = [ fcbBeginNamespace ]
-              ..includes = [
-                'memory',
-                'iosfwd',
-                'sstream',
-              ]
-            ]
-            ))));
+  final containers = lib('containers')
+    ..namespace = _namespace
+    ..headers = [
+      header('containers')
+      ..includes = [
+        'fcs/utils/streamers/list.hpp',
+        'fcs/utils/streamers/vector.hpp',
+        'fcs/utils/streamers/deque.hpp',
+        'fcs/utils/streamers/set.hpp',
+        'fcs/utils/streamers/map.hpp',
+      ],
+      header('streamers')
+      ..customBlocks = [ fcbBeginNamespace ]
+      ..includes = [
+        'memory',
+        'iosfwd',
+        'sstream',
+      ]
+    ];
+
+  containers.headers.addAll(
+    _containers.keys.map((c) =>
+        header(c)
+        ..includes = _containers[c]
+        ..customBlocks = [fcbBeginNamespace]));
+
+  installation.addLib(containers);
 }
 
 main() {
