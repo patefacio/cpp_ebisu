@@ -3,8 +3,8 @@ import common ;
 import os ;
 import feature : set-default ;
 
-constant FCS_INSTALL_PATH : /home/dbdavidson/fcs_install ;
-constant TOP : /home/dbdavidson/fcs/cpp ;
+constant FCS_INSTALL_PATH : /Users/dbdavidson/install/fcs ;
+constant TOP : /Users/dbdavidson/dev/open_source/fcs/cpp ;
 
 local rule explicit-alias ( id : targets + )
 {
@@ -14,7 +14,6 @@ local rule explicit-alias ( id : targets + )
 
 project fcs_projects
         : requirements
-          <define>BOOST_ALL_DYN_LINK
           <define>OTL_ODBC_UNIX
           <define>BOOST_FILESYSTEM_VERSION=2
           <variant>debug:<define>DEBUG
@@ -36,3 +35,4 @@ project fcs_projects
         :
         : build-dir ../../build-dir
         ;
+

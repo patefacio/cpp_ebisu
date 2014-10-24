@@ -181,7 +181,6 @@ rule handle-static-runtime ( properties * )
     }
 }
 
-
 project fcs
     : requirements <include>.
       # disable auto-linking for all targets here,
@@ -448,8 +447,6 @@ explicit stage ;
 # This is what happens with just "bjam --v2".
 alias build_all : libs/$(libraries)/build ;
 
-
-actions dbdavidson { echo "DBDAVIDSON" }
 
 rule fcs-install ( libraries * )
 {
