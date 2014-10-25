@@ -2,7 +2,6 @@
 #define __FCS_RAII_API_INITIALIZER_HPP__
 
 #include <map>
-#include <mutex>
 #include <vector>
 
 namespace fcs {
@@ -89,7 +88,6 @@ namespace raii {
     // end <ClsPublic Api_initializer_registry>
 
   private:
-    std::mutex mutex_ {};
     Registry_t registry_ {};
     Uninit_list_t registry_ordered_ {};
 

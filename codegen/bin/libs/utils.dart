@@ -22,11 +22,19 @@ final utils = lib('utils')
       ..customBlocks = [ clsPublic ]
     ],
     header('utils')
-    ..includes = [ 'cmath', 'iostream' ]
+    ..includes = [ 'cmath', 'iostream', 'boost/array' ]
     ..customBlocks = [ ]
     ..classes = [
       class_('value_min_max'),
-      class_('fixed_size_char_array'),
+      class_('fixed_size_char_array')
+      ..template = [ 'int ARRAY_SIZE' ]
+      ..usings = [ 'Array_t = boost::array< char, ARRAY_SIZE >', ]
+      ..customBlocks = [ clsPublic ]
+      ..members = [
+        member('buffer_size')..type = 'int'..isStaticConst = true..initText = 'ARRAY_SIZE'..cppAccess = public,
+        member('last_index')..type = 'int'..isStaticConst = true..initText = 'ARRAY_SIZE--'..cppAccess = public,
+        member('data')..type = 'Array_t',
+      ],
       class_('version_control_commit'),
     ],
     header('histogram')

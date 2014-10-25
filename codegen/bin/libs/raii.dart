@@ -20,7 +20,7 @@ final raii = lib('raii')
       class_('change_until_end_of_block'),
     ],
     header('api_initializer')
-    ..includes = [ 'mutex', 'vector', 'map' ]
+    ..includes = [ 'vector', 'map' ]
     ..usings = [
       'Void_func_t = void (*)(void)',
     ]
@@ -52,7 +52,6 @@ For api's that need some form of initialization/uninitialization to be performed
         'typename UNINIT_FUNC = Void_func_t',
       ]
       ..members = [
-        member('mutex')..type = 'std::mutex',
         member('registry')..type = 'Registry_t',
         member('registry_ordered')..type = 'Uninit_list_t',
       ],
