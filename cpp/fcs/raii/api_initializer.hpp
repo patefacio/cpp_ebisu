@@ -1,8 +1,8 @@
 #ifndef __FCS_RAII_API_INITIALIZER_HPP__
 #define __FCS_RAII_API_INITIALIZER_HPP__
 
+#include <list>
 #include <map>
-#include <vector>
 
 namespace fcs {
 namespace raii {

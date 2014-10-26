@@ -49,7 +49,9 @@ destruction restores the original state.'''
       ],
     ],
     header('api_initializer')
-    ..includes = [ 'vector', 'map' ]
+    ..test.customBlocks = [ fcbPreNamespace ]
+    ..test.includes.addAll(['vector'])
+    ..includes = [ 'list', 'map' ]
     ..usings = [
       'Void_func_t = void (*)(void)',
     ]
