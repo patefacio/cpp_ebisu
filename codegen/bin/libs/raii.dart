@@ -24,6 +24,7 @@ final raii = lib('raii')
     ..usings = [
       'Void_func_t = void (*)(void)',
     ]
+    ..includeTest = true
     ..classes = [
       class_('functor_scope_exit')
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
