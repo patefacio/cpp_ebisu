@@ -7,26 +7,55 @@ final raii = lib('raii')
   ..namespace = namespace([ 'fcs', 'raii' ])
   ..headers = [
     header('change_tracker')
+    ..includes = [ 'boost/call_traits.hpp' ]
     ..classes = [
       class_('change_tracker')
+      ..descr = '''
+Tracks current/previous values of the given type of data. For some
+algorithms it is useful to be able to examine/perform logic on
+current value and compare or evalutate how it has changed since
+previous value.'''
+      ..template = [ 'typename T' ]
+      ..customBlocks = [clsPublic]
       ..members = [
-        member('saved_value')..type = 'T',
-        member('target')..type = 'T',
+        member('current')..type = 'T'..access = ro,
+        member('previous')..type = 'T'..access = ro,
       ],
-      class_('change_tracker_next_value'),
-    ],
-    header('change_until_end_of_block')
-    ..classes = [
-      class_('change_until_end_of_block'),
+      class_('change_tracker_next_value')
+      ..descr = '''
+Uses a ChangeTracker to track current/previous values of a type and
+ensures that on destruction the previous value becomes the current
+value and the current value will be assigned the next value.'''
+      ..template = [ 'typename T' ]
+      ..usings = [ 'Change_tracker_t = Change_tracker< T >' ]
+      ..customBlocks = [clsPublic]
+      ..includeTest = true
+      ..members = [
+        member('tracker')..type = 'Change_tracker_t'
+        ..byRef = true
+        ..refType = ref..access = ro,
+        member('next_value')..type = 'T'..access = ro,
+      ],
+      class_('change_until_end_of_block')
+      ..descr = '''
+Stores the current state, changes that state to a new value and on
+destruction restores the original state.'''
+      ..template = [ 'typename T' ]
+      ..customBlocks = [clsPublic]
+      ..includeTest = true
+      ..members = [
+        member('target')..type = 'T'..refType = ref..access = ro,
+        member('saved_value')..type = 'T'..access = ro,
+      ],
     ],
     header('api_initializer')
     ..includes = [ 'vector', 'map' ]
     ..usings = [
       'Void_func_t = void (*)(void)',
     ]
-    ..includeTest = true
     ..classes = [
       class_('functor_scope_exit')
+      ..includeTest = true
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
       ..usings = [ 'Functor_t = FUNCTOR' ]
       ..customBlocks = [ clsPublic ]
