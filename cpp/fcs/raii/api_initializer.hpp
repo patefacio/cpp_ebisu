@@ -60,7 +60,12 @@ namespace raii {
 
     // custom <ClsPublic Api_initializer_registry>
 
-    int foo() { return 55; }
+    ~Api_initializer_registry() {
+      registry_.clear();
+      while(!registry_ordered_.empty()) {
+        registry_ordered_.pop_back();
+      }
+    }
 
     void register_initializer(Init_func_t init, Uninit_func_t uninit) {
       typedef std::pair< typename Registry_t::iterator, bool > Insert_result_t;
@@ -73,7 +78,7 @@ namespace raii {
         insert_result.first->second = Uninit_wrapper_ptr(
           new Functor_scope_exit < Uninit_func_t >(uninit));
 
-        registry_ordered_.push_front(insert_result.first->second);
+        registry_ordered_.push_back(insert_result.first->second);
         if(init) {
           init();
         }

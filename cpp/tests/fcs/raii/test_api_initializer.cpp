@@ -1,34 +1,40 @@
 #include "fcs/raii/api_initializer.hpp"
+#include "fcs/utils/streamers/containers.hpp"
 #include <boost/test/included/unit_test.hpp>
 #include <vector>
 
 // custom <FcbPreNamespace api_initializer>
 
+using fcs::utils::streamers::operator<<;
 using namespace std;
-vector< string > strings;
 
+vector< string > init_strings;
 
-void my_init() {
-  strings.emplace_back("my_init");
+void my_init1() {
+  init_strings.emplace_back("my_init1");
 }
 
 void my_init2() {
-  strings.emplace_back("my_init2");
+  init_strings.emplace_back("my_init2");
 }
 
-void my_uninit() {
-  strings.emplace_back("my_uninit");
-  cout << "Running my_uninit uninitializer" << endl;
+void my_uninit1() {
+  auto back = init_strings.back();
+  init_strings.pop_back();
+  assert(back == "my_init1" && init_strings.size() == 0);
+  cout << "Finished final uninit" << endl;
 }
 
 void my_uninit2() {
-  strings.emplace_back("my_uninit2");
-  cout << "Running my_uninit2 uninitializer" << endl;
+  auto back = init_strings.back();
+  init_strings.pop_back();
+  assert(back == "my_init2");
 }
 
-void foobar() {
-  strings.emplace_back("foobar");
-  cout << "Running foobar uninitializer" << endl;
+void my_uninit3() {
+  auto back = init_strings.back();
+  init_strings.pop_back();
+  assert(back == "my_init3");
 }
 
 // end <FcbPreNamespace api_initializer>
@@ -45,27 +51,35 @@ namespace raii {
     // api_initializer_registry is destructed.
 
     {
-      Api_initializer<> registry { &my_init, &foobar };
+      Api_initializer<> registry { &my_init1, &my_uninit1 };
 
-      BOOST_REQUIRE(strings == vector< string > { "my_init" });
+      BOOST_REQUIRE(init_strings == vector< string > { "my_init1" });
 
       // In the example below the registry2 object should not trigger a call
-      // to my_init since it should have already been initialized. The
+      // to my_init1 since it should have already been initialized. The
       // Api_initializer_registry ensures this.
 
-      Api_initializer<> registry2 = { &my_init, &foobar };
+      Api_initializer<> registry2 = { &my_init1, &my_uninit1 };
 
-      BOOST_REQUIRE(strings == (vector< string > { "my_init" }));
+      BOOST_REQUIRE(init_strings == (vector< string > { "my_init1" }));
 
       Api_initializer<> registry3 = { &my_init2, &my_uninit2 };
 
-      BOOST_REQUIRE(strings == (vector< string > { "my_init", "my_init2" }));
+      BOOST_REQUIRE(
+        init_strings == (vector< string > { "my_init1", "my_init2" }));
 
-      Api_initializer<> registry4 = { 0, &my_uninit };
+      // Null passed in causes no initialization function to be run
+      Api_initializer<> registry4 = { 0, &my_uninit3 };
 
+      BOOST_REQUIRE(
+        init_strings == (vector< string > { "my_init1", "my_init2" }));
+
+      // Add the third one here for symmetry
+      init_strings.emplace_back("my_init3");
     }
 
-    BOOST_REQUIRE(strings == (vector< string > { "my_init", "my_init2" }));
+    BOOST_REQUIRE(
+      init_strings == (vector< string > { "my_init1", "my_init2", "my_init3" }));
 
     // end <functor_scope_exit>
   }
