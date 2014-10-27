@@ -1,4 +1,4 @@
-project test_fcs_raii_raii
+project test_fcs_raii
     :
     :
     ;
@@ -7,12 +7,13 @@ import testing ;
 
 rule test_change_tracker
 {
-  all_rules += [ run moo/test_change_tracker.cpp
+  all_rules += [ run test_change_tracker.cpp
   :
   : # test-files
   : # requirements
   ] ;
 }
+test-suite change_tracker : [ test_change_tracker ] ;
 
 rule test_api_initializer
 {
@@ -22,8 +23,4 @@ rule test_api_initializer
   : # requirements
   ] ;
 }
-
-test-suite test_suite_fcs_raii_raii : [
-  test_change_tracker
-  test_api_initializer
-] ;
+test-suite api_initializer : [ test_api_initializer ] ;
