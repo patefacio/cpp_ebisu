@@ -1,0 +1,29 @@
+project test_fcs_raii_raii
+    :
+    :
+    ;
+
+import testing ;
+
+rule test_change_tracker
+{
+  all_rules += [ run moo/test_change_tracker.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+
+rule test_api_initializer
+{
+  all_rules += [ run test_api_initializer.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+
+test-suite test_suite_fcs_raii_raii : [
+  test_change_tracker
+  test_api_initializer
+] ;
