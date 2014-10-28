@@ -1,0 +1,16 @@
+project test_fcs_orm_code_tick_timings_table
+    :
+    :
+    ;
+
+import testing ;
+
+rule test_code_tick_timings
+{
+  all_rules += [ run test_code_tick_timings.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite code_tick_timings : [ test_code_tick_timings ] ;

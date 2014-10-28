@@ -1,0 +1,16 @@
+project test_fcs_orm_code_locations_table
+    :
+    :
+    ;
+
+import testing ;
+
+rule test_code_locations
+{
+  all_rules += [ run test_code_locations.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite code_locations : [ test_code_locations ] ;

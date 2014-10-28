@@ -1,0 +1,16 @@
+project test_fcs_orm_rusage_delta_table
+    :
+    :
+    ;
+
+import testing ;
+
+rule test_rusage_delta
+{
+  all_rules += [ run test_rusage_delta.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite rusage_delta : [ test_rusage_delta ] ;

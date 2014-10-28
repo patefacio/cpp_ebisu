@@ -1,0 +1,24 @@
+#include "fcs/orm/code_tick_timings/table/code_tick_timings.hpp"
+#include <boost/test/included/unit_test.hpp>
+
+namespace fcs {
+namespace orm {
+namespace code_tick_timings {
+namespace table {
+  void test_code_tick_timings() {
+    // custom <code_tick_timings>
+    // end <code_tick_timings>
+  }
+
+} // namespace table
+} // namespace code_tick_timings
+} // namespace orm
+} // namespace fcs
+
+boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
+  using namespace fcs::orm::code_tick_timings::table;
+  using namespace boost::unit_test;
+  test_suite* test= BOOST_TEST_SUITE( "<code_tick_timings>" );
+  test->add( BOOST_TEST_CASE( &test_code_tick_timings ) );
+  return test;
+}

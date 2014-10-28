@@ -42,6 +42,18 @@ final utils = lib('utils')
       class_('value_min_max'),
       class_('version_control_commit'),
     ],
+    header('version_control_commit')
+    ..classes = [
+      class_('version_control_commit')
+      ..descr = '''
+Provide static data with git commit for quickly identifying contents of build
+with linux strings program'''
+      ..isSingleton = true
+      ..members = [
+        member('git_commit')..type = 'char const* const',
+        member('search_string')..type = 'char const* const',
+      ]
+    ],
     header('histogram')
     ..includes = [ 'fcs/utils/block_indenter.hpp',
       'fcs/utils/streamers/containers.hpp',
