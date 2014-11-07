@@ -1,13 +1,13 @@
-#include "fcs/orm/code_locations/table/code_locations.hpp"
+#include "fcs/orm/code_metrics/table/code_packages.hpp"
 #include <boost/test/included/unit_test.hpp>
 
 namespace fcs {
 namespace orm {
-namespace code_locations {
+namespace code_metrics {
 namespace table {
-  void test_code_locations() {
-    // custom <code_locations>
-    // end <code_locations>
+  void test_code_packages() {
+    // custom <code_packages>
+    // end <code_packages>
   }
 
   void test_create_rows() {
@@ -27,15 +27,15 @@ namespace table {
   }
 
 } // namespace table
-} // namespace code_locations
+} // namespace code_metrics
 } // namespace orm
 } // namespace fcs
 
 boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
-  using namespace fcs::orm::code_locations::table;
+  using namespace fcs::orm::code_metrics::table;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<code_locations>" );
-  test->add( BOOST_TEST_CASE( &test_code_locations ) );
+  test_suite* test= BOOST_TEST_SUITE( "<code_packages>" );
+  test->add( BOOST_TEST_CASE( &test_code_packages ) );
   test->add( BOOST_TEST_CASE( &test_create_rows ) );
   test->add( BOOST_TEST_CASE( &test_insert_rows ) );
   test->add( BOOST_TEST_CASE( &test_update_rows ) );

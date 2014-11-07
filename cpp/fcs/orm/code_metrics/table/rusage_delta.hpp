@@ -1,8 +1,8 @@
-#ifndef __FCS_ORM_RUSAGE_DELTA_TABLE_RUSAGE_DELTA_HPP__
-#define __FCS_ORM_RUSAGE_DELTA_TABLE_RUSAGE_DELTA_HPP__
+#ifndef __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__
+#define __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__
 
+#include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
-#include "fcs/orm/otl_config.hpp"
 #include "fcs/orm/otl_utils.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
@@ -11,7 +11,7 @@
 
 namespace fcs {
 namespace orm {
-namespace rusage_delta {
+namespace code_metrics {
 namespace table {
   struct Rusage_delta_pkey
   {
@@ -47,10 +47,12 @@ namespace table {
 
   inline otl_stream& operator<<(otl_stream &out, Rusage_delta_pkey const& value) {
     out << value.id_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Rusage_delta_pkey & value) {
     out >> value.id_;
+    return out;
   }
 
 
@@ -249,6 +251,7 @@ namespace table {
       << value.ru_nsignals_
       << value.ru_nvcsw_
       << value.ru_nivcsw_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Rusage_delta_value & value) {
@@ -276,19 +279,20 @@ namespace table {
       >> value.ru_nsignals_
       >> value.ru_nvcsw_
       >> value.ru_nivcsw_;
+    return out;
   }
 
 
-  template< typename PKEY_LIST_TYPE = std::vector< RusageDeltaPkey >,
-            typename VALUE_LIST_TYPE = std::vector< RusageDeltaValue > >
+  template< typename PKEY_LIST_TYPE = std::vector< Rusage_delta_pkey >,
+            typename VALUE_LIST_TYPE = std::vector< Rusage_delta_value > >
   class Rusage_delta
   {
   public:
-    using Pkey_t = RusageDeltaPkey;
-    using Value_t = RusageDeltaValue;
+    using Pkey_t = Rusage_delta_pkey;
+    using Value_t = Rusage_delta_value;
     using Pkey_list_t = PKEY_LIST_TYPE;
     using Value_list_t = VALUE_LIST_TYPE;
-    using Row_t = std::pair< PKey_t, Value_t >;
+    using Row_t = std::pair< Pkey_t, Value_t >;
     using Row_list_t = std::vector< Row_t >;
 
     static Rusage_delta & instance() {
@@ -297,11 +301,11 @@ namespace table {
     }
 
     static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
-      fcs::orm::print_recordset_as_table< Code_locations >(recordset, out);
+      fcs::orm::print_recordset_as_table< Rusage_delta >(recordset, out);
     }
 
     static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
-      fcs::orm::print_values_as_table< Code_locations >(values, out);
+      fcs::orm::print_values_as_table< Rusage_delta >(values, out);
     }
 
     int select_last_insert_id() {
@@ -519,7 +523,7 @@ namespace table {
           :ru_nivcsw<bigint>
         )
       )";
-
+      otl_stream stream { 50, insert_stmt, *connection_ };
       for(auto const& row : nascent) {
         stream << row.second;
       }
@@ -542,11 +546,14 @@ namespace table {
       return size_t(rows_deleted);
     }
 
+  private:
+    otl_connect * connection_ {};
+
   };
 
 
 } // namespace table
-} // namespace rusage_delta
+} // namespace code_metrics
 } // namespace orm
 } // namespace fcs
-#endif // __FCS_ORM_RUSAGE_DELTA_TABLE_RUSAGE_DELTA_HPP__
+#endif // __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__

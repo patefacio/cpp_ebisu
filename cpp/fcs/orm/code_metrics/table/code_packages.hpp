@@ -1,8 +1,8 @@
-#ifndef __FCS_ORM_CODE_PACKAGES_TABLE_CODE_PACKAGES_HPP__
-#define __FCS_ORM_CODE_PACKAGES_TABLE_CODE_PACKAGES_HPP__
+#ifndef __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__
+#define __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__
 
+#include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
-#include "fcs/orm/otl_config.hpp"
 #include "fcs/orm/otl_utils.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
@@ -11,7 +11,7 @@
 
 namespace fcs {
 namespace orm {
-namespace code_packages {
+namespace code_metrics {
 namespace table {
   struct Code_packages_pkey
   {
@@ -47,10 +47,12 @@ namespace table {
 
   inline otl_stream& operator<<(otl_stream &out, Code_packages_pkey const& value) {
     out << value.id_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Code_packages_pkey & value) {
     out >> value.id_;
+    return out;
   }
 
 
@@ -95,24 +97,26 @@ namespace table {
   inline otl_stream& operator<<(otl_stream &out, Code_packages_value const& value) {
     out << value.name_
       << value.descr_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Code_packages_value & value) {
     out >> value.name_
       >> value.descr_;
+    return out;
   }
 
 
-  template< typename PKEY_LIST_TYPE = std::vector< CodePackagesPkey >,
-            typename VALUE_LIST_TYPE = std::vector< CodePackagesValue > >
+  template< typename PKEY_LIST_TYPE = std::vector< Code_packages_pkey >,
+            typename VALUE_LIST_TYPE = std::vector< Code_packages_value > >
   class Code_packages
   {
   public:
-    using Pkey_t = CodePackagesPkey;
-    using Value_t = CodePackagesValue;
+    using Pkey_t = Code_packages_pkey;
+    using Value_t = Code_packages_value;
     using Pkey_list_t = PKEY_LIST_TYPE;
     using Value_list_t = VALUE_LIST_TYPE;
-    using Row_t = std::pair< PKey_t, Value_t >;
+    using Row_t = std::pair< Pkey_t, Value_t >;
     using Row_list_t = std::vector< Row_t >;
 
     static Code_packages & instance() {
@@ -121,11 +125,11 @@ namespace table {
     }
 
     static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
-      fcs::orm::print_recordset_as_table< Code_locations >(recordset, out);
+      fcs::orm::print_recordset_as_table< Code_packages >(recordset, out);
     }
 
     static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
-      fcs::orm::print_values_as_table< Code_locations >(values, out);
+      fcs::orm::print_values_as_table< Code_packages >(values, out);
     }
 
     int select_last_insert_id() {
@@ -233,7 +237,7 @@ namespace table {
           :descr<char[256]>
         )
       )";
-
+      otl_stream stream { 50, insert_stmt, *connection_ };
       for(auto const& row : nascent) {
         stream << row.second;
       }
@@ -256,11 +260,14 @@ namespace table {
       return size_t(rows_deleted);
     }
 
+  private:
+    otl_connect * connection_ {};
+
   };
 
 
 } // namespace table
-} // namespace code_packages
+} // namespace code_metrics
 } // namespace orm
 } // namespace fcs
-#endif // __FCS_ORM_CODE_PACKAGES_TABLE_CODE_PACKAGES_HPP__
+#endif // __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__

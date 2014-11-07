@@ -1,13 +1,13 @@
-#include "fcs/orm/rusage_delta/table/rusage_delta.hpp"
+#include "fcs/orm/code_metrics/table/code_tick_timings.hpp"
 #include <boost/test/included/unit_test.hpp>
 
 namespace fcs {
 namespace orm {
-namespace rusage_delta {
+namespace code_metrics {
 namespace table {
-  void test_rusage_delta() {
-    // custom <rusage_delta>
-    // end <rusage_delta>
+  void test_code_tick_timings() {
+    // custom <code_tick_timings>
+    // end <code_tick_timings>
   }
 
   void test_create_rows() {
@@ -27,15 +27,15 @@ namespace table {
   }
 
 } // namespace table
-} // namespace rusage_delta
+} // namespace code_metrics
 } // namespace orm
 } // namespace fcs
 
 boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
-  using namespace fcs::orm::rusage_delta::table;
+  using namespace fcs::orm::code_metrics::table;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<rusage_delta>" );
-  test->add( BOOST_TEST_CASE( &test_rusage_delta ) );
+  test_suite* test= BOOST_TEST_SUITE( "<code_tick_timings>" );
+  test->add( BOOST_TEST_CASE( &test_code_tick_timings ) );
   test->add( BOOST_TEST_CASE( &test_create_rows ) );
   test->add( BOOST_TEST_CASE( &test_insert_rows ) );
   test->add( BOOST_TEST_CASE( &test_update_rows ) );

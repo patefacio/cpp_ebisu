@@ -1,8 +1,8 @@
-#ifndef __FCS_ORM_CODE_LOCATIONS_TABLE_CODE_LOCATIONS_HPP__
-#define __FCS_ORM_CODE_LOCATIONS_TABLE_CODE_LOCATIONS_HPP__
+#ifndef __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__
+#define __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__
 
+#include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
-#include "fcs/orm/otl_config.hpp"
 #include "fcs/orm/otl_utils.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
@@ -11,7 +11,7 @@
 
 namespace fcs {
 namespace orm {
-namespace code_locations {
+namespace code_metrics {
 namespace table {
   struct Code_locations_pkey
   {
@@ -47,10 +47,12 @@ namespace table {
 
   inline otl_stream& operator<<(otl_stream &out, Code_locations_pkey const& value) {
     out << value.id_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Code_locations_pkey & value) {
     out >> value.id_;
+    return out;
   }
 
 
@@ -116,6 +118,7 @@ namespace table {
       << value.file_name_
       << value.line_number_
       << value.git_commit_;
+    return out;
   }
 
   inline otl_stream& operator>>(otl_stream &out, Code_locations_value & value) {
@@ -124,19 +127,20 @@ namespace table {
       >> value.file_name_
       >> value.line_number_
       >> value.git_commit_;
+    return out;
   }
 
 
-  template< typename PKEY_LIST_TYPE = std::vector< CodeLocationsPkey >,
-            typename VALUE_LIST_TYPE = std::vector< CodeLocationsValue > >
+  template< typename PKEY_LIST_TYPE = std::vector< Code_locations_pkey >,
+            typename VALUE_LIST_TYPE = std::vector< Code_locations_value > >
   class Code_locations
   {
   public:
-    using Pkey_t = CodeLocationsPkey;
-    using Value_t = CodeLocationsValue;
+    using Pkey_t = Code_locations_pkey;
+    using Value_t = Code_locations_value;
     using Pkey_list_t = PKEY_LIST_TYPE;
     using Value_list_t = VALUE_LIST_TYPE;
-    using Row_t = std::pair< PKey_t, Value_t >;
+    using Row_t = std::pair< Pkey_t, Value_t >;
     using Row_list_t = std::vector< Row_t >;
 
     static Code_locations & instance() {
@@ -272,7 +276,7 @@ namespace table {
           :git_commit<char[40]>
         )
       )";
-
+      otl_stream stream { 50, insert_stmt, *connection_ };
       for(auto const& row : nascent) {
         stream << row.second;
       }
@@ -295,11 +299,14 @@ namespace table {
       return size_t(rows_deleted);
     }
 
+  private:
+    otl_connect * connection_ {};
+
   };
 
 
 } // namespace table
-} // namespace code_locations
+} // namespace code_metrics
 } // namespace orm
 } // namespace fcs
-#endif // __FCS_ORM_CODE_LOCATIONS_TABLE_CODE_LOCATIONS_HPP__
+#endif // __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__
