@@ -2,8 +2,7 @@ name: fcs
 version: 0.0.1
 author: Daniel Davidson <dbdavidson@yahoo.com>
 dependencies:
-  ebisu:
-      path: /Users/dbdavidson/dev/open_source/ebisu
+  ebisu: ">=0.0.11"
   ebisu_cpp:
       path: /Users/dbdavidson/dev/open_source/ebisu_cpp
   path: ">=1.2.2 < 1.10.0"

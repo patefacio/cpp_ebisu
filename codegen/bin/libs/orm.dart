@@ -25,16 +25,24 @@ final orm = lib('orm')
     ],
     header('orm_to_string_table')
     ..descr = 'Functions to turn recordset lists into string lists'
-    ..customBlocks = [ fcbEndNamespace ]
+    ..customBlocks = [ fcbEndNamespace, ]
     ..usings = [
     ]
     ..includes = [
       'string',
       'fcs/utils/streamers/table/table.hpp',
     ],
-    header('orm_utils')
-    ..customBlocks = [ fcbPostNamespace ],
-
+    header('otl_utils')
+    ..customBlocks = [ fcbPreNamespace, fcbEndNamespace, fcbPostNamespace ]
+    ..includes = [
+      'fcs/orm/otl_config.hpp',
+      "fcs/utils/fixed_size_char_array.hpp",
+      "boost/date_time/gregorian/formatters.hpp",
+      "boost/date_time/gregorian/gregorian_types.hpp",
+      "boost/date_time/posix_time/posix_time.hpp",
+      "boost/algorithm/string/replace.hpp",
+      "string",
+    ],
   ];
 
 

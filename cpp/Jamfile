@@ -23,6 +23,7 @@ project fcs_projects
           <toolset>darwin:<cxxflags>-std=c++11
           <linkflags>-lpthread
           <include>$(BOOST_INCLUDE_PATH)
+          <include>$(CPP_INCLUDE_PATH)
           <tag>@$(__name__).tag
           <include>.
           <toolset>intel:<cxxflags>-std=c++0x

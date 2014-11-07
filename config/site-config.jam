@@ -6,6 +6,7 @@ project site-config ;
 
 path-constant BOOST_INCLUDE_PATH : /usr/local/Cellar/boost/1.55.0/include ;
 path-constant BOOST_LIB_PATH : /usr/local/Cellar/boost/1.55.0/lib ;
+path-constant CPP_INCLUDE_PATH : /Users/dbdavidson/install/cpp/include ;
 
 lib boost_atomic : : <file>$(BOOST_LIB_PATH)/libboost_atomic-mt.a <variant>release ;
 lib boost_chrono : : <file>$(BOOST_LIB_PATH)/libboost_chrono-mt.a <variant>release ;

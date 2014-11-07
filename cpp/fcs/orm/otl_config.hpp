@@ -55,7 +55,7 @@ typedef long long otl_bigint;
 #define OTL_TRACE_LINE_PREFIX "OTL => "
 
 #include <iostream>
-//#include "otlv4.h"
+#include "otlv4.h"
 
 // end <FcbPostNamespace otl_config>
 
