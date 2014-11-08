@@ -28,7 +28,7 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("id_");
+      out.push_back("id");
     }
 
     inline
@@ -79,11 +79,11 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("code_packages_id_");
-      out.push_back("label_");
-      out.push_back("file_name_");
-      out.push_back("line_number_");
-      out.push_back("git_commit_");
+      out.push_back("code_packages_id");
+      out.push_back("label");
+      out.push_back("file_name");
+      out.push_back("line_number");
+      out.push_back("git_commit");
     }
 
     inline
@@ -185,7 +185,8 @@ namespace table {
       return result;
     }
 
-    void select_all_rows(Row_list_t &found, std::string const& where_clause = "") {
+    Row_list_t select_all_rows(std::string const& where_clause = "") {
+      Row_list_t found;
       char const* select_stmt = R"(
         select
           id,
@@ -209,6 +210,7 @@ namespace table {
         stream >> row.first >> row.second;
         found.push_back(row);
       }
+      return found;
     }
 
     bool find_row_by_key(Pkey_t const& desideratum, Value_t & found) {
@@ -300,7 +302,7 @@ namespace table {
     }
 
   private:
-    otl_connect * connection_ {};
+    otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
 

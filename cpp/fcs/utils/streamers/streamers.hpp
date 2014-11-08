@@ -29,11 +29,9 @@ namespace streamers {
 
   template < typename T >
   inline std::ostream& print_scalar_collection(std::ostream &out, T const& collection) {
-    typename T::const_iterator current(collection.begin());
-    typename T::const_iterator end(collection.end());
     out << '[';
-    for(; current != end; ++current) {
-      out << *current << ',';
+    for(typename T::const_reference elm : collection) {
+      out << elm << ',';
     }
     out << "]";
     return out;

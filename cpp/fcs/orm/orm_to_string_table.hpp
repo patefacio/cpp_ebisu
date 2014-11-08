@@ -2,7 +2,7 @@
 #define __FCS_ORM_ORM_TO_STRING_TABLE_HPP__
 
 #include "fcs/orm/orm.hpp"
-#include "fcs/utils/streamers/table/table.hpp"
+#include "fcs/utils/streamers/table.hpp"
 #include <string>
 
 namespace fcs {
@@ -28,10 +28,11 @@ namespace orm {
   template < typename Recordset >
   inline void print_recordset_as_table(
     typename Recordset::Row_list_t const& recordset, std::ostream &out) {
+    using fcs::utils::streamers::operator<<;
     String_list_t header;
     String_table_t data;
     recordset_to_string_table< Recordset >(recordset, header, data);
-    out << fcs::utils::streamers::table::Table_streamer< String_table_t >(data, header);
+    out << fcs::utils::streamers::Table_streamer< String_table_t >(data, header);
   }
 
   template < typename Recordset >
@@ -52,7 +53,7 @@ namespace orm {
     String_list_t header;
     String_table_t data;
     values_to_string_table< Recordset >(values, header, data);
-    out << fcs::utils::streamers::table::Table_streamer< String_table_t >(data, header);
+    out << fcs::utils::streamers::Table_streamer< String_table_t >(data, header);
   }
 
   // end <FcbEndNamespace orm_to_string_table>

@@ -1,7 +1,6 @@
-#ifndef __FCS_UTILS_STREAMERS_TABLE_TABLE_HPP__
-#define __FCS_UTILS_STREAMERS_TABLE_TABLE_HPP__
+#ifndef __FCS_UTILS_STREAMERS_TABLE_HPP__
+#define __FCS_UTILS_STREAMERS_TABLE_HPP__
 
-#include "fcs/utils/block_indenter.hpp"
 #include "fcs/utils/streamers/containers.hpp"
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>
@@ -12,7 +11,6 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-namespace table {
   // custom <FcbBeginNamespace table>
   // end <FcbBeginNamespace table>
 
@@ -117,6 +115,7 @@ namespace table {
     return out;
   }
 
+
   // end <ClsPreDecl Table_streamer>
 
   template< typename MatrixContainer = String_matrix_t,
@@ -133,17 +132,6 @@ namespace table {
       header_ { header } {
     }
 
-    friend inline
-    std::ostream& operator<<(std::ostream &out, Table_streamer const& item) {
-      using fcs::utils::streamers::operator<<;
-      fcs::utils::Block_indenter indenter;
-      char const* indent(indenter.current_indentation_text());
-      out << '\n' << indent << "Table_streamer(" << &item << ") {";
-      out << '\n' << indent << "  matrix_container:" << item.matrix_container_;
-      out << '\n' << indent << "  header:" << item.header_;
-      out << '\n' << indent << "}\n";
-      return out;
-    }
     // custom <ClsPublic Table_streamer>
 
     inline void print_string_table(std::ostream &out) const {
@@ -196,6 +184,12 @@ namespace table {
       }
     }
 
+    friend inline
+    std::ostream& operator<<(std::ostream &out, Table_streamer const& item) {
+      item.print_string_table(out);
+      return out;
+    }
+
     // end <ClsPublic Table_streamer>
 
   private:
@@ -207,8 +201,7 @@ namespace table {
   };
 
 
-} // namespace table
 } // namespace streamers
 } // namespace utils
 } // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_TABLE_TABLE_HPP__
+#endif // __FCS_UTILS_STREAMERS_TABLE_HPP__

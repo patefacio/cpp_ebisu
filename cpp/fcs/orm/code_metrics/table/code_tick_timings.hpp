@@ -28,7 +28,7 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("id_");
+      out.push_back("id");
     }
 
     inline
@@ -85,14 +85,14 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("code_locations_id_");
-      out.push_back("created_");
-      out.push_back("start_processor_");
-      out.push_back("end_processor_");
-      out.push_back("cpu_mhz_");
-      out.push_back("debug_");
-      out.push_back("ticks_");
-      out.push_back("normalized_ns_");
+      out.push_back("code_locations_id");
+      out.push_back("created");
+      out.push_back("start_processor");
+      out.push_back("end_processor");
+      out.push_back("cpu_mhz");
+      out.push_back("debug");
+      out.push_back("ticks");
+      out.push_back("normalized_ns");
     }
 
     inline
@@ -209,7 +209,8 @@ namespace table {
       return result;
     }
 
-    void select_all_rows(Row_list_t &found, std::string const& where_clause = "") {
+    Row_list_t select_all_rows(std::string const& where_clause = "") {
+      Row_list_t found;
       char const* select_stmt = R"(
         select
           id,
@@ -236,6 +237,7 @@ namespace table {
         stream >> row.first >> row.second;
         found.push_back(row);
       }
+      return found;
     }
 
     bool find_row_by_key(Pkey_t const& desideratum, Value_t & found) {
@@ -339,7 +341,7 @@ namespace table {
     }
 
   private:
-    otl_connect * connection_ {};
+    otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
 

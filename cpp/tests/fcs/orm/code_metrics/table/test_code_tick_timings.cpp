@@ -10,6 +10,13 @@ namespace table {
     // end <code_tick_timings>
   }
 
+  void test_query_rows() {
+    // test queries
+    auto gw = Code_tick_timings<>::instance();
+    auto rows = gw.select_all_rows();
+    Code_tick_timings<>::print_recordset_as_table(rows, std::cout);
+  }
+
   void test_create_rows() {
     // testing creation
   }
@@ -36,6 +43,7 @@ boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
   using namespace boost::unit_test;
   test_suite* test= BOOST_TEST_SUITE( "<code_tick_timings>" );
   test->add( BOOST_TEST_CASE( &test_code_tick_timings ) );
+  test->add( BOOST_TEST_CASE( &test_query_rows ) );
   test->add( BOOST_TEST_CASE( &test_create_rows ) );
   test->add( BOOST_TEST_CASE( &test_insert_rows ) );
   test->add( BOOST_TEST_CASE( &test_update_rows ) );

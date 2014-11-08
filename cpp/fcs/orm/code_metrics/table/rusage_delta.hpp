@@ -28,7 +28,7 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("id_");
+      out.push_back("id");
     }
 
     inline
@@ -117,30 +117,30 @@ namespace table {
 
     static inline
     void member_names_list(String_list_t &out) {
-      out.push_back("code_locations_id_");
-      out.push_back("created_");
-      out.push_back("start_processor_");
-      out.push_back("end_processor_");
-      out.push_back("cpu_mhz_");
-      out.push_back("debug_");
-      out.push_back("user_time_sec_");
-      out.push_back("user_time_usec_");
-      out.push_back("system_time_sec_");
-      out.push_back("system_time_usec_");
-      out.push_back("ru_maxrss_");
-      out.push_back("ru_ixrss_");
-      out.push_back("ru_idrss_");
-      out.push_back("ru_isrss_");
-      out.push_back("ru_minflt_");
-      out.push_back("ru_majflt_");
-      out.push_back("ru_nswap_");
-      out.push_back("ru_inblock_");
-      out.push_back("ru_oublock_");
-      out.push_back("ru_msgsnd_");
-      out.push_back("ru_msgrcv_");
-      out.push_back("ru_nsignals_");
-      out.push_back("ru_nvcsw_");
-      out.push_back("ru_nivcsw_");
+      out.push_back("code_locations_id");
+      out.push_back("created");
+      out.push_back("start_processor");
+      out.push_back("end_processor");
+      out.push_back("cpu_mhz");
+      out.push_back("debug");
+      out.push_back("user_time_sec");
+      out.push_back("user_time_usec");
+      out.push_back("system_time_sec");
+      out.push_back("system_time_usec");
+      out.push_back("ru_maxrss");
+      out.push_back("ru_ixrss");
+      out.push_back("ru_idrss");
+      out.push_back("ru_isrss");
+      out.push_back("ru_minflt");
+      out.push_back("ru_majflt");
+      out.push_back("ru_nswap");
+      out.push_back("ru_inblock");
+      out.push_back("ru_oublock");
+      out.push_back("ru_msgsnd");
+      out.push_back("ru_msgrcv");
+      out.push_back("ru_nsignals");
+      out.push_back("ru_nvcsw");
+      out.push_back("ru_nivcsw");
     }
 
     inline
@@ -337,7 +337,8 @@ namespace table {
       return result;
     }
 
-    void select_all_rows(Row_list_t &found, std::string const& where_clause = "") {
+    Row_list_t select_all_rows(std::string const& where_clause = "") {
+      Row_list_t found;
       char const* select_stmt = R"(
         select
           id,
@@ -380,6 +381,7 @@ namespace table {
         stream >> row.first >> row.second;
         found.push_back(row);
       }
+      return found;
     }
 
     bool find_row_by_key(Pkey_t const& desideratum, Value_t & found) {
@@ -547,7 +549,7 @@ namespace table {
     }
 
   private:
-    otl_connect * connection_ {};
+    otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
 

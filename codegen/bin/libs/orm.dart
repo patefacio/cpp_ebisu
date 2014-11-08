@@ -11,38 +11,13 @@ final orm = lib('orm')
     ..customBlocks = [ fcbCustomIncludes, fcbPostNamespace ]
     ..includes = [
       'vector',
+      'map',
       'set',
       'mutex',
       'boost/date_time/gregorian/gregorian.hpp',
+      'boost/thread/tss.hpp',
     ]
     ..classes = [
-      class_('connection_info')
-      ..customBlocks = [ clsPublic ]
-      ..memberCtors = [ memberCtor(['user_id', 'password', 'dsn']) ]
-      ..members = [
-        member('user_id')..type = 'std::string'..access = ro,
-        member('password')..type = 'std::string'..access = ro,
-        member('dsn')..type = 'std::string'..access = ro,
-      ],
-      class_('connection_registry')
-      ..template = [
-        'typename LOCK_TYPE = std::mutex',
-        'typename GUARD_TYPE = std::lock_guard< LOCK_TYPE >',
-      ]
-      ..usings = [
-        'Lock_t = LOCK_TYPE',
-        'Guard_t = GUARD_TYPE',
-        'Connection_info_map_t = std::map< std::string, Connection_info >',
-        'Thread_connection_ptr = boost::thread_specific_ptr< otl_connect >',
-        'Thread_connection_map_t = std::map< std::string, Thread_connection_ptr >',
-      ]
-      ..customBlocks = [ clsPublic ]
-      ..isSingleton = true
-      ..members = [
-        member('connection_info_map')..type = 'Connection_info_map_t',
-        member('lock')..type = 'Lock_t',
-        member('thread_connection_map')..type = 'Thread_connection_map_t',
-      ],
       class_('otl_log_level')
       ..customBlocks = [ clsPublic, clsPostDecl ]
       ..members = [ member('level')..type = 'int'
@@ -62,7 +37,7 @@ final orm = lib('orm')
     ]
     ..includes = [
       'string',
-      'fcs/utils/streamers/table/table.hpp',
+      'fcs/utils/streamers/table.hpp',
     ],
     header('otl_utils')
     ..customBlocks = [ fcbPreNamespace, fcbEndNamespace, fcbPostNamespace ]

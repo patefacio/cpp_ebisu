@@ -107,48 +107,6 @@ Hist_results_t = boost::iterator_range<
 
   ];
 
-final streamers_table = lib('table')
-  ..namespace = namespace(['fcs','utils','streamers', 'table'])
-  ..headers = [
-    header('table')
-    ..customBlocks = [fcbBeginNamespace]
-    ..usings = [
-      'String_list_t = std::vector< std::string >',
-      'String_matrix_t = std::vector< String_list_t >',
-      'Size_list_t = std::vector< size_t >',
-    ]
-    ..includes = [
-      'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
-      'vector', 'algorithm', 'iostream',
-    ]
-    ..classes = [
-      class_('table_streamer')
-      ..usings = [
-        'Row_container_t = typename MatrixContainer::value_type',
-      ]
-      ..brief = 'Outputs data in tabular format - like output from database query'
-      ..template = [
-        'typename MatrixContainer = String_matrix_t',
-        'typename T = typename MatrixContainer::value_type::value_type'
-      ]
-      ..customBlocks = [ clsPublic, clsPreDecl ]
-      ..opOut
-      ..members = [
-        member('matrix_container')
-        ..refType = cref
-        ..brief = 'Matrix with data to stream'
-        ..type = 'MatrixContainer',
-        member('header')
-        ..refType = cref
-        ..brief = 'List of headers for the columns'
-        ..type = 'String_list_t',
-      ]
-      ..memberCtors = [
-        memberCtor(['matrix_container', 'header'], { 'header' : 'String_list_t()' }),
-      ]
-    ]
-  ];
-
 final _namespace = namespace(['fcs','utils','streamers']);
 final _core = 'fcs/utils/streamers/streamers.hpp';
 final _containers = {
@@ -164,8 +122,7 @@ final _containers = {
 
 addItems() {
   installation
-  ..addLib(utils)
-  ..addLib(streamers_table);
+    ..addLib(utils);
 
   final containers = lib('containers')
     ..namespace = _namespace
@@ -178,13 +135,52 @@ addItems() {
         'fcs/utils/streamers/set.hpp',
         'fcs/utils/streamers/map.hpp',
       ],
+
       header('streamers')
       ..customBlocks = [ fcbBeginNamespace ]
       ..includes = [
         'memory',
         'iosfwd',
         'sstream',
+      ],
+
+      header('table')
+      ..customBlocks = [fcbBeginNamespace]
+      ..usings = [
+        'String_list_t = std::vector< std::string >',
+        'String_matrix_t = std::vector< String_list_t >',
+        'Size_list_t = std::vector< size_t >',
       ]
+      ..includes = [
+        'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
+        'vector', 'algorithm', 'iostream',
+      ]
+      ..classes = [
+        class_('table_streamer')
+        ..usings = [
+          'Row_container_t = typename MatrixContainer::value_type',
+        ]
+        ..brief = 'Outputs data in tabular format - like output from database query'
+        ..template = [
+          'typename MatrixContainer = String_matrix_t',
+          'typename T = typename MatrixContainer::value_type::value_type'
+        ]
+        ..customBlocks = [ clsPublic, clsPreDecl ]
+        ..members = [
+          member('matrix_container')
+          ..refType = cref
+          ..brief = 'Matrix with data to stream'
+          ..type = 'MatrixContainer',
+          member('header')
+          ..refType = cref
+          ..brief = 'List of headers for the columns'
+          ..type = 'String_list_t',
+        ]
+        ..memberCtors = [
+          memberCtor(['matrix_container', 'header'], { 'header' : 'String_list_t()' }),
+        ]
+      ]
+
     ];
 
   containers.headers.addAll(
