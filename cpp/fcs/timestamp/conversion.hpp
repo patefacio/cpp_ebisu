@@ -7,8 +7,6 @@
 
 namespace fcs {
 namespace timestamp {
-  using Date_t = boost::gregorian::date;
-
   // custom <FcbEndNamespace conversion>
 
   inline

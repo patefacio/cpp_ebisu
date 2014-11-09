@@ -50,9 +50,9 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &out, Code_tick_timings_pkey & value) {
-    out >> value.id_;
-    return out;
+  inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_pkey & value) {
+    src >> value.id_;
+    return src;
   }
 
 
@@ -142,8 +142,8 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &out, Code_tick_timings_value & value) {
-    out >> value.code_locations_id_
+  inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_value & value) {
+    src >> value.code_locations_id_
       >> value.created_
       >> value.start_processor_
       >> value.end_processor_
@@ -151,7 +151,7 @@ namespace table {
       >> value.debug_
       >> value.ticks_
       >> value.normalized_ns_;
-    return out;
+    return src;
   }
 
 

@@ -11,6 +11,7 @@ final timestamp = lib('timestamp')
     ..usings = [
       'Timestamp_t = boost::posix_time::ptime',
       'Time_duration_t = boost::posix_time::time_duration',
+      'Date_t = boost::gregorian::date',
     ]
     ..includes = [
       'boost/date_time/microsec_time_clock.hpp',
@@ -24,9 +25,6 @@ final conversion = lib('conversion')
   ..headers = [
     header('conversion')
     ..customBlocks = [ fcbEndNamespace ]
-    ..usings = [
-      'Date_t = boost::gregorian::date',
-    ]
     ..includes = [
       'fcs/timestamp/timestamp.hpp',
       'boost/date_time/posix_time/time_formatters.hpp',

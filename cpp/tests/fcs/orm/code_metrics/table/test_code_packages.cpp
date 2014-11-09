@@ -10,6 +10,10 @@ namespace table {
     // end <code_packages>
   }
 
+  void test_insert_delete_rows() {
+    // testing insertion and deletion
+  }
+
   void test_query_rows() {
     // test queries
     auto gw = Code_packages<>::instance();
@@ -17,20 +21,8 @@ namespace table {
     Code_packages<>::print_recordset_as_table(rows, std::cout);
   }
 
-  void test_create_rows() {
-    // testing creation
-  }
-
-  void test_insert_rows() {
-    // testing insertion
-  }
-
   void test_update_rows() {
     // testing update
-  }
-
-  void test_delete_rows() {
-    // testing delete
   }
 
 } // namespace table
@@ -43,10 +35,8 @@ boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
   using namespace boost::unit_test;
   test_suite* test= BOOST_TEST_SUITE( "<code_packages>" );
   test->add( BOOST_TEST_CASE( &test_code_packages ) );
+  test->add( BOOST_TEST_CASE( &test_insert_delete_rows ) );
   test->add( BOOST_TEST_CASE( &test_query_rows ) );
-  test->add( BOOST_TEST_CASE( &test_create_rows ) );
-  test->add( BOOST_TEST_CASE( &test_insert_rows ) );
   test->add( BOOST_TEST_CASE( &test_update_rows ) );
-  test->add( BOOST_TEST_CASE( &test_delete_rows ) );
   return test;
 }

@@ -144,6 +144,29 @@ addItems() {
         'sstream',
       ],
 
+      header('random')
+      ..test.includes.addAll([
+        'fcs/utils/streamers/containers.hpp',
+        'fcs/timestamp/timestamp.hpp',
+      ])
+      ..includes = [
+        'random',
+        'limits',
+        'cstdint',
+        'fcs/utils/fixed_size_char_array.hpp',
+        'fcs/timestamp/timestamp.hpp',
+        'iostream', // TODO: remove
+      ]
+      ..classes = [
+        class_('random_source')
+        ..includeTest = true
+        ..customBlocks = [ clsPublic, clsPostDecl ]
+        ..members = [
+          member('engine')..type = 'std::mt19937'..noInit = true
+          ..cppAccess = public
+        ]
+      ],
+
       header('table')
       ..customBlocks = [fcbBeginNamespace]
       ..usings = [

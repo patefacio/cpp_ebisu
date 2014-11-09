@@ -50,9 +50,9 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &out, Code_packages_pkey & value) {
-    out >> value.id_;
-    return out;
+  inline otl_stream& operator>>(otl_stream &src, Code_packages_pkey & value) {
+    src >> value.id_;
+    return src;
   }
 
 
@@ -100,10 +100,10 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &out, Code_packages_value & value) {
-    out >> value.name_
+  inline otl_stream& operator>>(otl_stream &src, Code_packages_value & value) {
+    src >> value.name_
       >> value.descr_;
-    return out;
+    return src;
   }
 
 
