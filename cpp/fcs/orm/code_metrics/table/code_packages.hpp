@@ -18,11 +18,11 @@ namespace table {
   public:
     bool operator==(Code_packages_pkey const& rhs) {
       return this == &rhs ||
-        (id_ == rhs.id_);
+        (id == rhs.id);
     }
 
     bool operator<(Code_packages_pkey const& rhs) {
-      return id_ != rhs.id_? id_ < rhs.id_ : (
+      return id != rhs.id? id < rhs.id : (
         false);
     }
 
@@ -33,25 +33,25 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(id_));
+      out.push_back(boost::lexical_cast< std::string >(id));
     }
 
-    int32_t id_;
+    int32_t id;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_packages_pkey const& item) {
-      out << '\n' << "id:" << item.id_;
+      out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_packages_pkey const& value) {
-    out << value.id_;
+    out << value.id;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_packages_pkey & value) {
-    src >> value.id_;
+    src >> value.id;
     return src;
   }
 
@@ -61,13 +61,13 @@ namespace table {
   public:
     bool operator==(Code_packages_value const& rhs) {
       return this == &rhs ||
-        (name_ == rhs.name_ &&
-        descr_ == rhs.descr_);
+        (name == rhs.name &&
+        descr == rhs.descr);
     }
 
     bool operator<(Code_packages_value const& rhs) {
-      return name_ != rhs.name_? name_ < rhs.name_ : (
-        descr_ != rhs.descr_? descr_ < rhs.descr_ : (
+      return name != rhs.name? name < rhs.name : (
+        descr != rhs.descr? descr < rhs.descr : (
         false));
     }
 
@@ -79,30 +79,30 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(name_));
-      out.push_back(boost::lexical_cast< std::string >(descr_));
+      out.push_back(boost::lexical_cast< std::string >(name));
+      out.push_back(boost::lexical_cast< std::string >(descr));
     }
 
-    fcs::utils::Fixed_size_char_array< 64 > name_;
-    fcs::utils::Fixed_size_char_array< 256 > descr_;
+    fcs::utils::Fixed_size_char_array< 64 > name;
+    fcs::utils::Fixed_size_char_array< 256 > descr;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_packages_value const& item) {
-      out << '\n' << "name:" << item.name_;
-      out << '\n' << "descr:" << item.descr_;
+      out << '\n' << "name:" << item.name;
+      out << '\n' << "descr:" << item.descr;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_packages_value const& value) {
-    out << value.name_
-      << value.descr_;
+    out << value.name
+      << value.descr;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_packages_value & value) {
-    src >> value.name_
-      >> value.descr_;
+    src >> value.name
+      >> value.descr;
     return src;
   }
 

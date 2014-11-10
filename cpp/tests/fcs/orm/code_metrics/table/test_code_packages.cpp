@@ -1,5 +1,45 @@
 #include "fcs/orm/code_metrics/table/code_packages.hpp"
+#include "fcs/utils/streamers/random.hpp"
 #include <boost/test/included/unit_test.hpp>
+
+// custom <random record generation>
+// end <random record generation>
+
+namespace fcs {
+namespace utils {
+namespace streamers {
+  // random row generation
+  using namespace fcs::orm::code_metrics::table;
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_packages_pkey &obj) {
+    source >> obj.id;
+    return source;
+  }
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_packages_value &obj) {
+    source >> obj.name
+      >> obj.descr;
+    return source;
+  }
+
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_packages<>::Row_t &row) {
+    source >> row.first >> row.second;
+    return source;
+  }
+
+}
+}
+}
 
 namespace fcs {
 namespace orm {
@@ -7,6 +47,18 @@ namespace code_metrics {
 namespace table {
   void test_code_packages() {
     // custom <code_packages>
+    using namespace fcs::utils::streamers;
+    using fcs::utils::streamers::operator<<;
+    Random_source rs;
+    Code_packages<>::Row_list_t rows;
+    Code_packages<>::Row_t row;
+    for(int i=0; i<50; ++i) {
+      rs >> row;
+      rows.push_back(row);
+    }
+    std::cout << "Random Rows\n";
+    Code_packages<>::print_recordset_as_table(rows, std::cout);
+
     // end <code_packages>
   }
 

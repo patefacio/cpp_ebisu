@@ -18,11 +18,11 @@ namespace table {
   public:
     bool operator==(Code_locations_pkey const& rhs) {
       return this == &rhs ||
-        (id_ == rhs.id_);
+        (id == rhs.id);
     }
 
     bool operator<(Code_locations_pkey const& rhs) {
-      return id_ != rhs.id_? id_ < rhs.id_ : (
+      return id != rhs.id? id < rhs.id : (
         false);
     }
 
@@ -33,25 +33,25 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(id_));
+      out.push_back(boost::lexical_cast< std::string >(id));
     }
 
-    int32_t id_;
+    int32_t id;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_locations_pkey const& item) {
-      out << '\n' << "id:" << item.id_;
+      out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_locations_pkey const& value) {
-    out << value.id_;
+    out << value.id;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_locations_pkey & value) {
-    src >> value.id_;
+    src >> value.id;
     return src;
   }
 
@@ -61,19 +61,19 @@ namespace table {
   public:
     bool operator==(Code_locations_value const& rhs) {
       return this == &rhs ||
-        (code_packages_id_ == rhs.code_packages_id_ &&
-        label_ == rhs.label_ &&
-        file_name_ == rhs.file_name_ &&
-        line_number_ == rhs.line_number_ &&
-        git_commit_ == rhs.git_commit_);
+        (code_packages_id == rhs.code_packages_id &&
+        label == rhs.label &&
+        file_name == rhs.file_name &&
+        line_number == rhs.line_number &&
+        git_commit == rhs.git_commit);
     }
 
     bool operator<(Code_locations_value const& rhs) {
-      return code_packages_id_ != rhs.code_packages_id_? code_packages_id_ < rhs.code_packages_id_ : (
-        label_ != rhs.label_? label_ < rhs.label_ : (
-        file_name_ != rhs.file_name_? file_name_ < rhs.file_name_ : (
-        line_number_ != rhs.line_number_? line_number_ < rhs.line_number_ : (
-        git_commit_ != rhs.git_commit_? git_commit_ < rhs.git_commit_ : (
+      return code_packages_id != rhs.code_packages_id? code_packages_id < rhs.code_packages_id : (
+        label != rhs.label? label < rhs.label : (
+        file_name != rhs.file_name? file_name < rhs.file_name : (
+        line_number != rhs.line_number? line_number < rhs.line_number : (
+        git_commit != rhs.git_commit? git_commit < rhs.git_commit : (
         false)))));
     }
 
@@ -88,45 +88,45 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(code_packages_id_));
-      out.push_back(boost::lexical_cast< std::string >(label_));
-      out.push_back(boost::lexical_cast< std::string >(file_name_));
-      out.push_back(boost::lexical_cast< std::string >(line_number_));
-      out.push_back(boost::lexical_cast< std::string >(git_commit_));
+      out.push_back(boost::lexical_cast< std::string >(code_packages_id));
+      out.push_back(boost::lexical_cast< std::string >(label));
+      out.push_back(boost::lexical_cast< std::string >(file_name));
+      out.push_back(boost::lexical_cast< std::string >(line_number));
+      out.push_back(boost::lexical_cast< std::string >(git_commit));
     }
 
-    int32_t code_packages_id_;
-    fcs::utils::Fixed_size_char_array< 256 > label_;
-    fcs::utils::Fixed_size_char_array< 256 > file_name_;
-    int32_t line_number_;
-    fcs::utils::Fixed_size_char_array< 40 > git_commit_;
+    int32_t code_packages_id;
+    fcs::utils::Fixed_size_char_array< 256 > label;
+    fcs::utils::Fixed_size_char_array< 256 > file_name;
+    int32_t line_number;
+    fcs::utils::Fixed_size_char_array< 40 > git_commit;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_locations_value const& item) {
-      out << '\n' << "code_packages_id:" << item.code_packages_id_;
-      out << '\n' << "label:" << item.label_;
-      out << '\n' << "file_name:" << item.file_name_;
-      out << '\n' << "line_number:" << item.line_number_;
-      out << '\n' << "git_commit:" << item.git_commit_;
+      out << '\n' << "code_packages_id:" << item.code_packages_id;
+      out << '\n' << "label:" << item.label;
+      out << '\n' << "file_name:" << item.file_name;
+      out << '\n' << "line_number:" << item.line_number;
+      out << '\n' << "git_commit:" << item.git_commit;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_locations_value const& value) {
-    out << value.code_packages_id_
-      << value.label_
-      << value.file_name_
-      << value.line_number_
-      << value.git_commit_;
+    out << value.code_packages_id
+      << value.label
+      << value.file_name
+      << value.line_number
+      << value.git_commit;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_locations_value & value) {
-    src >> value.code_packages_id_
-      >> value.label_
-      >> value.file_name_
-      >> value.line_number_
-      >> value.git_commit_;
+    src >> value.code_packages_id
+      >> value.label
+      >> value.file_name
+      >> value.line_number
+      >> value.git_commit;
     return src;
   }
 

@@ -18,11 +18,11 @@ namespace table {
   public:
     bool operator==(Rusage_delta_pkey const& rhs) {
       return this == &rhs ||
-        (id_ == rhs.id_);
+        (id == rhs.id);
     }
 
     bool operator<(Rusage_delta_pkey const& rhs) {
-      return id_ != rhs.id_? id_ < rhs.id_ : (
+      return id != rhs.id? id < rhs.id : (
         false);
     }
 
@@ -33,25 +33,25 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(id_));
+      out.push_back(boost::lexical_cast< std::string >(id));
     }
 
-    int32_t id_;
+    int32_t id;
 
     friend inline std::ostream& operator<<(std::ostream& out, Rusage_delta_pkey const& item) {
-      out << '\n' << "id:" << item.id_;
+      out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Rusage_delta_pkey const& value) {
-    out << value.id_;
+    out << value.id;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Rusage_delta_pkey & value) {
-    src >> value.id_;
+    src >> value.id;
     return src;
   }
 
@@ -61,57 +61,57 @@ namespace table {
   public:
     bool operator==(Rusage_delta_value const& rhs) {
       return this == &rhs ||
-        (code_locations_id_ == rhs.code_locations_id_ &&
-        created_ == rhs.created_ &&
-        start_processor_ == rhs.start_processor_ &&
-        end_processor_ == rhs.end_processor_ &&
-        cpu_mhz_ == rhs.cpu_mhz_ &&
-        debug_ == rhs.debug_ &&
-        user_time_sec_ == rhs.user_time_sec_ &&
-        user_time_usec_ == rhs.user_time_usec_ &&
-        system_time_sec_ == rhs.system_time_sec_ &&
-        system_time_usec_ == rhs.system_time_usec_ &&
-        ru_maxrss_ == rhs.ru_maxrss_ &&
-        ru_ixrss_ == rhs.ru_ixrss_ &&
-        ru_idrss_ == rhs.ru_idrss_ &&
-        ru_isrss_ == rhs.ru_isrss_ &&
-        ru_minflt_ == rhs.ru_minflt_ &&
-        ru_majflt_ == rhs.ru_majflt_ &&
-        ru_nswap_ == rhs.ru_nswap_ &&
-        ru_inblock_ == rhs.ru_inblock_ &&
-        ru_oublock_ == rhs.ru_oublock_ &&
-        ru_msgsnd_ == rhs.ru_msgsnd_ &&
-        ru_msgrcv_ == rhs.ru_msgrcv_ &&
-        ru_nsignals_ == rhs.ru_nsignals_ &&
-        ru_nvcsw_ == rhs.ru_nvcsw_ &&
-        ru_nivcsw_ == rhs.ru_nivcsw_);
+        (code_locations_id == rhs.code_locations_id &&
+        created == rhs.created &&
+        start_processor == rhs.start_processor &&
+        end_processor == rhs.end_processor &&
+        cpu_mhz == rhs.cpu_mhz &&
+        debug == rhs.debug &&
+        user_time_sec == rhs.user_time_sec &&
+        user_time_usec == rhs.user_time_usec &&
+        system_time_sec == rhs.system_time_sec &&
+        system_time_usec == rhs.system_time_usec &&
+        ru_maxrss == rhs.ru_maxrss &&
+        ru_ixrss == rhs.ru_ixrss &&
+        ru_idrss == rhs.ru_idrss &&
+        ru_isrss == rhs.ru_isrss &&
+        ru_minflt == rhs.ru_minflt &&
+        ru_majflt == rhs.ru_majflt &&
+        ru_nswap == rhs.ru_nswap &&
+        ru_inblock == rhs.ru_inblock &&
+        ru_oublock == rhs.ru_oublock &&
+        ru_msgsnd == rhs.ru_msgsnd &&
+        ru_msgrcv == rhs.ru_msgrcv &&
+        ru_nsignals == rhs.ru_nsignals &&
+        ru_nvcsw == rhs.ru_nvcsw &&
+        ru_nivcsw == rhs.ru_nivcsw);
     }
 
     bool operator<(Rusage_delta_value const& rhs) {
-      return code_locations_id_ != rhs.code_locations_id_? code_locations_id_ < rhs.code_locations_id_ : (
-        created_ != rhs.created_? created_ < rhs.created_ : (
-        start_processor_ != rhs.start_processor_? start_processor_ < rhs.start_processor_ : (
-        end_processor_ != rhs.end_processor_? end_processor_ < rhs.end_processor_ : (
-        cpu_mhz_ != rhs.cpu_mhz_? cpu_mhz_ < rhs.cpu_mhz_ : (
-        debug_ != rhs.debug_? debug_ < rhs.debug_ : (
-        user_time_sec_ != rhs.user_time_sec_? user_time_sec_ < rhs.user_time_sec_ : (
-        user_time_usec_ != rhs.user_time_usec_? user_time_usec_ < rhs.user_time_usec_ : (
-        system_time_sec_ != rhs.system_time_sec_? system_time_sec_ < rhs.system_time_sec_ : (
-        system_time_usec_ != rhs.system_time_usec_? system_time_usec_ < rhs.system_time_usec_ : (
-        ru_maxrss_ != rhs.ru_maxrss_? ru_maxrss_ < rhs.ru_maxrss_ : (
-        ru_ixrss_ != rhs.ru_ixrss_? ru_ixrss_ < rhs.ru_ixrss_ : (
-        ru_idrss_ != rhs.ru_idrss_? ru_idrss_ < rhs.ru_idrss_ : (
-        ru_isrss_ != rhs.ru_isrss_? ru_isrss_ < rhs.ru_isrss_ : (
-        ru_minflt_ != rhs.ru_minflt_? ru_minflt_ < rhs.ru_minflt_ : (
-        ru_majflt_ != rhs.ru_majflt_? ru_majflt_ < rhs.ru_majflt_ : (
-        ru_nswap_ != rhs.ru_nswap_? ru_nswap_ < rhs.ru_nswap_ : (
-        ru_inblock_ != rhs.ru_inblock_? ru_inblock_ < rhs.ru_inblock_ : (
-        ru_oublock_ != rhs.ru_oublock_? ru_oublock_ < rhs.ru_oublock_ : (
-        ru_msgsnd_ != rhs.ru_msgsnd_? ru_msgsnd_ < rhs.ru_msgsnd_ : (
-        ru_msgrcv_ != rhs.ru_msgrcv_? ru_msgrcv_ < rhs.ru_msgrcv_ : (
-        ru_nsignals_ != rhs.ru_nsignals_? ru_nsignals_ < rhs.ru_nsignals_ : (
-        ru_nvcsw_ != rhs.ru_nvcsw_? ru_nvcsw_ < rhs.ru_nvcsw_ : (
-        ru_nivcsw_ != rhs.ru_nivcsw_? ru_nivcsw_ < rhs.ru_nivcsw_ : (
+      return code_locations_id != rhs.code_locations_id? code_locations_id < rhs.code_locations_id : (
+        created != rhs.created? created < rhs.created : (
+        start_processor != rhs.start_processor? start_processor < rhs.start_processor : (
+        end_processor != rhs.end_processor? end_processor < rhs.end_processor : (
+        cpu_mhz != rhs.cpu_mhz? cpu_mhz < rhs.cpu_mhz : (
+        debug != rhs.debug? debug < rhs.debug : (
+        user_time_sec != rhs.user_time_sec? user_time_sec < rhs.user_time_sec : (
+        user_time_usec != rhs.user_time_usec? user_time_usec < rhs.user_time_usec : (
+        system_time_sec != rhs.system_time_sec? system_time_sec < rhs.system_time_sec : (
+        system_time_usec != rhs.system_time_usec? system_time_usec < rhs.system_time_usec : (
+        ru_maxrss != rhs.ru_maxrss? ru_maxrss < rhs.ru_maxrss : (
+        ru_ixrss != rhs.ru_ixrss? ru_ixrss < rhs.ru_ixrss : (
+        ru_idrss != rhs.ru_idrss? ru_idrss < rhs.ru_idrss : (
+        ru_isrss != rhs.ru_isrss? ru_isrss < rhs.ru_isrss : (
+        ru_minflt != rhs.ru_minflt? ru_minflt < rhs.ru_minflt : (
+        ru_majflt != rhs.ru_majflt? ru_majflt < rhs.ru_majflt : (
+        ru_nswap != rhs.ru_nswap? ru_nswap < rhs.ru_nswap : (
+        ru_inblock != rhs.ru_inblock? ru_inblock < rhs.ru_inblock : (
+        ru_oublock != rhs.ru_oublock? ru_oublock < rhs.ru_oublock : (
+        ru_msgsnd != rhs.ru_msgsnd? ru_msgsnd < rhs.ru_msgsnd : (
+        ru_msgrcv != rhs.ru_msgrcv? ru_msgrcv < rhs.ru_msgrcv : (
+        ru_nsignals != rhs.ru_nsignals? ru_nsignals < rhs.ru_nsignals : (
+        ru_nvcsw != rhs.ru_nvcsw? ru_nvcsw < rhs.ru_nvcsw : (
+        ru_nivcsw != rhs.ru_nivcsw? ru_nivcsw < rhs.ru_nivcsw : (
         false))))))))))))))))))))))));
     }
 
@@ -145,140 +145,140 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(code_locations_id_));
-      out.push_back(boost::lexical_cast< std::string >(created_));
-      out.push_back(boost::lexical_cast< std::string >(start_processor_));
-      out.push_back(boost::lexical_cast< std::string >(end_processor_));
-      out.push_back(boost::lexical_cast< std::string >(cpu_mhz_));
-      out.push_back(boost::lexical_cast< std::string >(debug_));
-      out.push_back(boost::lexical_cast< std::string >(user_time_sec_));
-      out.push_back(boost::lexical_cast< std::string >(user_time_usec_));
-      out.push_back(boost::lexical_cast< std::string >(system_time_sec_));
-      out.push_back(boost::lexical_cast< std::string >(system_time_usec_));
-      out.push_back(boost::lexical_cast< std::string >(ru_maxrss_));
-      out.push_back(boost::lexical_cast< std::string >(ru_ixrss_));
-      out.push_back(boost::lexical_cast< std::string >(ru_idrss_));
-      out.push_back(boost::lexical_cast< std::string >(ru_isrss_));
-      out.push_back(boost::lexical_cast< std::string >(ru_minflt_));
-      out.push_back(boost::lexical_cast< std::string >(ru_majflt_));
-      out.push_back(boost::lexical_cast< std::string >(ru_nswap_));
-      out.push_back(boost::lexical_cast< std::string >(ru_inblock_));
-      out.push_back(boost::lexical_cast< std::string >(ru_oublock_));
-      out.push_back(boost::lexical_cast< std::string >(ru_msgsnd_));
-      out.push_back(boost::lexical_cast< std::string >(ru_msgrcv_));
-      out.push_back(boost::lexical_cast< std::string >(ru_nsignals_));
-      out.push_back(boost::lexical_cast< std::string >(ru_nvcsw_));
-      out.push_back(boost::lexical_cast< std::string >(ru_nivcsw_));
+      out.push_back(boost::lexical_cast< std::string >(code_locations_id));
+      out.push_back(boost::lexical_cast< std::string >(created));
+      out.push_back(boost::lexical_cast< std::string >(start_processor));
+      out.push_back(boost::lexical_cast< std::string >(end_processor));
+      out.push_back(boost::lexical_cast< std::string >(cpu_mhz));
+      out.push_back(boost::lexical_cast< std::string >(debug));
+      out.push_back(boost::lexical_cast< std::string >(user_time_sec));
+      out.push_back(boost::lexical_cast< std::string >(user_time_usec));
+      out.push_back(boost::lexical_cast< std::string >(system_time_sec));
+      out.push_back(boost::lexical_cast< std::string >(system_time_usec));
+      out.push_back(boost::lexical_cast< std::string >(ru_maxrss));
+      out.push_back(boost::lexical_cast< std::string >(ru_ixrss));
+      out.push_back(boost::lexical_cast< std::string >(ru_idrss));
+      out.push_back(boost::lexical_cast< std::string >(ru_isrss));
+      out.push_back(boost::lexical_cast< std::string >(ru_minflt));
+      out.push_back(boost::lexical_cast< std::string >(ru_majflt));
+      out.push_back(boost::lexical_cast< std::string >(ru_nswap));
+      out.push_back(boost::lexical_cast< std::string >(ru_inblock));
+      out.push_back(boost::lexical_cast< std::string >(ru_oublock));
+      out.push_back(boost::lexical_cast< std::string >(ru_msgsnd));
+      out.push_back(boost::lexical_cast< std::string >(ru_msgrcv));
+      out.push_back(boost::lexical_cast< std::string >(ru_nsignals));
+      out.push_back(boost::lexical_cast< std::string >(ru_nvcsw));
+      out.push_back(boost::lexical_cast< std::string >(ru_nivcsw));
     }
 
-    int32_t code_locations_id_;
-    otl_datetime created_;
-    int32_t start_processor_;
-    int32_t end_processor_;
-    double cpu_mhz_;
-    int32_t debug_;
-    int64_t user_time_sec_;
-    int64_t user_time_usec_;
-    int64_t system_time_sec_;
-    int64_t system_time_usec_;
-    int64_t ru_maxrss_;
-    int64_t ru_ixrss_;
-    int64_t ru_idrss_;
-    int64_t ru_isrss_;
-    int64_t ru_minflt_;
-    int64_t ru_majflt_;
-    int64_t ru_nswap_;
-    int64_t ru_inblock_;
-    int64_t ru_oublock_;
-    int64_t ru_msgsnd_;
-    int64_t ru_msgrcv_;
-    int64_t ru_nsignals_;
-    int64_t ru_nvcsw_;
-    int64_t ru_nivcsw_;
+    int32_t code_locations_id;
+    otl_datetime created;
+    int32_t start_processor;
+    int32_t end_processor;
+    double cpu_mhz;
+    int32_t debug;
+    int64_t user_time_sec;
+    int64_t user_time_usec;
+    int64_t system_time_sec;
+    int64_t system_time_usec;
+    int64_t ru_maxrss;
+    int64_t ru_ixrss;
+    int64_t ru_idrss;
+    int64_t ru_isrss;
+    int64_t ru_minflt;
+    int64_t ru_majflt;
+    int64_t ru_nswap;
+    int64_t ru_inblock;
+    int64_t ru_oublock;
+    int64_t ru_msgsnd;
+    int64_t ru_msgrcv;
+    int64_t ru_nsignals;
+    int64_t ru_nvcsw;
+    int64_t ru_nivcsw;
 
     friend inline std::ostream& operator<<(std::ostream& out, Rusage_delta_value const& item) {
-      out << '\n' << "code_locations_id:" << item.code_locations_id_;
-      out << '\n' << "created:" << item.created_;
-      out << '\n' << "start_processor:" << item.start_processor_;
-      out << '\n' << "end_processor:" << item.end_processor_;
-      out << '\n' << "cpu_mhz:" << item.cpu_mhz_;
-      out << '\n' << "debug:" << item.debug_;
-      out << '\n' << "user_time_sec:" << item.user_time_sec_;
-      out << '\n' << "user_time_usec:" << item.user_time_usec_;
-      out << '\n' << "system_time_sec:" << item.system_time_sec_;
-      out << '\n' << "system_time_usec:" << item.system_time_usec_;
-      out << '\n' << "ru_maxrss:" << item.ru_maxrss_;
-      out << '\n' << "ru_ixrss:" << item.ru_ixrss_;
-      out << '\n' << "ru_idrss:" << item.ru_idrss_;
-      out << '\n' << "ru_isrss:" << item.ru_isrss_;
-      out << '\n' << "ru_minflt:" << item.ru_minflt_;
-      out << '\n' << "ru_majflt:" << item.ru_majflt_;
-      out << '\n' << "ru_nswap:" << item.ru_nswap_;
-      out << '\n' << "ru_inblock:" << item.ru_inblock_;
-      out << '\n' << "ru_oublock:" << item.ru_oublock_;
-      out << '\n' << "ru_msgsnd:" << item.ru_msgsnd_;
-      out << '\n' << "ru_msgrcv:" << item.ru_msgrcv_;
-      out << '\n' << "ru_nsignals:" << item.ru_nsignals_;
-      out << '\n' << "ru_nvcsw:" << item.ru_nvcsw_;
-      out << '\n' << "ru_nivcsw:" << item.ru_nivcsw_;
+      out << '\n' << "code_locations_id:" << item.code_locations_id;
+      out << '\n' << "created:" << item.created;
+      out << '\n' << "start_processor:" << item.start_processor;
+      out << '\n' << "end_processor:" << item.end_processor;
+      out << '\n' << "cpu_mhz:" << item.cpu_mhz;
+      out << '\n' << "debug:" << item.debug;
+      out << '\n' << "user_time_sec:" << item.user_time_sec;
+      out << '\n' << "user_time_usec:" << item.user_time_usec;
+      out << '\n' << "system_time_sec:" << item.system_time_sec;
+      out << '\n' << "system_time_usec:" << item.system_time_usec;
+      out << '\n' << "ru_maxrss:" << item.ru_maxrss;
+      out << '\n' << "ru_ixrss:" << item.ru_ixrss;
+      out << '\n' << "ru_idrss:" << item.ru_idrss;
+      out << '\n' << "ru_isrss:" << item.ru_isrss;
+      out << '\n' << "ru_minflt:" << item.ru_minflt;
+      out << '\n' << "ru_majflt:" << item.ru_majflt;
+      out << '\n' << "ru_nswap:" << item.ru_nswap;
+      out << '\n' << "ru_inblock:" << item.ru_inblock;
+      out << '\n' << "ru_oublock:" << item.ru_oublock;
+      out << '\n' << "ru_msgsnd:" << item.ru_msgsnd;
+      out << '\n' << "ru_msgrcv:" << item.ru_msgrcv;
+      out << '\n' << "ru_nsignals:" << item.ru_nsignals;
+      out << '\n' << "ru_nvcsw:" << item.ru_nvcsw;
+      out << '\n' << "ru_nivcsw:" << item.ru_nivcsw;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Rusage_delta_value const& value) {
-    out << value.code_locations_id_
-      << value.created_
-      << value.start_processor_
-      << value.end_processor_
-      << value.cpu_mhz_
-      << value.debug_
-      << value.user_time_sec_
-      << value.user_time_usec_
-      << value.system_time_sec_
-      << value.system_time_usec_
-      << value.ru_maxrss_
-      << value.ru_ixrss_
-      << value.ru_idrss_
-      << value.ru_isrss_
-      << value.ru_minflt_
-      << value.ru_majflt_
-      << value.ru_nswap_
-      << value.ru_inblock_
-      << value.ru_oublock_
-      << value.ru_msgsnd_
-      << value.ru_msgrcv_
-      << value.ru_nsignals_
-      << value.ru_nvcsw_
-      << value.ru_nivcsw_;
+    out << value.code_locations_id
+      << value.created
+      << value.start_processor
+      << value.end_processor
+      << value.cpu_mhz
+      << value.debug
+      << value.user_time_sec
+      << value.user_time_usec
+      << value.system_time_sec
+      << value.system_time_usec
+      << value.ru_maxrss
+      << value.ru_ixrss
+      << value.ru_idrss
+      << value.ru_isrss
+      << value.ru_minflt
+      << value.ru_majflt
+      << value.ru_nswap
+      << value.ru_inblock
+      << value.ru_oublock
+      << value.ru_msgsnd
+      << value.ru_msgrcv
+      << value.ru_nsignals
+      << value.ru_nvcsw
+      << value.ru_nivcsw;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Rusage_delta_value & value) {
-    src >> value.code_locations_id_
-      >> value.created_
-      >> value.start_processor_
-      >> value.end_processor_
-      >> value.cpu_mhz_
-      >> value.debug_
-      >> value.user_time_sec_
-      >> value.user_time_usec_
-      >> value.system_time_sec_
-      >> value.system_time_usec_
-      >> value.ru_maxrss_
-      >> value.ru_ixrss_
-      >> value.ru_idrss_
-      >> value.ru_isrss_
-      >> value.ru_minflt_
-      >> value.ru_majflt_
-      >> value.ru_nswap_
-      >> value.ru_inblock_
-      >> value.ru_oublock_
-      >> value.ru_msgsnd_
-      >> value.ru_msgrcv_
-      >> value.ru_nsignals_
-      >> value.ru_nvcsw_
-      >> value.ru_nivcsw_;
+    src >> value.code_locations_id
+      >> value.created
+      >> value.start_processor
+      >> value.end_processor
+      >> value.cpu_mhz
+      >> value.debug
+      >> value.user_time_sec
+      >> value.user_time_usec
+      >> value.system_time_sec
+      >> value.system_time_usec
+      >> value.ru_maxrss
+      >> value.ru_ixrss
+      >> value.ru_idrss
+      >> value.ru_isrss
+      >> value.ru_minflt
+      >> value.ru_majflt
+      >> value.ru_nswap
+      >> value.ru_inblock
+      >> value.ru_oublock
+      >> value.ru_msgsnd
+      >> value.ru_msgrcv
+      >> value.ru_nsignals
+      >> value.ru_nvcsw
+      >> value.ru_nivcsw;
     return src;
   }
 

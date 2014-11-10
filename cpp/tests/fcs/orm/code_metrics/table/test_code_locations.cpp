@@ -1,5 +1,48 @@
 #include "fcs/orm/code_metrics/table/code_locations.hpp"
+#include "fcs/utils/streamers/random.hpp"
 #include <boost/test/included/unit_test.hpp>
+
+// custom <random record generation>
+// end <random record generation>
+
+namespace fcs {
+namespace utils {
+namespace streamers {
+  // random row generation
+  using namespace fcs::orm::code_metrics::table;
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_locations_pkey &obj) {
+    source >> obj.id;
+    return source;
+  }
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_locations_value &obj) {
+    source >> obj.code_packages_id
+      >> obj.label
+      >> obj.file_name
+      >> obj.line_number
+      >> obj.git_commit;
+    return source;
+  }
+
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Code_locations<>::Row_t &row) {
+    source >> row.first >> row.second;
+    return source;
+  }
+
+}
+}
+}
 
 namespace fcs {
 namespace orm {

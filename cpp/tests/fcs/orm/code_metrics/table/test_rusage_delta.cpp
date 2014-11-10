@@ -1,5 +1,67 @@
 #include "fcs/orm/code_metrics/table/rusage_delta.hpp"
+#include "fcs/utils/streamers/random.hpp"
 #include <boost/test/included/unit_test.hpp>
+
+// custom <random record generation>
+// end <random record generation>
+
+namespace fcs {
+namespace utils {
+namespace streamers {
+  // random row generation
+  using namespace fcs::orm::code_metrics::table;
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Rusage_delta_pkey &obj) {
+    source >> obj.id;
+    return source;
+  }
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Rusage_delta_value &obj) {
+    source >> obj.code_locations_id
+      >> obj.created
+      >> obj.start_processor
+      >> obj.end_processor
+      >> obj.cpu_mhz
+      >> obj.debug
+      >> obj.user_time_sec
+      >> obj.user_time_usec
+      >> obj.system_time_sec
+      >> obj.system_time_usec
+      >> obj.ru_maxrss
+      >> obj.ru_ixrss
+      >> obj.ru_idrss
+      >> obj.ru_isrss
+      >> obj.ru_minflt
+      >> obj.ru_majflt
+      >> obj.ru_nswap
+      >> obj.ru_inblock
+      >> obj.ru_oublock
+      >> obj.ru_msgsnd
+      >> obj.ru_msgrcv
+      >> obj.ru_nsignals
+      >> obj.ru_nvcsw
+      >> obj.ru_nivcsw;
+    return source;
+  }
+
+
+  template< >
+  inline Random_source & operator>>
+    (Random_source &source,
+     Rusage_delta<>::Row_t &row) {
+    source >> row.first >> row.second;
+    return source;
+  }
+
+}
+}
+}
 
 namespace fcs {
 namespace orm {

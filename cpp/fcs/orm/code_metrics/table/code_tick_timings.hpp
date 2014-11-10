@@ -18,11 +18,11 @@ namespace table {
   public:
     bool operator==(Code_tick_timings_pkey const& rhs) {
       return this == &rhs ||
-        (id_ == rhs.id_);
+        (id == rhs.id);
     }
 
     bool operator<(Code_tick_timings_pkey const& rhs) {
-      return id_ != rhs.id_? id_ < rhs.id_ : (
+      return id != rhs.id? id < rhs.id : (
         false);
     }
 
@@ -33,25 +33,25 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(id_));
+      out.push_back(boost::lexical_cast< std::string >(id));
     }
 
-    int32_t id_;
+    int32_t id;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_tick_timings_pkey const& item) {
-      out << '\n' << "id:" << item.id_;
+      out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_tick_timings_pkey const& value) {
-    out << value.id_;
+    out << value.id;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_pkey & value) {
-    src >> value.id_;
+    src >> value.id;
     return src;
   }
 
@@ -61,25 +61,25 @@ namespace table {
   public:
     bool operator==(Code_tick_timings_value const& rhs) {
       return this == &rhs ||
-        (code_locations_id_ == rhs.code_locations_id_ &&
-        created_ == rhs.created_ &&
-        start_processor_ == rhs.start_processor_ &&
-        end_processor_ == rhs.end_processor_ &&
-        cpu_mhz_ == rhs.cpu_mhz_ &&
-        debug_ == rhs.debug_ &&
-        ticks_ == rhs.ticks_ &&
-        normalized_ns_ == rhs.normalized_ns_);
+        (code_locations_id == rhs.code_locations_id &&
+        created == rhs.created &&
+        start_processor == rhs.start_processor &&
+        end_processor == rhs.end_processor &&
+        cpu_mhz == rhs.cpu_mhz &&
+        debug == rhs.debug &&
+        ticks == rhs.ticks &&
+        normalized_ns == rhs.normalized_ns);
     }
 
     bool operator<(Code_tick_timings_value const& rhs) {
-      return code_locations_id_ != rhs.code_locations_id_? code_locations_id_ < rhs.code_locations_id_ : (
-        created_ != rhs.created_? created_ < rhs.created_ : (
-        start_processor_ != rhs.start_processor_? start_processor_ < rhs.start_processor_ : (
-        end_processor_ != rhs.end_processor_? end_processor_ < rhs.end_processor_ : (
-        cpu_mhz_ != rhs.cpu_mhz_? cpu_mhz_ < rhs.cpu_mhz_ : (
-        debug_ != rhs.debug_? debug_ < rhs.debug_ : (
-        ticks_ != rhs.ticks_? ticks_ < rhs.ticks_ : (
-        normalized_ns_ != rhs.normalized_ns_? normalized_ns_ < rhs.normalized_ns_ : (
+      return code_locations_id != rhs.code_locations_id? code_locations_id < rhs.code_locations_id : (
+        created != rhs.created? created < rhs.created : (
+        start_processor != rhs.start_processor? start_processor < rhs.start_processor : (
+        end_processor != rhs.end_processor? end_processor < rhs.end_processor : (
+        cpu_mhz != rhs.cpu_mhz? cpu_mhz < rhs.cpu_mhz : (
+        debug != rhs.debug? debug < rhs.debug : (
+        ticks != rhs.ticks? ticks < rhs.ticks : (
+        normalized_ns != rhs.normalized_ns? normalized_ns < rhs.normalized_ns : (
         false))))))));
     }
 
@@ -97,60 +97,60 @@ namespace table {
 
     inline
     void to_string_list(String_list_t &out) const {
-      out.push_back(boost::lexical_cast< std::string >(code_locations_id_));
-      out.push_back(boost::lexical_cast< std::string >(created_));
-      out.push_back(boost::lexical_cast< std::string >(start_processor_));
-      out.push_back(boost::lexical_cast< std::string >(end_processor_));
-      out.push_back(boost::lexical_cast< std::string >(cpu_mhz_));
-      out.push_back(boost::lexical_cast< std::string >(debug_));
-      out.push_back(boost::lexical_cast< std::string >(ticks_));
-      out.push_back(boost::lexical_cast< std::string >(normalized_ns_));
+      out.push_back(boost::lexical_cast< std::string >(code_locations_id));
+      out.push_back(boost::lexical_cast< std::string >(created));
+      out.push_back(boost::lexical_cast< std::string >(start_processor));
+      out.push_back(boost::lexical_cast< std::string >(end_processor));
+      out.push_back(boost::lexical_cast< std::string >(cpu_mhz));
+      out.push_back(boost::lexical_cast< std::string >(debug));
+      out.push_back(boost::lexical_cast< std::string >(ticks));
+      out.push_back(boost::lexical_cast< std::string >(normalized_ns));
     }
 
-    int32_t code_locations_id_;
-    otl_datetime created_;
-    int32_t start_processor_;
-    int32_t end_processor_;
-    double cpu_mhz_;
-    int32_t debug_;
-    int64_t ticks_;
-    int64_t normalized_ns_;
+    int32_t code_locations_id;
+    otl_datetime created;
+    int32_t start_processor;
+    int32_t end_processor;
+    double cpu_mhz;
+    int32_t debug;
+    int64_t ticks;
+    int64_t normalized_ns;
 
     friend inline std::ostream& operator<<(std::ostream& out, Code_tick_timings_value const& item) {
-      out << '\n' << "code_locations_id:" << item.code_locations_id_;
-      out << '\n' << "created:" << item.created_;
-      out << '\n' << "start_processor:" << item.start_processor_;
-      out << '\n' << "end_processor:" << item.end_processor_;
-      out << '\n' << "cpu_mhz:" << item.cpu_mhz_;
-      out << '\n' << "debug:" << item.debug_;
-      out << '\n' << "ticks:" << item.ticks_;
-      out << '\n' << "normalized_ns:" << item.normalized_ns_;
+      out << '\n' << "code_locations_id:" << item.code_locations_id;
+      out << '\n' << "created:" << item.created;
+      out << '\n' << "start_processor:" << item.start_processor;
+      out << '\n' << "end_processor:" << item.end_processor;
+      out << '\n' << "cpu_mhz:" << item.cpu_mhz;
+      out << '\n' << "debug:" << item.debug;
+      out << '\n' << "ticks:" << item.ticks;
+      out << '\n' << "normalized_ns:" << item.normalized_ns;
       return out;
     }
 
   };
 
   inline otl_stream& operator<<(otl_stream &out, Code_tick_timings_value const& value) {
-    out << value.code_locations_id_
-      << value.created_
-      << value.start_processor_
-      << value.end_processor_
-      << value.cpu_mhz_
-      << value.debug_
-      << value.ticks_
-      << value.normalized_ns_;
+    out << value.code_locations_id
+      << value.created
+      << value.start_processor
+      << value.end_processor
+      << value.cpu_mhz
+      << value.debug
+      << value.ticks
+      << value.normalized_ns;
     return out;
   }
 
   inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_value & value) {
-    src >> value.code_locations_id_
-      >> value.created_
-      >> value.start_processor_
-      >> value.end_processor_
-      >> value.cpu_mhz_
-      >> value.debug_
-      >> value.ticks_
-      >> value.normalized_ns_;
+    src >> value.code_locations_id
+      >> value.created
+      >> value.start_processor
+      >> value.end_processor
+      >> value.cpu_mhz
+      >> value.debug
+      >> value.ticks
+      >> value.normalized_ns;
     return src;
   }
 
