@@ -7,6 +7,7 @@
 #include <boost/any.hpp>
 #include <cstdint>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 namespace fcs {
@@ -16,12 +17,16 @@ namespace table {
   struct Code_packages_pkey
   {
   public:
-    bool operator==(Code_packages_pkey const& rhs) {
+    bool operator==(Code_packages_pkey const& rhs) const {
       return this == &rhs ||
         (id == rhs.id);
     }
 
-    bool operator<(Code_packages_pkey const& rhs) {
+    bool operator!=(Code_packages_pkey const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Code_packages_pkey const& rhs) const {
       return id != rhs.id? id < rhs.id : (
         false);
     }
@@ -59,13 +64,17 @@ namespace table {
   struct Code_packages_value
   {
   public:
-    bool operator==(Code_packages_value const& rhs) {
+    bool operator==(Code_packages_value const& rhs) const {
       return this == &rhs ||
         (name == rhs.name &&
         descr == rhs.descr);
     }
 
-    bool operator<(Code_packages_value const& rhs) {
+    bool operator!=(Code_packages_value const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Code_packages_value const& rhs) const {
       return name != rhs.name? name < rhs.name : (
         descr != rhs.descr? descr < rhs.descr : (
         false));
@@ -243,6 +252,27 @@ namespace table {
       for(auto const& row : nascent) {
         stream << row.second;
       }
+    }
+
+    void update(Row_list_t const& changing) {
+      if(changing.empty()) {
+        return;
+      }
+
+      char const* update_stmt = R"(
+        update code_packages
+        set
+          name=:name<char[64]>,
+          descr=:descr<char[256]>
+        where
+          id=:id<int>
+      )";
+
+      otl_stream stream(1, update_stmt, *connection_);
+      for(auto const& row : changing) {
+        stream << row.second << row.first;
+      }
+
     }
 
     void delete_row(Pkey_t const& moribund) {

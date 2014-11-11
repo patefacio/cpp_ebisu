@@ -7,6 +7,7 @@
 #include <boost/any.hpp>
 #include <cstdint>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 namespace fcs {
@@ -16,12 +17,16 @@ namespace table {
   struct Code_tick_timings_pkey
   {
   public:
-    bool operator==(Code_tick_timings_pkey const& rhs) {
+    bool operator==(Code_tick_timings_pkey const& rhs) const {
       return this == &rhs ||
         (id == rhs.id);
     }
 
-    bool operator<(Code_tick_timings_pkey const& rhs) {
+    bool operator!=(Code_tick_timings_pkey const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Code_tick_timings_pkey const& rhs) const {
       return id != rhs.id? id < rhs.id : (
         false);
     }
@@ -59,7 +64,7 @@ namespace table {
   struct Code_tick_timings_value
   {
   public:
-    bool operator==(Code_tick_timings_value const& rhs) {
+    bool operator==(Code_tick_timings_value const& rhs) const {
       return this == &rhs ||
         (code_locations_id == rhs.code_locations_id &&
         created == rhs.created &&
@@ -71,7 +76,11 @@ namespace table {
         normalized_ns == rhs.normalized_ns);
     }
 
-    bool operator<(Code_tick_timings_value const& rhs) {
+    bool operator!=(Code_tick_timings_value const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Code_tick_timings_value const& rhs) const {
       return code_locations_id != rhs.code_locations_id? code_locations_id < rhs.code_locations_id : (
         created != rhs.created? created < rhs.created : (
         start_processor != rhs.start_processor? start_processor < rhs.start_processor : (
@@ -321,6 +330,33 @@ namespace table {
       for(auto const& row : nascent) {
         stream << row.second;
       }
+    }
+
+    void update(Row_list_t const& changing) {
+      if(changing.empty()) {
+        return;
+      }
+
+      char const* update_stmt = R"(
+        update code_tick_timings
+        set
+          code_locations_id=:code_locations_id<int>,
+          created=:created<timestamp>,
+          start_processor=:start_processor<int>,
+          end_processor=:end_processor<int>,
+          cpu_mhz=:cpu_mhz<double>,
+          debug=:debug<int>,
+          ticks=:ticks<bigint>,
+          normalized_ns=:normalized_ns<bigint>
+        where
+          id=:id<int>
+      )";
+
+      otl_stream stream(1, update_stmt, *connection_);
+      for(auto const& row : changing) {
+        stream << row.second << row.first;
+      }
+
     }
 
     void delete_row(Pkey_t const& moribund) {

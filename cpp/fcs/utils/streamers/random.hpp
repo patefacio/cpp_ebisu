@@ -141,8 +141,12 @@ namespace streamers {
   template< int ARRAY_SIZE >
   inline Random_source & operator>>(Random_source &source,
                                     Fixed_size_char_array< ARRAY_SIZE > & fsca) {
-    for(int i=0; i<ARRAY_SIZE; ++i) {
+    const int end = ARRAY_SIZE-1;
+    for(int i=0; i<end; ++i) {
       source >> fsca[i];
+    }
+    if(ARRAY_SIZE > 0) {
+      fsca[end] = 0;
     }
     return source;
   }

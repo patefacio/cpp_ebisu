@@ -7,6 +7,7 @@
 #include <boost/any.hpp>
 #include <cstdint>
 #include <sstream>
+#include <utility>
 #include <vector>
 
 namespace fcs {
@@ -16,12 +17,16 @@ namespace table {
   struct Rusage_delta_pkey
   {
   public:
-    bool operator==(Rusage_delta_pkey const& rhs) {
+    bool operator==(Rusage_delta_pkey const& rhs) const {
       return this == &rhs ||
         (id == rhs.id);
     }
 
-    bool operator<(Rusage_delta_pkey const& rhs) {
+    bool operator!=(Rusage_delta_pkey const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Rusage_delta_pkey const& rhs) const {
       return id != rhs.id? id < rhs.id : (
         false);
     }
@@ -59,7 +64,7 @@ namespace table {
   struct Rusage_delta_value
   {
   public:
-    bool operator==(Rusage_delta_value const& rhs) {
+    bool operator==(Rusage_delta_value const& rhs) const {
       return this == &rhs ||
         (code_locations_id == rhs.code_locations_id &&
         created == rhs.created &&
@@ -87,7 +92,11 @@ namespace table {
         ru_nivcsw == rhs.ru_nivcsw);
     }
 
-    bool operator<(Rusage_delta_value const& rhs) {
+    bool operator!=(Rusage_delta_value const& rhs) const {
+      return !(*this == rhs);
+    }
+
+    bool operator<(Rusage_delta_value const& rhs) const {
       return code_locations_id != rhs.code_locations_id? code_locations_id < rhs.code_locations_id : (
         created != rhs.created? created < rhs.created : (
         start_processor != rhs.start_processor? start_processor < rhs.start_processor : (
@@ -529,6 +538,49 @@ namespace table {
       for(auto const& row : nascent) {
         stream << row.second;
       }
+    }
+
+    void update(Row_list_t const& changing) {
+      if(changing.empty()) {
+        return;
+      }
+
+      char const* update_stmt = R"(
+        update rusage_delta
+        set
+          code_locations_id=:code_locations_id<int>,
+          created=:created<timestamp>,
+          start_processor=:start_processor<int>,
+          end_processor=:end_processor<int>,
+          cpu_mhz=:cpu_mhz<double>,
+          debug=:debug<int>,
+          user_time_sec=:user_time_sec<bigint>,
+          user_time_usec=:user_time_usec<bigint>,
+          system_time_sec=:system_time_sec<bigint>,
+          system_time_usec=:system_time_usec<bigint>,
+          ru_maxrss=:ru_maxrss<bigint>,
+          ru_ixrss=:ru_ixrss<bigint>,
+          ru_idrss=:ru_idrss<bigint>,
+          ru_isrss=:ru_isrss<bigint>,
+          ru_minflt=:ru_minflt<bigint>,
+          ru_majflt=:ru_majflt<bigint>,
+          ru_nswap=:ru_nswap<bigint>,
+          ru_inblock=:ru_inblock<bigint>,
+          ru_oublock=:ru_oublock<bigint>,
+          ru_msgsnd=:ru_msgsnd<bigint>,
+          ru_msgrcv=:ru_msgrcv<bigint>,
+          ru_nsignals=:ru_nsignals<bigint>,
+          ru_nvcsw=:ru_nvcsw<bigint>,
+          ru_nivcsw=:ru_nivcsw<bigint>
+        where
+          id=:id<int>
+      )";
+
+      otl_stream stream(1, update_stmt, *connection_);
+      for(auto const& row : changing) {
+        stream << row.second << row.first;
+      }
+
     }
 
     void delete_row(Pkey_t const& moribund) {
