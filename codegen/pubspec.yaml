@@ -11,6 +11,12 @@ dependencies:
 
   collection: ">=1.0.0"
 
+  ebisu:
+   git: git://github.com/patefacio/ebisu
+
+  magus:
+   git: git://github.com/patefacio/magus
+
 # end <fcs dependencies>
 
 dev_dependencies:
@@ -24,4 +30,3 @@ transformers:
 
 # custom <fcs transformers>
 # end <fcs transformers>
-
