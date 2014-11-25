@@ -76,7 +76,9 @@ namespace h5ds2csv {
 
     //! getter for output_file_ (access is Ro)
     std::string const& output_file() const { return output_file_; }
-    friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Program_options const& item) {
       using fcs::utils::streamers::operator<<;
       out << '\n' << "help:" << item.help_;
       out << '\n' << "data_set:" << item.data_set_;

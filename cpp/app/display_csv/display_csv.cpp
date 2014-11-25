@@ -39,7 +39,9 @@ namespace display_csv {
 
     //! getter for help_ (access is Ro)
     bool help() const { return help_; }
-    friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Program_options const& item) {
       out << '\n' << "help:" << item.help_;
       return out;
     }

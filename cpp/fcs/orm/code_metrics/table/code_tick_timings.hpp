@@ -36,26 +36,32 @@ namespace table {
       out.push_back("id");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(id));
     }
 
     int32_t id;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_tick_timings_pkey const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_tick_timings_pkey const& item) {
       out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_tick_timings_pkey const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_tick_timings_pkey const& value) {
     out << value.id;
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_pkey & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_tick_timings_pkey & value) {
     src >> value.id;
     return src;
   }
@@ -104,8 +110,8 @@ namespace table {
       out.push_back("normalized_ns");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(code_locations_id));
       out.push_back(boost::lexical_cast< std::string >(created));
       out.push_back(boost::lexical_cast< std::string >(start_processor));
@@ -125,7 +131,9 @@ namespace table {
     int64_t ticks;
     int64_t normalized_ns;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_tick_timings_value const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_tick_timings_value const& item) {
       out << '\n' << "code_locations_id:" << item.code_locations_id;
       out << '\n' << "created:" << item.created;
       out << '\n' << "start_processor:" << item.start_processor;
@@ -139,7 +147,9 @@ namespace table {
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_tick_timings_value const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_tick_timings_value const& value) {
     out << value.code_locations_id
       << value.created
       << value.start_processor
@@ -151,7 +161,9 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_tick_timings_value & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_tick_timings_value & value) {
     src >> value.code_locations_id
       >> value.created
       >> value.start_processor
@@ -181,11 +193,15 @@ namespace table {
       return instance_s;
     }
 
-    static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
+    static void
+    print_recordset_as_table(Row_list_t const& recordset,
+                             std::ostream &out) {
       fcs::orm::print_recordset_as_table< Code_tick_timings >(recordset, out);
     }
 
-    static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
+    static void
+    print_values_as_table(Value_list_t const& values,
+                          std::ostream &out) {
       fcs::orm::print_values_as_table< Code_tick_timings >(values, out);
     }
 
@@ -372,7 +388,9 @@ namespace table {
     }
 
     size_t delete_all_rows() {
-      long rows_deleted { otl_cursor::direct_exec(*connection_, "DELETE FROM code_tick_timings") };
+      long rows_deleted {
+        otl_cursor::direct_exec(*connection_, "DELETE FROM code_tick_timings")
+      };
       return size_t(rows_deleted);
     }
 
@@ -380,6 +398,20 @@ namespace table {
     otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
+
+  // Link to Code_packages
+  inline void
+  link_rows(Code_tick_timings<>::Row_t & from_row,
+            Code_packages<>::Row_t const& to_row) {
+
+  }
+
+  // Link to Code_locations
+  inline void
+  link_rows(Code_tick_timings<>::Row_t & from_row,
+            Code_locations<>::Row_t const& to_row) {
+
+  }
 
 
 } // namespace table

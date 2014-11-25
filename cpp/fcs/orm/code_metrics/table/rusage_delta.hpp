@@ -36,26 +36,32 @@ namespace table {
       out.push_back("id");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(id));
     }
 
     int32_t id;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Rusage_delta_pkey const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Rusage_delta_pkey const& item) {
       out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Rusage_delta_pkey const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Rusage_delta_pkey const& value) {
     out << value.id;
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Rusage_delta_pkey & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Rusage_delta_pkey & value) {
     src >> value.id;
     return src;
   }
@@ -152,8 +158,8 @@ namespace table {
       out.push_back("ru_nivcsw");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(code_locations_id));
       out.push_back(boost::lexical_cast< std::string >(created));
       out.push_back(boost::lexical_cast< std::string >(start_processor));
@@ -205,7 +211,9 @@ namespace table {
     int64_t ru_nvcsw;
     int64_t ru_nivcsw;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Rusage_delta_value const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Rusage_delta_value const& item) {
       out << '\n' << "code_locations_id:" << item.code_locations_id;
       out << '\n' << "created:" << item.created;
       out << '\n' << "start_processor:" << item.start_processor;
@@ -235,7 +243,9 @@ namespace table {
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Rusage_delta_value const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Rusage_delta_value const& value) {
     out << value.code_locations_id
       << value.created
       << value.start_processor
@@ -263,7 +273,9 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Rusage_delta_value & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Rusage_delta_value & value) {
     src >> value.code_locations_id
       >> value.created
       >> value.start_processor
@@ -309,11 +321,15 @@ namespace table {
       return instance_s;
     }
 
-    static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
+    static void
+    print_recordset_as_table(Row_list_t const& recordset,
+                             std::ostream &out) {
       fcs::orm::print_recordset_as_table< Rusage_delta >(recordset, out);
     }
 
-    static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
+    static void
+    print_values_as_table(Value_list_t const& values,
+                          std::ostream &out) {
       fcs::orm::print_values_as_table< Rusage_delta >(values, out);
     }
 
@@ -596,7 +612,9 @@ namespace table {
     }
 
     size_t delete_all_rows() {
-      long rows_deleted { otl_cursor::direct_exec(*connection_, "DELETE FROM rusage_delta") };
+      long rows_deleted {
+        otl_cursor::direct_exec(*connection_, "DELETE FROM rusage_delta")
+      };
       return size_t(rows_deleted);
     }
 
@@ -604,6 +622,20 @@ namespace table {
     otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
+
+  // Link to Code_packages
+  inline void
+  link_rows(Rusage_delta<>::Row_t & from_row,
+            Code_packages<>::Row_t const& to_row) {
+
+  }
+
+  // Link to Code_locations
+  inline void
+  link_rows(Rusage_delta<>::Row_t & from_row,
+            Code_locations<>::Row_t const& to_row) {
+
+  }
 
 
 } // namespace table

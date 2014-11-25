@@ -79,7 +79,8 @@ namespace utils {
     }
 
     friend inline
-    std::ostream& operator<<(std::ostream &out, Histogram const& item) {
+    std::ostream& operator<<(std::ostream &out,
+                             Histogram const& item) {
       using fcs::utils::streamers::operator<<;
       fcs::utils::Block_indenter indenter;
       char const* indent(indenter.current_indentation_text());

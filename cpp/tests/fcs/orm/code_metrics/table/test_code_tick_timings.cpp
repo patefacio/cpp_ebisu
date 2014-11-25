@@ -206,6 +206,7 @@ namespace table {
     code_locations_gw.update(updated_code_locations_rows);
     code_tick_timings_gw.update(updated_code_tick_timings_rows);
 
+    // verify the updates
     for(size_t i=0; i<num_rows; i++) {
       {
         Code_packages<>::Value_t value;

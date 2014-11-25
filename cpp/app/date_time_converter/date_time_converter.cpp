@@ -79,7 +79,9 @@ namespace date_time_converter {
 
     //! getter for date_ (access is Ro)
     std::vector< std::string > const& date() const { return date_; }
-    friend inline std::ostream& operator<<(std::ostream& out, Program_options const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Program_options const& item) {
       using fcs::utils::streamers::operator<<;
       out << '\n' << "help:" << item.help_;
       out << '\n' << "timestamp:" << item.timestamp_;

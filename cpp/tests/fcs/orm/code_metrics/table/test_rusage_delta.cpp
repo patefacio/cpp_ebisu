@@ -222,6 +222,7 @@ namespace table {
     code_locations_gw.update(updated_code_locations_rows);
     rusage_delta_gw.update(updated_rusage_delta_rows);
 
+    // verify the updates
     for(size_t i=0; i<num_rows; i++) {
       {
         Code_packages<>::Value_t value;

@@ -36,26 +36,32 @@ namespace table {
       out.push_back("id");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(id));
     }
 
     int32_t id;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_packages_pkey const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_packages_pkey const& item) {
       out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_packages_pkey const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_packages_pkey const& value) {
     out << value.id;
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_packages_pkey & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_packages_pkey & value) {
     src >> value.id;
     return src;
   }
@@ -86,8 +92,8 @@ namespace table {
       out.push_back("descr");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(name));
       out.push_back(boost::lexical_cast< std::string >(descr));
     }
@@ -95,7 +101,9 @@ namespace table {
     fcs::utils::Fixed_size_char_array< 64 > name;
     fcs::utils::Fixed_size_char_array< 256 > descr;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_packages_value const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_packages_value const& item) {
       out << '\n' << "name:" << item.name;
       out << '\n' << "descr:" << item.descr;
       return out;
@@ -103,13 +111,17 @@ namespace table {
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_packages_value const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_packages_value const& value) {
     out << value.name
       << value.descr;
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_packages_value & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_packages_value & value) {
     src >> value.name
       >> value.descr;
     return src;
@@ -133,11 +145,15 @@ namespace table {
       return instance_s;
     }
 
-    static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
+    static void
+    print_recordset_as_table(Row_list_t const& recordset,
+                             std::ostream &out) {
       fcs::orm::print_recordset_as_table< Code_packages >(recordset, out);
     }
 
-    static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
+    static void
+    print_values_as_table(Value_list_t const& values,
+                          std::ostream &out) {
       fcs::orm::print_values_as_table< Code_packages >(values, out);
     }
 
@@ -288,7 +304,9 @@ namespace table {
     }
 
     size_t delete_all_rows() {
-      long rows_deleted { otl_cursor::direct_exec(*connection_, "DELETE FROM code_packages") };
+      long rows_deleted {
+        otl_cursor::direct_exec(*connection_, "DELETE FROM code_packages")
+      };
       return size_t(rows_deleted);
     }
 

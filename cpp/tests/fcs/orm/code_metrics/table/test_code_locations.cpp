@@ -153,6 +153,7 @@ namespace table {
     code_packages_gw.update(updated_code_packages_rows);
     code_locations_gw.update(updated_code_locations_rows);
 
+    // verify the updates
     for(size_t i=0; i<num_rows; i++) {
       {
         Code_packages<>::Value_t value;

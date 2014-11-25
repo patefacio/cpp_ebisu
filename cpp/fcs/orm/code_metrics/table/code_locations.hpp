@@ -36,26 +36,32 @@ namespace table {
       out.push_back("id");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(id));
     }
 
     int32_t id;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_locations_pkey const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_locations_pkey const& item) {
       out << '\n' << "id:" << item.id;
       return out;
     }
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_locations_pkey const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_locations_pkey const& value) {
     out << value.id;
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_locations_pkey & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_locations_pkey & value) {
     src >> value.id;
     return src;
   }
@@ -95,8 +101,8 @@ namespace table {
       out.push_back("git_commit");
     }
 
-    inline
-    void to_string_list(String_list_t &out) const {
+    inline void
+    to_string_list(String_list_t &out) const {
       out.push_back(boost::lexical_cast< std::string >(code_packages_id));
       out.push_back(boost::lexical_cast< std::string >(label));
       out.push_back(boost::lexical_cast< std::string >(file_name));
@@ -110,7 +116,9 @@ namespace table {
     int32_t line_number;
     fcs::utils::Fixed_size_char_array< 40 > git_commit;
 
-    friend inline std::ostream& operator<<(std::ostream& out, Code_locations_value const& item) {
+    friend inline
+    std::ostream& operator<<(std::ostream& out,
+                             Code_locations_value const& item) {
       out << '\n' << "code_packages_id:" << item.code_packages_id;
       out << '\n' << "label:" << item.label;
       out << '\n' << "file_name:" << item.file_name;
@@ -121,7 +129,9 @@ namespace table {
 
   };
 
-  inline otl_stream& operator<<(otl_stream &out, Code_locations_value const& value) {
+  inline otl_stream&
+  operator<<(otl_stream &out,
+             Code_locations_value const& value) {
     out << value.code_packages_id
       << value.label
       << value.file_name
@@ -130,7 +140,9 @@ namespace table {
     return out;
   }
 
-  inline otl_stream& operator>>(otl_stream &src, Code_locations_value & value) {
+  inline otl_stream&
+  operator>>(otl_stream &src,
+             Code_locations_value & value) {
     src >> value.code_packages_id
       >> value.label
       >> value.file_name
@@ -157,11 +169,15 @@ namespace table {
       return instance_s;
     }
 
-    static void print_recordset_as_table(Row_list_t const& recordset, std::ostream &out) {
+    static void
+    print_recordset_as_table(Row_list_t const& recordset,
+                             std::ostream &out) {
       fcs::orm::print_recordset_as_table< Code_locations >(recordset, out);
     }
 
-    static void print_values_as_table(Value_list_t const& values, std::ostream &out) {
+    static void
+    print_values_as_table(Value_list_t const& values,
+                          std::ostream &out) {
       fcs::orm::print_values_as_table< Code_locations >(values, out);
     }
 
@@ -330,7 +346,9 @@ namespace table {
     }
 
     size_t delete_all_rows() {
-      long rows_deleted { otl_cursor::direct_exec(*connection_, "DELETE FROM code_locations") };
+      long rows_deleted {
+        otl_cursor::direct_exec(*connection_, "DELETE FROM code_locations")
+      };
       return size_t(rows_deleted);
     }
 
@@ -338,6 +356,13 @@ namespace table {
     otl_connect * connection_ { Connection_code_metrics::instance().connection() };
 
   };
+
+  // Link to Code_packages
+  inline void
+  link_rows(Code_locations<>::Row_t & from_row,
+            Code_packages<>::Row_t const& to_row) {
+
+  }
 
 
 } // namespace table

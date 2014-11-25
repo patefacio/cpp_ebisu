@@ -14,16 +14,14 @@ namespace streamers {
 
   template< >
   inline Random_source & operator>>
-    (Random_source &source,
-     Code_packages_pkey &obj) {
+    (Random_source &source, Code_packages_pkey &obj) {
     source >> obj.id;
     return source;
   }
 
   template< >
   inline Random_source & operator>>
-    (Random_source &source,
-     Code_packages_value &obj) {
+    (Random_source &source, Code_packages_value &obj) {
     source >> obj.name
       >> obj.descr;
     return source;
@@ -32,11 +30,11 @@ namespace streamers {
 
   template< >
   inline Random_source & operator>>
-    (Random_source &source,
-     Code_packages<>::Row_t &row) {
+    (Random_source &source, Code_packages<>::Row_t &row) {
     source >> row.first >> row.second;
     return source;
   }
+
 
 }
 }
@@ -53,63 +51,74 @@ namespace table {
 
   void test_insert_update_delete_rows() {
     // testing insertion and deletion
-    auto gw = Code_packages<>::instance();
-    // first clear out any existing rows and ensure empty
-    gw.delete_all_rows();
-    auto all_rows = gw.select_all_rows();
-    BOOST_REQUIRE(all_rows.empty());
+    auto code_packages_gw = Code_packages<>::instance();
+    Code_packages<>::Row_list_t code_packages_rows;
+    {
+      code_packages_gw.delete_all_rows();
+      auto rows = code_packages_gw.select_all_rows();
+      BOOST_REQUIRE(rows.empty());
+    }
 
     // create some records with random data
     int const num_rows = 20;
     Random_source random_source;
-    Code_packages<>::Row_t row;
+
     for(int i=0; i<num_rows; ++i) {
-      random_source >> row;
-      all_rows.push_back(row);
+
+      // Declare all rows
+      Code_packages<>::Row_t code_packages_row;
+
+      // Generate random data for all rows
+      random_source >> code_packages_row;
+
+
+      // Link up reference ids
+
+      // Push related records
+      code_packages_rows.push_back(code_packages_row);
+
     }
 
     // insert those records, select back and validate
-    gw.insert(all_rows);
-    {
-      auto again = gw.select_all_rows();
-      BOOST_REQUIRE(again.size() == num_rows);
-      for(size_t i=0; i<num_rows; i++) {
-        BOOST_REQUIRE(again[i].second == all_rows[i].second);
+    code_packages_gw.insert(code_packages_rows);
+    auto post_insert_code_packages_rows =
+      code_packages_gw.select_all_rows();
+    BOOST_REQUIRE(post_insert_code_packages_rows.size() == num_rows);
 
-      }
-      std::swap(again, all_rows);
+    for(size_t i=0; i<num_rows; i++) {
+      BOOST_REQUIRE(code_packages_rows[i].second ==
+                    post_insert_code_packages_rows[i].second)
+      std::swap(code_packages_rows, post_insert_code_packages_rows);
     }
 
     // now update all values in memory with new random data
-    auto updated_rows = all_rows;
-    BOOST_REQUIRE(updated_rows == all_rows);
-    for(auto & row : updated_rows) {
-      size_t index = std::distance(&updated_rows.front(), &row);
-      random_source >> row.second;
-      BOOST_REQUIRE(row.second != all_rows[index].second);
+    auto updated_code_packages_rows = code_packages_rows;
+    for(size_t i=0; i<num_rows; i++) {
+      ramdon_source >> updated_code_packages_rows[i].second;
+      BOOST_REQUIRE(updated_code_packages_rows[i].second !=
+                    code_packages_rows[i].second);
+
     }
-    Code_packages<>::print_recordset_as_table(updated_rows, std::cout);
+
+    if(false) {
+      Code_packages<>::print_recordset_as_table(
+        updated_code_packages_rows, std::cout);
+    }
+
     // push updates to database via update
-    gw.update(updated_rows);
-    {
-      for(size_t i=0; i<num_rows; i++) {
+    code_packages_gw.update(updated_code_packages_rows);
+
+    // verify the updates
+    for(size_t i=0; i<num_rows; i++) {
+      {
         Code_packages<>::Value_t value;
-        bool found = gw.find_row_by_key(updated_rows[i].first, value);
+        bool found = code_packages_gw.find_row_by_key(
+          updated_code_packages_rows[i].first, value);
         BOOST_REQUIRE(found);
-        BOOST_REQUIRE(value == updated_rows[i].second);
+        BOOST_REQUIRE(value == updated_code_packages_rows[i].second);
       }
     }
 
-  }
-
-  void test_query_rows() {
-    // test queries
-    auto gw = Code_packages<>::instance();
-    auto rows = gw.select_all_rows();
-  }
-
-  void test_update_rows() {
-    // testing update
   }
 
 } // namespace table
@@ -123,7 +132,5 @@ boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
   test_suite* test= BOOST_TEST_SUITE( "<code_packages>" );
   test->add( BOOST_TEST_CASE( &test_code_packages ) );
   test->add( BOOST_TEST_CASE( &test_insert_update_delete_rows ) );
-  test->add( BOOST_TEST_CASE( &test_query_rows ) );
-  test->add( BOOST_TEST_CASE( &test_update_rows ) );
   return test;
 }
