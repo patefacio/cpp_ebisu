@@ -7,6 +7,34 @@ using namespace fcs::orm::code_metrics::table;
 using namespace fcs::utils::streamers;
 using fcs::utils::streamers::operator<<;
 
+  int const num_rows = 20;
+  Random_source random_source;
+
+  void test_code_packages() {
+    // custom <code_packages>
+    // end <code_packages>
+  }
+
+
+  template< typename GW >
+  void delete_rows(GW &gw) {
+    gw.delete_all_rows();
+    auto rows = gw.select_all_rows();
+    BOOST_REQUIRE(rows.empty());
+  }
+
+  template< typename Row_list_t >
+  void random_rows(Row_list_t &rows) {
+    rows.reserve(num_rows);
+    rows.clear();
+    for(int i=0; i<num_rows; ++i) {
+      typename Row_list_t::value_type row;
+      random_source >> row;
+      rows.push_back(row);
+    }
+  }
+
+
 namespace fcs {
 namespace utils {
 namespace streamers {
@@ -44,41 +72,16 @@ namespace fcs {
 namespace orm {
 namespace code_metrics {
 namespace table {
-  void test_code_packages() {
-    // custom <code_packages>
-    // end <code_packages>
-  }
+
 
   void test_insert_update_delete_rows() {
     // testing insertion and deletion
     auto code_packages_gw = Code_packages<>::instance();
+    delete_rows(code_packages_gw);
+
     Code_packages<>::Row_list_t code_packages_rows;
-    {
-      code_packages_gw.delete_all_rows();
-      auto rows = code_packages_gw.select_all_rows();
-      BOOST_REQUIRE(rows.empty());
-    }
-
     // create some records with random data
-    int const num_rows = 20;
-    Random_source random_source;
-
-    for(int i=0; i<num_rows; ++i) {
-
-      // Declare all rows
-      Code_packages<>::Row_t code_packages_row;
-
-      // Generate random data for all rows
-      random_source >> code_packages_row;
-
-
-      // Link up reference ids
-
-
-      // Push related records
-      code_packages_rows.push_back(code_packages_row);
-
-    }
+    random_rows(code_packages_rows);
 
     // insert those records, select back and validate
     code_packages_gw.insert(code_packages_rows);
@@ -89,9 +92,8 @@ namespace table {
     for(size_t i=0; i<num_rows; i++) {
       BOOST_REQUIRE(code_packages_rows[i].second ==
                     post_insert_code_packages_rows[i].second);
-      std::swap(code_packages_rows, post_insert_code_packages_rows);
     }
-
+    std::swap(code_packages_rows, post_insert_code_packages_rows);
     // now update all values in memory with new random data
     auto updated_code_packages_rows = code_packages_rows;
     for(size_t i=0; i<num_rows; i++) {
