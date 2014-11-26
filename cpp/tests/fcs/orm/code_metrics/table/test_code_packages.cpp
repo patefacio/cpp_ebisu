@@ -74,6 +74,7 @@ namespace table {
 
       // Link up reference ids
 
+
       // Push related records
       code_packages_rows.push_back(code_packages_row);
 
@@ -87,14 +88,14 @@ namespace table {
 
     for(size_t i=0; i<num_rows; i++) {
       BOOST_REQUIRE(code_packages_rows[i].second ==
-                    post_insert_code_packages_rows[i].second)
+                    post_insert_code_packages_rows[i].second);
       std::swap(code_packages_rows, post_insert_code_packages_rows);
     }
 
     // now update all values in memory with new random data
     auto updated_code_packages_rows = code_packages_rows;
     for(size_t i=0; i<num_rows; i++) {
-      ramdon_source >> updated_code_packages_rows[i].second;
+      random_source >> updated_code_packages_rows[i].second;
       BOOST_REQUIRE(updated_code_packages_rows[i].second !=
                     code_packages_rows[i].second);
 

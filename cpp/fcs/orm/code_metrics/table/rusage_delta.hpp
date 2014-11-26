@@ -1,6 +1,7 @@
 #ifndef __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__
 #define __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__
 
+#include "code_locations.hpp"
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
@@ -623,20 +624,13 @@ namespace table {
 
   };
 
-  // Link to Code_packages
-  inline void
-  link_rows(Rusage_delta<>::Row_t & from_row,
-            Code_packages<>::Row_t const& to_row) {
-
-  }
-
-  // Link to Code_locations
+  // Establish link from Rusage_delta to Code_locations
+  // across foreign key rusage_delta.`rusage_delta_ibfk_1`
   inline void
   link_rows(Rusage_delta<>::Row_t & from_row,
             Code_locations<>::Row_t const& to_row) {
-
+    from_row.second.code_locations_id = to_row.first.id;
   }
-
 
 } // namespace table
 } // namespace code_metrics

@@ -141,6 +141,8 @@ namespace table {
 
 
       // Link up reference ids
+      link_rows(code_locations_row, code_packages_row);
+      link_rows(code_tick_timings_row, code_locations_row);
 
       // Push related records
       code_packages_rows.push_back(code_packages_row);
@@ -165,13 +167,13 @@ namespace table {
 
     for(size_t i=0; i<num_rows; i++) {
       BOOST_REQUIRE(code_packages_rows[i].second ==
-                    post_insert_code_packages_rows[i].second)
+                    post_insert_code_packages_rows[i].second);
       std::swap(code_packages_rows, post_insert_code_packages_rows);
       BOOST_REQUIRE(code_locations_rows[i].second ==
-                    post_insert_code_locations_rows[i].second)
+                    post_insert_code_locations_rows[i].second);
       std::swap(code_locations_rows, post_insert_code_locations_rows);
       BOOST_REQUIRE(code_tick_timings_rows[i].second ==
-                    post_insert_code_tick_timings_rows[i].second)
+                    post_insert_code_tick_timings_rows[i].second);
       std::swap(code_tick_timings_rows, post_insert_code_tick_timings_rows);
     }
 
@@ -180,13 +182,13 @@ namespace table {
     auto updated_code_locations_rows = code_locations_rows;
     auto updated_code_tick_timings_rows = code_tick_timings_rows;
     for(size_t i=0; i<num_rows; i++) {
-      ramdon_source >> updated_code_packages_rows[i].second;
+      random_source >> updated_code_packages_rows[i].second;
       BOOST_REQUIRE(updated_code_packages_rows[i].second !=
                     code_packages_rows[i].second);
-      ramdon_source >> updated_code_locations_rows[i].second;
+      random_source >> updated_code_locations_rows[i].second;
       BOOST_REQUIRE(updated_code_locations_rows[i].second !=
                     code_locations_rows[i].second);
-      ramdon_source >> updated_code_tick_timings_rows[i].second;
+      random_source >> updated_code_tick_timings_rows[i].second;
       BOOST_REQUIRE(updated_code_tick_timings_rows[i].second !=
                     code_tick_timings_rows[i].second);
 

@@ -1,6 +1,7 @@
 #ifndef __FCS_ORM_CODE_METRICS_TABLE_CODE_TICK_TIMINGS_HPP__
 #define __FCS_ORM_CODE_METRICS_TABLE_CODE_TICK_TIMINGS_HPP__
 
+#include "code_locations.hpp"
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
@@ -399,20 +400,13 @@ namespace table {
 
   };
 
-  // Link to Code_packages
-  inline void
-  link_rows(Code_tick_timings<>::Row_t & from_row,
-            Code_packages<>::Row_t const& to_row) {
-
-  }
-
-  // Link to Code_locations
+  // Establish link from Code_tick_timings to Code_locations
+  // across foreign key code_tick_timings.`code_tick_timings_ibfk_1`
   inline void
   link_rows(Code_tick_timings<>::Row_t & from_row,
             Code_locations<>::Row_t const& to_row) {
-
+    from_row.second.code_locations_id = to_row.first.id;
   }
-
 
 } // namespace table
 } // namespace code_metrics

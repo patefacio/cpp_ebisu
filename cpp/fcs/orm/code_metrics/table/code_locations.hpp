@@ -1,6 +1,7 @@
 #ifndef __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__
 #define __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__
 
+#include "code_packages.hpp"
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
@@ -357,13 +358,13 @@ namespace table {
 
   };
 
-  // Link to Code_packages
+  // Establish link from Code_locations to Code_packages
+  // across foreign key code_locations.`code_locations_ibfk_1`
   inline void
   link_rows(Code_locations<>::Row_t & from_row,
             Code_packages<>::Row_t const& to_row) {
-
+    from_row.second.code_packages_id = to_row.first.id;
   }
-
 
 } // namespace table
 } // namespace code_metrics
