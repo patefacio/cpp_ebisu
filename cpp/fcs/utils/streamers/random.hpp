@@ -1,6 +1,7 @@
 #ifndef __FCS_UTILS_STREAMERS_RANDOM_HPP__
 #define __FCS_UTILS_STREAMERS_RANDOM_HPP__
 
+#include "fcs/orm/otl_utils.hpp"
 #include "fcs/timestamp/timestamp.hpp"
 #include "fcs/utils/fixed_size_char_array.hpp"
 #include <cstdint>
@@ -174,6 +175,16 @@ namespace streamers {
     fcs::timestamp::Timestamp_t ts;
     source >> ts;
     date = ts.date();
+    return source;
+  }
+
+  template< >
+  inline Random_source & operator>>(Random_source &source,
+                                    otl_datetime & date) {
+
+    fcs::timestamp::Timestamp_t ts;
+    source >> ts;
+    fcs::orm::boost_ptime_to_otl_type(ts, date);
     return source;
   }
 
