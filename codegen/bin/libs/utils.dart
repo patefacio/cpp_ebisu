@@ -101,7 +101,7 @@ Hist_results_t = boost::iterator_range<
       ..memberCtors = [
         memberCtor([ 'num_bins' ], { 'num_bins' : 20 }, ['IT begin', 'IT end'])
         ..template = 'typename IT'
-        ..hasCustom = true,
+        ..customLabel = 'from_iterator',
       ]
     ]
 

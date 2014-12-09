@@ -171,9 +171,7 @@ namespace table {
     }
 
     delete_rows(code_locations_gw);
-
     delete_rows(code_packages_gw);
-
 
   }
 

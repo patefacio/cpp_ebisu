@@ -11,7 +11,6 @@ namespace app {
 namespace date_time_converter {
   struct Program_options
   {
-  public:
     Program_options(int argc, char** argv) {
       using namespace boost::program_options;
       variables_map parsed_options;

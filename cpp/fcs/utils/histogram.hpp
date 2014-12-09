@@ -68,14 +68,14 @@ namespace utils {
       IT end,
       int num_bins = 20) :
       num_bins_ { num_bins } {
-      // custom <Histogram(IT begin, IT end + num_bins>
+      // custom <Histogram(from_iterator)>
 
       std::pair< IT, IT > min_and_max(boost::minmax_element(begin, end));
       T smallest(*min_and_max.first);
       T largest(*min_and_max.second);
       std::cout << "Smallest is: " << smallest << " largest is: " << largest << std::endl;
 
-      // end <Histogram(IT begin, IT end + num_bins>
+      // end <Histogram(from_iterator)>
     }
 
     friend inline

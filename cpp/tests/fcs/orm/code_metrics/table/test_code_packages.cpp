@@ -132,7 +132,6 @@ namespace table {
 
     delete_rows(code_packages_gw);
 
-
   }
 
 } // namespace table

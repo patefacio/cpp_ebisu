@@ -7,6 +7,7 @@
 #include "fcs/orm/otl_utils.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
+#include <iosfwd>
 #include <sstream>
 #include <utility>
 #include <vector>
@@ -17,7 +18,6 @@ namespace code_metrics {
 namespace table {
   struct Code_locations_pkey
   {
-  public:
     bool operator==(Code_locations_pkey const& rhs) const {
       return this == &rhs ||
         (id == rhs.id);
@@ -70,7 +70,6 @@ namespace table {
 
   struct Code_locations_value
   {
-  public:
     bool operator==(Code_locations_value const& rhs) const {
       return this == &rhs ||
         (code_packages_id == rhs.code_packages_id &&

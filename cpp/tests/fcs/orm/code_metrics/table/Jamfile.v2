@@ -5,6 +5,16 @@ project test_fcs_orm_code_metrics
 
 import testing ;
 
+rule test_code_packages
+{
+  all_rules += [ run test_code_packages.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite code_packages : [ test_code_packages ] ;
+
 rule test_code_locations
 {
   all_rules += [ run test_code_locations.cpp
@@ -14,16 +24,6 @@ rule test_code_locations
   ] ;
 }
 test-suite code_locations : [ test_code_locations ] ;
-
-rule test_rusage_delta
-{
-  all_rules += [ run test_rusage_delta.cpp
-  :
-  : # test-files
-  : # requirements
-  ] ;
-}
-test-suite rusage_delta : [ test_rusage_delta ] ;
 
 rule test_code_tick_timings
 {
@@ -35,12 +35,32 @@ rule test_code_tick_timings
 }
 test-suite code_tick_timings : [ test_code_tick_timings ] ;
 
-rule test_code_packages
+rule test_rusage_delta
 {
-  all_rules += [ run test_code_packages.cpp
+  all_rules += [ run test_rusage_delta.cpp
   :
   : # test-files
   : # requirements
   ] ;
 }
-test-suite code_packages : [ test_code_packages ] ;
+test-suite rusage_delta : [ test_rusage_delta ] ;
+
+rule test_t1
+{
+  all_rules += [ run test_t1.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite t1 : [ test_t1 ] ;
+
+rule test_t2
+{
+  all_rules += [ run test_t2.cpp
+  :
+  : # test-files
+  : # requirements
+  ] ;
+}
+test-suite t2 : [ test_t2 ] ;

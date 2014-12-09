@@ -236,11 +236,8 @@ namespace table {
     }
 
     delete_rows(rusage_delta_gw);
-
     delete_rows(code_locations_gw);
-
     delete_rows(code_packages_gw);
-
 
   }
 
