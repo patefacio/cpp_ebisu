@@ -18,7 +18,6 @@ namespace streamers {
   using String_matrix_t = std::vector< String_list_t >;
   using Size_list_t = std::vector< size_t >;
 
-  //! Outputs data in tabular format - like output from database query
   // custom <ClsPreDecl Table_streamer>
 
   inline void grow_string_to(std::string &s, size_t len) {
@@ -118,6 +117,7 @@ namespace streamers {
 
   // end <ClsPreDecl Table_streamer>
 
+  //! Outputs data in tabular format - like output from database query
   template< typename MatrixContainer = String_matrix_t,
             typename T = typename MatrixContainer::value_type::value_type >
   class Table_streamer
