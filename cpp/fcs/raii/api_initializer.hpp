@@ -38,7 +38,7 @@ namespace raii {
 
 
   /**
-     For api's that need some form of initialization/uninitialization to be performed.
+   For api's that need some form of initialization/uninitialization to be performed.
 
   */
   template< typename INIT_FUNC = Void_func_t,

@@ -64,7 +64,6 @@ int main(int argc, char** argv) {
       return 0;
     }
 
-    std::cout << options << std::endl;
     // custom <main>
     // end <main>
 

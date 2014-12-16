@@ -9,7 +9,7 @@ SOURCES =
      h5ds2csv
 ;
 
-exe date_time_converter
+exe h5ds2csv
     : h5ds2csv.cpp
       $(SOURCES).cpp
       /site-config//boost_program_options

@@ -1,6 +1,6 @@
 #include "fcs/timestamp/conversion.hpp"
 #include "fcs/utils/streamers/containers.hpp"
-#include "fcs/utils/streamers/table/table.hpp"
+#include "fcs/utils/streamers/table.hpp"
 #include <boost/program_options.hpp>
 #include <stdexcept>
 #include <string>
@@ -98,10 +98,10 @@ namespace date_time_converter {
 
   // custom <FcbEndNamespace date_time_converter>
 
-  void add_detail_row(fcs::utils::streamers::table::String_matrix_t & table,
+  void add_detail_row(fcs::utils::streamers::String_matrix_t & table,
                       std::string const& input,
                       fcs::timestamp::Timestamp_t ts) {
-    using namespace utils::streamers::table;
+    using namespace utils::streamers;
     String_list_t row;
     fcs::timestamp::Date_t date { ts.date() };
     row.push_back(input);
@@ -128,11 +128,10 @@ int main(int argc, char** argv) {
       return 0;
     }
 
-    std::cout << options << std::endl;
     // custom <main>
 
     using namespace fcs::timestamp;
-    using namespace fcs::utils::streamers::table;
+    using namespace fcs::utils::streamers;
 
     String_matrix_t table;
     for(auto const& date_text : options.date()) {

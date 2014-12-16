@@ -6,10 +6,10 @@
 namespace fcs {
 namespace raii {
   /**
-     Tracks current/previous values of the given type of data. For some
-     algorithms it is useful to be able to examine/perform logic on
-     current value and compare or evalutate how it has changed since
-     previous value.
+   Tracks current/previous values of the given type of data. For some
+   algorithms it is useful to be able to examine/perform logic on
+   current value and compare or evalutate how it has changed since
+   previous value.
   */
   template< typename T >
   class Change_tracker
@@ -47,9 +47,9 @@ namespace raii {
 
 
   /**
-     Uses a ChangeTracker to track current/previous values of a type and
-     ensures that on destruction the previous value becomes the current
-     value and the current value will be assigned the next value.
+   Uses a ChangeTracker to track current/previous values of a type and
+   ensures that on destruction the previous value becomes the current
+   value and the current value will be assigned the next value.
   */
   template< typename T >
   class Change_tracker_next_value
@@ -83,8 +83,8 @@ namespace raii {
 
 
   /**
-     Stores the current state, changes that state to a new value and on
-     destruction restores the original state.
+   Stores the current state, changes that state to a new value and on
+   destruction restores the original state.
   */
   template< typename T >
   class Change_until_end_of_block

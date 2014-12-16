@@ -9,7 +9,7 @@ SOURCES =
      display_csv
 ;
 
-exe date_time_converter
+exe display_csv
     : display_csv.cpp
       $(SOURCES).cpp
       /site-config//boost_date_time

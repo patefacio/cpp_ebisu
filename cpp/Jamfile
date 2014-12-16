@@ -27,6 +27,7 @@ project fcs_projects
           <include>/usr/local/include
           <include>.
 # custom <additional_includes>
+<include>$(TOP)
 # end <additional_includes>
 
           <tag>@$(__name__).tag
@@ -41,4 +42,3 @@ project fcs_projects
        :
         : build-dir ../../build-dir
         ;
-

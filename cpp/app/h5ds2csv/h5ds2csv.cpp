@@ -17,22 +17,22 @@ namespace h5ds2csv {
         return;
       }
 
-      if(parsed_options.count("data_set") > 0) {
-        data_set_ = parsed_options["data_set"]
+      if(parsed_options.count("data-set") > 0) {
+        data_set_ = parsed_options["data-set"]
           .as< std::vector< std::string > >();
       }
 
-      if(parsed_options.count("input_file") > 0) {
-        input_file_ = parsed_options["input_file"]
+      if(parsed_options.count("input-file") > 0) {
+        input_file_ = parsed_options["input-file"]
           .as< std::vector< std::string > >();
       } else {
         std::ostringstream msg;
-        msg << "h5ds2csv option 'input_file' is required";
+        msg << "h5ds2csv option 'input-file' is required";
         throw std::runtime_error(msg.str());
       }
 
-      if(parsed_options.count("output_file") > 0) {
-        output_file_ = parsed_options["output_file"]
+      if(parsed_options.count("output-file") > 0) {
+        output_file_ = parsed_options["output-file"]
           .as< std::string >();
       }
 
@@ -108,7 +108,6 @@ int main(int argc, char** argv) {
       return 0;
     }
 
-    std::cout << options << std::endl;
     // custom <main>
     // end <main>
 

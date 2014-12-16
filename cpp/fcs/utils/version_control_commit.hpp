@@ -4,8 +4,8 @@
 namespace fcs {
 namespace utils {
   /**
-     Provide static data with git commit for quickly identifying contents of build
-     with linux strings program
+   Provide static data with git commit for quickly identifying contents of build
+   with linux strings program
   */
   class Version_control_commit
   {
