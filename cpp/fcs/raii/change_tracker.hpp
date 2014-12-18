@@ -5,16 +5,15 @@
 
 namespace fcs {
 namespace raii {
-  /**
-   Tracks current/previous values of the given type of data. For some
-   algorithms it is useful to be able to examine/perform logic on
-   current value and compare or evalutate how it has changed since
-   previous value.
-  */
-  template< typename T >
-  class Change_tracker
-  {
-  public:
+/**
+ Tracks current/previous values of the given type of data. For some
+ algorithms it is useful to be able to examine/perform logic on
+ current value and compare or evalutate how it has changed since
+ previous value.
+*/
+template <typename T>
+class Change_tracker {
+ public:
     // custom <ClsPublic Change_tracker>
 
     Change_tracker(T current) :
@@ -34,28 +33,26 @@ namespace raii {
 
     // end <ClsPublic Change_tracker>
 
-    //! getter for current_ (access is Ro)
-    T current() const { return current_; }
+  //! getter for current_ (access is Ro)
+  T current() const { return current_; }
 
-    //! getter for previous_ (access is Ro)
-    T previous() const { return previous_; }
-  private:
-    T current_ {};
-    T previous_ {};
+  //! getter for previous_ (access is Ro)
+  T previous() const { return previous_; }
 
-  };
+ private:
+  T current_{};
+  T previous_{};
+};
 
-
-  /**
-   Uses a ChangeTracker to track current/previous values of a type and
-   ensures that on destruction the previous value becomes the current
-   value and the current value will be assigned the next value.
-  */
-  template< typename T >
-  class Change_tracker_next_value
-  {
-  public:
-    using Change_tracker_t = Change_tracker< T >;
+/**
+ Uses a ChangeTracker to track current/previous values of a type and
+ ensures that on destruction the previous value becomes the current
+ value and the current value will be assigned the next value.
+*/
+template <typename T>
+class Change_tracker_next_value {
+ public:
+  using Change_tracker_t = Change_tracker<T>;
 
     // custom <ClsPublic Change_tracker_next_value>
 
@@ -70,26 +67,24 @@ namespace raii {
 
     // end <ClsPublic Change_tracker_next_value>
 
-    //! getter for tracker_ (access is Ro)
-    Change_tracker_t const& tracker() const { return tracker_; }
+  //! getter for tracker_ (access is Ro)
+  Change_tracker_t const& tracker() const { return tracker_; }
 
-    //! getter for next_value_ (access is Ro)
-    T next_value() const { return next_value_; }
-  private:
-    Change_tracker_t & tracker_;
-    T next_value_ {};
+  //! getter for next_value_ (access is Ro)
+  T next_value() const { return next_value_; }
 
-  };
+ private:
+  Change_tracker_t& tracker_;
+  T next_value_{};
+};
 
-
-  /**
-   Stores the current state, changes that state to a new value and on
-   destruction restores the original state.
-  */
-  template< typename T >
-  class Change_until_end_of_block
-  {
-  public:
+/**
+ Stores the current state, changes that state to a new value and on
+ destruction restores the original state.
+*/
+template <typename T>
+class Change_until_end_of_block {
+ public:
     // custom <ClsPublic Change_until_end_of_block>
 
     Change_until_end_of_block(
@@ -106,18 +101,17 @@ namespace raii {
 
     // end <ClsPublic Change_until_end_of_block>
 
-    //! getter for target_ (access is Ro)
-    T target() const { return target_; }
+  //! getter for target_ (access is Ro)
+  T target() const { return target_; }
 
-    //! getter for saved_value_ (access is Ro)
-    T saved_value() const { return saved_value_; }
-  private:
-    T & target_;
-    T saved_value_ {};
+  //! getter for saved_value_ (access is Ro)
+  T saved_value() const { return saved_value_; }
 
-  };
+ private:
+  T& target_;
+  T saved_value_{};
+};
 
-
-} // namespace raii
-} // namespace fcs
-#endif // __FCS_RAII_CHANGE_TRACKER_HPP__
+}  // namespace raii
+}  // namespace fcs
+#endif  // __FCS_RAII_CHANGE_TRACKER_HPP__

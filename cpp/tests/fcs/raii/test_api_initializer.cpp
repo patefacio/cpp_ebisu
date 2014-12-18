@@ -41,7 +41,7 @@ void my_uninit3() {
 
 namespace fcs {
 namespace raii {
-  void test_functor_scope_exit() {
+void test_functor_scope_exit() {
     // custom <functor_scope_exit>
 
     // In general, api_initializers are intended to be used as global static
@@ -82,15 +82,15 @@ namespace raii {
       init_strings == (vector< string > { "my_init1", "my_init2", "my_init3" }));
 
     // end <functor_scope_exit>
-  }
+}
 
-} // namespace raii
-} // namespace fcs
+}  // namespace raii
+}  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
   using namespace fcs::raii;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<api_initializer>" );
-  test->add( BOOST_TEST_CASE( &test_functor_scope_exit ) );
+  test_suite* test = BOOST_TEST_SUITE("<api_initializer>");
+  test->add(BOOST_TEST_CASE(&test_functor_scope_exit));
   return test;
 }

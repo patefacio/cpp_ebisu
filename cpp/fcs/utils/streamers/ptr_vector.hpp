@@ -18,7 +18,7 @@ namespace streamers {
 
   // end <FcbBeginNamespace ptr_vector>
 
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_PTR_VECTOR_HPP__
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_PTR_VECTOR_HPP__

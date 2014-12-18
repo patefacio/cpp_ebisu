@@ -50,7 +50,7 @@ namespace streamers {
 
   // end <FcbBeginNamespace ptr_map>
 
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_PTR_MAP_HPP__
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_PTR_MAP_HPP__

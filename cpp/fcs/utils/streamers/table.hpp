@@ -14,9 +14,9 @@ namespace streamers {
   // custom <FcbBeginNamespace table>
   // end <FcbBeginNamespace table>
 
-  using String_list_t = std::vector< std::string >;
-  using String_matrix_t = std::vector< String_list_t >;
-  using Size_list_t = std::vector< size_t >;
+using String_list_t = std::vector<std::string>;
+using String_matrix_t = std::vector<String_list_t>;
+using Size_list_t = std::vector<size_t>;
 
   // custom <ClsPreDecl Table_streamer>
 
@@ -117,20 +117,16 @@ namespace streamers {
 
   // end <ClsPreDecl Table_streamer>
 
-  //! Outputs data in tabular format - like output from database query
-  template< typename MatrixContainer = String_matrix_t,
-            typename T = typename MatrixContainer::value_type::value_type >
-  class Table_streamer
-  {
-  public:
-    using Row_container_t = typename MatrixContainer::value_type;
+//! Outputs data in tabular format - like output from database query
+template <typename MatrixContainer = String_matrix_t,
+          typename T = typename MatrixContainer::value_type::value_type>
+class Table_streamer {
+ public:
+  using Row_container_t = typename MatrixContainer::value_type;
 
-    Table_streamer(
-      MatrixContainer const & matrix_container,
-      String_list_t const & header = String_list_t()) :
-      matrix_container_ { matrix_container },
-      header_ { header } {
-    }
+  Table_streamer(MatrixContainer const& matrix_container,
+                 String_list_t const& header = String_list_t())
+      : matrix_container_{matrix_container}, header_{header} {}
 
     // custom <ClsPublic Table_streamer>
 
@@ -192,16 +188,14 @@ namespace streamers {
 
     // end <ClsPublic Table_streamer>
 
-  private:
-    //! Matrix with data to stream
-    MatrixContainer const& matrix_container_;
-    //! List of headers for the columns
-    String_list_t const& header_;
+ private:
+  //! Matrix with data to stream
+  MatrixContainer const& matrix_container_;
+  //! List of headers for the columns
+  String_list_t const& header_;
+};
 
-  };
-
-
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_TABLE_HPP__
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_TABLE_HPP__

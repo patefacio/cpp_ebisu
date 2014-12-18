@@ -5,13 +5,12 @@
 
 namespace fcs {
 namespace utils {
-  class Block_current_indent
-  {
-  public:
-    static Block_current_indent & instance() {
-      static Block_current_indent instance_s;
-      return instance_s;
-    }
+class Block_current_indent {
+ public:
+  static Block_current_indent& instance() {
+    static Block_current_indent instance_s;
+    return instance_s;
+  }
 
     // custom <ClsPublic Block_current_indent>
 
@@ -45,7 +44,7 @@ namespace utils {
 
     // end <ClsPublic Block_current_indent>
 
-  private:
+ private:
     // custom <ClsPrivate Block_current_indent>
 
     inline void initialize_tss() {
@@ -56,14 +55,11 @@ namespace utils {
 
     // end <ClsPrivate Block_current_indent>
 
-    boost::thread_specific_ptr< int > indentation_length_ {};
+  boost::thread_specific_ptr<int> indentation_length_{};
+};
 
-  };
-
-
-  class Block_indenter
-  {
-  public:
+class Block_indenter {
+ public:
     // custom <ClsPublic Block_indenter>
 
     Block_indenter() {
@@ -79,10 +75,8 @@ namespace utils {
     }
 
     // end <ClsPublic Block_indenter>
+};
 
-  };
-
-
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_BLOCK_INDENTER_HPP__
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_BLOCK_INDENTER_HPP__

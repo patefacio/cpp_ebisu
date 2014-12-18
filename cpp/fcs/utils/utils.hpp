@@ -6,16 +6,10 @@
 
 namespace fcs {
 namespace utils {
-  class Value_min_max
-  {
-  };
+class Value_min_max {};
 
+class Version_control_commit {};
 
-  class Version_control_commit
-  {
-  };
-
-
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_UTILS_HPP__
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_UTILS_HPP__

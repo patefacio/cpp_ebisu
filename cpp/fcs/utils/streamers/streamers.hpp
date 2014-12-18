@@ -70,7 +70,7 @@ namespace streamers {
 
   // end <FcbBeginNamespace streamers>
 
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_STREAMERS_HPP__
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_STREAMERS_HPP__

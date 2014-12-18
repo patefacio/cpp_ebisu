@@ -7,9 +7,9 @@
 
 namespace fcs {
 namespace timestamp {
-  using Timestamp_t = boost::posix_time::ptime;
-  using Time_duration_t = boost::posix_time::time_duration;
-  using Date_t = boost::gregorian::date;
+using Timestamp_t = boost::posix_time::ptime;
+using Time_duration_t = boost::posix_time::time_duration;
+using Date_t = boost::gregorian::date;
 
   // custom <FcbEndNamespace timestamp>
 
@@ -32,6 +32,6 @@ namespace timestamp {
 
   // end <FcbEndNamespace timestamp>
 
-} // namespace timestamp
-} // namespace fcs
-#endif // __FCS_TIMESTAMP_TIMESTAMP_HPP__
+}  // namespace timestamp
+}  // namespace fcs
+#endif  // __FCS_TIMESTAMP_TIMESTAMP_HPP__

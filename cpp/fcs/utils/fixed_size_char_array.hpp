@@ -4,17 +4,17 @@
 #include <boost/array.hpp>
 #include <cassert>
 #include <cstring>
+#include <string>
 
 namespace fcs {
 namespace utils {
-  template< int ARRAY_SIZE >
-  class Fixed_size_char_array
-  {
-  public:
-    using Array_t = boost::array< char, ARRAY_SIZE >;
+template <int ARRAY_SIZE>
+class Fixed_size_char_array {
+ public:
+  using Array_t = boost::array<char, ARRAY_SIZE>;
 
-    static int const BUFFER_SIZE { ARRAY_SIZE };
-    static int const LAST_INDEX { ARRAY_SIZE-1 };
+  static int const BUFFER_SIZE{ARRAY_SIZE};
+  static int const LAST_INDEX{ARRAY_SIZE - 1};
 
     // custom <ClsPublic Fixed_size_char_array>
 
@@ -91,7 +91,7 @@ namespace utils {
 
     // end <ClsPublic Fixed_size_char_array>
 
-  private:
+ private:
     // custom <ClsPrivate Fixed_size_char_array>
 
     char & get_char_ref(int i) {
@@ -101,9 +101,8 @@ namespace utils {
 
     // end <ClsPrivate Fixed_size_char_array>
 
-    Array_t data_ {};
-
-  };
+  Array_t data_{};
+};
 
   // custom <ClsPostDecl Fixed_size_char_array>
 
@@ -117,7 +116,6 @@ namespace utils {
 
   // end <ClsPostDecl Fixed_size_char_array>
 
-
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__

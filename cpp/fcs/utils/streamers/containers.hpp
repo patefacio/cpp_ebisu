@@ -9,9 +9,7 @@
 
 namespace fcs {
 namespace utils {
-namespace streamers {
-
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_CONTAINERS_HPP__
+namespace streamers {}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_CONTAINERS_HPP__

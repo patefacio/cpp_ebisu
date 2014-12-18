@@ -6,7 +6,7 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  void test_random_source() {
+void test_random_source() {
     // custom <random_source>
 
     using namespace std;
@@ -74,16 +74,16 @@ namespace streamers {
     }
 
     // end <random_source>
-  }
+}
 
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
   using namespace fcs::utils::streamers;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<random>" );
-  test->add( BOOST_TEST_CASE( &test_random_source ) );
+  test_suite* test = BOOST_TEST_SUITE("<random>");
+  test->add(BOOST_TEST_CASE(&test_random_source));
   return test;
 }

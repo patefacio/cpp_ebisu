@@ -9,6 +9,8 @@ String _getPath() {
   return script.substring(0, script.indexOf('fcs/codegen')) + 'fcs';
 }
 
-final installation = new Installation(new Id('fcs'))
-  ..root = _getPath();
-
+final installation = () {
+  useClangFormatter = true;
+  return new Installation(new Id('fcs'))
+    ..root = _getPath();
+}();

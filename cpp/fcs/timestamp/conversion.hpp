@@ -91,8 +91,14 @@ namespace timestamp {
     return false;
   }
 
+  time_t to_time_t(Timestamp_t t) {
+    Timestamp_t epoch { boost::gregorian::date(1970,1,1) };
+    auto secs = (t - epoch).total_seconds();
+    return time_t { secs };
+  }
+
   // end <FcbEndNamespace conversion>
 
-} // namespace timestamp
-} // namespace fcs
-#endif // __FCS_TIMESTAMP_CONVERSION_HPP__
+}  // namespace timestamp
+}  // namespace fcs
+#endif  // __FCS_TIMESTAMP_CONVERSION_HPP__

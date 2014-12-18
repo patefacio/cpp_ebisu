@@ -3,7 +3,7 @@
 
 namespace fcs {
 namespace raii {
-  void test_change_tracker_next_value() {
+void test_change_tracker_next_value() {
     // custom <change_tracker_next_value>
 
     Change_tracker< int > change_tracker { 1 };
@@ -23,9 +23,9 @@ namespace raii {
     BOOST_REQUIRE(change_tracker.current() == 4);
 
     // end <change_tracker_next_value>
-  }
+}
 
-  void test_change_until_end_of_block() {
+void test_change_until_end_of_block() {
     // custom <change_until_end_of_block>
     int x { 1 };
     {
@@ -42,16 +42,16 @@ namespace raii {
     }
     BOOST_REQUIRE(x == 1);
     // end <change_until_end_of_block>
-  }
+}
 
-} // namespace raii
-} // namespace fcs
+}  // namespace raii
+}  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
   using namespace fcs::raii;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<change_tracker>" );
-  test->add( BOOST_TEST_CASE( &test_change_tracker_next_value ) );
-  test->add( BOOST_TEST_CASE( &test_change_until_end_of_block ) );
+  test_suite* test = BOOST_TEST_SUITE("<change_tracker>");
+  test->add(BOOST_TEST_CASE(&test_change_tracker_next_value));
+  test->add(BOOST_TEST_CASE(&test_change_until_end_of_block));
   return test;
 }

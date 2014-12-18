@@ -237,9 +237,9 @@ namespace orm {
 
   // end <FcbEndNamespace otl_utils>
 
-} // namespace orm
-} // namespace fcs
+}  // namespace orm
+}  // namespace fcs
 // custom <FcbPostNamespace otl_utils>
 // end <FcbPostNamespace otl_utils>
 
-#endif // __FCS_ORM_OTL_UTILS_HPP__
+#endif  // __FCS_ORM_OTL_UTILS_HPP__

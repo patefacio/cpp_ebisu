@@ -12,9 +12,8 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  class Random_source
-  {
-  public:
+class Random_source {
+ public:
     // custom <ClsPublic Random_source>
 
     Random_source(std::uint_fast32_t seed = 42) :
@@ -23,9 +22,8 @@ namespace streamers {
 
     // end <ClsPublic Random_source>
 
-    std::mt19937 engine;
-
-  };
+  std::mt19937 engine;
+};
 
   // custom <ClsPostDecl Random_source>
 
@@ -190,8 +188,7 @@ namespace streamers {
 
   // end <ClsPostDecl Random_source>
 
-
-} // namespace streamers
-} // namespace utils
-} // namespace fcs
-#endif // __FCS_UTILS_STREAMERS_RANDOM_HPP__
+}  // namespace streamers
+}  // namespace utils
+}  // namespace fcs
+#endif  // __FCS_UTILS_STREAMERS_RANDOM_HPP__

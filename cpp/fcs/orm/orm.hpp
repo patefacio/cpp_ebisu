@@ -16,15 +16,14 @@ class otl_connect;
 
 namespace fcs {
 namespace orm {
-  using String_list_t = std::vector< std::string >;
-  using String_table_t = std::vector< String_list_t >;
-  using Date_t = boost::gregorian::date;
-  using Date_set_t = std::set< Date_t >;
+using String_list_t = std::vector<std::string>;
+using String_table_t = std::vector<String_list_t>;
+using Date_t = boost::gregorian::date;
+using Date_set_t = std::set<Date_t>;
 
-  template< int OTL_LOG_LEVEL = 0 >
-  class Otl_log_level
-  {
-  public:
+template <int OTL_LOG_LEVEL = 0>
+class Otl_log_level {
+ public:
     // custom <ClsPublic Otl_log_level>
 
     static int get_otl_log_level() {
@@ -37,10 +36,9 @@ namespace orm {
 
     // end <ClsPublic Otl_log_level>
 
-  private:
-    static int level_;
-
-  };
+ private:
+  static int level_;
+};
 
   // custom <ClsPostDecl Otl_log_level>
 
@@ -54,9 +52,8 @@ namespace orm {
 
 // end <ClsPostDecl Otl_log_level>
 
-
-} // namespace orm
-} // namespace fcs
+}  // namespace orm
+}  // namespace fcs
 // custom <FcbPostNamespace orm>
 
 
@@ -84,4 +81,4 @@ typedef long long otl_bigint;
 
 // end <FcbPostNamespace orm>
 
-#endif // __FCS_ORM_ORM_HPP__
+#endif  // __FCS_ORM_ORM_HPP__

@@ -58,6 +58,6 @@ namespace orm {
 
   // end <FcbEndNamespace orm_to_string_table>
 
-} // namespace orm
-} // namespace fcs
-#endif // __FCS_ORM_ORM_TO_STRING_TABLE_HPP__
+}  // namespace orm
+}  // namespace fcs
+#endif  // __FCS_ORM_ORM_TO_STRING_TABLE_HPP__

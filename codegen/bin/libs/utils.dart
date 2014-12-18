@@ -22,7 +22,7 @@ final utils = lib('utils')
       ..customBlocks = [ clsPublic ]
     ],
     header('fixed_size_char_array')
-    ..includes = [ 'cstring', 'cassert', 'boost/array.hpp' ]
+    ..includes = [ 'cstring', 'cassert', 'boost/array.hpp', 'string' ]
     ..includeTest = true
     ..classes = [
       class_('fixed_size_char_array')

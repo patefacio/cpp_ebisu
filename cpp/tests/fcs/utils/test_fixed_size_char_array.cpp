@@ -3,7 +3,7 @@
 
 namespace fcs {
 namespace utils {
-  void test_fixed_size_char_array() {
+void test_fixed_size_char_array() {
     // custom <fixed_size_char_array>
 
     std::string const s1 { "test" };
@@ -36,15 +36,15 @@ namespace utils {
     }
 
     // end <fixed_size_char_array>
-  }
+}
 
-} // namespace utils
-} // namespace fcs
+}  // namespace utils
+}  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int , char*[]) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
   using namespace fcs::utils;
   using namespace boost::unit_test;
-  test_suite* test= BOOST_TEST_SUITE( "<fixed_size_char_array>" );
-  test->add( BOOST_TEST_CASE( &test_fixed_size_char_array ) );
+  test_suite* test = BOOST_TEST_SUITE("<fixed_size_char_array>");
+  test->add(BOOST_TEST_CASE(&test_fixed_size_char_array));
   return test;
 }
