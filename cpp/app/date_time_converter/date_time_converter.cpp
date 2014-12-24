@@ -136,7 +136,8 @@ int main(int argc, char** argv) {
     add_detail_row(table, "min_date_time", boost::posix_time::min_date_time);
     add_detail_row(table, "min_date_time", boost::posix_time::max_date_time);
     add_detail_row(table, "now", current_time());
-    add_detail_row(table, "epoch", Timestamp_t { boost::gregorian::date(1970,1,1) });
+    add_detail_row(table, "epoch",
+                   Timestamp_t{boost::gregorian::date(1970, 1, 1)});
     for (auto const& date_text : options.date()) {
       try {
         Date_t date;

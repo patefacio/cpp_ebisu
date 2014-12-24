@@ -22,13 +22,11 @@ class Histogram_statistical {
   Histogram_statistical(int num_bins = 20, int cache_size = 10)
       : num_bins_{num_bins}, cache_size_{cache_size} {}
 
-    // custom <ClsPublic Histogram_statistical>
+  // custom <ClsPublic Histogram_statistical>
 
-    void operator()(T item) {
-      accumulator_(item);
-    }
+  void operator()(T item) { accumulator_(item); }
 
-    // end <ClsPublic Histogram_statistical>
+  // end <ClsPublic Histogram_statistical>
 
   //! getter for num_bins_ (access is Ro)
   int num_bins() const { return num_bins_; }
@@ -55,14 +53,15 @@ class Histogram {
   template <typename IT>
   Histogram(IT begin, IT end, int num_bins = 20)
       : num_bins_{num_bins} {
-      // custom <Histogram(from_iterator)>
+    // custom <Histogram(from_iterator)>
 
-      std::pair< IT, IT > min_and_max(boost::minmax_element(begin, end));
-      T smallest(*min_and_max.first);
-      T largest(*min_and_max.second);
-      std::cout << "Smallest is: " << smallest << " largest is: " << largest << std::endl;
+    std::pair<IT, IT> min_and_max(boost::minmax_element(begin, end));
+    T smallest(*min_and_max.first);
+    T largest(*min_and_max.second);
+    std::cout << "Smallest is: " << smallest << " largest is: " << largest
+              << std::endl;
 
-      // end <Histogram(from_iterator)>
+    // end <Histogram(from_iterator)>
   }
 
   friend inline std::ostream& operator<<(std::ostream& out,

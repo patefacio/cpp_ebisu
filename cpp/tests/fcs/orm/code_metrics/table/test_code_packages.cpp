@@ -98,8 +98,8 @@ namespace orm {
 namespace code_metrics {
 namespace table {
 void test_code_packages() {
-    // custom <code_packages>
-    // end <code_packages>
+  // custom <code_packages>
+  // end <code_packages>
 }
 
 void test_insert_update_delete_rows() {

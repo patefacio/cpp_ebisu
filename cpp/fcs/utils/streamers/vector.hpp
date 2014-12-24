@@ -8,15 +8,16 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  // custom <FcbBeginNamespace vector>
+// custom <FcbBeginNamespace vector>
 
-  //! Support for streaming std::vector
-  template < typename T, typename ALLOC >
-  inline std::ostream& operator<<(std::ostream& out, std::vector< T, ALLOC > const& v) {
-    return print_scalar_collection(out, v);
-  }
+//! Support for streaming std::vector
+template <typename T, typename ALLOC>
+inline std::ostream& operator<<(std::ostream& out,
+                                std::vector<T, ALLOC> const& v) {
+  return print_scalar_collection(out, v);
+}
 
-  // end <FcbBeginNamespace vector>
+// end <FcbBeginNamespace vector>
 
 }  // namespace streamers
 }  // namespace utils

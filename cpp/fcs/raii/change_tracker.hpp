@@ -14,24 +14,19 @@ namespace raii {
 template <typename T>
 class Change_tracker {
  public:
-    // custom <ClsPublic Change_tracker>
+  // custom <ClsPublic Change_tracker>
 
-    Change_tracker(T current) :
-      current_ {current},
-      previous_ {} {
-    }
+  Change_tracker(T current) : current_{current}, previous_{} {}
 
-    Change_tracker(T current, T previous) :
-      current_ { current },
-      previous_ { previous } {
-    }
+  Change_tracker(T current, T previous)
+      : current_{current}, previous_{previous} {}
 
-    void next_value(T next_value) {
-      previous_ = current_;
-      current_ = next_value;
-    }
+  void next_value(T next_value) {
+    previous_ = current_;
+    current_ = next_value;
+  }
 
-    // end <ClsPublic Change_tracker>
+  // end <ClsPublic Change_tracker>
 
   //! getter for current_ (access is Ro)
   T current() const { return current_; }
@@ -54,27 +49,23 @@ class Change_tracker_next_value {
  public:
   using Change_tracker_t = Change_tracker<T>;
 
-    // custom <ClsPublic Change_tracker_next_value>
+  // custom <ClsPublic Change_tracker_next_value>
 
-    Change_tracker_next_value(Change_tracker_t &tracker, T next_value) :
-      tracker_(tracker),
-      next_value_(next_value) {
-    }
+  Change_tracker_next_value(Change_tracker_t &tracker, T next_value)
+      : tracker_(tracker), next_value_(next_value) {}
 
-    ~Change_tracker_next_value() {
-      tracker_.next_value(next_value_);
-    }
+  ~Change_tracker_next_value() { tracker_.next_value(next_value_); }
 
-    // end <ClsPublic Change_tracker_next_value>
+  // end <ClsPublic Change_tracker_next_value>
 
   //! getter for tracker_ (access is Ro)
-  Change_tracker_t const& tracker() const { return tracker_; }
+  Change_tracker_t const &tracker() const { return tracker_; }
 
   //! getter for next_value_ (access is Ro)
   T next_value() const { return next_value_; }
 
  private:
-  Change_tracker_t& tracker_;
+  Change_tracker_t &tracker_;
   T next_value_{};
 };
 
@@ -85,21 +76,17 @@ class Change_tracker_next_value {
 template <typename T>
 class Change_until_end_of_block {
  public:
-    // custom <ClsPublic Change_until_end_of_block>
+  // custom <ClsPublic Change_until_end_of_block>
 
-    Change_until_end_of_block(
-      T &target,
-      typename boost::call_traits< T >::param_type new_value) :
-      target_ { target },
-      saved_value_ { target } {
-      target_ = new_value;
-    }
+  Change_until_end_of_block(
+      T &target, typename boost::call_traits<T>::param_type new_value)
+      : target_{target}, saved_value_{target} {
+    target_ = new_value;
+  }
 
-    ~Change_until_end_of_block() {
-      target_ = saved_value_;
-    }
+  ~Change_until_end_of_block() { target_ = saved_value_; }
 
-    // end <ClsPublic Change_until_end_of_block>
+  // end <ClsPublic Change_until_end_of_block>
 
   //! getter for target_ (access is Ro)
   T target() const { return target_; }
@@ -108,7 +95,7 @@ class Change_until_end_of_block {
   T saved_value() const { return saved_value_; }
 
  private:
-  T& target_;
+  T &target_;
   T saved_value_{};
 };
 

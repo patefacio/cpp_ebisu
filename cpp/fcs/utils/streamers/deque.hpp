@@ -8,15 +8,16 @@
 namespace fcs {
 namespace utils {
 namespace streamers {
-  // custom <FcbBeginNamespace deque>
+// custom <FcbBeginNamespace deque>
 
-  //! Support for streaming std::deque
-  template < typename T, typename ALLOC >
-  inline std::ostream& operator<<(std::ostream& out, std::deque< T, ALLOC > const& d) {
-    return print_scalar_collection(out, d);
-  }
+//! Support for streaming std::deque
+template <typename T, typename ALLOC>
+inline std::ostream& operator<<(std::ostream& out,
+                                std::deque<T, ALLOC> const& d) {
+  return print_scalar_collection(out, d);
+}
 
-  // end <FcbBeginNamespace deque>
+// end <FcbBeginNamespace deque>
 
 }  // namespace streamers
 }  // namespace utils
