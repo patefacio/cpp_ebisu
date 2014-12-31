@@ -31,7 +31,7 @@ final conversion = lib('conversion')
     ..includes = [
       'fcs/timestamp/timestamp.hpp',
       'boost/date_time/posix_time/time_formatters.hpp',
-      'regex',
+      'boost/regex.hpp',
     ]
   ];
 

@@ -3,7 +3,7 @@
 
 #include "fcs/timestamp/timestamp.hpp"
 #include <boost/date_time/posix_time/time_formatters.hpp>
-#include <regex>
+#include <boost/regex.hpp>
 
 namespace fcs {
 namespace timestamp {
@@ -11,9 +11,9 @@ namespace timestamp {
 
 inline bool convert_to_timestamp_from_ticks(std::string const& timestamp,
                                             Timestamp_t& result) {
-  static std::regex const timestamp_ticks_re("\\d+");
+  static boost::regex const timestamp_ticks_re("\\d+");
   try {
-    if (std::regex_match(timestamp, timestamp_ticks_re)) {
+    if (boost::regex_match(timestamp, timestamp_ticks_re)) {
       long long ticks(boost::lexical_cast<long long>(timestamp));
       result = Timestamp_t(Timestamp_t::time_rep_type(ticks));
       return true;
@@ -26,10 +26,10 @@ inline bool convert_to_timestamp_from_ticks(std::string const& timestamp,
 
 inline bool convert_to_timestamp_from_iso(std::string const& timestamp,
                                           Timestamp_t& result) {
-  static std::regex const timestamp_re("\\d+T[\\d\\.]+");
+  static boost::regex const timestamp_re("\\d+T[\\d\\.]+");
   try {
     std::string excp_text;
-    if (std::regex_match(timestamp, timestamp_re)) {
+    if (boost::regex_match(timestamp, timestamp_re)) {
       result = boost::posix_time::from_iso_string(timestamp);
       return true;
     }
@@ -63,9 +63,9 @@ inline bool convert_to_date_from_undelimited_string(
 
 inline bool convert_to_date_from_julian(std::string const& timestamp,
                                         Date_t& result) {
-  static std::regex const julian_re("\\d+");
+  static boost::regex const julian_re("\\d+");
   try {
-    if (std::regex_match(timestamp, julian_re)) {
+    if (boost::regex_match(timestamp, julian_re)) {
       Date_t d(2000, 1, 1);
       long d_julian(d.julian_day());
       long prospective_date(boost::lexical_cast<long>(timestamp));
@@ -81,9 +81,9 @@ inline bool convert_to_date_from_julian(std::string const& timestamp,
 
 inline bool convert_to_date_from_modjulian(std::string const& timestamp,
                                            Date_t& result) {
-  static std::regex const modjulian_re("\\d+");
+  static boost::regex const modjulian_re("\\d+");
   try {
-    if (std::regex_match(timestamp, modjulian_re)) {
+    if (boost::regex_match(timestamp, modjulian_re)) {
       Date_t d(2000, 1, 1);
       long d_modjulian(d.modjulian_day());
       long prospective_date(boost::lexical_cast<long>(timestamp));

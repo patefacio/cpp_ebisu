@@ -12,6 +12,7 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost 1.56.0 COMPONENTS program_options system thread
 # custom <boost lib components>
   date_time
+  regex
 # end <boost lib components>
 )
 
@@ -55,6 +56,7 @@ add_executable(date_time_converter
 target_link_libraries(date_time_converter
 # custom <date_time_converter libs>
   ${Boost_DATE_TIME_LIBRARY}
+  ${Boost_REGEX_LIBRARY}
 # end <date_time_converter libs>
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
@@ -142,6 +144,3 @@ target_link_libraries(test_api_initializer
 )
 
 add_test(test_api_initializer test_api_initializer)
-
-
-
