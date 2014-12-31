@@ -1,4 +1,5 @@
 #include <boost/program_options.hpp>
+#include <iostream>
 
 namespace fcs {
 namespace app {
