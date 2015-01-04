@@ -19,7 +19,7 @@ final timestamp = lib('timestamp')
       'boost/date_time/c_local_time_adjustor.hpp',
     ],
     header('cereal')
-    ..includes = [ 'fcs/timestamp/timestamp.hpp' ]
+    ..includes = [ 'fcs/timestamp/timestamp.hpp', 'cstdint' ]
     ..customBlocks = [ fcbPostNamespace ]
   ];
 
