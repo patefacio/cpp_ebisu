@@ -60,12 +60,12 @@ Random_source &operator>>(Random_source &source, long long &t) {
 
 template <>
 Random_source &operator>>(Random_source &source, float &t) {
-  generate_integer(t, source.engine);
+  generate_real(t, source.engine);
   return source;
 }
 template <>
 Random_source &operator>>(Random_source &source, double &t) {
-  generate_integer(t, source.engine);
+  generate_real(t, source.engine);
   return source;
 }
 template <>
