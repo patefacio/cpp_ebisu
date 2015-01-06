@@ -30,8 +30,10 @@ final utils = lib('utils')
       ..usings = [ 'Array_t = boost::array< char, ARRAY_SIZE >', ]
       ..customBlocks = [ clsPublic, clsPostDecl, clsPrivate ]
       ..members = [
-        member('buffer_size')..type = 'int'..isStaticConst = true..initText = 'ARRAY_SIZE'..cppAccess = public,
-        member('last_index')..type = 'int'..isStaticConst = true..initText = 'ARRAY_SIZE-1'..cppAccess = public,
+        member('buffer_size')..type = 'int'
+        ..isStatic=true..isConstExpr = true..initText = 'ARRAY_SIZE'..cppAccess = public,
+        member('last_index')..type = 'int'
+        ..isStatic = true..isConstExpr = true..initText = 'ARRAY_SIZE-1'..cppAccess = public,
         member('data')..type = 'Array_t',
       ],
     ],
