@@ -13,8 +13,8 @@ class Fixed_size_char_array {
  public:
   using Array_t = boost::array<char, ARRAY_SIZE>;
 
-  static int constexpr BUFFER_SIZE{ARRAY_SIZE};
-  static int constexpr LAST_INDEX{ARRAY_SIZE - 1};
+  static constexpr int BUFFER_SIZE{ARRAY_SIZE};
+  static constexpr int LAST_INDEX{ARRAY_SIZE - 1};
 
   // custom <ClsPublic Fixed_size_char_array>
 

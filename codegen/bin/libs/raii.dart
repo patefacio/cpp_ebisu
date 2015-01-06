@@ -50,8 +50,8 @@ destruction restores the original state.'''
     ],
     header('api_initializer')
     ..test.customBlocks = [ fcbPreNamespace ]
-    ..test.includes.addAll(['vector', 'fcs/utils/streamers/containers.hpp' ])
-    ..includes = [ 'list', 'map' ]
+    ..test.includes.addAll(['vector', 'fcs/utils/streamers/containers.hpp', ])
+    ..includes = [ 'list', 'map', 'memory' ]
     ..usings = [
       'Void_func_t = void (*)(void)',
     ]

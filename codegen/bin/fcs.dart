@@ -15,11 +15,10 @@ main() {
   apps.addItems();
   schemas.addItems()
     .then((var _) {
-      installation.generate(true);
+      installation
+        ..builders = [ cmakeInstallationBuilder() ]
+        ..generate();
       print('Installed libs ${installation.generatedLibs.map((l) => l.id)}');
       print('Installed apps ${installation.generatedApps.map((l) => l.id)}');
     });
-  installation
-    ..builders = [ new JamInstallationBuilder(), cmakeInstallationBuilder() ]
-    ..generate(true);
 }
