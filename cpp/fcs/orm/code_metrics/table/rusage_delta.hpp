@@ -182,7 +182,7 @@ struct Rusage_delta_value {
   }
 
   int32_t code_locations_id;
-  otl_datetime created;
+  Orm_timestamp_t created;
   int32_t start_processor;
   int32_t end_processor;
   double cpu_mhz;

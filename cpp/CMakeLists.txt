@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.56.0 COMPONENTS program_options system thread
+find_package(Boost 1.54.0 COMPONENTS program_options system thread
 # custom <boost lib components>
   date_time
   regex
@@ -19,6 +19,9 @@ find_package(Boost 1.56.0 COMPONENTS program_options system thread
 # custom <misc section>
 
 add_definitions(-DOTL_ODBC_UNIX)
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
 
 # end <misc section>
 
@@ -144,6 +147,66 @@ target_link_libraries(test_api_initializer
 )
 
 add_test(test_api_initializer test_api_initializer)
+
+# test for test_code_packages
+add_executable(test_code_packages
+  tests/fcs/orm/code_metrics/table/test_code_packages.cpp
+)
+
+target_link_libraries(test_code_packages
+# custom <test_code_packages link requirements>
+  -lodbc
+# end <test_code_packages link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_code_packages test_code_packages)
+
+# test for test_code_locations
+add_executable(test_code_locations
+  tests/fcs/orm/code_metrics/table/test_code_locations.cpp
+)
+
+target_link_libraries(test_code_locations
+# custom <test_code_locations link requirements>
+  -lodbc
+# end <test_code_locations link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_code_locations test_code_locations)
+
+# test for test_code_tick_timings
+add_executable(test_code_tick_timings
+  tests/fcs/orm/code_metrics/table/test_code_tick_timings.cpp
+)
+
+target_link_libraries(test_code_tick_timings
+# custom <test_code_tick_timings link requirements>
+  -lodbc
+# end <test_code_tick_timings link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_code_tick_timings test_code_tick_timings)
+
+# test for test_rusage_delta
+add_executable(test_rusage_delta
+  tests/fcs/orm/code_metrics/table/test_rusage_delta.cpp
+)
+
+target_link_libraries(test_rusage_delta
+# custom <test_rusage_delta link requirements>
+  /usr/lib/x86_64-linux-gnu/libodbc.so
+# end <test_rusage_delta link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_rusage_delta test_rusage_delta)
 
 
 

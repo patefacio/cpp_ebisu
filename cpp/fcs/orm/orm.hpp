@@ -55,6 +55,8 @@ inline void set_otl_log_level(int level) {
 #define OTL_ODBC
 #endif
 
+//#define OTL_MAP_LONG_TO_SQL_C_SBIGINT
+
 typedef long long otl_bigint;
 #define OTL_BIGINT otl_bigint
 #define OTL_STREAM_NO_PRIVATE_BOOL_OPERATORS
@@ -71,6 +73,7 @@ unsigned int my_trace_level = 0x1 |   // 1st level of tracing
 
 #include <iostream>
 #include "otlv4.h"
+using Orm_timestamp_t = otl_datetime;
 
 // end <FcbPostNamespace orm>
 

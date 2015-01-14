@@ -36,11 +36,9 @@ Future addItems() =>
   .readSchema('code_metrics')
   .then((Schema s) {
 
-
-
     return installation
       ..addSchemaCodeGenerator(
-        new SchemaCodeGenerator(s)
+        new OtlSchemaCodeGenerator(s)
         ..queries = [ rusageQuery(s) ]
         ..tableFilter = (t) => !t.name.contains(new RegExp('multi|user')));
   });
