@@ -57,23 +57,23 @@ inline void set_otl_log_level(int level) {
 
 //#define OTL_MAP_LONG_TO_SQL_C_SBIGINT
 
-typedef long long otl_bigint;
-#define OTL_BIGINT otl_bigint
+#define OTL_BIGINT long long
 #define OTL_STREAM_NO_PRIVATE_BOOL_OPERATORS
-//#define OTL_TRACE_LEVEL fcs::orm::Otl_log_level< 0 >::get_otl_log_level()
+#define OTL_TRACE_LEVEL fcs::orm::Otl_log_level< 0 >::get_otl_log_level()
 unsigned int my_trace_level = 0x1 |   // 1st level of tracing
                               0x2 |   // 2nd level of tracing
                               0x4 |   // 3rd level of tracing
                               0x8 |   // 4th level of tracing
                               0x10 |  // 5th level of tracing
                               0x20;   // 6th level of tracing
-#define OTL_TRACE_LEVEL my_trace_level
+//#define OTL_TRACE_LEVEL my_trace_level
 #define OTL_TRACE_STREAM std::cerr
 #define OTL_TRACE_LINE_PREFIX "OTL => "
 
 #include <iostream>
 #include "otlv4.h"
 using Orm_timestamp_t = otl_datetime;
+using Orm_bigint_t = long long;
 
 // end <FcbPostNamespace orm>
 

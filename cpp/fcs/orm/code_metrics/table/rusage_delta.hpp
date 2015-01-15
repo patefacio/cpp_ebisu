@@ -187,24 +187,24 @@ struct Rusage_delta_value {
   int32_t end_processor;
   double cpu_mhz;
   int32_t debug;
-  int64_t user_time_sec;
-  int64_t user_time_usec;
-  int64_t system_time_sec;
-  int64_t system_time_usec;
-  int64_t ru_maxrss;
-  int64_t ru_ixrss;
-  int64_t ru_idrss;
-  int64_t ru_isrss;
-  int64_t ru_minflt;
-  int64_t ru_majflt;
-  int64_t ru_nswap;
-  int64_t ru_inblock;
-  int64_t ru_oublock;
-  int64_t ru_msgsnd;
-  int64_t ru_msgrcv;
-  int64_t ru_nsignals;
-  int64_t ru_nvcsw;
-  int64_t ru_nivcsw;
+  Orm_bigint_t user_time_sec;
+  Orm_bigint_t user_time_usec;
+  Orm_bigint_t system_time_sec;
+  Orm_bigint_t system_time_usec;
+  Orm_bigint_t ru_maxrss;
+  Orm_bigint_t ru_ixrss;
+  Orm_bigint_t ru_idrss;
+  Orm_bigint_t ru_isrss;
+  Orm_bigint_t ru_minflt;
+  Orm_bigint_t ru_majflt;
+  Orm_bigint_t ru_nswap;
+  Orm_bigint_t ru_inblock;
+  Orm_bigint_t ru_oublock;
+  Orm_bigint_t ru_msgsnd;
+  Orm_bigint_t ru_msgrcv;
+  Orm_bigint_t ru_nsignals;
+  Orm_bigint_t ru_nvcsw;
+  Orm_bigint_t ru_nivcsw;
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Rusage_delta_value const& item) {

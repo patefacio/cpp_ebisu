@@ -121,8 +121,8 @@ struct Code_tick_timings_value {
   int32_t end_processor;
   double cpu_mhz;
   int32_t debug;
-  int64_t ticks;
-  int64_t normalized_ns;
+  Orm_bigint_t ticks;
+  Orm_bigint_t normalized_ns;
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_tick_timings_value const& item) {
