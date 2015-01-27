@@ -1,7 +1,7 @@
 #ifndef __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 #define __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 
-#include <boost/array.hpp>
+#include <array>
 #include <cassert>
 #include <cstring>
 #include <string>
@@ -11,7 +11,7 @@ namespace utils {
 template <int ARRAY_SIZE>
 class Fixed_size_char_array {
  public:
-  using Array_t = boost::array<char, ARRAY_SIZE>;
+  using Array_t = std::array<char, ARRAY_SIZE>;
 
   static constexpr int BUFFER_SIZE{ARRAY_SIZE};
   static constexpr int LAST_INDEX{ARRAY_SIZE - 1};

@@ -22,12 +22,12 @@ final utils = lib('utils')
       ..customBlocks = [ clsPublic ]
     ],
     header('fixed_size_char_array')
-    ..includes = [ 'cstring', 'cassert', 'boost/array.hpp', 'string' ]
+    ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
     ..includeTest = true
     ..classes = [
       class_('fixed_size_char_array')
       ..template = [ 'int ARRAY_SIZE' ]
-      ..usings = [ 'Array_t = boost::array< char, ARRAY_SIZE >', ]
+      ..usings = [ 'Array_t = std::array< char, ARRAY_SIZE >', ]
       ..customBlocks = [ clsPublic, clsPostDecl, clsPrivate ]
       ..members = [
         member('buffer_size')..type = 'int'
