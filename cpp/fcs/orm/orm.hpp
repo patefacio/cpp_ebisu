@@ -59,7 +59,7 @@ inline void set_otl_log_level(int level) {
 
 #define OTL_BIGINT long long
 #define OTL_STREAM_NO_PRIVATE_BOOL_OPERATORS
-#define OTL_TRACE_LEVEL fcs::orm::Otl_log_level< 0 >::get_otl_log_level()
+#define OTL_TRACE_LEVEL fcs::orm::Otl_log_level<0>::get_otl_log_level()
 unsigned int my_trace_level = 0x1 |   // 1st level of tracing
                               0x2 |   // 2nd level of tracing
                               0x4 |   // 3rd level of tracing
