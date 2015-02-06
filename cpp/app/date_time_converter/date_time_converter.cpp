@@ -8,8 +8,6 @@
 #include <vector>
 
 namespace fcs {
-namespace app {
-namespace date_time_converter {
 struct Program_options {
   Program_options(int argc, char** argv) {
     using namespace boost::program_options;
@@ -51,8 +49,7 @@ struct Program_options {
     | 20010101T000000             | 211845110400000000 | 978307200  | 20010101T000000        | 2001-Jan-01 00:00:00        | 2001-Jan-01 | 2451911 | 51910      |
 
 
-    AllowedOptions
-    )";
+    AllowedOptions)";
 
     static options_description options{descr};
 
@@ -114,12 +111,10 @@ void add_detail_row(fcs::utils::streamers::String_matrix_t& table,
 
 // end <FcbEndNamespace date_time_converter>
 
-}  // namespace date_time_converter
-}  // namespace app
 }  // namespace fcs
 
 int main(int argc, char** argv) {
-  using namespace fcs::app::date_time_converter;
+  using namespace fcs;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {

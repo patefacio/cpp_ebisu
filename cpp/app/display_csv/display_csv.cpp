@@ -2,8 +2,6 @@
 #include <iostream>
 
 namespace fcs {
-namespace app {
-namespace display_csv {
 struct Program_options {
   Program_options(int argc, char** argv) {
     using namespace boost::program_options;
@@ -20,8 +18,7 @@ struct Program_options {
     char const* descr = R"(
     null
 
-    AllowedOptions
-    )";
+    AllowedOptions)";
 
     static options_description options{descr};
 
@@ -48,12 +45,10 @@ struct Program_options {
   bool help_{};
 };
 
-}  // namespace display_csv
-}  // namespace app
 }  // namespace fcs
 
 int main(int argc, char** argv) {
-  using namespace fcs::app::display_csv;
+  using namespace fcs;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {

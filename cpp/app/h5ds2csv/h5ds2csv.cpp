@@ -5,8 +5,6 @@
 #include <vector>
 
 namespace fcs {
-namespace app {
-namespace h5ds2csv {
 struct Program_options {
   Program_options(int argc, char** argv) {
     using namespace boost::program_options;
@@ -40,8 +38,7 @@ struct Program_options {
     char const* descr = R"(
     Converts data_sets in hdf5 files to csv
 
-    AllowedOptions
-    )";
+    AllowedOptions)";
 
     static options_description options{descr};
 
@@ -90,12 +87,10 @@ struct Program_options {
   std::string output_file_{};
 };
 
-}  // namespace h5ds2csv
-}  // namespace app
 }  // namespace fcs
 
 int main(int argc, char** argv) {
-  using namespace fcs::app::h5ds2csv;
+  using namespace fcs;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {

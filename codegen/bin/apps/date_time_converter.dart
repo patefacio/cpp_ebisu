@@ -23,44 +23,7 @@ Example:
 | 212280707214748639          | 212280707214748639 | 1413904014 | 20141021T150654.748639 | 2014-Oct-21 15:06:54.748639 | 2014-Oct-21 | 2456952 | 56951      |
 | 20010101T000000             | 211845110400000000 | 978307200  | 20010101T000000        | 2001-Jan-01 00:00:00        | 2001-Jan-01 | 2451911 | 51910      |
 '''
-//   ..descr = '''
-// All queries are (select
-//   code_packages.name as package_name,
-//   code_locations.label,
-//   code_locations.file_name,
-//   rusage_delta.created,
-//   code_locations.line_number,
-//   code_locations.git_commit,
-//   rusage_delta.id,
-//   rusage_delta.code_locations_id,
-//   rusage_delta.created,
-//   rusage_delta.start_processor,
-//   rusage_delta.end_processor,
-//   rusage_delta.cpu_mhz,
-//   rusage_delta.debug,
-//   rusage_delta.user_time_sec,
-//   rusage_delta.user_time_usec,
-//   rusage_delta.system_time_sec,
-//   rusage_delta.system_time_usec,
-//   rusage_delta.ru_maxrss,
-//   rusage_delta.ru_ixrss,
-//   rusage_delta.ru_idrss,
-//   rusage_delta.ru_isrss,
-//   rusage_delta.ru_minflt,
-//   rusage_delta.ru_majflt,
-//   rusage_delta.ru_nswap,
-//   rusage_delta.ru_inblock,
-//   rusage_delta.ru_oublock,
-//   rusage_delta.ru_msgsnd,
-//   rusage_delta.ru_msgrcv,
-//   rusage_delta.ru_nsignals,
-//   rusage_delta.ru_nvcsw,
-//   rusage_delta.ru_nivcsw
-// from
-//   rusage_delta
-//   inner join code_locations on rusage_delta.code_locations_id = code_locations.id
-//   inner join code_packages on code_locations.code_packages_id = code_packages.id
-// '''
+  ..namespace = namespace(['fcs'])
   ..customBlocks = [ fcbEndNamespace ]
   ..includes = [
     'fcs/timestamp/conversion.hpp',

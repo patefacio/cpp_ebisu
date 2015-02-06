@@ -4,6 +4,7 @@ import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';
 
 final display_csv = app('display_csv')
+  ..namespace = namespace(['fcs'])
   ..requiredLibs = [
     'boost_date_time',
     'boost_regex',

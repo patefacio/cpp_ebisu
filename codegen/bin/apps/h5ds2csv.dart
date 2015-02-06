@@ -5,6 +5,7 @@ import '../../lib/installation.dart';
 
 final h5ds2csv = app('h5ds2csv')
   ..descr = 'Converts data_sets in hdf5 files to csv'
+  ..namespace = namespace(['fcs'])
   ..args = [
     arg('data_set')
     ..descr = 'Name of data_set to make into csv'
