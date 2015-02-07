@@ -31,9 +31,11 @@ final utils = lib('utils')
       ..customBlocks = [ clsPublic, clsPostDecl, clsPrivate ]
       ..members = [
         member('buffer_size')..type = 'int'
-        ..isStatic=true..isConstExpr = true..initText = 'ARRAY_SIZE'..cppAccess = public,
+        ..isStatic=true..isConstExpr = true
+        ..initText = 'ARRAY_SIZE'..cppAccess = public,
         member('last_index')..type = 'int'
-        ..isStatic = true..isConstExpr = true..initText = 'ARRAY_SIZE-1'..cppAccess = public,
+        ..isStatic = true..isConstExpr = true
+        ..initText = 'ARRAY_SIZE-1'..cppAccess = public,
         member('data')..type = 'Array_t',
       ],
     ],
@@ -90,7 +92,10 @@ Hist_results_t = boost::iterator_range<
   boost::accumulators::tag::density::cache_size = cache_size_''',
       ]
       ..memberCtors = [
-        memberCtor([ 'num_bins', 'cache_size' ], { 'num_bins': '20', 'cache_size' : '10' })
+        memberCtor([
+          memberCtorParm('num_bins')..defaultValue = '20',
+          memberCtorParm('cache_size')..defaultValue = '10' ]
+                   )
       ],
       class_('histogram')
       ..usings = [ 'Result_vector_t = vector< T >' ]
@@ -98,10 +103,16 @@ Hist_results_t = boost::iterator_range<
       ..opOut
       ..members = [
         member('num_bins')..init = 20..access = ro..isConst = true,
-        member('results')..type = 'Result_vector_t'..initText = 'Result_vector_t(num_bins_)'..access = ro,
+        member('results')
+        ..type = 'Result_vector_t'
+        ..initText = 'Result_vector_t(num_bins_)'..access = ro,
       ]
       ..memberCtors = [
-        memberCtor([ 'num_bins' ], { 'num_bins' : 20 }, ['IT begin', 'IT end'])
+        memberCtor([
+          memberCtorParm('num_bins')
+          ..defaultValue = '20'
+
+        ])..decls = ['IT begin', 'IT end']
         ..template = 'typename IT'
         ..customLabel = 'from_iterator',
       ]
@@ -195,15 +206,19 @@ addItems() {
         ..members = [
           member('matrix_container')
           ..refType = cref
+          ..byRef = true
           ..brief = 'Matrix with data to stream'
           ..type = 'MatrixContainer',
           member('header')
           ..refType = cref
+          ..byRef = true
           ..brief = 'List of headers for the columns'
           ..type = 'String_list_t',
         ]
         ..memberCtors = [
-          memberCtor(['matrix_container', 'header'], { 'header' : 'String_list_t()' }),
+          memberCtor(['matrix_container', memberCtorParm('header')
+            ..defaultValue = 'String_list_t()']
+                     ),
         ]
       ]
 

@@ -2,10 +2,9 @@ name: fcs
 version: 0.0.1
 author: Daniel Davidson <dbdavidson@yahoo.com>
 dependencies:
-  ebisu: ">=0.0.11"
-  ebisu_cpp:
-      path: /Users/dbdavidson/dev/open_source/ebisu_cpp
-  path: ">=1.2.2 < 1.10.0"
+  ebisu: "any"
+  ebisu_cpp: "any"
+  path: "any"
 
 # custom <fcs dependencies>
 
@@ -13,6 +12,9 @@ dependencies:
 
   ebisu:
    git: git://github.com/patefacio/ebisu
+   
+  ebisu_cpp:
+    git: git://github.com/patefacio/ebisu_cpp
 
   magus:
    git: git://github.com/patefacio/magus
@@ -20,13 +22,18 @@ dependencies:
 # end <fcs dependencies>
 
 dev_dependencies:
-  unittest: ">=0.11.0"
+  unittest: ">=0.11.0 < 0.12.0"
   browser: "any"
 
 # custom <fcs dev dependencies>
 # end <fcs dev dependencies>
 
+dependency_overrides:
+# custom <fcs dependency overrides>
+# end <fcs dependency overrides>
+
 transformers:
 
 # custom <fcs transformers>
 # end <fcs transformers>
+
