@@ -100,8 +100,8 @@ int main(int argc, char** argv) {
 
     // custom <main>
     // end <main>
-  }
-  catch (std::exception const& e) {
+
+  } catch (std::exception const& e) {
     std::cout << "Caught exception: " << e.what() << std::endl;
     Program_options::show_help(std::cout);
     return -1;

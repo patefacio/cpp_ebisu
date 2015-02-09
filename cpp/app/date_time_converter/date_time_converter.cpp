@@ -142,8 +142,7 @@ int main(int argc, char** argv) {
         } else if (convert_to_date_from_julian(date_text, date)) {
           try {
             add_detail_row(table, date_text, Timestamp_t{date});
-          }
-          catch (std::exception const& e) {
+          } catch (std::exception const& e) {
             if (convert_to_date_from_modjulian(date_text, date)) {
               add_detail_row(table, date_text, Timestamp_t{date});
             } else {
@@ -154,8 +153,7 @@ int main(int argc, char** argv) {
         } else {
           std::cerr << "Could not figure out date: " << date_text << std::endl;
         }
-      }
-      catch (std::exception const& e) {
+      } catch (std::exception const& e) {
         std::cerr << "Failed to convert date: " << date_text
                   << " with exception: " << e.what() << std::endl;
       }
@@ -164,15 +162,14 @@ int main(int argc, char** argv) {
     for (auto const& ts : options.timestamp()) {
       Timestamp_t timestamp;
       try {
-        if (convert_to_timestamp_from_ticks(ts, timestamp)
-            or convert_to_timestamp_from_iso(ts, timestamp)
-            or convert_to_timestamp_from_string(ts, timestamp)) {
+        if (convert_to_timestamp_from_ticks(ts, timestamp) or
+            convert_to_timestamp_from_iso(ts, timestamp) or
+            convert_to_timestamp_from_string(ts, timestamp)) {
           add_detail_row(table, ts, timestamp);
         } else {
           throw std::invalid_argument(ts);
         }
-      }
-      catch (std::exception const& e) {
+      } catch (std::exception const& e) {
         std::cerr << "Failed to convert timestamp: " << ts
                   << " with exception: " << e.what() << std::endl;
       }
@@ -184,8 +181,8 @@ int main(int argc, char** argv) {
     table_streamer.print_string_table(std::cout);
 
     // end <main>
-  }
-  catch (std::exception const& e) {
+
+  } catch (std::exception const& e) {
     std::cout << "Caught exception: " << e.what() << std::endl;
     Program_options::show_help(std::cout);
     return -1;

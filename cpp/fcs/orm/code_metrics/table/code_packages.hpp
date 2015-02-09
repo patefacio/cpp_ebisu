@@ -23,7 +23,6 @@ struct Code_packages_pkey {
   bool operator!=(Code_packages_pkey const& rhs) const {
     return !(*this == rhs);
   }
-
   bool operator<(Code_packages_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -64,7 +63,6 @@ struct Code_packages_value {
   bool operator!=(Code_packages_value const& rhs) const {
     return !(*this == rhs);
   }
-
   bool operator<(Code_packages_value const& rhs) const {
     return name != rhs.name
                ? name < rhs.name
@@ -281,6 +279,8 @@ class Code_packages {
   }
 
  private:
+  Code_packages() {}
+
   otl_connect* connection_{Connection_code_metrics::instance().connection()};
 };
 

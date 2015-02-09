@@ -15,6 +15,8 @@ class Version_control_commit {
   }
 
  private:
+  Version_control_commit() {}
+
   char const* const git_commit_{};
   char const* const search_string_{};
 };

@@ -180,7 +180,6 @@ inline Random_source &operator>>(Random_source &source,
 
 template <>
 inline Random_source &operator>>(Random_source &source, otl_datetime &date) {
-
   fcs::timestamp::Timestamp_t ts;
   source >> ts;
   fcs::orm::boost_ptime_to_otl_type(ts, date);

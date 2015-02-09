@@ -64,7 +64,7 @@ void test_random_source() {
 }  // namespace utils
 }  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char* []) {
   using namespace fcs::utils::streamers;
   using namespace boost::unit_test;
   test_suite* test = BOOST_TEST_SUITE("<random>");

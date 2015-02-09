@@ -18,8 +18,7 @@ inline bool convert_to_timestamp_from_ticks(std::string const& timestamp,
       result = Timestamp_t(Timestamp_t::time_rep_type(ticks));
       return true;
     }
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }
@@ -33,8 +32,7 @@ inline bool convert_to_timestamp_from_iso(std::string const& timestamp,
       result = boost::posix_time::from_iso_string(timestamp);
       return true;
     }
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }
@@ -44,8 +42,7 @@ inline bool convert_to_timestamp_from_string(std::string const& timestamp,
   try {
     result = boost::posix_time::time_from_string(timestamp);
     return true;
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }
@@ -55,8 +52,7 @@ inline bool convert_to_date_from_undelimited_string(
   try {
     result = boost::gregorian::from_undelimited_string(timestamp);
     return true;
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }
@@ -73,8 +69,7 @@ inline bool convert_to_date_from_julian(std::string const& timestamp,
       result = d;
       return true;
     }
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }
@@ -91,8 +86,7 @@ inline bool convert_to_date_from_modjulian(std::string const& timestamp,
       result = d;
       return true;
     }
-  }
-  catch (std::exception const&) {
+  } catch (std::exception const&) {
   }
   return false;
 }

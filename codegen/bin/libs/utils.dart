@@ -120,6 +120,17 @@ Hist_results_t = boost::iterator_range<
 
   ];
 
+final exception = lib('exception')
+  ..namespace = namespace(['fcs', 'utils', 'exception'])
+  ..headers = [
+    header('make_exception')
+    ..includes = [
+      'boost/exception/all.hpp',
+      'exception',
+    ]
+    ..customBlocks = [fcbBeginNamespace]
+  ];
+
 final _namespace = namespace(['fcs','utils','streamers']);
 final _core = 'fcs/utils/streamers/streamers.hpp';
 final _containers = {
@@ -135,9 +146,9 @@ final _containers = {
 
 addItems() {
   installation
-    ..addLib(utils);
+    ..addLibs([utils, exception]);
 
-  final containers = lib('containers')
+  final containers = lib('streamers')
     ..namespace = _namespace
     ..headers = [
       header('containers')

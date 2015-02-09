@@ -212,7 +212,7 @@ void test_insert_update_delete_rows() {
 }  // namespace orm
 }  // namespace fcs
 
-boost::unit_test::test_suite *init_unit_test_suite(int, char * []) {
+boost::unit_test::test_suite *init_unit_test_suite(int, char *[]) {
   using namespace fcs::orm::code_metrics::table;
   using namespace boost::unit_test;
   test_suite *test = BOOST_TEST_SUITE("<rusage_delta>");

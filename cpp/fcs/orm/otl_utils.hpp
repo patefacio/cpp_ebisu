@@ -65,10 +65,11 @@ inline bool operator<(otl_datetime const& lhs, otl_datetime const& rhs) {
 }
 
 inline bool operator==(otl_time const& lhs, otl_time const& rhs) {
-  return ((&lhs == &rhs)or(
-      (lhs.year == rhs.year)and(lhs.month == rhs.month) and(lhs.day == rhs.day)
-      and(lhs.hour == rhs.hour) and(lhs.minute == rhs.minute)
-      and(lhs.second == rhs.second) and(lhs.fraction == rhs.fraction)));
+  return ((&lhs == &rhs) or
+          ((lhs.year == rhs.year) and (lhs.month == rhs.month) and
+           (lhs.day == rhs.day) and (lhs.hour == rhs.hour) and
+           (lhs.minute == rhs.minute) and (lhs.second == rhs.second) and
+           (lhs.fraction == rhs.fraction)));
 }
 
 inline bool operator!=(otl_time const& lhs, otl_time const& rhs) {
@@ -76,10 +77,11 @@ inline bool operator!=(otl_time const& lhs, otl_time const& rhs) {
 }
 
 inline bool operator==(otl_datetime const& lhs, otl_datetime const& rhs) {
-  return ((&lhs == &rhs)or(
-      (lhs.year == rhs.year)and(lhs.month == rhs.month) and(lhs.day == rhs.day)
-      and(lhs.hour == rhs.hour) and(lhs.minute == rhs.minute)
-      and(lhs.second == rhs.second) and(lhs.fraction == rhs.fraction)));
+  return ((&lhs == &rhs) or
+          ((lhs.year == rhs.year) and (lhs.month == rhs.month) and
+           (lhs.day == rhs.day) and (lhs.hour == rhs.hour) and
+           (lhs.minute == rhs.minute) and (lhs.second == rhs.second) and
+           (lhs.fraction == rhs.fraction)));
 }
 
 inline bool operator!=(otl_datetime const& lhs, otl_datetime const& rhs) {
@@ -92,8 +94,9 @@ inline std::ostream& operator<<(std::ostream& out, otl_long_string const& ls) {
 }
 
 inline bool operator==(otl_long_string const& lhs, otl_long_string const& rhs) {
-  return ((&lhs == &rhs)or(0 == strcmp(reinterpret_cast<char const*>(lhs.v),
-                                       reinterpret_cast<char const*>(rhs.v))));
+  return ((&lhs == &rhs) or
+          (0 == strcmp(reinterpret_cast<char const*>(lhs.v),
+                       reinterpret_cast<char const*>(rhs.v))));
 }
 
 inline bool operator!=(otl_long_string const& lhs, otl_long_string const& rhs) {

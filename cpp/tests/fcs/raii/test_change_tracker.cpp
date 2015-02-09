@@ -45,7 +45,7 @@ void test_change_until_end_of_block() {
 }  // namespace raii
 }  // namespace fcs
 
-boost::unit_test::test_suite* init_unit_test_suite(int, char * []) {
+boost::unit_test::test_suite* init_unit_test_suite(int, char* []) {
   using namespace fcs::raii;
   using namespace boost::unit_test;
   test_suite* test = BOOST_TEST_SUITE("<change_tracker>");

@@ -92,6 +92,20 @@ target_link_libraries(h5ds2csv
 ######################################################################
 # Test directives
 ######################################################################
+# test for test_cpu_info
+add_executable(test_cpu_info
+  tests/fcs/linux_specific/test_cpu_info.cpp
+)
+
+target_link_libraries(test_cpu_info
+# custom <test_cpu_info link requirements>
+# end <test_cpu_info link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_cpu_info test_cpu_info)
+
 # test for test_fixed_size_char_array
 add_executable(test_fixed_size_char_array
   tests/fcs/utils/test_fixed_size_char_array.cpp

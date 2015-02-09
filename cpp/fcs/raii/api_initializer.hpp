@@ -87,6 +87,8 @@ class Api_initializer_registry {
   // end <ClsPublic Api_initializer_registry>
 
  private:
+  Api_initializer_registry() {}
+
   Registry_t registry_{};
   Uninit_list_t registry_ordered_{};
 };

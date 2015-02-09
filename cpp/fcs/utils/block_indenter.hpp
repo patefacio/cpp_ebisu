@@ -77,6 +77,8 @@ class Block_current_indent {
 
   // end <ClsPrivate Block_current_indent>
 
+  Block_current_indent() {}
+
   boost::thread_specific_ptr<int> indentation_length_{};
 };
 

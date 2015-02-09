@@ -75,6 +75,7 @@ class Histogram {
     out << '\n' << indent << "}\n";
     return out;
   }
+
   //! getter for num_bins_ (access is Ro)
   int num_bins() const { return num_bins_; }
 

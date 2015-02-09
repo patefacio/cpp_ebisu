@@ -24,7 +24,6 @@ struct Code_tick_timings_pkey {
   bool operator!=(Code_tick_timings_pkey const& rhs) const {
     return !(*this == rhs);
   }
-
   bool operator<(Code_tick_timings_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -70,7 +69,6 @@ struct Code_tick_timings_value {
   bool operator!=(Code_tick_timings_value const& rhs) const {
     return !(*this == rhs);
   }
-
   bool operator<(Code_tick_timings_value const& rhs) const {
     return code_locations_id != rhs.code_locations_id
                ? code_locations_id < rhs.code_locations_id
@@ -368,6 +366,8 @@ class Code_tick_timings {
   }
 
  private:
+  Code_tick_timings() {}
+
   otl_connect* connection_{Connection_code_metrics::instance().connection()};
 };
 
