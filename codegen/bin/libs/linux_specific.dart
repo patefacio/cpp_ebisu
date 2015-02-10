@@ -1,7 +1,55 @@
 library bin.orm;
 
+import 'dart:io';
+import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';
+
+/// Parses /proc/cpuinfo and for the processor section of the first
+/// processor returns the set of entries. For example, returns:
+///
+///    [ 'processor', 'vendor_id', 'cpu_family',...]
+///
+/// for the following *cpuinfo* contents:
+///
+///    processor	: 0
+///    vendor_id	: GenuineIntel
+///    cpu family	: 6
+///    model		: 69
+///    model name	: Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz
+///    stepping	: 1
+///    microcode	: 0x17
+///    cpu MHz		: 2000.000
+///    cache size	: 4096 KB
+///    ...
+///
+get processorEntries {
+  final procRe = new RegExp(r'processor\s*:\s*');
+  final byLineRe = new RegExp(r'\n');
+
+  return new File('/proc/cpuinfo')
+  .readAsStringSync()
+  .split(procRe)
+  .skip(1)  // skip first empty element post-split
+  .take(1)  // take first processor entry
+  .map((String proc) =>
+      proc
+      .split(byLineRe)
+      .skip(1)
+      .where((String line) => line.length > 0)
+      .map((String line) =>
+        line
+          .split(r':')
+          .take(1)
+          .map((String word) =>
+              word
+              .trim()
+              .toLowerCase()
+              .replaceAll(' ', '_'))
+          .first)
+      .toList())
+  .first;
+}
 
 final linux_specific = lib('linux_specific')
   ..namespace = namespace([ 'fcs', 'linux_specific' ])
@@ -55,34 +103,56 @@ work. umask settings play a role.'''
         ..enums.add(
             enum_('side')
             ..values = [ 'bid_side', 'ask_side' ])
-        ..includes.add('iostream');
+        ..includes.addAll(['iostream', 'sstream']);
     })
     ..includes = [
       'fcs/linux_specific/linux_exceptions.hpp',
+      'fcs/utils/streamers/map.hpp',
+      'fcs/utils/streamers/vector.hpp',
       'fcs/utils/exception/make_exception.hpp',
       'fstream', 'iterator', 'boost/regex.hpp', 'boost/thread.hpp',
+      'boost/lexical_cast.hpp',
       'sys/types.h', 'unistd.h', 'boost/algorithm/string.hpp',
     ]
     ..classes = [
       class_('processor')
+      ..streamable = true
+      ..usesStreamers = true
       ..usingsPostDecl = [ 'Processor_list_t = std::vector< Processor >' ]
+      ..memberCtors = [ memberCtor(['processor', 'proc_map']) ]
+      ..withCustomBlock(clsPublic, (CodeBlock cb) {
+        cb.snippets
+          .add(
+              br(processorEntries
+                  .map((String entry) {
+                    return '''
+std::string $entry() const {
+  auto found = proc_map_.find("$entry");
+  return (found != proc_map_.end())? found->second : "";
+}
+''';
+                  })));
+      })
       ..descr = '''
 Information stored on a processor basis in cpuinfo.
 The fields in this class are dynamically generated from parsing
 cpuinfo.'''
-      ..usings = [ 'Proc_key_to_value_t = std::map< std::string, std::string >' ]
+      ..usings = [ 'Proc_map_t = std::map< std::string, std::string >' ]
       ..members = [
-        member('proc_key_to_value')
-        ..type = 'Proc_key_to_value_t'..byRef = true..access = ro,
+        member('proc_map')
+        ..type = 'Proc_map_t'..byRef = true..access = ro,
         member('processor')
-        ..type = 'std::string'..access = ro
+        ..type = 'int'..access = ro,
       ],
       class_('cpu_info')
+      ..streamable = true
+      ..usesStreamers = true
       ..includeTest = true
       ..descr = '''
 Class to parse the cpuinfo file. This might be of use to interrogate
 from code the stats of the machine for better enabling <apple to apple>
-comparisons.'''
+comparisons.
+'''
       ..isSingleton = true
       ..withDefaultCtor((defaultCtor) =>
           defaultCtor..hasCustom = true)

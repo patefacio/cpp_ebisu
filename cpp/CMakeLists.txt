@@ -99,6 +99,7 @@ add_executable(test_cpu_info
 
 target_link_libraries(test_cpu_info
 # custom <test_cpu_info link requirements>
+  ${Boost_REGEX_LIBRARY}
 # end <test_cpu_info link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}

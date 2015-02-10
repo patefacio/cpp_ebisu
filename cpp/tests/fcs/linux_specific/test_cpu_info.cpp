@@ -1,6 +1,7 @@
 #include "fcs/linux_specific/cpu_info.hpp"
 #include <boost/test/included/unit_test.hpp>
 #include <iostream>
+#include <sstream>
 
 namespace fcs {
 namespace linux_specific {
@@ -9,7 +10,13 @@ enum Side { Bid_side_e, Ask_side_e };
 void test_cpu_info() {
   // custom <cpu_info>
 
-  Cpu_info cpu_info{Cpu_info::instance()};
+  using namespace std;
+  Cpu_info& cpu_info = Cpu_info::instance();
+  auto processors = cpu_info.processors();
+  BOOST_REQUIRE(processors.size() > 0);
+  auto proc = processors.front();
+  BOOST_REQUIRE(proc.flags().size() > 0);
+  BOOST_CHECK(proc.fpu() == "yes");
 
   // end <cpu_info>
 }

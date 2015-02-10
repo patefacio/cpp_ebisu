@@ -3,12 +3,15 @@
 
 #include "fcs/linux_specific/linux_exceptions.hpp"
 #include "fcs/utils/exception/make_exception.hpp"
+#include "fcs/utils/streamers/map.hpp"
+#include "fcs/utils/streamers/vector.hpp"
 #include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 #include <boost/regex.hpp>
 #include <boost/thread.hpp>
 #include <fstream>
+#include <iosfwd>
 #include <iterator>
-#include <string>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -21,19 +24,147 @@ namespace linux_specific {
 */
 class Processor {
  public:
-  using Proc_key_to_value_t = std::map<std::string, std::string>;
+  using Proc_map_t = std::map<std::string, std::string>;
 
-  //! getter for proc_key_to_value_ (access is Ro)
-  Proc_key_to_value_t const& proc_key_to_value() const {
-    return proc_key_to_value_;
+  Processor(int processor, Proc_map_t const& proc_map)
+      : processor_{processor}, proc_map_{proc_map} {}
+
+  std::string vendor_id() const {
+    auto found = proc_map_.find("vendor_id");
+    return (found != proc_map_.end()) ? found->second : "";
   }
 
+  std::string cpu_family() const {
+    auto found = proc_map_.find("cpu_family");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string model() const {
+    auto found = proc_map_.find("model");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string model_name() const {
+    auto found = proc_map_.find("model_name");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string stepping() const {
+    auto found = proc_map_.find("stepping");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string microcode() const {
+    auto found = proc_map_.find("microcode");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string cpu_mhz() const {
+    auto found = proc_map_.find("cpu_mhz");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string cache_size() const {
+    auto found = proc_map_.find("cache_size");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string physical_id() const {
+    auto found = proc_map_.find("physical_id");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string siblings() const {
+    auto found = proc_map_.find("siblings");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string core_id() const {
+    auto found = proc_map_.find("core_id");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string cpu_cores() const {
+    auto found = proc_map_.find("cpu_cores");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string apicid() const {
+    auto found = proc_map_.find("apicid");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string initial_apicid() const {
+    auto found = proc_map_.find("initial_apicid");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string fpu() const {
+    auto found = proc_map_.find("fpu");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string fpu_exception() const {
+    auto found = proc_map_.find("fpu_exception");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string cpuid_level() const {
+    auto found = proc_map_.find("cpuid_level");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string wp() const {
+    auto found = proc_map_.find("wp");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string flags() const {
+    auto found = proc_map_.find("flags");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string bogomips() const {
+    auto found = proc_map_.find("bogomips");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string clflush_size() const {
+    auto found = proc_map_.find("clflush_size");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string cache_alignment() const {
+    auto found = proc_map_.find("cache_alignment");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string address_sizes() const {
+    auto found = proc_map_.find("address_sizes");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  std::string power_management() const {
+    auto found = proc_map_.find("power_management");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
+  //! getter for proc_map_ (access is Ro)
+  Proc_map_t const& proc_map() const { return proc_map_; }
+
   //! getter for processor_ (access is Ro)
-  std::string const& processor() const { return processor_; }
+  int processor() const { return processor_; }
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Processor const& item) {
+    using fcs::utils::streamers::operator<<;
+    out << '\n' << "proc_map:" << item.proc_map_;
+    out << '\n' << "processor:" << item.processor_;
+    return out;
+  }
 
  private:
-  Proc_key_to_value_t proc_key_to_value_{};
-  std::string processor_{};
+  Proc_map_t proc_map_{};
+  int processor_{};
 };
 
 using Processor_list_t = std::vector<Processor>;
@@ -42,6 +173,7 @@ using Processor_list_t = std::vector<Processor>;
  Class to parse the cpuinfo file. This might be of use to interrogate
  from code the stats of the machine for better enabling <apple to apple>
  comparisons.
+
 */
 class Cpu_info {
  public:
@@ -52,18 +184,69 @@ class Cpu_info {
 
   //! getter for processors_ (access is Ro)
   Processor_list_t const& processors() const { return processors_; }
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Cpu_info const& item) {
+    using fcs::utils::streamers::operator<<;
+    out << '\n' << "processors:" << item.processors_;
+    return out;
+  }
 
  private:
   // custom <ClsPrivate Cpu_info>
-
-  std::string read_cpu_info() {}
 
   // end <ClsPrivate Cpu_info>
 
   Cpu_info() {
     // custom <Cpu_info defaultCtor>
 
-    std::string contents{read_cpu_info()};
+    using namespace std;
+    using namespace boost;
+
+    ifstream input{"/proc/cpuinfo"};
+    string text{istreambuf_iterator<char>(input), istreambuf_iterator<char>()};
+
+    regex proc_split_re{"processor\\s*:\\s*"};
+    regex proc_id_re{"^(\\d+)\\s*"};
+    regex entry_split_re{"\\n"};
+    regex entry_re{"([\\w\\s]+):\\s*(.+)"};
+
+    sregex_token_iterator outer_i{text.begin(), text.end(), proc_split_re, -1};
+    sregex_token_iterator outer_j;
+    while (outer_i != outer_j) {
+      string entry{(*outer_i++).str()};
+      sregex_token_iterator inner_i{entry.begin(), entry.end(), entry_split_re,
+                                    -1};
+      sregex_token_iterator inner_j;
+      smatch what;
+
+      if (inner_i != inner_j) {
+        string line{(*inner_i++).str()};
+        int proc_id{-1};
+        if (regex_match(line, what, proc_id_re)) {
+          proc_id = lexical_cast<int>(what[1]);
+        } else {
+          std::string msg{"Expected proc id in line: "};
+          msg += line;
+          throw runtime_error(msg);
+        }
+        assert(proc_id >= 0);
+
+        Processor::Proc_map_t map;
+
+        while (inner_i != inner_j) {
+          string line{(*inner_i++).str()};
+          if (regex_match(line, what, entry_re)) {
+            string key{what[1].str()};
+            string value{what[2].str()};
+            algorithm::trim(key);
+            algorithm::trim(value);
+            map[key] = value;
+          }
+        }
+
+        processors_.emplace_back(proc_id, map);
+      }
+    }
 
     // end <Cpu_info defaultCtor>
   }
