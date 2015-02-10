@@ -1,7 +1,6 @@
 library schema.code_metrics;
 
 import 'dart:async';
-import 'package:ebisu_cpp/cpp.dart';
 import 'package:ebisu_cpp/db_schema.dart';
 import 'package:magus/schema.dart';
 import 'package:magus/odbc_ini.dart';

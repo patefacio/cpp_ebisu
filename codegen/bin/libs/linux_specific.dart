@@ -1,4 +1,4 @@
-library bin.orm;
+library libs.orm;
 
 import 'dart:io';
 import 'package:ebisu/ebisu.dart';

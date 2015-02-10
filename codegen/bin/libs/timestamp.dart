@@ -1,4 +1,4 @@
-library bin.timestamp;
+library libs.timestamp;
 
 import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';

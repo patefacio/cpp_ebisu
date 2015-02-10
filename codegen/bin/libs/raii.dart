@@ -1,4 +1,4 @@
-library bin.raii;
+library libs.raii;
 
 import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';

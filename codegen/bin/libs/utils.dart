@@ -1,4 +1,4 @@
-library bin.utils;
+library libs.utils;
 
 import 'package:ebisu_cpp/cpp.dart';
 import '../../lib/installation.dart';
