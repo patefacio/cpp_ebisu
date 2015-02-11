@@ -61,6 +61,7 @@ final linux_specific = lib('linux_specific')
     ]
     ..classes = [
       class_('umask_scoped_set')
+      ..includeTest = true
       ..descr = '''
 A typical use of this is to set the umask for a process to provide
 settings of system resources (files, mutexes, mappings,...)  to allow
@@ -99,11 +100,7 @@ work. umask settings play a role.'''
     ],
     header('cpu_info')
     ..withTest((Test test) {
-      test
-        ..enums.add(
-            enum_('side')
-            ..values = [ 'bid_side', 'ask_side' ])
-        ..includes.addAll(['iostream', 'sstream']);
+      test.includes.addAll(['iostream', 'sstream']);
     })
     ..includes = [
       'fcs/linux_specific/linux_exceptions.hpp',

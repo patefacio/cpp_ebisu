@@ -5,8 +5,6 @@
 
 namespace fcs {
 namespace linux_specific {
-enum Side { Bid_side_e, Ask_side_e };
-
 void test_cpu_info() {
   // custom <cpu_info>
 

@@ -92,6 +92,20 @@ target_link_libraries(h5ds2csv
 ######################################################################
 # Test directives
 ######################################################################
+# test for test_umask_scoped_set
+add_executable(test_umask_scoped_set
+  tests/fcs/linux_specific/test_umask_scoped_set.cpp
+)
+
+target_link_libraries(test_umask_scoped_set
+# custom <test_umask_scoped_set link requirements>
+# end <test_umask_scoped_set link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(test_umask_scoped_set test_umask_scoped_set)
+
 # test for test_cpu_info
 add_executable(test_cpu_info
   tests/fcs/linux_specific/test_cpu_info.cpp
