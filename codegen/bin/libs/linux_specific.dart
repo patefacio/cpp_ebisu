@@ -1,4 +1,4 @@
-library libs.orm;
+library libs.linux_specific;
 
 import 'dart:io';
 import 'package:ebisu/ebisu.dart';
@@ -139,7 +139,7 @@ cpuinfo.'''
         member('proc_map')
         ..type = 'Proc_map_t'..byRef = true..access = ro,
         member('processor')
-        ..type = 'int'..access = ro,
+        ..type = 'int'..access = ro
       ],
       class_('cpu_info')
       ..streamable = true

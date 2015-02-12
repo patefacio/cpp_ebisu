@@ -31,11 +31,6 @@ Example:
     'fcs/timestamp/conversion.hpp',
     'stdexcept',
   ]
-  ..requiredLibs = [
-    'boost_program_options',
-    'boost_date_time',
-    'boost_regex',
-  ]
   ..args = [
     arg('timestamp')
     ..shortName = 't'
