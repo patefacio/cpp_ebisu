@@ -157,8 +157,10 @@ class Processor {
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Processor const& item) {
     using fcs::utils::streamers::operator<<;
-    out << '\n' << "proc_map:" << item.proc_map_;
-    out << '\n' << "processor:" << item.processor_;
+    out << "Processor(" << &item << ") {";
+    out << "\n  proc_map: " << item.proc_map_;
+    out << "\n  processor: " << item.processor_;
+    out << "\n}\n";
     return out;
   }
 
@@ -187,7 +189,9 @@ class Cpu_info {
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Cpu_info const& item) {
     using fcs::utils::streamers::operator<<;
-    out << '\n' << "processors:" << item.processors_;
+    out << "Cpu_info(" << &item << ") {";
+    out << "\n  processors: " << item.processors_;
+    out << "\n}\n";
     return out;
   }
 

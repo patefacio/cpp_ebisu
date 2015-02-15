@@ -78,9 +78,11 @@ struct Program_options {
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
     using fcs::utils::streamers::operator<<;
-    out << '\n' << "help:" << item.help_;
-    out << '\n' << "timestamp:" << item.timestamp_;
-    out << '\n' << "date:" << item.date_;
+    out << "Program_options(" << &item << ") {";
+    out << "\n  help: " << item.help_;
+    out << "\n  timestamp: " << item.timestamp_;
+    out << "\n  date: " << item.date_;
+    out << "\n}\n";
     return out;
   }
 

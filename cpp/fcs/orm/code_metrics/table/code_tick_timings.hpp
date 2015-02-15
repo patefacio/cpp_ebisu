@@ -40,7 +40,9 @@ struct Code_tick_timings_pkey {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_tick_timings_pkey const& item) {
-    out << '\n' << "id:" << item.id;
+    out << "Code_tick_timings_pkey(" << &item << ") {";
+    out << "\n  id: " << item.id;
+    out << "\n}\n";
     return out;
   }
 };
@@ -124,14 +126,16 @@ struct Code_tick_timings_value {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_tick_timings_value const& item) {
-    out << '\n' << "code_locations_id:" << item.code_locations_id;
-    out << '\n' << "created:" << item.created;
-    out << '\n' << "start_processor:" << item.start_processor;
-    out << '\n' << "end_processor:" << item.end_processor;
-    out << '\n' << "cpu_mhz:" << item.cpu_mhz;
-    out << '\n' << "debug:" << item.debug;
-    out << '\n' << "ticks:" << item.ticks;
-    out << '\n' << "normalized_ns:" << item.normalized_ns;
+    out << "Code_tick_timings_value(" << &item << ") {";
+    out << "\n  code_locations_id: " << item.code_locations_id;
+    out << "\n  created: " << item.created;
+    out << "\n  start_processor: " << item.start_processor;
+    out << "\n  end_processor: " << item.end_processor;
+    out << "\n  cpu_mhz: " << item.cpu_mhz;
+    out << "\n  debug: " << item.debug;
+    out << "\n  ticks: " << item.ticks;
+    out << "\n  normalized_ns: " << item.normalized_ns;
+    out << "\n}\n";
     return out;
   }
 };

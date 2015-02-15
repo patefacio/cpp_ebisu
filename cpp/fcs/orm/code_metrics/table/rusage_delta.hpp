@@ -40,7 +40,9 @@ struct Rusage_delta_pkey {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Rusage_delta_pkey const& item) {
-    out << '\n' << "id:" << item.id;
+    out << "Rusage_delta_pkey(" << &item << ") {";
+    out << "\n  id: " << item.id;
+    out << "\n}\n";
     return out;
   }
 };
@@ -199,30 +201,32 @@ struct Rusage_delta_value {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Rusage_delta_value const& item) {
-    out << '\n' << "code_locations_id:" << item.code_locations_id;
-    out << '\n' << "created:" << item.created;
-    out << '\n' << "start_processor:" << item.start_processor;
-    out << '\n' << "end_processor:" << item.end_processor;
-    out << '\n' << "cpu_mhz:" << item.cpu_mhz;
-    out << '\n' << "debug:" << item.debug;
-    out << '\n' << "user_time_sec:" << item.user_time_sec;
-    out << '\n' << "user_time_usec:" << item.user_time_usec;
-    out << '\n' << "system_time_sec:" << item.system_time_sec;
-    out << '\n' << "system_time_usec:" << item.system_time_usec;
-    out << '\n' << "ru_maxrss:" << item.ru_maxrss;
-    out << '\n' << "ru_ixrss:" << item.ru_ixrss;
-    out << '\n' << "ru_idrss:" << item.ru_idrss;
-    out << '\n' << "ru_isrss:" << item.ru_isrss;
-    out << '\n' << "ru_minflt:" << item.ru_minflt;
-    out << '\n' << "ru_majflt:" << item.ru_majflt;
-    out << '\n' << "ru_nswap:" << item.ru_nswap;
-    out << '\n' << "ru_inblock:" << item.ru_inblock;
-    out << '\n' << "ru_oublock:" << item.ru_oublock;
-    out << '\n' << "ru_msgsnd:" << item.ru_msgsnd;
-    out << '\n' << "ru_msgrcv:" << item.ru_msgrcv;
-    out << '\n' << "ru_nsignals:" << item.ru_nsignals;
-    out << '\n' << "ru_nvcsw:" << item.ru_nvcsw;
-    out << '\n' << "ru_nivcsw:" << item.ru_nivcsw;
+    out << "Rusage_delta_value(" << &item << ") {";
+    out << "\n  code_locations_id: " << item.code_locations_id;
+    out << "\n  created: " << item.created;
+    out << "\n  start_processor: " << item.start_processor;
+    out << "\n  end_processor: " << item.end_processor;
+    out << "\n  cpu_mhz: " << item.cpu_mhz;
+    out << "\n  debug: " << item.debug;
+    out << "\n  user_time_sec: " << item.user_time_sec;
+    out << "\n  user_time_usec: " << item.user_time_usec;
+    out << "\n  system_time_sec: " << item.system_time_sec;
+    out << "\n  system_time_usec: " << item.system_time_usec;
+    out << "\n  ru_maxrss: " << item.ru_maxrss;
+    out << "\n  ru_ixrss: " << item.ru_ixrss;
+    out << "\n  ru_idrss: " << item.ru_idrss;
+    out << "\n  ru_isrss: " << item.ru_isrss;
+    out << "\n  ru_minflt: " << item.ru_minflt;
+    out << "\n  ru_majflt: " << item.ru_majflt;
+    out << "\n  ru_nswap: " << item.ru_nswap;
+    out << "\n  ru_inblock: " << item.ru_inblock;
+    out << "\n  ru_oublock: " << item.ru_oublock;
+    out << "\n  ru_msgsnd: " << item.ru_msgsnd;
+    out << "\n  ru_msgrcv: " << item.ru_msgrcv;
+    out << "\n  ru_nsignals: " << item.ru_nsignals;
+    out << "\n  ru_nvcsw: " << item.ru_nvcsw;
+    out << "\n  ru_nivcsw: " << item.ru_nivcsw;
+    out << "\n}\n";
     return out;
   }
 };

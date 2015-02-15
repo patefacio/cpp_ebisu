@@ -39,7 +39,9 @@ struct Code_packages_pkey {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_packages_pkey const& item) {
-    out << '\n' << "id:" << item.id;
+    out << "Code_packages_pkey(" << &item << ") {";
+    out << "\n  id: " << item.id;
+    out << "\n}\n";
     return out;
   }
 };
@@ -84,8 +86,10 @@ struct Code_packages_value {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_packages_value const& item) {
-    out << '\n' << "name:" << item.name;
-    out << '\n' << "descr:" << item.descr;
+    out << "Code_packages_value(" << &item << ") {";
+    out << "\n  name: " << item.name;
+    out << "\n  descr: " << item.descr;
+    out << "\n}\n";
     return out;
   }
 };

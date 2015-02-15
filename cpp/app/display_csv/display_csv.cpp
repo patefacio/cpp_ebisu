@@ -37,7 +37,9 @@ struct Program_options {
   bool help() const { return help_; }
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
-    out << '\n' << "help:" << item.help_;
+    out << "Program_options(" << &item << ") {";
+    out << "\n  help: " << item.help_;
+    out << "\n}\n";
     return out;
   }
 

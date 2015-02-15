@@ -40,7 +40,9 @@ struct Code_locations_pkey {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_locations_pkey const& item) {
-    out << '\n' << "id:" << item.id;
+    out << "Code_locations_pkey(" << &item << ") {";
+    out << "\n  id: " << item.id;
+    out << "\n}\n";
     return out;
   }
 };
@@ -105,11 +107,13 @@ struct Code_locations_value {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Code_locations_value const& item) {
-    out << '\n' << "code_packages_id:" << item.code_packages_id;
-    out << '\n' << "label:" << item.label;
-    out << '\n' << "file_name:" << item.file_name;
-    out << '\n' << "line_number:" << item.line_number;
-    out << '\n' << "git_commit:" << item.git_commit;
+    out << "Code_locations_value(" << &item << ") {";
+    out << "\n  code_packages_id: " << item.code_packages_id;
+    out << "\n  label: " << item.label;
+    out << "\n  file_name: " << item.file_name;
+    out << "\n  line_number: " << item.line_number;
+    out << "\n  git_commit: " << item.git_commit;
+    out << "\n}\n";
     return out;
   }
 };
