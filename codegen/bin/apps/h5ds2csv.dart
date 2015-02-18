@@ -1,6 +1,6 @@
 library bin.h5ds2csv;
 
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/installation.dart';
 
 final h5ds2csv = app('h5ds2csv')

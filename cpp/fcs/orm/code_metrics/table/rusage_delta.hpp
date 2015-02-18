@@ -28,10 +28,12 @@ struct Rusage_delta_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(id));
   }
@@ -120,6 +122,7 @@ struct Rusage_delta_value {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 : (false))))))))))))))))))))))));
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("code_locations_id");
     out.push_back("created");
@@ -147,6 +150,7 @@ struct Rusage_delta_value {
     out.push_back("ru_nivcsw");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(code_locations_id));
     out.push_back(boost::lexical_cast<std::string>(created));

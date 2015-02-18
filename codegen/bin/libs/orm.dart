@@ -1,6 +1,6 @@
 library libs.orm;
 
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/installation.dart';
 
 final orm = lib('orm')

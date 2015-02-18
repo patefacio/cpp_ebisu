@@ -10,7 +10,7 @@ void main() {
       print("${r.loggerName} [${r.level}]:\t${r.message}"));
   String here = path.dirname(path.dirname(path.absolute(Platform.script.path)));
   print(here);
-  final imports = [ 'package:ebisu_cpp/cpp.dart' ];
+  final imports = [ 'package:ebisu_cpp/ebisu_cpp.dart' ];
   System ebisu = system('fcs')
     ..pubSpec.addDependency(new PubDependency('ebisu'))
     ..pubSpec.addDependency(new PubDependency('ebisu_cpp'))

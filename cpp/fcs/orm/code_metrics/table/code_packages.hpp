@@ -27,10 +27,12 @@ struct Code_packages_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(id));
   }
@@ -71,11 +73,13 @@ struct Code_packages_value {
                : (descr != rhs.descr ? descr < rhs.descr : (false));
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("name");
     out.push_back("descr");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(name));
     out.push_back(boost::lexical_cast<std::string>(descr));

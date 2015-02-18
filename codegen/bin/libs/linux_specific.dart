@@ -2,7 +2,7 @@ library libs.linux_specific;
 
 import 'dart:io';
 import 'package:ebisu/ebisu.dart';
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/installation.dart';
 
 /// Parses /proc/cpuinfo and for the processor section of the first

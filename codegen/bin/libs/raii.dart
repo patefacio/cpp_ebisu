@@ -1,6 +1,6 @@
 library libs.raii;
 
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/installation.dart';
 
 final raii = lib('raii')

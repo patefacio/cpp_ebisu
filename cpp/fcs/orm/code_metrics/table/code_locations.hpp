@@ -28,10 +28,12 @@ struct Code_locations_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(id));
   }
@@ -83,6 +85,7 @@ struct Code_locations_value {
                                            : (false)))));
   }
 
+  /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("code_packages_id");
     out.push_back("label");
@@ -91,6 +94,7 @@ struct Code_locations_value {
     out.push_back("git_commit");
   }
 
+  /// The values of the members as list of strings
   inline void to_string_list(String_list_t& out) const {
     out.push_back(boost::lexical_cast<std::string>(code_packages_id));
     out.push_back(boost::lexical_cast<std::string>(label));

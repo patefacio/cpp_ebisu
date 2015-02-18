@@ -16,12 +16,16 @@ dependencies:
   ebisu_cpp:
     git: git://github.com/patefacio/ebisu_cpp
 
+  ebisu_cpp_db:
+    git: git://github.com/patefacio/ebisu_cpp_db
+    
   magus:
    git: git://github.com/patefacio/magus
 
 # end <fcs dependencies>
 
 dev_dependencies:
+  yaml: "any"
   unittest: ">=0.11.0 < 0.12.0"
   browser: "any"
 
@@ -30,6 +34,19 @@ dev_dependencies:
 
 dependency_overrides:
 # custom <fcs dependency overrides>
+
+#  magus:
+#   path: /home/dbdavidson/dev/open_source/magus
+
+#  ebisu:
+#   path: /home/dbdavidson/dev/open_source/ebisu
+
+#  ebisu_cpp:
+#   path: /home/dbdavidson/dev/open_source/ebisu_cpp
+
+#  ebisu_cpp_db:
+#   path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
+   
 # end <fcs dependency overrides>
 
 transformers:

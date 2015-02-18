@@ -13,6 +13,5 @@ addItems() {
 
 main() {
   addItems();
-  print(installation);
   installation.generate();
 }

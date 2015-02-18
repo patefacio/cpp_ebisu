@@ -1,6 +1,6 @@
 library installation;
 
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import 'dart:io';
 import 'package:id/id.dart';
 

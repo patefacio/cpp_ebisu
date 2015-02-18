@@ -2,7 +2,7 @@ import 'libs.dart' as libs;
 import 'apps.dart' as apps;
 import 'schemas.dart' as schemas;
 import '../lib/installation.dart';
-import 'package:ebisu_cpp/cpp.dart';
+import 'package:ebisu_cpp/ebisu_cpp.dart';
 import 'package:logging/logging.dart';
 
 

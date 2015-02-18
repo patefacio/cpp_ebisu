@@ -1,12 +1,11 @@
 library schema.code_metrics;
 
 import 'dart:async';
-import 'package:ebisu_cpp/db_schema.dart';
+import 'package:ebisu_cpp_db/ebisu_cpp_db.dart';
 import 'package:magus/schema.dart';
 import 'package:magus/odbc_ini.dart';
 import 'package:magus/mysql.dart';
 import '../../lib/installation.dart';
-
 
 rusageQuery(Schema s) {
   final cp = s._code_packages;
@@ -35,11 +34,12 @@ Future addItems() =>
   .readSchema('code_metrics')
   .then((Schema s) {
 
-    return installation
-      ..addSchemaCodeGenerator(
-        new OtlSchemaCodeGenerator(s)
-        ..queries = [ rusageQuery(s) ]
-        ..tableFilter = (t) => !t.name.contains(new RegExp('multi|user')));
+    final generator = new OtlSchemaCodeGenerator(s)
+      ..installation = installation
+      ..queries = [ rusageQuery(s) ]
+      ..tableFilter = (t) => !t.name.contains(new RegExp('multi|user'));
+
+    return installation..addLib(generator.lib);
   });
 
 Future main() =>
