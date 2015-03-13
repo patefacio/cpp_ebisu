@@ -1,7 +1,7 @@
 library libs.utils;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 final utils = lib('utils')
   ..namespace = namespace([ 'fcs', 'utils' ])
@@ -145,7 +145,7 @@ final _containers = {
 };
 
 addItems() {
-  installation
+  fcsInstallation
     ..addLibs([utils, exception]);
 
   final containers = lib('streamers')
@@ -241,10 +241,10 @@ addItems() {
         ..includes = _containers[c]
         ..customBlocks = [fcbBeginNamespace]));
 
-  installation.addLib(containers);
+  fcsInstallation.addLib(containers);
 }
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

@@ -1,6 +1,6 @@
 library schemas;
 
-import '../lib/installation.dart';
+import '../lib/fcs_installation.dart';
 import 'dart:async';
 import 'schemas/code_metrics.dart' as code_metrics;
 
@@ -10,6 +10,6 @@ Future addItems() =>
   ]);
 
 main() => addItems()
-  .then((_) => installation.generate());
+  .then((_) => fcsInstallation.generate());
 
 // end <library libs>

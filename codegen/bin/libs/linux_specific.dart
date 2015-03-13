@@ -3,7 +3,7 @@ library libs.linux_specific;
 import 'dart:io';
 import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 /// Parses /proc/cpuinfo and for the processor section of the first
 /// processor returns the set of entries. For example, returns:
@@ -162,9 +162,9 @@ comparisons.
 
   ];
 
-addItems() => installation.addLibs([linux_specific]);
+addItems() => fcsInstallation.addLibs([linux_specific]);
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

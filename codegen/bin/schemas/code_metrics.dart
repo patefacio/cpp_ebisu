@@ -5,7 +5,7 @@ import 'package:ebisu_cpp_db/ebisu_cpp_db.dart';
 import 'package:magus/schema.dart';
 import 'package:magus/odbc_ini.dart';
 import 'package:magus/mysql.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 rusageQuery(Schema s) {
   final cp = s._code_packages;
@@ -34,13 +34,13 @@ Future addItems() =>
   .readSchema('code_metrics')
   .then((Schema s) {
 
-    final generator = new OtlSchemaCodeGenerator(s)
-      ..installation = installation
+    final generator = new OtlSchemaCodeGenerator(fcsInstallation, s)
+      ..installation = fcsInstallation
       ..queries = [ rusageQuery(s) ]
       ..tableFilter = (t) => !t.name.contains(new RegExp('multi|user'));
 
-    return installation..addLib(generator.lib);
+    return fcsInstallation..addLib(generator.lib);
   });
 
 Future main() =>
-  addItems().then((_) => installation.generate());
+  addItems().then((_) => fcsInstallation.generate());

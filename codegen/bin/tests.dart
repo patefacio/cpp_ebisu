@@ -1,11 +1,11 @@
 library tests;
 
-import '../lib/installation.dart';
+import '../lib/fcs_installation.dart';
 
 addItems() {
 }
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

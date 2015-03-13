@@ -1,7 +1,7 @@
 library libs.raii;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 final raii = lib('raii')
   ..namespace = namespace([ 'fcs', 'raii' ])
@@ -99,9 +99,9 @@ For api's that need some form of initialization/uninitialization to be performed
     ]
   ];
 
-addItems() => installation.addLib(raii);
+addItems() => fcsInstallation.addLib(raii);
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

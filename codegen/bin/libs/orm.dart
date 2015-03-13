@@ -1,7 +1,7 @@
 library libs.orm;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 final orm = lib('orm')
   ..namespace = namespace([ 'fcs', 'orm' ])
@@ -52,9 +52,9 @@ final orm = lib('orm')
   ];
 
 
-addItems() => installation.addLibs([orm]);
+addItems() => fcsInstallation.addLibs([orm]);
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

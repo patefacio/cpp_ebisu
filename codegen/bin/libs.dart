@@ -1,6 +1,6 @@
 library libs;
 
-import '../lib/installation.dart';
+import '../lib/fcs_installation.dart';
 import 'libs/utils.dart' as utils;
 import 'libs/raii.dart' as raii;
 import 'libs/orm.dart' as orm;
@@ -18,7 +18,7 @@ addItems() {
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }
 
 // end <library libs>

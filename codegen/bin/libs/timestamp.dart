@@ -1,7 +1,7 @@
 library libs.timestamp;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 final timestamp = lib('timestamp')
   ..namespace = namespace([ 'fcs', 'timestamp' ])
@@ -35,9 +35,9 @@ final conversion = lib('conversion')
     ]
   ];
 
-addItems() => installation.addLibs([timestamp, conversion]);
+addItems() => fcsInstallation.addLibs([timestamp, conversion]);
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }

@@ -1,7 +1,7 @@
 library bin.display_csv;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/installation.dart';
+import '../../lib/fcs_installation.dart';
 
 final display_csv = app('display_csv')
   ..namespace = namespace(['fcs'])
@@ -10,9 +10,9 @@ final display_csv = app('display_csv')
     'boost_regex',
   ];
 
-addItems() => installation.addApp(display_csv);
+addItems() => fcsInstallation.addApp(display_csv);
 
 main() {
   addItems();
-  installation.generate();
+  fcsInstallation.generate();
 }
