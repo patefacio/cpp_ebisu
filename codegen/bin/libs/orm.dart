@@ -21,7 +21,7 @@ final orm = lib('orm')
       class_('otl_log_level')
       ..customBlocks = [ clsPublic, clsPostDecl ]
       ..members = [ member('level')..type = 'int'
-        ..noInit = true..isStatic = true ]
+        ..hasNoInit = true..isStatic = true ]
       ..template = [ 'int OTL_LOG_LEVEL = 0' ],
     ]
     ..usings = [

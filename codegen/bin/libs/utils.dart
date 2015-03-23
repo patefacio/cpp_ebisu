@@ -23,7 +23,7 @@ final utils = lib('utils')
     ],
     header('fixed_size_char_array')
     ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
-    ..includeTest = true
+    ..includesTest = true
     ..classes = [
       class_('fixed_size_char_array')
       ..template = [ 'int ARRAY_SIZE' ]
@@ -83,8 +83,8 @@ Hist_results_t = boost::iterator_range<
 >''',
       ]
       ..members = [
-        member('num_bins')..access = ro..type = 'int'..noInit = true..isConst = true,
-        member('cache_size')..access = ro..type = 'int'..noInit = true..isConst = true,
+        member('num_bins')..access = ro..type = 'int'..hasNoInit = true..isConst = true,
+        member('cache_size')..access = ro..type = 'int'..hasNoInit = true..isConst = true,
         member('accumulator')..type = 'Accumulator_t'..access = ro
         ..initText = '''
 
@@ -184,10 +184,10 @@ addItems() {
       ]
       ..classes = [
         class_('random_source')
-        ..includeTest = true
+        ..includesTest = true
         ..customBlocks = [ clsPublic, clsPostDecl ]
         ..members = [
-          member('engine')..type = 'std::mt19937'..noInit = true
+          member('engine')..type = 'std::mt19937'..hasNoInit = true
           ..cppAccess = public
         ]
       ],
@@ -217,12 +217,12 @@ addItems() {
         ..members = [
           member('matrix_container')
           ..refType = cref
-          ..byRef = true
+          ..isByRef = true
           ..brief = 'Matrix with data to stream'
           ..type = 'MatrixContainer',
           member('header')
           ..refType = cref
-          ..byRef = true
+          ..isByRef = true
           ..brief = 'List of headers for the columns'
           ..type = 'String_list_t',
         ]

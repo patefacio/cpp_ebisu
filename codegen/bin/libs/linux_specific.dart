@@ -61,7 +61,7 @@ final linux_specific = lib('linux_specific')
     ]
     ..classes = [
       class_('umask_scoped_set')
-      ..includeTest = true
+      ..includesTest = true
       ..descr = '''
 A typical use of this is to set the umask for a process to provide
 settings of system resources (files, mutexes, mappings,...)  to allow
@@ -79,7 +79,7 @@ work. umask settings play a role.'''
       ..members = [
         member('previous_mode')
         ..descr = 'Original mode, restored to on destruction'
-        ..type = 'mode_t'..access = ro..noInit = true
+        ..type = 'mode_t'..access = ro..hasNoInit = true
       ]
     ],
     header('linux_exceptions')
@@ -94,8 +94,8 @@ work. umask settings play a role.'''
       ..doc = 'Indicates parsing of system file failed'
       ..usings = ['filename_tag = boost::error_info<struct tag_filename_tag, std::string>']
       ..bases = [
-        base('boost::exception')..virtual = true..access = public,
-        base('std::exception')..virtual = true..access = public,
+        base('boost::exception')..isVirtual = true..access = public,
+        base('std::exception')..isVirtual = true..access = public,
       ]
     ],
     header('cpu_info')
@@ -113,7 +113,7 @@ work. umask settings play a role.'''
     ]
     ..classes = [
       class_('processor')
-      ..streamable = true
+      ..isStreamable = true
       ..usesStreamers = true
       ..usingsPostDecl = [ 'Processor_list_t = std::vector< Processor >' ]
       ..memberCtors = [ memberCtor(['processor', 'proc_map']) ]
@@ -137,14 +137,14 @@ cpuinfo.'''
       ..usings = [ 'Proc_map_t = std::map< std::string, std::string >' ]
       ..members = [
         member('proc_map')
-        ..type = 'Proc_map_t'..byRef = true..access = ro,
+        ..type = 'Proc_map_t'..isByRef = true..access = ro,
         member('processor')
         ..type = 'int'..access = ro
       ],
       class_('cpu_info')
-      ..streamable = true
+      ..isStreamable = true
       ..usesStreamers = true
-      ..includeTest = true
+      ..includesTest = true
       ..descr = '''
 Class to parse the cpuinfo file. This might be of use to interrogate
 from code the stats of the machine for better enabling <apple to apple>
@@ -156,7 +156,7 @@ comparisons.
       ..customBlocks = [ clsPrivate ]
       ..members = [
         member('processors')
-        ..type = 'Processor_list_t'..byRef = true..access = ro
+        ..type = 'Processor_list_t'..isByRef = true..access = ro
       ],
     ]
 

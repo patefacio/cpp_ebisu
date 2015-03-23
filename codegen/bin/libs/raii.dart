@@ -29,10 +29,10 @@ value and the current value will be assigned the next value.'''
       ..template = [ 'typename T' ]
       ..usings = [ 'Change_tracker_t = Change_tracker< T >' ]
       ..customBlocks = [clsPublic]
-      ..includeTest = true
+      ..includesTest = true
       ..members = [
         member('tracker')..type = 'Change_tracker_t'
-        ..byRef = true
+        ..isByRef = true
         ..refType = ref..access = ro,
         member('next_value')..type = 'T'..access = ro,
       ],
@@ -42,7 +42,7 @@ Stores the current state, changes that state to a new value and on
 destruction restores the original state.'''
       ..template = [ 'typename T' ]
       ..customBlocks = [clsPublic]
-      ..includeTest = true
+      ..includesTest = true
       ..members = [
         member('target')..type = 'T'..refType = ref..access = ro,
         member('saved_value')..type = 'T'..access = ro,
@@ -57,13 +57,13 @@ destruction restores the original state.'''
     ]
     ..classes = [
       class_('functor_scope_exit')
-      ..includeTest = true
+      ..includesTest = true
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
       ..usings = [ 'Functor_t = FUNCTOR' ]
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [ memberCtor(['functor']) ]
       ..members = [
-        member('functor')..type = 'Functor_t'..noInit = true..access = ro,
+        member('functor')..type = 'Functor_t'..hasNoInit = true..access = ro,
       ],
       class_('api_initializer_registry')
       ..descr = '''
