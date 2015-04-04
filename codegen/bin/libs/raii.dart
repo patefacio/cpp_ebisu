@@ -27,7 +27,7 @@ Uses a ChangeTracker to track current/previous values of a type and
 ensures that on destruction the previous value becomes the current
 value and the current value will be assigned the next value.'''
       ..template = [ 'typename T' ]
-      ..usings = [ 'Change_tracker_t = Change_tracker< T >' ]
+      ..usings = [ using('change_tracker', 'Change_tracker< T >')]
       ..customBlocks = [clsPublic]
       ..includesTest = true
       ..members = [
@@ -44,22 +44,24 @@ destruction restores the original state.'''
       ..customBlocks = [clsPublic]
       ..includesTest = true
       ..members = [
-        member('target')..type = 'T'..refType = ref..access = ro,
-        member('saved_value')..type = 'T'..access = ro,
+        member('target')
+        ..doc = 'Reference to the item being changed for duration of block'
+        ..type = 'T'..refType = ref..access = ro,
+        member('saved_value')
+        ..doc = 'Value saved on construction and used to reset on block exit'
+        ..type = 'T'..access = ro,
       ],
     ],
     header('api_initializer')
     ..test.customBlocks = [ fcbPreNamespace ]
     ..test.includes.addAll(['vector', 'fcs/utils/streamers/containers.hpp', ])
     ..includes = [ 'list', 'map', 'memory' ]
-    ..usings = [
-      'Void_func_t = void (*)(void)',
-    ]
+    ..usings = [ using('void_func', 'void (*)(void)') ]
     ..classes = [
       class_('functor_scope_exit')
       ..includesTest = true
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
-      ..usings = [ 'Functor_t = FUNCTOR' ]
+      ..usings = [ using('functor', 'FUNCTOR') ]
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [ memberCtor(['functor']) ]
       ..members = [
@@ -67,16 +69,16 @@ destruction restores the original state.'''
       ],
       class_('api_initializer_registry')
       ..descr = '''
-For api's that need some form of initialization/uninitialization to be performed.
+For APIs that need some form of initialization/uninitialization to be performed.
 '''
       ..customBlocks = [ clsPublic ]
       ..usings = [
-        'Init_func_t = INIT_FUNC',
-        'Uninit_func_t = UNINIT_FUNC',
-        'Functor_scope_exit_t = Functor_scope_exit< Uninit_func_t >',
+        'Init_func = INIT_FUNC',
+        'Uninit_func = UNINIT_FUNC',
+        'Functor_scope_exit = Functor_scope_exit< Uninit_func_t >',
         'Uninit_wrapper_ptr = std::shared_ptr< Functor_scope_exit_t >',
-        'Uninit_list_t = std::list< Uninit_wrapper_ptr >',
-        'Registry_t = std::map< Init_func_t, Uninit_wrapper_ptr >',
+        'Uninit_list = std::list< Uninit_wrapper_ptr_t >',
+        'Registry = std::map< Init_func_t, Uninit_wrapper_ptr_t >',
       ]
       ..isSingleton = true
       ..template = [

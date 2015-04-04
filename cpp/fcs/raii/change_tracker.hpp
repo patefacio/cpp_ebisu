@@ -95,10 +95,18 @@ class Change_until_end_of_block {
   T saved_value() const { return saved_value_; }
 
  private:
+  /**
+   Reference to the item being changed for duration of block
+  */
   T &target_;
+
+  /**
+   Value saved on construction and used to reset on block exit
+  */
   T saved_value_{};
 };
 
 }  // namespace raii
 }  // namespace fcs
+
 #endif  // __FCS_RAII_CHANGE_TRACKER_HPP__

@@ -63,4 +63,5 @@ inline void print_values_as_table(
 
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_ORM_TO_STRING_TABLE_HPP__

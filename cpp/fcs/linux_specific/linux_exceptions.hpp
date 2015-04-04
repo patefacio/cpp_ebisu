@@ -14,9 +14,11 @@ namespace linux_specific {
 class System_file_parse_exception : public virtual boost::exception,
                                     public virtual std::exception {
  public:
-  using filename_tag = boost::error_info<struct tag_filename_tag, std::string>;
+  using Filename_tag_t =
+      boost::error_info<struct tag_filename_tag, std::string>;
 };
 
 }  // namespace linux_specific
 }  // namespace fcs
+
 #endif  // __FCS_LINUX_SPECIFIC_LINUX_EXCEPTIONS_HPP__

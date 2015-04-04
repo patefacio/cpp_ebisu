@@ -10,18 +10,11 @@ dependencies:
 
   collection: ">=1.0.0"
 
-  ebisu:
-   git: git://github.com/patefacio/ebisu
+  id: ">=1.0.6<1.1.0"  
+  ebisu: "^0.2.6"
+  ebisu_cpp: "^0.0.014"
+  ebisu_cpp_db: "^0.0.6"
    
-  ebisu_cpp:
-    git: git://github.com/patefacio/ebisu_cpp
-
-  ebisu_cpp_db:
-    git: git://github.com/patefacio/ebisu_cpp_db
-    
-  magus:
-   git: git://github.com/patefacio/magus
-
 # end <fcs dependencies>
 
 dev_dependencies:
@@ -35,17 +28,6 @@ dev_dependencies:
 dependency_overrides:
 # custom <fcs dependency overrides>
 
-#  magus:
-#   path: /home/dbdavidson/dev/open_source/magus
-
-#  ebisu:
-#   path: /home/dbdavidson/dev/open_source/ebisu
-
-#  ebisu_cpp:
-#   path: /home/dbdavidson/dev/open_source/ebisu_cpp
-
-#  ebisu_cpp_db:
-#   path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
    
 # end <fcs dependency overrides>
 

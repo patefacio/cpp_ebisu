@@ -16,7 +16,15 @@ class otl_connect;
 
 namespace fcs {
 namespace orm {
+
+/**
+ List of strings
+*/
 using String_list_t = std::vector<std::string>;
+
+/**
+ Standard table of strings
+*/
 using String_table_t = std::vector<String_list_t>;
 using Date_t = boost::gregorian::date;
 using Date_set_t = std::set<Date_t>;
@@ -49,6 +57,7 @@ inline void set_otl_log_level(int level) {
 
 }  // namespace orm
 }  // namespace fcs
+
 // custom <FcbPostNamespace orm>
 
 #if defined(_MSC_VER)

@@ -154,6 +154,7 @@ class Processor {
 
   //! getter for processor_ (access is Ro)
   int processor() const { return processor_; }
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Processor const& item) {
     using fcs::utils::streamers::operator<<;
@@ -186,6 +187,7 @@ class Cpu_info {
 
   //! getter for processors_ (access is Ro)
   Processor_list_t const& processors() const { return processors_; }
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Cpu_info const& item) {
     using fcs::utils::streamers::operator<<;
@@ -260,4 +262,5 @@ class Cpu_info {
 
 }  // namespace linux_specific
 }  // namespace fcs
+
 #endif  // __FCS_LINUX_SPECIFIC_CPU_INFO_HPP__

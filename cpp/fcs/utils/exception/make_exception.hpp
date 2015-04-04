@@ -26,4 +26,5 @@ inline EXCEPTION make_exception(char const* function_name, int line_number,
 }  // namespace exception
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_EXCEPTION_MAKE_EXCEPTION_HPP__

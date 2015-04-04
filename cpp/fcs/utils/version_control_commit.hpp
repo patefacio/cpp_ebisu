@@ -23,4 +23,5 @@ class Version_control_commit {
 
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_VERSION_CONTROL_COMMIT_HPP__

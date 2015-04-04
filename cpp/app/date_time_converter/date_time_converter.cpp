@@ -75,6 +75,7 @@ struct Program_options {
 
   //! getter for date_ (access is Ro)
   std::vector<std::string> const& date() const { return date_; }
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
     using fcs::utils::streamers::operator<<;

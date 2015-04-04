@@ -70,6 +70,7 @@ struct Program_options {
 
   //! getter for output_file_ (access is Ro)
   std::string const& output_file() const { return output_file_; }
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
     using fcs::utils::streamers::operator<<;

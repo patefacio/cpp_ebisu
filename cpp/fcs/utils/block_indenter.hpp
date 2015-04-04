@@ -99,4 +99,5 @@ class Block_indenter {
 
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_BLOCK_INDENTER_HPP__

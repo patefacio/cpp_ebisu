@@ -14,6 +14,7 @@ class Fixed_size_char_array {
   using Array_t = std::array<char, ARRAY_SIZE>;
 
   static constexpr int BUFFER_SIZE{ARRAY_SIZE};
+
   static constexpr int LAST_INDEX{ARRAY_SIZE - 1};
 
   // custom <ClsPublic Fixed_size_char_array>
@@ -99,4 +100,5 @@ inline std::ostream& operator<<(std::ostream& out,
 
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__

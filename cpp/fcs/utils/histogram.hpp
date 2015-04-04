@@ -51,6 +51,7 @@ class Histogram {
   using Result_vector_t = vector<T>;
 
   template <typename IT>
+
   Histogram(IT begin, IT end, int num_bins = 20)
       : num_bins_{num_bins} {
     // custom <Histogram(from_iterator)>
@@ -89,4 +90,5 @@ class Histogram {
 
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_HISTOGRAM_HPP__

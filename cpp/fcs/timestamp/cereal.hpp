@@ -7,6 +7,7 @@
 namespace fcs {
 namespace timestamp {}  // namespace timestamp
 }  // namespace fcs
+
 // custom <FcbPostNamespace cereal>
 
 namespace cereal {

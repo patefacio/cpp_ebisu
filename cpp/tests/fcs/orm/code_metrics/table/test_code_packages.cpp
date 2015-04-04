@@ -101,7 +101,6 @@ void test_code_packages() {
   // custom <code_packages>
   // end <code_packages>
 }
-
 void test_insert_update_delete_rows() {
   // testing insertion and deletion
   auto code_packages_gw = Code_packages<>::instance();

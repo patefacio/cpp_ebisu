@@ -242,6 +242,7 @@ inline std::string create_select_union(INPUT_ITERATOR begin, INPUT_ITERATOR end,
 
 }  // namespace orm
 }  // namespace fcs
+
 // custom <FcbPostNamespace otl_utils>
 // end <FcbPostNamespace otl_utils>
 

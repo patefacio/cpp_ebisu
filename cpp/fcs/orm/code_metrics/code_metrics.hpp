@@ -28,4 +28,5 @@ class Connection_code_metrics {
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_CODE_METRICS_CODE_METRICS_HPP__

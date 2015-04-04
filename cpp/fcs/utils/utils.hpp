@@ -12,4 +12,5 @@ class Version_control_commit {};
 
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_UTILS_HPP__

@@ -11,7 +11,7 @@ main() {
   Logger.root
     ..onRecord.listen((LogRecord r) =>
         print("${r.loggerName} [${r.level}]:\t${r.message}"))
-    ..level = Level.WARNING;
+    ..level = Level.OFF;
   libs.addItems();
   apps.addItems();
   schemas.addItems()

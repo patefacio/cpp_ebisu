@@ -23,6 +23,7 @@ struct Code_packages_pkey {
   bool operator!=(Code_packages_pkey const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_packages_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -67,6 +68,7 @@ struct Code_packages_value {
   bool operator!=(Code_packages_value const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_packages_value const& rhs) const {
     return name != rhs.name
                ? name < rhs.name
@@ -296,4 +298,5 @@ class Code_packages {
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__

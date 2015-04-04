@@ -34,4 +34,5 @@ inline std::ostream& operator<<(std::ostream& out,
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_MAP_HPP__

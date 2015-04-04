@@ -35,6 +35,7 @@ struct Program_options {
 
   //! getter for help_ (access is Ro)
   bool help() const { return help_; }
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
     out << "Program_options(" << &item << ") {";

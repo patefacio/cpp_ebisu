@@ -24,6 +24,7 @@ struct Code_locations_pkey {
   bool operator!=(Code_locations_pkey const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_locations_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -71,6 +72,7 @@ struct Code_locations_value {
   bool operator!=(Code_locations_value const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_locations_value const& rhs) const {
     return code_packages_id != rhs.code_packages_id
                ? code_packages_id < rhs.code_packages_id
@@ -347,4 +349,5 @@ inline void link_rows(Code_locations<>::Row_t& from_row,
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_CODE_METRICS_TABLE_CODE_LOCATIONS_HPP__

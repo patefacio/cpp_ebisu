@@ -118,13 +118,14 @@ inline std::ostream& operator<<(
 // end <ClsPreDecl Table_streamer>
 
 //! Outputs data in tabular format - like output from database query
-template <typename MatrixContainer = String_matrix_t,
-          typename T = typename MatrixContainer::value_type::value_type>
+
+template <typename MATRIX_CONTAINER = String_matrix_t>
 class Table_streamer {
  public:
-  using Row_container_t = typename MatrixContainer::value_type;
+  using Matrix_container_t = MATRIX_CONTAINER;
+  using Row_container_t = typename Matrix_container_t::value_type;
 
-  Table_streamer(MatrixContainer const& matrix_container,
+  Table_streamer(Matrix_container_t const& matrix_container,
                  String_list_t const& header = String_list_t())
       : matrix_container_{matrix_container}, header_{header} {}
 
@@ -147,9 +148,10 @@ class Table_streamer {
         size_list.assign(num_columns, 0);
       }
 
-      typename MatrixContainer::const_iterator row_it(
+      typename Matrix_container_t::const_iterator row_it(
           matrix_container_.begin());
-      typename MatrixContainer::const_iterator row_end(matrix_container_.end());
+      typename Matrix_container_t::const_iterator row_end(
+          matrix_container_.end());
       using fcs::utils::streamers::operator<<;
       for (; row_it != row_end; ++row_it) {
         String_list_t row;
@@ -190,7 +192,8 @@ class Table_streamer {
 
  private:
   //! Matrix with data to stream
-  MatrixContainer const& matrix_container_;
+  Matrix_container_t const& matrix_container_;
+
   //! List of headers for the columns
   String_list_t const& header_;
 };
@@ -198,4 +201,5 @@ class Table_streamer {
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_TABLE_HPP__

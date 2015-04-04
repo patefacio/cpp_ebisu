@@ -32,4 +32,5 @@ inline Time_duration_t::tick_type ticks(Timestamp_t t) {
 
 }  // namespace timestamp
 }  // namespace fcs
+
 #endif  // __FCS_TIMESTAMP_TIMESTAMP_HPP__

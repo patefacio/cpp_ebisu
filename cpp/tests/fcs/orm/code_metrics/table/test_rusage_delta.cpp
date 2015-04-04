@@ -71,7 +71,6 @@ void patch_rows(Code_locations<>::Row_list_t &rows) {
     link_rows(rows[i], code_packages_rows[i]);
   }
 }
-
 void patch_rows(Rusage_delta<>::Row_list_t &rows) {
   auto code_locations_rows = Code_locations<>::instance().select_all_rows();
   BOOST_ASSERT(code_locations_rows.size() == num_rows);

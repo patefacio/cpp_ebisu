@@ -62,4 +62,5 @@ inline std::ostream& operator<<(
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_PTR_MAP_HPP__

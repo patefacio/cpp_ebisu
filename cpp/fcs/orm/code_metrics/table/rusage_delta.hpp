@@ -24,6 +24,7 @@ struct Rusage_delta_pkey {
   bool operator!=(Rusage_delta_pkey const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Rusage_delta_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -81,6 +82,7 @@ struct Rusage_delta_value {
   bool operator!=(Rusage_delta_value const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Rusage_delta_value const& rhs) const {
     return code_locations_id != rhs.code_locations_id
                ? code_locations_id < rhs.code_locations_id
@@ -570,8 +572,8 @@ class Rusage_delta {
         otl_cursor::direct_exec(*connection_, "DELETE FROM rusage_delta")};
     return size_t(rows_deleted);
   }
-
   /// hdf5 goodness added here
+
  private:
   Rusage_delta() {}
 
@@ -589,4 +591,5 @@ inline void link_rows(Rusage_delta<>::Row_t& from_row,
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_CODE_METRICS_TABLE_RUSAGE_DELTA_HPP__

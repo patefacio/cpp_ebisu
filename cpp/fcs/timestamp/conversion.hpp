@@ -101,4 +101,5 @@ time_t to_time_t(Timestamp_t t) {
 
 }  // namespace timestamp
 }  // namespace fcs
+
 #endif  // __FCS_TIMESTAMP_CONVERSION_HPP__

@@ -21,4 +21,5 @@ inline std::ostream& operator<<(std::ostream& out,
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_PTR_SET_HPP__

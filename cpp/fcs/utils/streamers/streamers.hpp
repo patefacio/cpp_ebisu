@@ -78,4 +78,5 @@ inline std::string stream_to_string(T const& t) {
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_STREAMERS_HPP__

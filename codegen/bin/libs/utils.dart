@@ -205,21 +205,21 @@ addItems() {
       ]
       ..classes = [
         class_('table_streamer')
-        ..usings = [
-          'Row_container_t = typename MatrixContainer::value_type',
-        ]
-        ..brief = 'Outputs data in tabular format - like output from database query'
         ..template = [
           'typename MatrixContainer = String_matrix_t',
-          'typename T = typename MatrixContainer::value_type::value_type'
         ]
+        ..usings = [
+          using('matrix_container', 'MATRIX_CONTAINER'),
+          using('row_container', 'typename Matrix_container_t::value_type'),
+        ]
+        ..brief = 'Outputs data in tabular format - like output from database query'
         ..customBlocks = [ clsPublic, clsPreDecl ]
         ..members = [
           member('matrix_container')
           ..refType = cref
           ..isByRef = true
           ..brief = 'Matrix with data to stream'
-          ..type = 'MatrixContainer',
+          ..type = 'Matrix_container_t',
           member('header')
           ..refType = cref
           ..isByRef = true

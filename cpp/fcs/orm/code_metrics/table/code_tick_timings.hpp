@@ -24,6 +24,7 @@ struct Code_tick_timings_pkey {
   bool operator!=(Code_tick_timings_pkey const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_tick_timings_pkey const& rhs) const {
     return id != rhs.id ? id < rhs.id : (false);
   }
@@ -73,6 +74,7 @@ struct Code_tick_timings_value {
   bool operator!=(Code_tick_timings_value const& rhs) const {
     return !(*this == rhs);
   }
+
   bool operator<(Code_tick_timings_value const& rhs) const {
     return code_locations_id != rhs.code_locations_id
                ? code_locations_id < rhs.code_locations_id
@@ -390,4 +392,5 @@ inline void link_rows(Code_tick_timings<>::Row_t& from_row,
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace fcs
+
 #endif  // __FCS_ORM_CODE_METRICS_TABLE_CODE_TICK_TIMINGS_HPP__

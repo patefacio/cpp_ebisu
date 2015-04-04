@@ -191,4 +191,5 @@ inline Random_source &operator>>(Random_source &source, otl_datetime &date) {
 }  // namespace streamers
 }  // namespace utils
 }  // namespace fcs
+
 #endif  // __FCS_UTILS_STREAMERS_RANDOM_HPP__

@@ -24,7 +24,6 @@ void test_change_tracker_next_value() {
 
   // end <change_tracker_next_value>
 }
-
 void test_change_until_end_of_block() {
   // custom <change_until_end_of_block>
   int x{1};

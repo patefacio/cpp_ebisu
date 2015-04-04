@@ -25,8 +25,10 @@ final orm = lib('orm')
       ..template = [ 'int OTL_LOG_LEVEL = 0' ],
     ]
     ..usings = [
-      'String_list_t = std::vector< std::string >',
-      'String_table_t = std::vector< String_list_t >',
+      using('string_list', 'std::vector< std::string >')
+      ..doc = 'List of strings',
+      using('string_table', 'std::vector< String_list_t >')
+      ..doc = 'Standard table of strings',
       'Date_t = boost::gregorian::date',
       'Date_set_t = std::set< Date_t >',
     ],

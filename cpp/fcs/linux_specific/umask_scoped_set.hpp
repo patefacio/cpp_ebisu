@@ -35,4 +35,5 @@ class Umask_scoped_set {
 
 }  // namespace linux_specific
 }  // namespace fcs
+
 #endif  // __FCS_LINUX_SPECIFIC_UMASK_SCOPED_SET_HPP__
