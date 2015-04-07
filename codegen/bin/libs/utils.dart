@@ -138,6 +138,7 @@ final _containers = {
   'set' : [ _core, 'iosfwd', 'set' ],
   'map' : [ _core, 'iosfwd', 'map' ],
   'list' : [ _core, 'iosfwd', 'list' ],
+  'array': [ _core, 'iosfwd', 'array' ],
   'deque' : [ _core, 'iosfwd', 'deque' ],
   'ptr_map' : [ _core, 'boost/ptr_container/ptr_map.hpp', 'iosfwd' ],
   'ptr_set' : [ _core, 'boost/ptr_container/ptr_set.hpp', 'iosfwd' ],

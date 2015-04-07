@@ -21,10 +21,13 @@ main() {
         ..decorateWith(packetTableDecorator(
                 [
                   logGroup('rusage_delta'),
-                ]))
-        ..generate();
+                ]));
 
-      print(fcsInstallation.progeny.map((c) => '  ${c.runtimeType}:${c.id}\n').toList());
+      //      print(fcsInstallation.allIncludes);
+
+      fcsInstallation.generate();
+
+      //print(fcsInstallation.progeny.map((c) => '  ${c.runtimeType}:${c.id}\n').toList());
 
       // installation
       //   .progeny
