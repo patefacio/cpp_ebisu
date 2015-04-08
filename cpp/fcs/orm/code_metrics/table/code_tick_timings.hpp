@@ -5,6 +5,7 @@
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
+#include "fcs/utils/block_indenter.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
 #include <iosfwd>
@@ -29,6 +30,14 @@ struct Code_tick_timings_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_tick_timings_pkey const& item) {
+    out << "Code_tick_timings_pkey(" << &item << ") {";
+    out << "\n  id:" << item.id;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
@@ -40,14 +49,6 @@ struct Code_tick_timings_pkey {
   }
 
   int32_t id;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_tick_timings_pkey const& item) {
-    out << "Code_tick_timings_pkey(" << &item << ") {";
-    out << "\n  id: " << item.id;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,
@@ -97,6 +98,21 @@ struct Code_tick_timings_value {
                                                                 : (false))))))));
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_tick_timings_value const& item) {
+    out << "Code_tick_timings_value(" << &item << ") {";
+    out << "\n  code_locations_id:" << item.code_locations_id;
+    out << "\n  created:" << item.created;
+    out << "\n  start_processor:" << item.start_processor;
+    out << "\n  end_processor:" << item.end_processor;
+    out << "\n  cpu_mhz:" << item.cpu_mhz;
+    out << "\n  debug:" << item.debug;
+    out << "\n  ticks:" << item.ticks;
+    out << "\n  normalized_ns:" << item.normalized_ns;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("code_locations_id");
@@ -129,21 +145,6 @@ struct Code_tick_timings_value {
   int32_t debug;
   Orm_bigint_t ticks;
   Orm_bigint_t normalized_ns;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_tick_timings_value const& item) {
-    out << "Code_tick_timings_value(" << &item << ") {";
-    out << "\n  code_locations_id: " << item.code_locations_id;
-    out << "\n  created: " << item.created;
-    out << "\n  start_processor: " << item.start_processor;
-    out << "\n  end_processor: " << item.end_processor;
-    out << "\n  cpu_mhz: " << item.cpu_mhz;
-    out << "\n  debug: " << item.debug;
-    out << "\n  ticks: " << item.ticks;
-    out << "\n  normalized_ns: " << item.normalized_ns;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,

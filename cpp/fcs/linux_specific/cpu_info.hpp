@@ -2,6 +2,7 @@
 #define __FCS_LINUX_SPECIFIC_CPU_INFO_HPP__
 
 #include "fcs/linux_specific/linux_exceptions.hpp"
+#include "fcs/utils/block_indenter.hpp"
 #include "fcs/utils/exception/make_exception.hpp"
 #include "fcs/utils/streamers/map.hpp"
 #include "fcs/utils/streamers/vector.hpp"
@@ -28,6 +29,16 @@ class Processor {
 
   Processor(int processor, Proc_map_t const& proc_map)
       : processor_{processor}, proc_map_{proc_map} {}
+
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Processor const& item) {
+    using fcs::utils::streamers::operator<<;
+    out << "Processor(" << &item << ") {";
+    out << "\n  proc_map:" << item.proc_map_;
+    out << "\n  processor:" << item.processor_;
+    out << "\n}\n";
+    return out;
+  }
 
   std::string vendor_id() const {
     auto found = proc_map_.find("vendor_id");
@@ -155,16 +166,6 @@ class Processor {
   //! getter for processor_ (access is Ro)
   int processor() const { return processor_; }
 
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Processor const& item) {
-    using fcs::utils::streamers::operator<<;
-    out << "Processor(" << &item << ") {";
-    out << "\n  proc_map: " << item.proc_map_;
-    out << "\n  processor: " << item.processor_;
-    out << "\n}\n";
-    return out;
-  }
-
  private:
   Proc_map_t proc_map_{};
   int processor_{};
@@ -180,6 +181,15 @@ using Processor_list_t = std::vector<Processor>;
 */
 class Cpu_info {
  public:
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Cpu_info const& item) {
+    using fcs::utils::streamers::operator<<;
+    out << "Cpu_info(" << &item << ") {";
+    out << "\n  processors:" << item.processors_;
+    out << "\n}\n";
+    return out;
+  }
+
   static Cpu_info& instance() {
     static Cpu_info instance_s;
     return instance_s;
@@ -187,15 +197,6 @@ class Cpu_info {
 
   //! getter for processors_ (access is Ro)
   Processor_list_t const& processors() const { return processors_; }
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Cpu_info const& item) {
-    using fcs::utils::streamers::operator<<;
-    out << "Cpu_info(" << &item << ") {";
-    out << "\n  processors: " << item.processors_;
-    out << "\n}\n";
-    return out;
-  }
 
  private:
   // custom <ClsPrivate Cpu_info>

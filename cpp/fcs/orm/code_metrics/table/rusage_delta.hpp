@@ -5,6 +5,7 @@
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
+#include "fcs/utils/block_indenter.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
 #include <iosfwd>
@@ -29,6 +30,14 @@ struct Rusage_delta_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Rusage_delta_pkey const& item) {
+    out << "Rusage_delta_pkey(" << &item << ") {";
+    out << "\n  id:" << item.id;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
@@ -40,14 +49,6 @@ struct Rusage_delta_pkey {
   }
 
   int32_t id;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Rusage_delta_pkey const& item) {
-    out << "Rusage_delta_pkey(" << &item << ") {";
-    out << "\n  id: " << item.id;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out, Rusage_delta_pkey const& value) {
@@ -122,6 +123,37 @@ struct Rusage_delta_value {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ? ru_nivcsw <
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       rhs.ru_nivcsw
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 : (false))))))))))))))))))))))));
+  }
+
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Rusage_delta_value const& item) {
+    out << "Rusage_delta_value(" << &item << ") {";
+    out << "\n  code_locations_id:" << item.code_locations_id;
+    out << "\n  created:" << item.created;
+    out << "\n  start_processor:" << item.start_processor;
+    out << "\n  end_processor:" << item.end_processor;
+    out << "\n  cpu_mhz:" << item.cpu_mhz;
+    out << "\n  debug:" << item.debug;
+    out << "\n  user_time_sec:" << item.user_time_sec;
+    out << "\n  user_time_usec:" << item.user_time_usec;
+    out << "\n  system_time_sec:" << item.system_time_sec;
+    out << "\n  system_time_usec:" << item.system_time_usec;
+    out << "\n  ru_maxrss:" << item.ru_maxrss;
+    out << "\n  ru_ixrss:" << item.ru_ixrss;
+    out << "\n  ru_idrss:" << item.ru_idrss;
+    out << "\n  ru_isrss:" << item.ru_isrss;
+    out << "\n  ru_minflt:" << item.ru_minflt;
+    out << "\n  ru_majflt:" << item.ru_majflt;
+    out << "\n  ru_nswap:" << item.ru_nswap;
+    out << "\n  ru_inblock:" << item.ru_inblock;
+    out << "\n  ru_oublock:" << item.ru_oublock;
+    out << "\n  ru_msgsnd:" << item.ru_msgsnd;
+    out << "\n  ru_msgrcv:" << item.ru_msgrcv;
+    out << "\n  ru_nsignals:" << item.ru_nsignals;
+    out << "\n  ru_nvcsw:" << item.ru_nvcsw;
+    out << "\n  ru_nivcsw:" << item.ru_nivcsw;
+    out << "\n}\n";
+    return out;
   }
 
   /// Access to list of names of members
@@ -204,37 +236,6 @@ struct Rusage_delta_value {
   Orm_bigint_t ru_nsignals;
   Orm_bigint_t ru_nvcsw;
   Orm_bigint_t ru_nivcsw;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Rusage_delta_value const& item) {
-    out << "Rusage_delta_value(" << &item << ") {";
-    out << "\n  code_locations_id: " << item.code_locations_id;
-    out << "\n  created: " << item.created;
-    out << "\n  start_processor: " << item.start_processor;
-    out << "\n  end_processor: " << item.end_processor;
-    out << "\n  cpu_mhz: " << item.cpu_mhz;
-    out << "\n  debug: " << item.debug;
-    out << "\n  user_time_sec: " << item.user_time_sec;
-    out << "\n  user_time_usec: " << item.user_time_usec;
-    out << "\n  system_time_sec: " << item.system_time_sec;
-    out << "\n  system_time_usec: " << item.system_time_usec;
-    out << "\n  ru_maxrss: " << item.ru_maxrss;
-    out << "\n  ru_ixrss: " << item.ru_ixrss;
-    out << "\n  ru_idrss: " << item.ru_idrss;
-    out << "\n  ru_isrss: " << item.ru_isrss;
-    out << "\n  ru_minflt: " << item.ru_minflt;
-    out << "\n  ru_majflt: " << item.ru_majflt;
-    out << "\n  ru_nswap: " << item.ru_nswap;
-    out << "\n  ru_inblock: " << item.ru_inblock;
-    out << "\n  ru_oublock: " << item.ru_oublock;
-    out << "\n  ru_msgsnd: " << item.ru_msgsnd;
-    out << "\n  ru_msgrcv: " << item.ru_msgrcv;
-    out << "\n  ru_nsignals: " << item.ru_nsignals;
-    out << "\n  ru_nvcsw: " << item.ru_nvcsw;
-    out << "\n  ru_nivcsw: " << item.ru_nivcsw;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,

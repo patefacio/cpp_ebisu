@@ -4,6 +4,7 @@
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
+#include "fcs/utils/block_indenter.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
 #include <iosfwd>
@@ -28,6 +29,14 @@ struct Code_packages_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_packages_pkey const& item) {
+    out << "Code_packages_pkey(" << &item << ") {";
+    out << "\n  id:" << item.id;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
@@ -39,14 +48,6 @@ struct Code_packages_pkey {
   }
 
   int32_t id;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_packages_pkey const& item) {
-    out << "Code_packages_pkey(" << &item << ") {";
-    out << "\n  id: " << item.id;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,
@@ -75,6 +76,15 @@ struct Code_packages_value {
                : (descr != rhs.descr ? descr < rhs.descr : (false));
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_packages_value const& item) {
+    out << "Code_packages_value(" << &item << ") {";
+    out << "\n  name:" << item.name;
+    out << "\n  descr:" << item.descr;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("name");
@@ -89,15 +99,6 @@ struct Code_packages_value {
 
   fcs::utils::Fixed_size_char_array<64> name;
   fcs::utils::Fixed_size_char_array<256> descr;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_packages_value const& item) {
-    out << "Code_packages_value(" << &item << ") {";
-    out << "\n  name: " << item.name;
-    out << "\n  descr: " << item.descr;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,

@@ -5,6 +5,7 @@
 #include "fcs/orm/code_metrics/code_metrics.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
+#include "fcs/utils/block_indenter.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
 #include <iosfwd>
@@ -29,6 +30,14 @@ struct Code_locations_pkey {
     return id != rhs.id ? id < rhs.id : (false);
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_locations_pkey const& item) {
+    out << "Code_locations_pkey(" << &item << ") {";
+    out << "\n  id:" << item.id;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("id");
@@ -40,14 +49,6 @@ struct Code_locations_pkey {
   }
 
   int32_t id;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_locations_pkey const& item) {
-    out << "Code_locations_pkey(" << &item << ") {";
-    out << "\n  id: " << item.id;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,
@@ -87,6 +88,18 @@ struct Code_locations_value {
                                            : (false)))));
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Code_locations_value const& item) {
+    out << "Code_locations_value(" << &item << ") {";
+    out << "\n  code_packages_id:" << item.code_packages_id;
+    out << "\n  label:" << item.label;
+    out << "\n  file_name:" << item.file_name;
+    out << "\n  line_number:" << item.line_number;
+    out << "\n  git_commit:" << item.git_commit;
+    out << "\n}\n";
+    return out;
+  }
+
   /// Access to list of names of members
   static inline void member_names_list(String_list_t& out) {
     out.push_back("code_packages_id");
@@ -110,18 +123,6 @@ struct Code_locations_value {
   fcs::utils::Fixed_size_char_array<256> file_name;
   int32_t line_number;
   fcs::utils::Fixed_size_char_array<40> git_commit;
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Code_locations_value const& item) {
-    out << "Code_locations_value(" << &item << ") {";
-    out << "\n  code_packages_id: " << item.code_packages_id;
-    out << "\n  label: " << item.label;
-    out << "\n  file_name: " << item.file_name;
-    out << "\n  line_number: " << item.line_number;
-    out << "\n  git_commit: " << item.git_commit;
-    out << "\n}\n";
-    return out;
-  }
 };
 
 inline otl_stream& operator<<(otl_stream& out,

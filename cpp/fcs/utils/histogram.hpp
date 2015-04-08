@@ -67,13 +67,10 @@ class Histogram {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Histogram const& item) {
-    using fcs::utils::streamers::operator<<;
-    fcs::utils::Block_indenter indenter;
-    char const* indent(indenter.current_indentation_text());
-    out << '\n' << indent << "Histogram(" << &item << ") {";
-    out << '\n' << indent << "  num_bins:" << item.num_bins_;
-    out << '\n' << indent << "  results:" << item.results_;
-    out << '\n' << indent << "}\n";
+    out << "Histogram(" << &item << ") {";
+    out << "\n  num_bins:" << item.num_bins_;
+    out << "\n  results:" << item.results_;
+    out << "\n}\n";
     return out;
   }
 

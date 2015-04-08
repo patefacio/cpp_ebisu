@@ -1,3 +1,4 @@
+#include "fcs/utils/block_indenter.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
 
@@ -16,9 +17,9 @@ struct Program_options {
   static boost::program_options::options_description const& description() {
     using namespace boost::program_options;
     char const* descr = R"(
-    null
+  null
 
-    AllowedOptions)";
+  AllowedOptions)";
 
     static options_description options{descr};
 
@@ -33,16 +34,16 @@ struct Program_options {
     out.flush();
   }
 
-  //! getter for help_ (access is Ro)
-  bool help() const { return help_; }
-
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
     out << "Program_options(" << &item << ") {";
-    out << "\n  help: " << item.help_;
+    out << "\n  help:" << item.help_;
     out << "\n}\n";
     return out;
   }
+
+  //! getter for help_ (access is Ro)
+  bool help() const { return help_; }
 
  private:
   bool help_{};

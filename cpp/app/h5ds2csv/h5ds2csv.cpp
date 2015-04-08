@@ -1,3 +1,4 @@
+#include "fcs/utils/block_indenter.hpp"
 #include "fcs/utils/streamers/containers.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
@@ -36,9 +37,9 @@ struct Program_options {
   static boost::program_options::options_description const& description() {
     using namespace boost::program_options;
     char const* descr = R"(
-    Converts data_sets in hdf5 files to csv
+  Converts data_sets in hdf5 files to csv
 
-    AllowedOptions)";
+  AllowedOptions)";
 
     static options_description options{descr};
 
@@ -59,6 +60,18 @@ struct Program_options {
     out.flush();
   }
 
+  friend inline std::ostream& operator<<(std::ostream& out,
+                                         Program_options const& item) {
+    using fcs::utils::streamers::operator<<;
+    out << "Program_options(" << &item << ") {";
+    out << "\n  help:" << item.help_;
+    out << "\n  data_set:" << item.data_set_;
+    out << "\n  input_file:" << item.input_file_;
+    out << "\n  output_file:" << item.output_file_;
+    out << "\n}\n";
+    return out;
+  }
+
   //! getter for help_ (access is Ro)
   bool help() const { return help_; }
 
@@ -70,18 +83,6 @@ struct Program_options {
 
   //! getter for output_file_ (access is Ro)
   std::string const& output_file() const { return output_file_; }
-
-  friend inline std::ostream& operator<<(std::ostream& out,
-                                         Program_options const& item) {
-    using fcs::utils::streamers::operator<<;
-    out << "Program_options(" << &item << ") {";
-    out << "\n  help: " << item.help_;
-    out << "\n  data_set: " << item.data_set_;
-    out << "\n  input_file: " << item.input_file_;
-    out << "\n  output_file: " << item.output_file_;
-    out << "\n}\n";
-    return out;
-  }
 
  private:
   bool help_{};
