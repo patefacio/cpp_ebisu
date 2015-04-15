@@ -323,35 +323,35 @@ class Rusage_delta {
   Row_list_t select_all_rows(std::string const& where_clause = "") {
     Row_list_t found;
     char const* select_stmt = R"(
-        select
-          id,
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          user_time_sec,
-          user_time_usec,
-          system_time_sec,
-          system_time_usec,
-          ru_maxrss,
-          ru_ixrss,
-          ru_idrss,
-          ru_isrss,
-          ru_minflt,
-          ru_majflt,
-          ru_nswap,
-          ru_inblock,
-          ru_oublock,
-          ru_msgsnd,
-          ru_msgrcv,
-          ru_nsignals,
-          ru_nvcsw,
-          ru_nivcsw
-        from
-          rusage_delta
-      )";
+      select
+        id,
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        user_time_sec,
+        user_time_usec,
+        system_time_sec,
+        system_time_usec,
+        ru_maxrss,
+        ru_ixrss,
+        ru_idrss,
+        ru_isrss,
+        ru_minflt,
+        ru_majflt,
+        ru_nswap,
+        ru_inblock,
+        ru_oublock,
+        ru_msgsnd,
+        ru_msgrcv,
+        ru_nsignals,
+        ru_nvcsw,
+        ru_nivcsw
+      from
+        rusage_delta
+    )";
 
     otl_stream stream{50,
                       where_clause.empty()
@@ -369,36 +369,36 @@ class Rusage_delta {
 
   bool find_row_by_key(Pkey_t const& desideratum, Value_t& found) {
     char const* select_stmt = R"(
-        select
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          user_time_sec,
-          user_time_usec,
-          system_time_sec,
-          system_time_usec,
-          ru_maxrss,
-          ru_ixrss,
-          ru_idrss,
-          ru_isrss,
-          ru_minflt,
-          ru_majflt,
-          ru_nswap,
-          ru_inblock,
-          ru_oublock,
-          ru_msgsnd,
-          ru_msgrcv,
-          ru_nsignals,
-          ru_nvcsw,
-          ru_nivcsw
-        from
-          rusage_delta
-        where
-          id=:id<int>
-      )";
+      select
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        user_time_sec,
+        user_time_usec,
+        system_time_sec,
+        system_time_usec,
+        ru_maxrss,
+        ru_ixrss,
+        ru_idrss,
+        ru_isrss,
+        ru_minflt,
+        ru_majflt,
+        ru_nswap,
+        ru_inblock,
+        ru_oublock,
+        ru_msgsnd,
+        ru_msgrcv,
+        ru_nsignals,
+        ru_nvcsw,
+        ru_nivcsw
+      from
+        rusage_delta
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum;
@@ -411,36 +411,36 @@ class Rusage_delta {
 
   bool find_row_by_value(Row_t& desideratum) {
     char const* select_stmt = R"(
-        select
-          id
-        from
-          rusage_delta
-        where
-          code_locations_id=:code_locations_id<int> AND
-          created=:created<timestamp> AND
-          start_processor=:start_processor<int> AND
-          end_processor=:end_processor<int> AND
-          cpu_mhz=:cpu_mhz<double> AND
-          debug=:debug<int> AND
-          user_time_sec=:user_time_sec<bigint> AND
-          user_time_usec=:user_time_usec<bigint> AND
-          system_time_sec=:system_time_sec<bigint> AND
-          system_time_usec=:system_time_usec<bigint> AND
-          ru_maxrss=:ru_maxrss<bigint> AND
-          ru_ixrss=:ru_ixrss<bigint> AND
-          ru_idrss=:ru_idrss<bigint> AND
-          ru_isrss=:ru_isrss<bigint> AND
-          ru_minflt=:ru_minflt<bigint> AND
-          ru_majflt=:ru_majflt<bigint> AND
-          ru_nswap=:ru_nswap<bigint> AND
-          ru_inblock=:ru_inblock<bigint> AND
-          ru_oublock=:ru_oublock<bigint> AND
-          ru_msgsnd=:ru_msgsnd<bigint> AND
-          ru_msgrcv=:ru_msgrcv<bigint> AND
-          ru_nsignals=:ru_nsignals<bigint> AND
-          ru_nvcsw=:ru_nvcsw<bigint> AND
-          ru_nivcsw=:ru_nivcsw<bigint>
-      )";
+      select
+        id
+      from
+        rusage_delta
+      where
+        code_locations_id=:code_locations_id<int> AND
+        created=:created<timestamp> AND
+        start_processor=:start_processor<int> AND
+        end_processor=:end_processor<int> AND
+        cpu_mhz=:cpu_mhz<double> AND
+        debug=:debug<int> AND
+        user_time_sec=:user_time_sec<bigint> AND
+        user_time_usec=:user_time_usec<bigint> AND
+        system_time_sec=:system_time_sec<bigint> AND
+        system_time_usec=:system_time_usec<bigint> AND
+        ru_maxrss=:ru_maxrss<bigint> AND
+        ru_ixrss=:ru_ixrss<bigint> AND
+        ru_idrss=:ru_idrss<bigint> AND
+        ru_isrss=:ru_isrss<bigint> AND
+        ru_minflt=:ru_minflt<bigint> AND
+        ru_majflt=:ru_majflt<bigint> AND
+        ru_nswap=:ru_nswap<bigint> AND
+        ru_inblock=:ru_inblock<bigint> AND
+        ru_oublock=:ru_oublock<bigint> AND
+        ru_msgsnd=:ru_msgsnd<bigint> AND
+        ru_msgrcv=:ru_msgrcv<bigint> AND
+        ru_nsignals=:ru_nsignals<bigint> AND
+        ru_nvcsw=:ru_nvcsw<bigint> AND
+        ru_nivcsw=:ru_nivcsw<bigint>
+    )";
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum.second;
     if (!stream.eof()) {
@@ -455,59 +455,59 @@ class Rusage_delta {
       return;
     }
     char const* insert_stmt = R"(
-        insert into rusage_delta (
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          user_time_sec,
-          user_time_usec,
-          system_time_sec,
-          system_time_usec,
-          ru_maxrss,
-          ru_ixrss,
-          ru_idrss,
-          ru_isrss,
-          ru_minflt,
-          ru_majflt,
-          ru_nswap,
-          ru_inblock,
-          ru_oublock,
-          ru_msgsnd,
-          ru_msgrcv,
-          ru_nsignals,
-          ru_nvcsw,
-          ru_nivcsw
-        )
-        values (
-          :code_locations_id<int>,
-          :created<timestamp>,
-          :start_processor<int>,
-          :end_processor<int>,
-          :cpu_mhz<double>,
-          :debug<int>,
-          :user_time_sec<bigint>,
-          :user_time_usec<bigint>,
-          :system_time_sec<bigint>,
-          :system_time_usec<bigint>,
-          :ru_maxrss<bigint>,
-          :ru_ixrss<bigint>,
-          :ru_idrss<bigint>,
-          :ru_isrss<bigint>,
-          :ru_minflt<bigint>,
-          :ru_majflt<bigint>,
-          :ru_nswap<bigint>,
-          :ru_inblock<bigint>,
-          :ru_oublock<bigint>,
-          :ru_msgsnd<bigint>,
-          :ru_msgrcv<bigint>,
-          :ru_nsignals<bigint>,
-          :ru_nvcsw<bigint>,
-          :ru_nivcsw<bigint>
-        )
-      )";
+      insert into rusage_delta (
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        user_time_sec,
+        user_time_usec,
+        system_time_sec,
+        system_time_usec,
+        ru_maxrss,
+        ru_ixrss,
+        ru_idrss,
+        ru_isrss,
+        ru_minflt,
+        ru_majflt,
+        ru_nswap,
+        ru_inblock,
+        ru_oublock,
+        ru_msgsnd,
+        ru_msgrcv,
+        ru_nsignals,
+        ru_nvcsw,
+        ru_nivcsw
+      )
+      values (
+        :code_locations_id<int>,
+        :created<timestamp>,
+        :start_processor<int>,
+        :end_processor<int>,
+        :cpu_mhz<double>,
+        :debug<int>,
+        :user_time_sec<bigint>,
+        :user_time_usec<bigint>,
+        :system_time_sec<bigint>,
+        :system_time_usec<bigint>,
+        :ru_maxrss<bigint>,
+        :ru_ixrss<bigint>,
+        :ru_idrss<bigint>,
+        :ru_isrss<bigint>,
+        :ru_minflt<bigint>,
+        :ru_majflt<bigint>,
+        :ru_nswap<bigint>,
+        :ru_inblock<bigint>,
+        :ru_oublock<bigint>,
+        :ru_msgsnd<bigint>,
+        :ru_msgrcv<bigint>,
+        :ru_nsignals<bigint>,
+        :ru_nvcsw<bigint>,
+        :ru_nivcsw<bigint>
+      )
+    )";
     otl_stream stream{50, insert_stmt, *connection_};
     for (auto const& row : nascent) {
       stream << row.second;
@@ -520,35 +520,35 @@ class Rusage_delta {
     }
 
     char const* update_stmt = R"(
-        update rusage_delta
-        set
-          code_locations_id=:code_locations_id<int>,
-          created=:created<timestamp>,
-          start_processor=:start_processor<int>,
-          end_processor=:end_processor<int>,
-          cpu_mhz=:cpu_mhz<double>,
-          debug=:debug<int>,
-          user_time_sec=:user_time_sec<bigint>,
-          user_time_usec=:user_time_usec<bigint>,
-          system_time_sec=:system_time_sec<bigint>,
-          system_time_usec=:system_time_usec<bigint>,
-          ru_maxrss=:ru_maxrss<bigint>,
-          ru_ixrss=:ru_ixrss<bigint>,
-          ru_idrss=:ru_idrss<bigint>,
-          ru_isrss=:ru_isrss<bigint>,
-          ru_minflt=:ru_minflt<bigint>,
-          ru_majflt=:ru_majflt<bigint>,
-          ru_nswap=:ru_nswap<bigint>,
-          ru_inblock=:ru_inblock<bigint>,
-          ru_oublock=:ru_oublock<bigint>,
-          ru_msgsnd=:ru_msgsnd<bigint>,
-          ru_msgrcv=:ru_msgrcv<bigint>,
-          ru_nsignals=:ru_nsignals<bigint>,
-          ru_nvcsw=:ru_nvcsw<bigint>,
-          ru_nivcsw=:ru_nivcsw<bigint>
-        where
-          id=:id<int>
-      )";
+      update rusage_delta
+      set
+        code_locations_id=:code_locations_id<int>,
+        created=:created<timestamp>,
+        start_processor=:start_processor<int>,
+        end_processor=:end_processor<int>,
+        cpu_mhz=:cpu_mhz<double>,
+        debug=:debug<int>,
+        user_time_sec=:user_time_sec<bigint>,
+        user_time_usec=:user_time_usec<bigint>,
+        system_time_sec=:system_time_sec<bigint>,
+        system_time_usec=:system_time_usec<bigint>,
+        ru_maxrss=:ru_maxrss<bigint>,
+        ru_ixrss=:ru_ixrss<bigint>,
+        ru_idrss=:ru_idrss<bigint>,
+        ru_isrss=:ru_isrss<bigint>,
+        ru_minflt=:ru_minflt<bigint>,
+        ru_majflt=:ru_majflt<bigint>,
+        ru_nswap=:ru_nswap<bigint>,
+        ru_inblock=:ru_inblock<bigint>,
+        ru_oublock=:ru_oublock<bigint>,
+        ru_msgsnd=:ru_msgsnd<bigint>,
+        ru_msgrcv=:ru_msgrcv<bigint>,
+        ru_nsignals=:ru_nsignals<bigint>,
+        ru_nvcsw=:ru_nvcsw<bigint>,
+        ru_nivcsw=:ru_nivcsw<bigint>
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream(1, update_stmt, *connection_);
     for (auto const& row : changing) {
@@ -558,12 +558,12 @@ class Rusage_delta {
 
   void delete_row(Pkey_t const& moribund) {
     char const* delete_stmt = R"(
-        delete
-        from rusage_delta
-        where
-      id=:id<int>
+      delete
+      from rusage_delta
+      where
+    id=:id<int>
 
-      )";
+    )";
     otl_stream stream{50, delete_stmt, *connection_};
     stream << moribund;
   }

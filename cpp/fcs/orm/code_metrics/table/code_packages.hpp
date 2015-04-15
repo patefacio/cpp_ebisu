@@ -170,13 +170,13 @@ class Code_packages {
   Row_list_t select_all_rows(std::string const& where_clause = "") {
     Row_list_t found;
     char const* select_stmt = R"(
-        select
-          id,
-          name,
-          descr
-        from
-          code_packages
-      )";
+      select
+        id,
+        name,
+        descr
+      from
+        code_packages
+    )";
 
     otl_stream stream{50,
                       where_clause.empty()
@@ -194,14 +194,14 @@ class Code_packages {
 
   bool find_row_by_key(Pkey_t const& desideratum, Value_t& found) {
     char const* select_stmt = R"(
-        select
-          name,
-          descr
-        from
-          code_packages
-        where
-          id=:id<int>
-      )";
+      select
+        name,
+        descr
+      from
+        code_packages
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum;
@@ -214,14 +214,14 @@ class Code_packages {
 
   bool find_row_by_value(Row_t& desideratum) {
     char const* select_stmt = R"(
-        select
-          id
-        from
-          code_packages
-        where
-          name=:name<char[64]> AND
-          descr=:descr<char[256]>
-      )";
+      select
+        id
+      from
+        code_packages
+      where
+        name=:name<char[64]> AND
+        descr=:descr<char[256]>
+    )";
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum.second;
     if (!stream.eof()) {
@@ -236,15 +236,15 @@ class Code_packages {
       return;
     }
     char const* insert_stmt = R"(
-        insert into code_packages (
-          name,
-          descr
-        )
-        values (
-          :name<char[64]>,
-          :descr<char[256]>
-        )
-      )";
+      insert into code_packages (
+        name,
+        descr
+      )
+      values (
+        :name<char[64]>,
+        :descr<char[256]>
+      )
+    )";
     otl_stream stream{50, insert_stmt, *connection_};
     for (auto const& row : nascent) {
       stream << row.second;
@@ -257,13 +257,13 @@ class Code_packages {
     }
 
     char const* update_stmt = R"(
-        update code_packages
-        set
-          name=:name<char[64]>,
-          descr=:descr<char[256]>
-        where
-          id=:id<int>
-      )";
+      update code_packages
+      set
+        name=:name<char[64]>,
+        descr=:descr<char[256]>
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream(1, update_stmt, *connection_);
     for (auto const& row : changing) {
@@ -273,12 +273,12 @@ class Code_packages {
 
   void delete_row(Pkey_t const& moribund) {
     char const* delete_stmt = R"(
-        delete
-        from code_packages
-        where
-      id=:id<int>
+      delete
+      from code_packages
+      where
+    id=:id<int>
 
-      )";
+    )";
     otl_stream stream{50, delete_stmt, *connection_};
     stream << moribund;
   }

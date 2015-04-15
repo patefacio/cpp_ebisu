@@ -221,19 +221,19 @@ class Code_tick_timings {
   Row_list_t select_all_rows(std::string const& where_clause = "") {
     Row_list_t found;
     char const* select_stmt = R"(
-        select
-          id,
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          ticks,
-          normalized_ns
-        from
-          code_tick_timings
-      )";
+      select
+        id,
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        ticks,
+        normalized_ns
+      from
+        code_tick_timings
+    )";
 
     otl_stream stream{50,
                       where_clause.empty()
@@ -251,20 +251,20 @@ class Code_tick_timings {
 
   bool find_row_by_key(Pkey_t const& desideratum, Value_t& found) {
     char const* select_stmt = R"(
-        select
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          ticks,
-          normalized_ns
-        from
-          code_tick_timings
-        where
-          id=:id<int>
-      )";
+      select
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        ticks,
+        normalized_ns
+      from
+        code_tick_timings
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum;
@@ -277,20 +277,20 @@ class Code_tick_timings {
 
   bool find_row_by_value(Row_t& desideratum) {
     char const* select_stmt = R"(
-        select
-          id
-        from
-          code_tick_timings
-        where
-          code_locations_id=:code_locations_id<int> AND
-          created=:created<timestamp> AND
-          start_processor=:start_processor<int> AND
-          end_processor=:end_processor<int> AND
-          cpu_mhz=:cpu_mhz<double> AND
-          debug=:debug<int> AND
-          ticks=:ticks<bigint> AND
-          normalized_ns=:normalized_ns<bigint>
-      )";
+      select
+        id
+      from
+        code_tick_timings
+      where
+        code_locations_id=:code_locations_id<int> AND
+        created=:created<timestamp> AND
+        start_processor=:start_processor<int> AND
+        end_processor=:end_processor<int> AND
+        cpu_mhz=:cpu_mhz<double> AND
+        debug=:debug<int> AND
+        ticks=:ticks<bigint> AND
+        normalized_ns=:normalized_ns<bigint>
+    )";
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum.second;
     if (!stream.eof()) {
@@ -305,27 +305,27 @@ class Code_tick_timings {
       return;
     }
     char const* insert_stmt = R"(
-        insert into code_tick_timings (
-          code_locations_id,
-          created,
-          start_processor,
-          end_processor,
-          cpu_mhz,
-          debug,
-          ticks,
-          normalized_ns
-        )
-        values (
-          :code_locations_id<int>,
-          :created<timestamp>,
-          :start_processor<int>,
-          :end_processor<int>,
-          :cpu_mhz<double>,
-          :debug<int>,
-          :ticks<bigint>,
-          :normalized_ns<bigint>
-        )
-      )";
+      insert into code_tick_timings (
+        code_locations_id,
+        created,
+        start_processor,
+        end_processor,
+        cpu_mhz,
+        debug,
+        ticks,
+        normalized_ns
+      )
+      values (
+        :code_locations_id<int>,
+        :created<timestamp>,
+        :start_processor<int>,
+        :end_processor<int>,
+        :cpu_mhz<double>,
+        :debug<int>,
+        :ticks<bigint>,
+        :normalized_ns<bigint>
+      )
+    )";
     otl_stream stream{50, insert_stmt, *connection_};
     for (auto const& row : nascent) {
       stream << row.second;
@@ -338,19 +338,19 @@ class Code_tick_timings {
     }
 
     char const* update_stmt = R"(
-        update code_tick_timings
-        set
-          code_locations_id=:code_locations_id<int>,
-          created=:created<timestamp>,
-          start_processor=:start_processor<int>,
-          end_processor=:end_processor<int>,
-          cpu_mhz=:cpu_mhz<double>,
-          debug=:debug<int>,
-          ticks=:ticks<bigint>,
-          normalized_ns=:normalized_ns<bigint>
-        where
-          id=:id<int>
-      )";
+      update code_tick_timings
+      set
+        code_locations_id=:code_locations_id<int>,
+        created=:created<timestamp>,
+        start_processor=:start_processor<int>,
+        end_processor=:end_processor<int>,
+        cpu_mhz=:cpu_mhz<double>,
+        debug=:debug<int>,
+        ticks=:ticks<bigint>,
+        normalized_ns=:normalized_ns<bigint>
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream(1, update_stmt, *connection_);
     for (auto const& row : changing) {
@@ -360,12 +360,12 @@ class Code_tick_timings {
 
   void delete_row(Pkey_t const& moribund) {
     char const* delete_stmt = R"(
-        delete
-        from code_tick_timings
-        where
-      id=:id<int>
+      delete
+      from code_tick_timings
+      where
+    id=:id<int>
 
-      )";
+    )";
     otl_stream stream{50, delete_stmt, *connection_};
     stream << moribund;
   }

@@ -196,16 +196,16 @@ class Code_locations {
   Row_list_t select_all_rows(std::string const& where_clause = "") {
     Row_list_t found;
     char const* select_stmt = R"(
-        select
-          id,
-          code_packages_id,
-          label,
-          file_name,
-          line_number,
-          git_commit
-        from
-          code_locations
-      )";
+      select
+        id,
+        code_packages_id,
+        label,
+        file_name,
+        line_number,
+        git_commit
+      from
+        code_locations
+    )";
 
     otl_stream stream{50,
                       where_clause.empty()
@@ -223,17 +223,17 @@ class Code_locations {
 
   bool find_row_by_key(Pkey_t const& desideratum, Value_t& found) {
     char const* select_stmt = R"(
-        select
-          code_packages_id,
-          label,
-          file_name,
-          line_number,
-          git_commit
-        from
-          code_locations
-        where
-          id=:id<int>
-      )";
+      select
+        code_packages_id,
+        label,
+        file_name,
+        line_number,
+        git_commit
+      from
+        code_locations
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum;
@@ -246,17 +246,17 @@ class Code_locations {
 
   bool find_row_by_value(Row_t& desideratum) {
     char const* select_stmt = R"(
-        select
-          id
-        from
-          code_locations
-        where
-          code_packages_id=:code_packages_id<int> AND
-          label=:label<char[256]> AND
-          file_name=:file_name<char[256]> AND
-          line_number=:line_number<int> AND
-          git_commit=:git_commit<char[40]>
-      )";
+      select
+        id
+      from
+        code_locations
+      where
+        code_packages_id=:code_packages_id<int> AND
+        label=:label<char[256]> AND
+        file_name=:file_name<char[256]> AND
+        line_number=:line_number<int> AND
+        git_commit=:git_commit<char[40]>
+    )";
     otl_stream stream{50, select_stmt, *connection_};
     stream << desideratum.second;
     if (!stream.eof()) {
@@ -271,21 +271,21 @@ class Code_locations {
       return;
     }
     char const* insert_stmt = R"(
-        insert into code_locations (
-          code_packages_id,
-          label,
-          file_name,
-          line_number,
-          git_commit
-        )
-        values (
-          :code_packages_id<int>,
-          :label<char[256]>,
-          :file_name<char[256]>,
-          :line_number<int>,
-          :git_commit<char[40]>
-        )
-      )";
+      insert into code_locations (
+        code_packages_id,
+        label,
+        file_name,
+        line_number,
+        git_commit
+      )
+      values (
+        :code_packages_id<int>,
+        :label<char[256]>,
+        :file_name<char[256]>,
+        :line_number<int>,
+        :git_commit<char[40]>
+      )
+    )";
     otl_stream stream{50, insert_stmt, *connection_};
     for (auto const& row : nascent) {
       stream << row.second;
@@ -298,16 +298,16 @@ class Code_locations {
     }
 
     char const* update_stmt = R"(
-        update code_locations
-        set
-          code_packages_id=:code_packages_id<int>,
-          label=:label<char[256]>,
-          file_name=:file_name<char[256]>,
-          line_number=:line_number<int>,
-          git_commit=:git_commit<char[40]>
-        where
-          id=:id<int>
-      )";
+      update code_locations
+      set
+        code_packages_id=:code_packages_id<int>,
+        label=:label<char[256]>,
+        file_name=:file_name<char[256]>,
+        line_number=:line_number<int>,
+        git_commit=:git_commit<char[40]>
+      where
+        id=:id<int>
+    )";
 
     otl_stream stream(1, update_stmt, *connection_);
     for (auto const& row : changing) {
@@ -317,12 +317,12 @@ class Code_locations {
 
   void delete_row(Pkey_t const& moribund) {
     char const* delete_stmt = R"(
-        delete
-        from code_locations
-        where
-      id=:id<int>
+      delete
+      from code_locations
+      where
+    id=:id<int>
 
-      )";
+    )";
     otl_stream stream{50, delete_stmt, *connection_};
     stream << moribund;
   }

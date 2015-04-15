@@ -3,6 +3,13 @@
 #include <iostream>
 
 namespace fcs {
+namespace {
+char const* app_descr = R"(
+null
+
+AllowedOptions)";
+}
+
 struct Program_options {
   Program_options(int argc, char** argv) {
     using namespace boost::program_options;
@@ -16,12 +23,7 @@ struct Program_options {
 
   static boost::program_options::options_description const& description() {
     using namespace boost::program_options;
-    char const* descr = R"(
-  null
-
-  AllowedOptions)";
-
-    static options_description options{descr};
+    static options_description options{app_descr};
 
     if (options.options().empty()) {
       options.add_options()("help,h", "Display help information");
