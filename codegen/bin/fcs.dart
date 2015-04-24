@@ -2,33 +2,43 @@ import 'libs.dart' as libs;
 import 'apps.dart' as apps;
 import 'schemas.dart' as schemas;
 import '../lib/fcs_installation.dart';
+import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/ebisu_cpp.dart';
 import 'package:ebisu_cpp/hdf5_support.dart';
 import 'package:logging/logging.dart';
 
+final _logger = new Logger('fcs');
 
 main() {
   Logger.root
     ..onRecord.listen((LogRecord r) =>
         print("${r.loggerName} [${r.level}]:\t${r.message}"))
     ..level = Level.OFF;
+
+  generate() {
+    fcsInstallation
+      ..doc = 'C++ library'
+      ..includesHeaderCompiles = false
+      ..generate();
+  }
+
   libs.addItems();
+
   apps.addItems();
-  schemas.addItems()
-    .then((var _) {
-      fcsInstallation
-        ..builders = [ cmakeInstallationBuilder() ]
-        ..decorateWith(packetTableDecorator(
-                [
-                  logGroup('rusage_delta'),
-                ]));
 
-      fcsInstallation.generate();
+  if(true) {
+    schemas.addItems()
+      .then((var _) {
+        fcsInstallation
+          ..builders = [ cmakeInstallationBuilder() ]
+          ..decorateWith(packetTableDecorator(
+                  [
+                    logGroup('rusage_delta'),
+                  ]));
 
-      //print(fcsInstallation.progeny.map((c) => '  ${c.runtimeType}:${c.id}\n').toList());
-
-      // installation
-      //   .progeny
-      //   .forEach((e) => print('=> ${e.runtimeType}:${e.id}:${e.entityPathIds.join(",")}'));
-    });
+        generate();
+      });
+  } else {
+    generate();
+  }
 }

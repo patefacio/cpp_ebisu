@@ -30,6 +30,9 @@ class Functor_scope_exit {
   Functor_t functor() const { return functor_; }
 
  private:
+  /**
+   Function object to run on exit
+  */
   Functor_t functor_;
 };
 
