@@ -23,7 +23,10 @@ final utils = lib('utils')
     ],
     header('fixed_size_char_array')
     ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
-    ..includesTest = true
+    ..testScenarios = [
+      testScenario('sizeof matches array size',
+          given('fixed_size_char_array of size six')),
+    ]
     ..classes = [
       class_('fixed_size_char_array')
       ..template = [ 'int ARRAY_SIZE' ]
@@ -37,6 +40,9 @@ final utils = lib('utils')
         ..isStatic = true..isConstExpr = true
         ..initText = 'ARRAY_SIZE-1'..cppAccess = public,
         member('data')..type = 'Array_t',
+      ]
+      ..testScenarios = [
+        testScenario('can convert to std_string'),
       ],
     ],
     header('utils')
@@ -185,7 +191,6 @@ addItems() {
       ]
       ..classes = [
         class_('random_source')
-        ..includesTest = true
         ..customBlocks = [ clsPublic, clsPostDecl ]
         ..members = [
           member('engine')..type = 'std::mt19937'..hasNoInit = true

@@ -56,6 +56,7 @@ class Signaller {
    Collection of observers to be signalled
   */
   Observer_list_t observers_{};
+
   /**
    Lock to protect the observer container
   */
@@ -86,4 +87,5 @@ class Signaller_prioritized {
 
 }  // namespace patterns
 }  // namespace fcs
+
 #endif  // __FCS_PATTERNS_OBSERVER_HPP__

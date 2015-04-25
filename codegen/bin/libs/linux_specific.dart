@@ -59,9 +59,14 @@ final linux_specific = lib('linux_specific')
       'sys/types.h',
       'sys/stat.h',
     ]
+    ..testScenarios = [
+      testScenario('unit_test_umask_scoped_set',
+          given('current umask is something',
+              when('setting umask to something else',
+                  then('it is set and reverted on exit')))),
+    ]
     ..classes = [
       class_('umask_scoped_set')
-      ..includesTest = true
       ..descr = '''
 A typical use of this is to set the umask for a process to provide
 settings of system resources (files, mutexes, mappings,...)  to allow
@@ -142,9 +147,21 @@ cpuinfo.'''
         ..type = 'int'..access = ro
       ],
       class_('cpu_info')
+      ..testScenarios = [
+        testScenario('cpu info')
+        ..givens = [
+          given('the single cpu_info instance',
+              when('accessing processors',
+                  [
+                    then('some processors are found'),
+                    then('the first processor has flags'),
+                    then('the fpu flag is yes'),
+                  ])
+                )
+        ]
+      ]
       ..isStreamable = true
       ..usesStreamers = true
-      ..includesTest = true
       ..descr = '''
 Class to parse the cpuinfo file. This might be of use to interrogate
 from code the stats of the machine for better enabling <apple to apple>

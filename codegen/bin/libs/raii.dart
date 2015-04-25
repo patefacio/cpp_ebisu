@@ -1,5 +1,6 @@
 library libs.raii;
 
+import "package:logging/logging.dart";
 import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/fcs_installation.dart';
 
@@ -9,6 +10,7 @@ final raii = lib('raii')
     header('change_tracker')
     ..includes = [ 'boost/call_traits.hpp' ]
     ..classes = [
+
       class_('change_tracker')
       ..descr = '''
 Tracks current/previous values of the given type of data. For some
@@ -21,6 +23,7 @@ previous value.'''
         member('current')..type = 'T'..access = ro,
         member('previous')..type = 'T'..access = ro,
       ],
+
       class_('change_tracker_next_value')
       ..descr = '''
 Uses a ChangeTracker to track current/previous values of a type and
@@ -29,27 +32,51 @@ value and the current value will be assigned the next value.'''
       ..template = [ 'typename T' ]
       ..usings = [ using('change_tracker', 'Change_tracker< T >')]
       ..customBlocks = [clsPublic]
-      ..includesTest = true
       ..members = [
         member('tracker')..type = 'Change_tracker_t'
         ..isByRef = true
         ..refType = ref..access = ro,
         member('next_value')..type = 'T'..access = ro,
+      ]
+      ..testScenarios = [
+        testScenario('change_tracker_next_value')
+        ..givens = [
+          given('an int change_tracker assigned to one')
+          ..whens = [
+            when('a block sets current_value to one and next_value to three')
+            ..thens = [
+              then('when leaving block previous is one and current is three'),
+            ]
+          ]
+        ]
       ],
+
       class_('change_until_end_of_block')
       ..descr = '''
 Stores the current state, changes that state to a new value and on
 destruction restores the original state.'''
       ..template = [ 'typename T' ]
       ..customBlocks = [clsPublic]
-      ..includesTest = true
+      ..testScenarios = [
+        testScenario('change_until_end_of_block')
+        ..givens = [
+          given('an int initialized to one')
+          ..whens = [
+            when('a block changes the value to three')
+            ..thens = [
+              then('after the block exits it reverts to one'),
+            ]
+          ]
+        ]
+      ]
       ..members = [
         member('target')
         ..doc = 'Reference to the item being changed for duration of block'
         ..type = 'T'..refType = ref..access = ro,
         member('saved_value')
         ..doc = 'Value saved on construction and used to reset on block exit'
-        ..type = 'T'..access = ro,
+        ..type = 'T'
+        ..access = ro,
       ],
     ],
     header('api_initializer')
@@ -59,13 +86,21 @@ destruction restores the original state.'''
     ..usings = [ using('void_func', 'void (*)(void)') ]
     ..classes = [
       class_('functor_scope_exit')
-      ..includesTest = true
+      ..testScenarios = [
+        testScenario('functor runs on block exit',
+            given('functor in block',
+                when('block has exited',
+                    then('functor runs'))))
+      ]
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
       ..usings = [ using('functor', 'FUNCTOR') ]
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [ memberCtor(['functor']) ]
       ..members = [
-        member('functor')..type = 'Functor_t'..hasNoInit = true..access = ro,
+        member('functor')
+        ..doc = 'Function object to run on exit'
+        ..type = 'Functor_t'
+        ..hasNoInit = true..access = ro,
       ],
       class_('api_initializer_registry')
       ..descr = '''
@@ -105,5 +140,8 @@ addItems() => fcsInstallation.addLib(raii);
 
 main() {
   addItems();
+  Logger.root.onRecord.listen((LogRecord r) =>
+      print("${r.loggerName} [${r.level}]:\t${r.message}"));
+  Logger.root.level = Level.OFF;
   fcsInstallation.generate();
 }

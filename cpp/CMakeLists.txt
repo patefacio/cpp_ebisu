@@ -45,6 +45,7 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
   ~/install/cpp/include
+  ~/install/cpp/include/catch  
 # end <include directories>
 
 )
@@ -94,149 +95,213 @@ target_link_libraries(h5ds2csv
 ######################################################################
 # Test directives
 ######################################################################
-# test for test_umask_scoped_set
-add_executable(test_umask_scoped_set
-  tests/fcs/linux_specific/test_umask_scoped_set.cpp
+
+#   test for test_umask_scoped_set
+#     (Lib:linux_specific), (Header:umask_scoped_set), (Test:umask_scoped_set)
+#   
+add_executable(header.umask_scoped_set.cpp
+  tests/linux_specific/header.umask_scoped_set.cpp
 )
 
-target_link_libraries(test_umask_scoped_set
-# custom <test_umask_scoped_set link requirements>
-# end <test_umask_scoped_set link requirements>
+target_link_libraries(header.umask_scoped_set.cpp
+# custom <catch test_umask_scoped_set link requirements>
+# end <catch test_umask_scoped_set link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_umask_scoped_set test_umask_scoped_set)
+add_test(
+  header.umask_scoped_set.cpp
+  header.umask_scoped_set.cpp)
 
-# test for test_cpu_info
-add_executable(test_cpu_info
-  tests/fcs/linux_specific/test_cpu_info.cpp
+
+#   test for test_cpu_info
+#     (Lib:linux_specific), (Header:cpu_info), (Class:cpu_info), (Test:cpu_info)
+#   
+add_executable(class.cpu_info.cpu_info.cpp
+  tests/linux_specific/class.cpu_info.cpu_info.cpp
 )
 
-target_link_libraries(test_cpu_info
-# custom <test_cpu_info link requirements>
+target_link_libraries(class.cpu_info.cpu_info.cpp
+# custom <catch test_cpu_info link requirements>
   ${Boost_REGEX_LIBRARY}
-# end <test_cpu_info link requirements>
+# end <catch test_cpu_info link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_cpu_info test_cpu_info)
+add_test(
+  class.cpu_info.cpu_info.cpp
+  class.cpu_info.cpu_info.cpp)
 
-# test for test_fixed_size_char_array
-add_executable(test_fixed_size_char_array
-  tests/fcs/utils/test_fixed_size_char_array.cpp
+
+#   test for test_fixed_size_char_array
+#     (Lib:utils), (Header:fixed_size_char_array), (Test:fixed_size_char_array)
+#   
+add_executable(header.fixed_size_char_array.cpp
+  tests/utils/header.fixed_size_char_array.cpp
 )
 
-target_link_libraries(test_fixed_size_char_array
-# custom <test_fixed_size_char_array link requirements>
-# end <test_fixed_size_char_array link requirements>
+target_link_libraries(header.fixed_size_char_array.cpp
+# custom <catch test_fixed_size_char_array link requirements>
+# end <catch test_fixed_size_char_array link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_fixed_size_char_array test_fixed_size_char_array)
+add_test(
+  header.fixed_size_char_array.cpp
+  header.fixed_size_char_array.cpp)
 
-# test for test_random
-add_executable(test_random
-  tests/fcs/utils/streamers/test_random.cpp
+
+#   test for test_fixed_size_char_array
+#     (Lib:utils), (Header:fixed_size_char_array), (Class:fixed_size_char_array), (Test:fixed_size_char_array)
+#   
+add_executable(class.fixed_size_char_array.fixed_size_char_array.cpp
+  tests/utils/class.fixed_size_char_array.fixed_size_char_array.cpp
 )
 
-target_link_libraries(test_random
-# custom <test_random link requirements>
-# end <test_random link requirements>
+target_link_libraries(class.fixed_size_char_array.fixed_size_char_array.cpp
+# custom <catch test_fixed_size_char_array link requirements>
+# end <catch test_fixed_size_char_array link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_random test_random)
+add_test(
+  class.fixed_size_char_array.fixed_size_char_array.cpp
+  class.fixed_size_char_array.fixed_size_char_array.cpp)
 
-# test for test_change_tracker
-add_executable(test_change_tracker
-  tests/fcs/raii/test_change_tracker.cpp
+
+#   test for test_change_tracker_next_value
+#     (Lib:raii), (Header:change_tracker), (Class:change_tracker_next_value), (Test:change_tracker_next_value)
+#   
+add_executable(class.change_tracker.change_tracker_next_value.cpp
+  tests/raii/class.change_tracker.change_tracker_next_value.cpp
 )
 
-target_link_libraries(test_change_tracker
-# custom <test_change_tracker link requirements>
-# end <test_change_tracker link requirements>
+target_link_libraries(class.change_tracker.change_tracker_next_value.cpp
+# custom <catch test_change_tracker_next_value link requirements>
+# end <catch test_change_tracker_next_value link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_change_tracker test_change_tracker)
+add_test(
+  class.change_tracker.change_tracker_next_value.cpp
+  class.change_tracker.change_tracker_next_value.cpp)
 
-# test for test_api_initializer
-add_executable(test_api_initializer
-  tests/fcs/raii/test_api_initializer.cpp
+
+#   test for test_change_until_end_of_block
+#     (Lib:raii), (Header:change_tracker), (Class:change_until_end_of_block), (Test:change_until_end_of_block)
+#   
+add_executable(class.change_tracker.change_until_end_of_block.cpp
+  tests/raii/class.change_tracker.change_until_end_of_block.cpp
 )
 
-target_link_libraries(test_api_initializer
-# custom <test_api_initializer link requirements>
-# end <test_api_initializer link requirements>
+target_link_libraries(class.change_tracker.change_until_end_of_block.cpp
+# custom <catch test_change_until_end_of_block link requirements>
+# end <catch test_change_until_end_of_block link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_api_initializer test_api_initializer)
+add_test(
+  class.change_tracker.change_until_end_of_block.cpp
+  class.change_tracker.change_until_end_of_block.cpp)
 
-# test for test_code_packages
-add_executable(test_code_packages
-  tests/fcs/orm/code_metrics/table/test_code_packages.cpp
+
+#   test for test_functor_scope_exit
+#     (Lib:raii), (Header:api_initializer), (Class:functor_scope_exit), (Test:functor_scope_exit)
+#   
+add_executable(class.api_initializer.functor_scope_exit.cpp
+  tests/raii/class.api_initializer.functor_scope_exit.cpp
 )
 
-target_link_libraries(test_code_packages
-# custom <test_code_packages link requirements>
-  -lodbc
-# end <test_code_packages link requirements>
+target_link_libraries(class.api_initializer.functor_scope_exit.cpp
+# custom <catch test_functor_scope_exit link requirements>
+# end <catch test_functor_scope_exit link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_code_packages test_code_packages)
+add_test(
+  class.api_initializer.functor_scope_exit.cpp
+  class.api_initializer.functor_scope_exit.cpp)
 
-# test for test_code_locations
-add_executable(test_code_locations
-  tests/fcs/orm/code_metrics/table/test_code_locations.cpp
+
+#   test for test_code_packages
+#     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
+#   
+add_executable(class.code_packages.code_packages.cpp
+  tests/code_metrics/class.code_packages.code_packages.cpp
 )
 
-target_link_libraries(test_code_locations
-# custom <test_code_locations link requirements>
-  -lodbc
-# end <test_code_locations link requirements>
+target_link_libraries(class.code_packages.code_packages.cpp
+# custom <catch test_code_packages link requirements>
+# end <catch test_code_packages link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_code_locations test_code_locations)
+add_test(
+  class.code_packages.code_packages.cpp
+  class.code_packages.code_packages.cpp)
 
-# test for test_code_tick_timings
-add_executable(test_code_tick_timings
-  tests/fcs/orm/code_metrics/table/test_code_tick_timings.cpp
+
+#   test for test_code_locations
+#     (Lib:code_metrics), (Header:code_locations), (Class:code_locations), (Test:code_locations)
+#   
+add_executable(class.code_locations.code_locations.cpp
+  tests/code_metrics/class.code_locations.code_locations.cpp
 )
 
-target_link_libraries(test_code_tick_timings
-# custom <test_code_tick_timings link requirements>
-  -lodbc
-# end <test_code_tick_timings link requirements>
+target_link_libraries(class.code_locations.code_locations.cpp
+# custom <catch test_code_locations link requirements>
+# end <catch test_code_locations link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_code_tick_timings test_code_tick_timings)
+add_test(
+  class.code_locations.code_locations.cpp
+  class.code_locations.code_locations.cpp)
 
-# test for test_rusage_delta
-add_executable(test_rusage_delta
-  tests/fcs/orm/code_metrics/table/test_rusage_delta.cpp
+
+#   test for test_code_tick_timings
+#     (Lib:code_metrics), (Header:code_tick_timings), (Class:code_tick_timings), (Test:code_tick_timings)
+#   
+add_executable(class.code_tick_timings.code_tick_timings.cpp
+  tests/code_metrics/class.code_tick_timings.code_tick_timings.cpp
 )
 
-target_link_libraries(test_rusage_delta
-# custom <test_rusage_delta link requirements>
-  /usr/lib/x86_64-linux-gnu/libodbc.so
-# end <test_rusage_delta link requirements>
+target_link_libraries(class.code_tick_timings.code_tick_timings.cpp
+# custom <catch test_code_tick_timings link requirements>
+# end <catch test_code_tick_timings link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
-add_test(test_rusage_delta test_rusage_delta)
+add_test(
+  class.code_tick_timings.code_tick_timings.cpp
+  class.code_tick_timings.code_tick_timings.cpp)
 
+
+#   test for test_rusage_delta
+#     (Lib:code_metrics), (Header:rusage_delta), (Class:rusage_delta), (Test:rusage_delta)
+#   
+add_executable(class.rusage_delta.rusage_delta.cpp
+  tests/code_metrics/class.rusage_delta.rusage_delta.cpp
+)
+
+target_link_libraries(class.rusage_delta.rusage_delta.cpp
+# custom <catch test_rusage_delta link requirements>
+# end <catch test_rusage_delta link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(
+  class.rusage_delta.rusage_delta.cpp
+  class.rusage_delta.rusage_delta.cpp)
 

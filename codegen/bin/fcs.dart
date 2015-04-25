@@ -18,8 +18,7 @@ main() {
   generate() {
     fcsInstallation
       ..doc = 'C++ library'
-      ..includesHeaderCompiles = false
-      ..generate();
+      ..generate(generateHeaderSmokeTest : false, generateDoxyFile : true);
   }
 
   libs.addItems();
@@ -30,7 +29,6 @@ main() {
     schemas.addItems()
       .then((var _) {
         fcsInstallation
-          ..builders = [ cmakeInstallationBuilder() ]
           ..decorateWith(packetTableDecorator(
                   [
                     logGroup('rusage_delta'),

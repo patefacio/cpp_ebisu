@@ -13,7 +13,7 @@ SCENARIO("unit test umask scoped set") {
   GIVEN("current umask is something") {
     // custom <(851442918)>
 
-    auto current_mask { umask(0) };
+    auto current_mask{umask(0)};
     CHECK(umask(0) == 0);
 
     // end <(851442918)>
@@ -22,8 +22,9 @@ SCENARIO("unit test umask scoped set") {
 
       {
         /// *At this point mask is 0 - so here we set it*
-        Umask_scoped_set scoped { S_IRUSR | S_IWUSR | S_IRGRP };
-        CHECK(umask(S_IRUSR | S_IWUSR | S_IRGRP) == (S_IRUSR | S_IWUSR | S_IRGRP));
+        Umask_scoped_set scoped{S_IRUSR | S_IWUSR | S_IRGRP};
+        CHECK(umask(S_IRUSR | S_IWUSR | S_IRGRP) ==
+              (S_IRUSR | S_IWUSR | S_IRGRP));
       }
 
       // end <(394125197)>
