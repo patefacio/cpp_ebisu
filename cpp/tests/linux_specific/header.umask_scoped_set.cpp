@@ -14,7 +14,7 @@ SCENARIO("unit test umask scoped set") {
     // custom <(851442918)>
 
     auto current_mask{umask(0)};
-    CHECK(umask(0) == 0);
+    REQUIRE(umask(0) == 0);
 
     // end <(851442918)>
     WHEN("setting umask to something else") {
@@ -23,7 +23,7 @@ SCENARIO("unit test umask scoped set") {
       {
         /// *At this point mask is 0 - so here we set it*
         Umask_scoped_set scoped{S_IRUSR | S_IWUSR | S_IRGRP};
-        CHECK(umask(S_IRUSR | S_IWUSR | S_IRGRP) ==
+        REQUIRE(umask(S_IRUSR | S_IWUSR | S_IRGRP) ==
               (S_IRUSR | S_IWUSR | S_IRGRP));
       }
 
@@ -33,7 +33,7 @@ SCENARIO("unit test umask scoped set") {
 
         /// Since the block containing Umask_scoped_set has exited its raii
         /// dtor will revert mask to 0
-        CHECK(umask(S_IRUSR) == 0);
+        REQUIRE(umask(S_IRUSR) == 0);
 
         // end <(975142741)>
       }
