@@ -21,7 +21,7 @@ class Fixed_size_char_array {
 
   Fixed_size_char_array() { data_[LAST_INDEX] = data_[0] = 0; }
 
-  Fixed_size_char_array(char const* s) { this->operator=(s); }
+  explicit Fixed_size_char_array(char const* s) { this->operator=(s); }
 
   Fixed_size_char_array(Fixed_size_char_array const& other) {
     this->operator=(other.operator char const*());
