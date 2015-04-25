@@ -14,7 +14,7 @@ class Functor_scope_exit {
  public:
   using Functor_t = FUNCTOR;
 
-  Functor_scope_exit(Functor_t functor) : functor_{functor} {}
+  explicit Functor_scope_exit(Functor_t functor) : functor_{functor} {}
 
   // custom <ClsPublic Functor_scope_exit>
 

@@ -95,7 +95,7 @@ destruction restores the original state.'''
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
       ..usings = [ using('functor', 'FUNCTOR') ]
       ..customBlocks = [ clsPublic ]
-      ..memberCtors = [ memberCtor(['functor']) ]
+      ..memberCtors = [ memberCtor(['functor'])..isExplicit = true ]
       ..members = [
         member('functor')
         ..doc = 'Function object to run on exit'

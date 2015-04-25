@@ -15,7 +15,8 @@ namespace linux_specific {
 */
 class Umask_scoped_set {
  public:
-  Umask_scoped_set(mode_t new_mode) : previous_mode_{umask(new_mode)} {}
+  explicit Umask_scoped_set(mode_t new_mode)
+      : previous_mode_{umask(new_mode)} {}
 
   // custom <ClsPublic Umask_scoped_set>
 

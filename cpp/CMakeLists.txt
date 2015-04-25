@@ -154,25 +154,6 @@ add_test(
   header.fixed_size_char_array.cpp)
 
 
-#   test for test_fixed_size_char_array
-#     (Lib:utils), (Header:fixed_size_char_array), (Class:fixed_size_char_array), (Test:fixed_size_char_array)
-#   
-add_executable(class.fixed_size_char_array.fixed_size_char_array.cpp
-  tests/utils/class.fixed_size_char_array.fixed_size_char_array.cpp
-)
-
-target_link_libraries(class.fixed_size_char_array.fixed_size_char_array.cpp
-# custom <catch test_fixed_size_char_array link requirements>
-# end <catch test_fixed_size_char_array link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
-add_test(
-  class.fixed_size_char_array.fixed_size_char_array.cpp
-  class.fixed_size_char_array.fixed_size_char_array.cpp)
-
-
 #   test for test_change_tracker_next_value
 #     (Lib:raii), (Header:change_tracker), (Class:change_tracker_next_value), (Test:change_tracker_next_value)
 #   

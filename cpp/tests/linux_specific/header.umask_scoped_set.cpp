@@ -24,7 +24,7 @@ SCENARIO("unit test umask scoped set") {
         /// *At this point mask is 0 - so here we set it*
         Umask_scoped_set scoped{S_IRUSR | S_IWUSR | S_IRGRP};
         REQUIRE(umask(S_IRUSR | S_IWUSR | S_IRGRP) ==
-              (S_IRUSR | S_IWUSR | S_IRGRP));
+                (S_IRUSR | S_IWUSR | S_IRGRP));
       }
 
       // end <(394125197)>

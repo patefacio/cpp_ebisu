@@ -79,6 +79,7 @@ work. umask settings play a role.'''
           ..parmDecl = 'mode_t new_mode'
           ..init = 'umask(new_mode)'
         ])
+        ..isExplicit = true
       ]
       ..customBlocks = [ clsPublic ]
       ..members = [

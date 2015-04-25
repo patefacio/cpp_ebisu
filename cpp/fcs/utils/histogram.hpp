@@ -50,7 +50,7 @@ class Histogram {
  public:
   using Result_vector_t = vector<T>;
 
-  template <typename IT>
+  explicit template <typename IT>
 
   Histogram(IT begin, IT end, int num_bins = 20)
       : num_bins_{num_bins} {

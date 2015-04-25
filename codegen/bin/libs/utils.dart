@@ -24,8 +24,31 @@ final utils = lib('utils')
     header('fixed_size_char_array')
     ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
     ..testScenarios = [
+
       testScenario('sizeof matches array size',
-          given('fixed_size_char_array of size six')),
+          given('fixed_size_char_array of size six', [],
+              then('sizeof is a match'))),
+
+      testScenario('array size initialized with smaller cstr',
+          given('array size six inited with cstr size three', [],
+              then('result has two chars and null'))),
+
+      testScenario('array size initialized with larger cstr',
+          given('array size three inited with cstr size six', [],
+              then('result has two chars and null'))),
+
+      testScenario('index operator works',
+          given('array initialized with six chars', [],
+              then('all chars are accessible'))),
+
+      testScenario('equality operator works',
+          given('array initted with string', [],
+              [
+                then('equals that string'),
+                then('does not equal another string'),
+                then('str accessor works')
+              ])),
+
     ]
     ..classes = [
       class_('fixed_size_char_array')
@@ -41,9 +64,6 @@ final utils = lib('utils')
         ..initText = 'ARRAY_SIZE-1'..cppAccess = public,
         member('data')..type = 'Array_t',
       ]
-      ..testScenarios = [
-        testScenario('can convert to std_string'),
-      ],
     ],
     header('utils')
     ..includes = [ 'cmath', 'iostream', ]
@@ -119,6 +139,7 @@ Hist_results_t = boost::iterator_range<
           ..defaultValue = '20'
 
         ])..decls = ['IT begin', 'IT end']
+        ..isExplicit = true
         ..template = 'typename IT'
         ..customLabel = 'from_iterator',
       ]

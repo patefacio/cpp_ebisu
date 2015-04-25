@@ -18,7 +18,7 @@ main() {
   generate() {
     fcsInstallation
       ..doc = 'C++ library'
-      ..generate(generateHeaderSmokeTest : false, generateDoxyFile : true);
+      ..generate(generateBuildScripts: true, generateHeaderSmokeTest : false, generateDoxyFile : true);
   }
 
   libs.addItems();

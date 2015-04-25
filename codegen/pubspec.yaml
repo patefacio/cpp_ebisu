@@ -9,11 +9,11 @@ dependencies:
 # custom <fcs dependencies>
 
   collection: ">=1.0.0"
-
+  quiver: ">=0.21.0<0.22.0"  
   id: ">=1.0.6<1.1.0"  
-  ebisu: "^0.2.6"
-  ebisu_cpp: "^0.0.014"
-  ebisu_cpp_db: "^0.0.6"
+  ebisu: "^0.3.4"
+  ebisu_cpp: "^0.0.23"
+  ebisu_cpp_db: "^0.0.7"
    
 # end <fcs dependencies>
 
@@ -28,7 +28,18 @@ dev_dependencies:
 dependency_overrides:
 # custom <fcs dependency overrides>
 
-   
+  id:
+    path: /home/dbdavidson/dev/open_source/id
+
+  ebisu:
+    path: /home/dbdavidson/dev/open_source/ebisu
+
+  ebisu_cpp:
+    path: /home/dbdavidson/dev/open_source/ebisu_cpp
+
+  ebisu_cpp_db:
+    path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
+    
 # end <fcs dependency overrides>
 
 transformers:
