@@ -6,27 +6,29 @@
 // custom <custom includes>
 // end <custom includes>
 
-namespace test {
+namespace fcs {
+namespace raii {
 SCENARIO("change until end of block") {
   GIVEN("an int initialized to one") {
-    // custom <(841661806) an int initialized to one>
+    // custom <(841661806)>
     int x{1};
-    // end <(841661806) an int initialized to one>
+    // end <(841661806)>
     WHEN("a block changes the value to three") {
-      // custom <(485840119) a block changes the value to three>
+      // custom <(485840119)>
       {
         fcs::raii::Change_until_end_of_block<int> change_until_end_of_block{x,
                                                                             3};
         CHECK(x == 3);
       }
-      // end <(485840119) a block changes the value to three>
+      // end <(485840119)>
       THEN("after the block exits it reverts to one") {
-        // custom <(1040340518) after the block exits it reverts to one>
+        // custom <(1040340518)>
         CHECK(x == 1);
-        // end <(1040340518) after the block exits it reverts to one>
+        // end <(1040340518)>
       }
     }
   }
 }
 
-}  // namespace test
+}  // namespace raii
+}  // namespace fcs
