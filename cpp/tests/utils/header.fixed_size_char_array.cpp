@@ -28,7 +28,7 @@ SCENARIO("array size initialized with smaller cstr") {
   GIVEN("array size three inited with cstr size six") {
     // custom <(613442107)>
 
-    Fixed_size_char_array<3> arr { "ottff" };
+    Fixed_size_char_array<3> arr{"ottff"};
 
     // end <(613442107)>
     THEN("result has two chars and null") {
@@ -38,6 +38,25 @@ SCENARIO("array size initialized with smaller cstr") {
       CHECK(arr[2] == 0);
 
       // end <(174694459)>
+    }
+  }
+}
+SCENARIO("index operator works") {
+  GIVEN("array initialized with six chars") {
+    // custom <(1022387932)>
+
+    std::string const s {"otff"};
+    Fixed_size_char_array<5> arr{s.c_str()};
+
+    // end <(1022387932)>
+    THEN("all chars are accessible") {
+      // custom <(581427270)>
+
+      for(size_t i=0; i<5; i++) {
+        REQUIRE(s[i] == arr[i]);
+      }
+
+      // end <(581427270)>
     }
   }
 }
