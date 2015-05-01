@@ -1,6 +1,7 @@
 #ifndef __FCS_LINUX_SPECIFIC_LINUX_EXCEPTIONS_HPP__
 #define __FCS_LINUX_SPECIFIC_LINUX_EXCEPTIONS_HPP__
 
+#include "fcs/linux_specific/linux_specific.hpp"
 #include <boost/exception/error_info.hpp>
 #include <boost/exception/exception.hpp>
 #include <exception>

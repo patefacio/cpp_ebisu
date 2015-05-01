@@ -1,6 +1,7 @@
 #ifndef __FCS_LINUX_SPECIFIC_UMASK_SCOPED_SET_HPP__
 #define __FCS_LINUX_SPECIFIC_UMASK_SCOPED_SET_HPP__
 
+#include "fcs/linux_specific/linux_specific.hpp"
 #include <sys/stat.h>
 #include <sys/types.h>
 

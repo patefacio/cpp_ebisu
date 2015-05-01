@@ -6,6 +6,7 @@ import '../../lib/fcs_installation.dart';
 
 final raii = lib('raii')
   ..namespace = namespace([ 'fcs', 'raii' ])
+  ..requiresLogging = true
   ..headers = [
     header('change_tracker')
     ..includes = [ 'boost/call_traits.hpp' ]
@@ -95,7 +96,11 @@ destruction restores the original state.'''
       ..template = [ 'typename FUNCTOR = Void_func_t' ]
       ..usings = [ using('functor', 'FUNCTOR') ]
       ..customBlocks = [ clsPublic ]
-      ..memberCtors = [ memberCtor(['functor'])..isExplicit = true ]
+      ..memberCtors = [
+        memberCtor(['functor'])
+        ..isExplicit = true
+        ..isLogged = true
+      ]
       ..members = [
         member('functor')
         ..doc = 'Function object to run on exit'
@@ -107,6 +112,7 @@ destruction restores the original state.'''
 For APIs that need some form of initialization/uninitialization to be performed.
 '''
       ..customBlocks = [ clsPublic ]
+      ..defaultCtor.isLogged = true
       ..usings = [
         'Init_func = INIT_FUNC',
         'Uninit_func = UNINIT_FUNC',

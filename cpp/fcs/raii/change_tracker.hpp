@@ -1,6 +1,7 @@
 #ifndef __FCS_RAII_CHANGE_TRACKER_HPP__
 #define __FCS_RAII_CHANGE_TRACKER_HPP__
 
+#include "fcs/raii/raii.hpp"
 #include <boost/call_traits.hpp>
 
 namespace fcs {

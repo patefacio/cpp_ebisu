@@ -52,6 +52,7 @@ get processorEntries {
 }
 
 final linux_specific = lib('linux_specific')
+  ..requiresLogging = true
   ..namespace = namespace([ 'fcs', 'linux_specific' ])
   ..headers = [
     header('umask_scoped_set')

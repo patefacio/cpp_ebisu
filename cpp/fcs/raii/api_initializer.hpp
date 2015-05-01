@@ -1,6 +1,8 @@
 #ifndef __FCS_RAII_API_INITIALIZER_HPP__
 #define __FCS_RAII_API_INITIALIZER_HPP__
 
+#include "fcs/raii/raii.hpp"
+#include "spdlog/spdlog.h"
 #include <list>
 #include <map>
 #include <memory>

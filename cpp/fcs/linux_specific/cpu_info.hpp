@@ -2,6 +2,7 @@
 #define __FCS_LINUX_SPECIFIC_CPU_INFO_HPP__
 
 #include "fcs/linux_specific/linux_exceptions.hpp"
+#include "fcs/linux_specific/linux_specific.hpp"
 #include "fcs/utils/block_indenter.hpp"
 #include "fcs/utils/exception/make_exception.hpp"
 #include "fcs/utils/streamers/map.hpp"

@@ -9,7 +9,6 @@
 namespace fcs {
 namespace raii {
 SCENARIO("change tracker next value") {
-
   GIVEN("an int change tracker assigned to one") {
     // custom <(542814227)>
 
@@ -25,9 +24,8 @@ SCENARIO("change tracker next value") {
         CHECK(change_tracker.current() == 1);
         CHECK(next_value.next_value() == 3);
 
-        raii_logger()->info("next_value: {} {} ", next_value.next_value(),
-                            change_tracker.current());
-
+        raii_logger()->info("next_value: {} change_tracker {} ",
+                            next_value.next_value(), change_tracker.current());
       }
 
       // end <(794311972)>
