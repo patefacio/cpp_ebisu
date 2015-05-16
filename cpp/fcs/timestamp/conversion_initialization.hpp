@@ -18,22 +18,17 @@ inline void conversion_uninit() {
 
 /// Singleton for conversion initializer
 inline fcs::raii::Api_initializer<> conversion_initializer_() {
-  static fcs::raii::Api_initializer<> conversion_initializer {
-    conversion_init,
-    conversion_uninit
-  };
+  static fcs::raii::Api_initializer<> conversion_initializer{conversion_init,
+                                                             conversion_uninit};
   return conversion_initializer;
 };
 
 /// Internal linkage (i.e. 1 per translation unit) initializer for conversion
 namespace {
-  fcs::raii::Api_initializer<>
-  conversion_initializer { conversion_initializer_() };
+fcs::raii::Api_initializer<> conversion_initializer{conversion_initializer_()};
 }
 
+}  // namespace timestamp
+}  // namespace fcs
 
-} // namespace timestamp
-} // namespace fcs
-
-
-#endif // __FCS_TIMESTAMP_CONVERSION_INITIALIZATION_HPP__
+#endif  // __FCS_TIMESTAMP_CONVERSION_INITIALIZATION_HPP__
