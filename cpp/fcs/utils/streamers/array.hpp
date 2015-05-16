@@ -2,6 +2,8 @@
 #define __FCS_UTILS_STREAMERS_ARRAY_HPP__
 
 #include "fcs/utils/streamers/streamers.hpp"
+#include "fcs/utils/streamers/streamers_initialization.hpp"
+#include "fcs/utils/streamers/streamers_logging.hpp"
 #include <array>
 #include <iosfwd>
 

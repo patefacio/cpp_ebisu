@@ -65,13 +65,6 @@ final utils = lib('utils')
         member('data')..type = 'Array_t',
       ]
     ],
-    header('utils')
-    ..includes = [ 'cmath', 'iostream', ]
-    ..customBlocks = [ ]
-    ..classes = [
-      class_('value_min_max'),
-      class_('version_control_commit'),
-    ],
     header('version_control_commit')
     ..classes = [
       class_('version_control_commit')

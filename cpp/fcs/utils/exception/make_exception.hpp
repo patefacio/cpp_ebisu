@@ -1,6 +1,8 @@
 #ifndef __FCS_UTILS_EXCEPTION_MAKE_EXCEPTION_HPP__
 #define __FCS_UTILS_EXCEPTION_MAKE_EXCEPTION_HPP__
 
+#include "fcs/utils/exception/exception_initialization.hpp"
+#include "fcs/utils/exception/exception_logging.hpp"
 #include <boost/exception/all.hpp>
 #include <exception>
 

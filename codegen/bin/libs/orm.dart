@@ -5,9 +5,9 @@ import '../../lib/fcs_installation.dart';
 
 final orm = lib('orm')
   ..namespace = namespace([ 'fcs', 'orm' ])
-  ..headers = [
-    header('orm')
-    ..isApiHeader = true
+  ..withStandardizedHeader(libCommonHeader, (Header commonHeader) {
+    //print('Considering ${commonHeader.id.snake}');
+    commonHeader
     ..customBlocks = [ fcbCustomIncludes, fcbPostNamespace ]
     ..includes = [
       'vector',
@@ -31,7 +31,9 @@ final orm = lib('orm')
       ..doc = 'Standard table of strings',
       'Date_t = boost::gregorian::date',
       'Date_set_t = std::set< Date_t >',
-    ],
+    ];
+  })
+  ..headers = [
     header('orm_to_string_table')
     ..descr = 'Functions to turn recordset lists into string lists'
     ..customBlocks = [ fcbEndNamespace, ]

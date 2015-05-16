@@ -11,6 +11,7 @@ namespace raii {
 SCENARIO("functor runs on block exit") {
   GIVEN("functor in block") {
     // custom <(300063598)>
+    std::cout << "Foo" << std::endl;
     // end <(300063598)>
     WHEN("block has exited") {
       // custom <(557460478)>

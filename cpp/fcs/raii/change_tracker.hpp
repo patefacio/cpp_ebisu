@@ -1,11 +1,15 @@
 #ifndef __FCS_RAII_CHANGE_TRACKER_HPP__
 #define __FCS_RAII_CHANGE_TRACKER_HPP__
 
-#include "fcs/raii/raii.hpp"
+#include "fcs/raii/raii_common.hpp"
+#include "fcs/raii/raii_initialization.hpp"
+#include "fcs/raii/raii_logging.hpp"
 #include <boost/call_traits.hpp>
 
 namespace fcs {
 namespace raii {
+//! Track updates to variable.
+
 /**
  Tracks current/previous values of the given type of data. For some
  algorithms it is useful to be able to examine/perform logic on
@@ -40,6 +44,8 @@ class Change_tracker {
   T previous_{};
 };
 
+//! Work with current value, ensure next value is applied on scope exit.
+
 /**
  Uses a ChangeTracker to track current/previous values of a type and
  ensures that on destruction the previous value becomes the current
@@ -69,6 +75,8 @@ class Change_tracker_next_value {
   Change_tracker_t &tracker_;
   T next_value_{};
 };
+
+//! Change and use value within block, revert to original on scope exit.
 
 /**
  Stores the current state, changes that state to a new value and on

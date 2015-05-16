@@ -1,6 +1,8 @@
 #ifndef __FCS_UTILS_STREAMERS_STREAMERS_HPP__
 #define __FCS_UTILS_STREAMERS_STREAMERS_HPP__
 
+#include "fcs/utils/streamers/streamers_initialization.hpp"
+#include "fcs/utils/streamers/streamers_logging.hpp"
 #include <iosfwd>
 #include <memory>
 #include <sstream>

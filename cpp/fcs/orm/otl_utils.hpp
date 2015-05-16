@@ -1,7 +1,9 @@
 #ifndef __FCS_ORM_OTL_UTILS_HPP__
 #define __FCS_ORM_OTL_UTILS_HPP__
 
-#include "fcs/orm/orm.hpp"
+#include "fcs/orm/orm_common.hpp"
+#include "fcs/orm/orm_initialization.hpp"
+#include "fcs/orm/orm_logging.hpp"
 #include "fcs/utils/fixed_size_char_array.hpp"
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/date_time/gregorian/formatters.hpp>

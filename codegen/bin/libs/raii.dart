@@ -6,6 +6,11 @@ import '../../lib/fcs_installation.dart';
 
 final raii = lib('raii')
   ..namespace = namespace([ 'fcs', 'raii' ])
+  ..withStandardizedHeader(libCommonHeader, (Header header) {
+    //print(header.contents);
+  })
+  ..version = '0.0.1'
+  ..libInitializer
   ..requiresLogging = true
   ..headers = [
     header('change_tracker')
@@ -13,6 +18,7 @@ final raii = lib('raii')
     ..classes = [
 
       class_('change_tracker')
+      ..brief = 'Track updates to variable.'
       ..descr = '''
 Tracks current/previous values of the given type of data. For some
 algorithms it is useful to be able to examine/perform logic on
@@ -26,6 +32,7 @@ previous value.'''
       ],
 
       class_('change_tracker_next_value')
+      ..brief = 'Work with current value, ensure next value is applied on scope exit.'
       ..descr = '''
 Uses a ChangeTracker to track current/previous values of a type and
 ensures that on destruction the previous value becomes the current
@@ -53,6 +60,7 @@ value and the current value will be assigned the next value.'''
       ],
 
       class_('change_until_end_of_block')
+      ..brief = 'Change and use value within block, revert to original on scope exit.'
       ..descr = '''
 Stores the current state, changes that state to a new value and on
 destruction restores the original state.'''
@@ -82,11 +90,13 @@ destruction restores the original state.'''
     ],
     header('api_initializer')
     ..test.customBlocks = [ fcbPreNamespace ]
-    ..test.includes.addAll(['vector', 'fcs/utils/streamers/containers.hpp', ])
+    ..test.includes.addAll(['vector'])
     ..includes = [ 'list', 'map', 'memory' ]
+    ..excludeStandardizedHeader(libInitializationHeader)
     ..usings = [ using('void_func', 'void (*)(void)') ]
     ..classes = [
       class_('functor_scope_exit')
+      ..brief = 'Ensure functor is run on obect destruction'
       ..testScenarios = [
         testScenario('functor runs on block exit',
             given('functor in block',
@@ -108,8 +118,10 @@ destruction restores the original state.'''
         ..hasNoInit = true..access = ro,
       ],
       class_('api_initializer_registry')
+      ..brief = 'Singleton registry for Apis requiring consistent init/uninit behavior'
       ..descr = '''
-For APIs that need some form of initialization/uninitialization to be performed.
+For APIs that need some form of initialization/uninitialization to be
+performed.
 '''
       ..customBlocks = [ clsPublic ]
       ..defaultCtor.isLogged = true
@@ -131,6 +143,7 @@ For APIs that need some form of initialization/uninitialization to be performed.
         member('registry_ordered')..type = 'Uninit_list_t',
       ],
       class_('api_initializer')
+      ..brief = 'Provide consistent *init*/*uninit* behavior'
       ..usings = [
         'Api_initializer_registry_t = Api_initializer_registry< INIT_FUNC, UNINIT_FUNC >'
       ]

@@ -1,5 +1,5 @@
-#ifndef __FCS_RAII_RAII_HPP__
-#define __FCS_RAII_RAII_HPP__
+#ifndef __FCS_RAII_RAII_LOGGING_HPP__
+#define __FCS_RAII_RAII_LOGGING_HPP__
 
 #include "spdlog/spdlog.h"
 
@@ -16,14 +16,13 @@ struct Raii_logger {
 };
 
 namespace {
-
-/// Accessor for the logger for (Lib:raii)
-inline std::shared_ptr<spdlog::logger>& raii_logger() {
-  return Raii_logger<int>().logger();
-}
+/// Accessor to the logger for (Lib:raii)
+///
+/// Internal linkage providing one shared pointer per translation unit
+std::shared_ptr<spdlog::logger> raii_logger{Raii_logger<int>().logger()};
 }
 
 }  // namespace raii
 }  // namespace fcs
 
-#endif  // __FCS_RAII_RAII_HPP__
+#endif  // __FCS_RAII_RAII_LOGGING_HPP__

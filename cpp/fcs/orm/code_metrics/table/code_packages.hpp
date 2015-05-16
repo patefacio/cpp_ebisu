@@ -1,10 +1,13 @@
 #ifndef __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__
 #define __FCS_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__
 
-#include "fcs/orm/code_metrics/code_metrics.hpp"
+#include "fcs/orm/code_metrics/code_metrics_common.hpp"
+#include "fcs/orm/code_metrics/code_metrics_initialization.hpp"
+#include "fcs/orm/code_metrics/code_metrics_logging.hpp"
 #include "fcs/orm/orm_to_string_table.hpp"
 #include "fcs/orm/otl_utils.hpp"
 #include "fcs/utils/block_indenter.hpp"
+#include "fcs/utils/streamers/random.hpp"
 #include <boost/any.hpp>
 #include <cstdint>
 #include <iosfwd>

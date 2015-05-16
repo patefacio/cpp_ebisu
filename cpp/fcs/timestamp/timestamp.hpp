@@ -1,6 +1,8 @@
 #ifndef __FCS_TIMESTAMP_TIMESTAMP_HPP__
 #define __FCS_TIMESTAMP_TIMESTAMP_HPP__
 
+#include "fcs/timestamp/timestamp_initialization.hpp"
+#include "fcs/timestamp/timestamp_logging.hpp"
 #include <boost/date_time/c_local_time_adjustor.hpp>
 #include <boost/date_time/microsec_time_clock.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>

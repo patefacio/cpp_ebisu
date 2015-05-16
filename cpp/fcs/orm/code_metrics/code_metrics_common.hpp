@@ -1,7 +1,7 @@
-#ifndef __FCS_ORM_CODE_METRICS_CODE_METRICS_HPP__
-#define __FCS_ORM_CODE_METRICS_CODE_METRICS_HPP__
+#ifndef __FCS_ORM_CODE_METRICS_CODE_METRICS_COMMON_HPP__
+#define __FCS_ORM_CODE_METRICS_CODE_METRICS_COMMON_HPP__
 
-#include "fcs/orm/orm.hpp"
+#include "fcs/orm/orm_common.hpp"
 
 namespace fcs {
 namespace orm {
@@ -29,4 +29,4 @@ class Connection_code_metrics {
 }  // namespace orm
 }  // namespace fcs
 
-#endif  // __FCS_ORM_CODE_METRICS_CODE_METRICS_HPP__
+#endif  // __FCS_ORM_CODE_METRICS_CODE_METRICS_COMMON_HPP__

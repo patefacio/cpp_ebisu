@@ -1,6 +1,8 @@
 #ifndef __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 #define __FCS_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 
+#include "fcs/utils/utils_initialization.hpp"
+#include "fcs/utils/utils_logging.hpp"
 #include <array>
 #include <cassert>
 #include <cstring>

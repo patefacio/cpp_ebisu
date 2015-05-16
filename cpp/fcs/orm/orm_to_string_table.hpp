@@ -1,7 +1,9 @@
 #ifndef __FCS_ORM_ORM_TO_STRING_TABLE_HPP__
 #define __FCS_ORM_ORM_TO_STRING_TABLE_HPP__
 
-#include "fcs/orm/orm.hpp"
+#include "fcs/orm/orm_common.hpp"
+#include "fcs/orm/orm_initialization.hpp"
+#include "fcs/orm/orm_logging.hpp"
 #include "fcs/utils/streamers/table.hpp"
 #include <string>
 

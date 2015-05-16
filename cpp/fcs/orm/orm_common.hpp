@@ -1,5 +1,5 @@
-#ifndef __FCS_ORM_ORM_HPP__
-#define __FCS_ORM_ORM_HPP__
+#ifndef __FCS_ORM_ORM_COMMON_HPP__
+#define __FCS_ORM_ORM_COMMON_HPP__
 
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/thread/tss.hpp>
@@ -8,11 +8,11 @@
 #include <set>
 #include <vector>
 
-// custom <FcbCustomIncludes orm>
+// custom <FcbCustomIncludes orm_common>
 
 class otl_connect;
 
-// end <FcbCustomIncludes orm>
+// end <FcbCustomIncludes orm_common>
 
 namespace fcs {
 namespace orm {
@@ -58,7 +58,7 @@ inline void set_otl_log_level(int level) {
 }  // namespace orm
 }  // namespace fcs
 
-// custom <FcbPostNamespace orm>
+// custom <FcbPostNamespace orm_common>
 
 #if defined(_MSC_VER)
 #define OTL_ODBC
@@ -84,6 +84,6 @@ unsigned int my_trace_level = 0x1 |   // 1st level of tracing
 using Orm_timestamp_t = otl_datetime;
 using Orm_bigint_t = long long;
 
-// end <FcbPostNamespace orm>
+// end <FcbPostNamespace orm_common>
 
-#endif  // __FCS_ORM_ORM_HPP__
+#endif  // __FCS_ORM_ORM_COMMON_HPP__

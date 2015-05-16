@@ -1,6 +1,8 @@
 #ifndef __FCS_TIMESTAMP_CONVERSION_HPP__
 #define __FCS_TIMESTAMP_CONVERSION_HPP__
 
+#include "fcs/timestamp/conversion_initialization.hpp"
+#include "fcs/timestamp/conversion_logging.hpp"
 #include "fcs/timestamp/timestamp.hpp"
 #include <boost/date_time/posix_time/time_formatters.hpp>
 #include <boost/regex.hpp>

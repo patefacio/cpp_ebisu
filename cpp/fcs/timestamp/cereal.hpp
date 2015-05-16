@@ -2,6 +2,8 @@
 #define __FCS_TIMESTAMP_CEREAL_HPP__
 
 #include "fcs/timestamp/timestamp.hpp"
+#include "fcs/timestamp/timestamp_initialization.hpp"
+#include "fcs/timestamp/timestamp_logging.hpp"
 #include <cstdint>
 
 namespace fcs {

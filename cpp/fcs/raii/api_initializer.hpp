@@ -1,15 +1,19 @@
 #ifndef __FCS_RAII_API_INITIALIZER_HPP__
 #define __FCS_RAII_API_INITIALIZER_HPP__
 
-#include "fcs/raii/raii.hpp"
+#include "fcs/raii/raii_common.hpp"
+#include "fcs/raii/raii_logging.hpp"
 #include "spdlog/spdlog.h"
 #include <list>
 #include <map>
 #include <memory>
+#include <vector>
 
 namespace fcs {
 namespace raii {
 using Void_func_t = void (*)(void);
+
+//! Ensure functor is run on obect destruction
 
 template <typename FUNCTOR = Void_func_t>
 class Functor_scope_exit {
@@ -37,6 +41,8 @@ class Functor_scope_exit {
   */
   Functor_t functor_;
 };
+
+//! Singleton registry for Apis requiring consistent init/uninit behavior
 
 /**
  For APIs that need some form of initialization/uninitialization to be
@@ -97,6 +103,8 @@ class Api_initializer_registry {
   Registry_t registry_{};
   Uninit_list_t registry_ordered_{};
 };
+
+//! Provide consistent *init*/*uninit* behavior
 
 template <typename INIT_FUNC = Void_func_t, typename UNINIT_FUNC = Void_func_t>
 class Api_initializer {

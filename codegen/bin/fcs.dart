@@ -13,11 +13,12 @@ main() {
   Logger.root
     ..onRecord.listen((LogRecord r) =>
         print("${r.loggerName} [${r.level}]:\t${r.message}"))
-    ..level = Level.OFF;
+    ..level = Level.SEVERE;
 
   generate() {
     fcsInstallation
       ..doc = 'C++ library'
+      ..cppLoggers = [ /* TODO: cppLogger('fcs'), cppLogger('goober')*/ ]
       ..generate(generateBuildScripts: true, generateHeaderSmokeTest : false, generateDoxyFile : true);
   }
 

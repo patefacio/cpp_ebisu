@@ -12,5 +12,6 @@ String _getPath() {
 final fcsInstallation = () {
   useClangFormatter = true;
   return new Installation(new Id('fcs'))
-    ..root = _getPath();
+    ..logsApiInitializations = true
+    ..rootFilePath = _getPath();
 }();

@@ -1,6 +1,9 @@
 #ifndef __FCS_UTILS_VERSION_CONTROL_COMMIT_HPP__
 #define __FCS_UTILS_VERSION_CONTROL_COMMIT_HPP__
 
+#include "fcs/utils/utils_initialization.hpp"
+#include "fcs/utils/utils_logging.hpp"
+
 namespace fcs {
 namespace utils {
 /**

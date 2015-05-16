@@ -1,6 +1,8 @@
 #ifndef __FCS_UTILS_BLOCK_INDENTER_HPP__
 #define __FCS_UTILS_BLOCK_INDENTER_HPP__
 
+#include "fcs/utils/utils_initialization.hpp"
+#include "fcs/utils/utils_logging.hpp"
 #include <boost/thread/tss.hpp>
 
 namespace fcs {
