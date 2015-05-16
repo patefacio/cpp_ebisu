@@ -1,12 +1,12 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/raii/change_tracker.hpp"
+#include "ebisu/raii/change_tracker.hpp"
 
 // custom <custom includes>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace raii {
 SCENARIO("change until end of block") {
   GIVEN("an int initialized to one") {
@@ -16,7 +16,7 @@ SCENARIO("change until end of block") {
     WHEN("a block changes the value to three") {
       // custom <(485840119)>
       {
-        fcs::raii::Change_until_end_of_block<int> change_until_end_of_block{x,
+        ebisu::raii::Change_until_end_of_block<int> change_until_end_of_block{x,
                                                                             3};
         CHECK(x == 3);
       }
@@ -31,4 +31,4 @@ SCENARIO("change until end of block") {
 }
 
 }  // namespace raii
-}  // namespace fcs
+}  // namespace ebisu

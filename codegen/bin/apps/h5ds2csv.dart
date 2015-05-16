@@ -1,11 +1,11 @@
 library bin.h5ds2csv;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final h5ds2csv = app('h5ds2csv')
   ..descr = 'Converts data_sets in hdf5 files to csv'
-  ..namespace = namespace(['fcs'])
+  ..namespace = namespace(['ebisu'])
   ..args = [
     arg('data_set')
     ..descr = 'Name of data_set to make into csv'
@@ -21,9 +21,9 @@ final h5ds2csv = app('h5ds2csv')
     ..shortName = 'o',
   ];
 
-addItems() => fcsInstallation.addApp(h5ds2csv);
+addItems() => ebisuInstallation.addApp(h5ds2csv);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

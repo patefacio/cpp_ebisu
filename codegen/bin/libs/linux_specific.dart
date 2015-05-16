@@ -3,7 +3,7 @@ library libs.linux_specific;
 import 'dart:io';
 import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 /// Parses /proc/cpuinfo and for the processor section of the first
 /// processor returns the set of entries. For example, returns:
@@ -53,7 +53,7 @@ get processorEntries {
 
 final linux_specific = lib('linux_specific')
   ..requiresLogging = true
-  ..namespace = namespace([ 'fcs', 'linux_specific' ])
+  ..namespace = namespace([ 'ebisu', 'linux_specific' ])
   ..headers = [
     header('umask_scoped_set')
     ..includes = [
@@ -110,10 +110,10 @@ work. umask settings play a role.'''
       test.includes.addAll(['iostream', 'sstream']);
     })
     ..includes = [
-      'fcs/linux_specific/linux_exceptions.hpp',
-      'fcs/utils/streamers/map.hpp',
-      'fcs/utils/streamers/vector.hpp',
-      'fcs/utils/exception/make_exception.hpp',
+      'ebisu/linux_specific/linux_exceptions.hpp',
+      'ebisu/utils/streamers/map.hpp',
+      'ebisu/utils/streamers/vector.hpp',
+      'ebisu/utils/exception/make_exception.hpp',
       'fstream', 'iterator', 'boost/regex.hpp', 'boost/thread.hpp',
       'boost/lexical_cast.hpp',
       'sys/types.h', 'unistd.h', 'boost/algorithm/string.hpp',
@@ -181,9 +181,9 @@ comparisons.
 
   ];
 
-addItems() => fcsInstallation.addLibs([linux_specific]);
+addItems() => ebisuInstallation.addLibs([linux_specific]);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

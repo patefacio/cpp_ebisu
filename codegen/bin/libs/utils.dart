@@ -1,10 +1,10 @@
 library libs.utils;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final utils = lib('utils')
-  ..namespace = namespace([ 'fcs', 'utils' ])
+  ..namespace = namespace([ 'ebisu', 'utils' ])
   ..headers = [
     header('block_indenter')
     ..includes = [
@@ -78,8 +78,8 @@ with linux strings program'''
       ]
     ],
     header('histogram')
-    ..includes = [ 'fcs/utils/block_indenter.hpp',
-      'fcs/utils/streamers/containers.hpp',
+    ..includes = [ 'ebisu/utils/block_indenter.hpp',
+      'ebisu/utils/streamers/containers.hpp',
       'boost/accumulators/accumulators.hpp',
       'boost/accumulators/statistics/density.hpp',
       'boost/algorithm/minmax_element.hpp',
@@ -141,7 +141,7 @@ Hist_results_t = boost::iterator_range<
   ];
 
 final exception = lib('exception')
-  ..namespace = namespace(['fcs', 'utils', 'exception'])
+  ..namespace = namespace(['ebisu', 'utils', 'exception'])
   ..headers = [
     header('make_exception')
     ..includes = [
@@ -151,8 +151,8 @@ final exception = lib('exception')
     ..customBlocks = [fcbBeginNamespace]
   ];
 
-final _namespace = namespace(['fcs','utils','streamers']);
-final _core = 'fcs/utils/streamers/streamers.hpp';
+final _namespace = namespace(['ebisu','utils','streamers']);
+final _core = 'ebisu/utils/streamers/streamers.hpp';
 final _containers = {
   'vector' : [ _core, 'iosfwd', 'vector' ],
   'set' : [ _core, 'iosfwd', 'set' ],
@@ -166,7 +166,7 @@ final _containers = {
 };
 
 addItems() {
-  fcsInstallation
+  ebisuInstallation
     ..addLibs([utils, exception]);
 
   final containers = lib('streamers')
@@ -174,11 +174,11 @@ addItems() {
     ..headers = [
       header('containers')
       ..includes = [
-        'fcs/utils/streamers/list.hpp',
-        'fcs/utils/streamers/vector.hpp',
-        'fcs/utils/streamers/deque.hpp',
-        'fcs/utils/streamers/set.hpp',
-        'fcs/utils/streamers/map.hpp',
+        'ebisu/utils/streamers/list.hpp',
+        'ebisu/utils/streamers/vector.hpp',
+        'ebisu/utils/streamers/deque.hpp',
+        'ebisu/utils/streamers/set.hpp',
+        'ebisu/utils/streamers/map.hpp',
       ],
 
       header('streamers')
@@ -191,16 +191,16 @@ addItems() {
 
       header('random')
       ..test.includes.addAll([
-        'fcs/utils/streamers/containers.hpp',
-        'fcs/timestamp/timestamp.hpp',
+        'ebisu/utils/streamers/containers.hpp',
+        'ebisu/timestamp/timestamp.hpp',
       ])
       ..includes = [
         'random',
         'limits',
         'cstdint',
-        'fcs/orm/otl_utils.hpp',
-        'fcs/utils/fixed_size_char_array.hpp',
-        'fcs/timestamp/timestamp.hpp',
+        'ebisu/orm/otl_utils.hpp',
+        'ebisu/utils/fixed_size_char_array.hpp',
+        'ebisu/timestamp/timestamp.hpp',
         'iostream', // TODO: remove
       ]
       ..classes = [
@@ -220,7 +220,7 @@ addItems() {
         'Size_list_t = std::vector< size_t >',
       ]
       ..includes = [
-        'fcs/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
+        'ebisu/utils/streamers/containers.hpp', 'boost/lexical_cast.hpp', 'boost/range.hpp',
         'vector', 'algorithm', 'iostream',
       ]
       ..classes = [
@@ -261,10 +261,10 @@ addItems() {
         ..includes = _containers[c]
         ..customBlocks = [fcbBeginNamespace]));
 
-  fcsInstallation.addLib(containers);
+  ebisuInstallation.addLib(containers);
 }
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

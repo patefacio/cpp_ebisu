@@ -1,6 +1,6 @@
 library libs;
 
-import '../lib/fcs_installation.dart';
+import '../lib/ebisu_installation.dart';
 import 'libs/utils.dart' as utils;
 import 'libs/raii.dart' as raii;
 import 'libs/orm.dart' as orm;
@@ -18,7 +18,7 @@ addItems() {
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }
 
 // end <library libs>

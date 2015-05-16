@@ -1,11 +1,11 @@
-#include "fcs/utils/block_indenter.hpp"
-#include "fcs/utils/streamers/containers.hpp"
+#include "ebisu/utils/block_indenter.hpp"
+#include "ebisu/utils/streamers/containers.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <string>
 #include <vector>
 
-namespace fcs {
+namespace ebisu {
 namespace {
 char const* app_descr = R"(
 Converts data_sets in hdf5 files to csv
@@ -64,7 +64,7 @@ struct Program_options {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
-    using fcs::utils::streamers::operator<<;
+    using ebisu::utils::streamers::operator<<;
     out << "Program_options(" << &item << ") {";
     out << "\n  help:" << item.help_;
     out << "\n  data_set:" << item.data_set_;
@@ -93,10 +93,10 @@ struct Program_options {
   std::string output_file_{};
 };
 
-}  // namespace fcs
+}  // namespace ebisu
 
 int main(int argc, char** argv) {
-  using namespace fcs;
+  using namespace ebisu;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {

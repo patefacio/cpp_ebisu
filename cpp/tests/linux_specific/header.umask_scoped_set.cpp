@@ -1,13 +1,13 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/linux_specific/umask_scoped_set.hpp"
+#include "ebisu/linux_specific/umask_scoped_set.hpp"
 
 // custom <custom includes>
 #include <iostream>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace linux_specific {
 SCENARIO("unit test umask scoped set") {
   GIVEN("current umask is something") {
@@ -42,4 +42,4 @@ SCENARIO("unit test umask scoped set") {
 }
 
 }  // namespace linux_specific
-}  // namespace fcs
+}  // namespace ebisu

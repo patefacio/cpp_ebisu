@@ -1,10 +1,10 @@
 library libs.orm;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final orm = lib('orm')
-  ..namespace = namespace([ 'fcs', 'orm' ])
+  ..namespace = namespace([ 'ebisu', 'orm' ])
   ..withStandardizedHeader(libCommonHeader, (Header commonHeader) {
     //print('Considering ${commonHeader.id.snake}');
     commonHeader
@@ -41,12 +41,12 @@ final orm = lib('orm')
     ]
     ..includes = [
       'string',
-      'fcs/utils/streamers/table.hpp',
+      'ebisu/utils/streamers/table.hpp',
     ],
     header('otl_utils')
     ..customBlocks = [ fcbPreNamespace, fcbEndNamespace, fcbPostNamespace ]
     ..includes = [
-      "fcs/utils/fixed_size_char_array.hpp",
+      "ebisu/utils/fixed_size_char_array.hpp",
       "boost/date_time/gregorian/formatters.hpp",
       "boost/date_time/gregorian/gregorian_types.hpp",
       "boost/date_time/posix_time/posix_time.hpp",
@@ -56,9 +56,9 @@ final orm = lib('orm')
   ];
 
 
-addItems() => fcsInstallation.addLibs([orm]);
+addItems() => ebisuInstallation.addLibs([orm]);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

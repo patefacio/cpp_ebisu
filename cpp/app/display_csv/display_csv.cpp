@@ -1,8 +1,8 @@
-#include "fcs/utils/block_indenter.hpp"
+#include "ebisu/utils/block_indenter.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
 
-namespace fcs {
+namespace ebisu {
 namespace {
 char const* app_descr = R"(
 null
@@ -51,10 +51,10 @@ struct Program_options {
   bool help_{};
 };
 
-}  // namespace fcs
+}  // namespace ebisu
 
 int main(int argc, char** argv) {
-  using namespace fcs;
+  using namespace ebisu;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {

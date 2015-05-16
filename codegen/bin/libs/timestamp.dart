@@ -1,10 +1,10 @@
 library libs.timestamp;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final timestamp = lib('timestamp')
-  ..namespace = namespace([ 'fcs', 'timestamp' ])
+  ..namespace = namespace([ 'ebisu', 'timestamp' ])
   ..headers = [
     header('timestamp')
     ..customBlocks = [ fcbEndNamespace ]
@@ -19,25 +19,25 @@ final timestamp = lib('timestamp')
       'boost/date_time/c_local_time_adjustor.hpp',
     ],
     header('cereal')
-    ..includes = [ 'fcs/timestamp/timestamp.hpp', 'cstdint' ]
+    ..includes = [ 'ebisu/timestamp/timestamp.hpp', 'cstdint' ]
     ..customBlocks = [ fcbPostNamespace ]
   ];
 
 final conversion = lib('conversion')
-  ..namespace = namespace([ 'fcs', 'timestamp' ])
+  ..namespace = namespace([ 'ebisu', 'timestamp' ])
   ..headers = [
     header('conversion')
     ..customBlocks = [ fcbEndNamespace ]
     ..includes = [
-      'fcs/timestamp/timestamp.hpp',
+      'ebisu/timestamp/timestamp.hpp',
       'boost/date_time/posix_time/time_formatters.hpp',
       'boost/regex.hpp',
     ]
   ];
 
-addItems() => fcsInstallation.addLibs([timestamp, conversion]);
+addItems() => ebisuInstallation.addLibs([timestamp, conversion]);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

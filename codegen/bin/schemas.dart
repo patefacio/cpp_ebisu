@@ -1,6 +1,6 @@
 library schemas;
 
-import '../lib/fcs_installation.dart';
+import '../lib/ebisu_installation.dart';
 import 'dart:async';
 import 'schemas/code_metrics.dart' as code_metrics;
 
@@ -10,6 +10,6 @@ Future addItems() =>
   ]);
 
 main() => addItems()
-  .then((_) => fcsInstallation.generate());
+  .then((_) => ebisuInstallation.generate());
 
 // end <library libs>

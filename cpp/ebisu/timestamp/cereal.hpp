@@ -1,0 +1,32 @@
+#ifndef __EBISU_TIMESTAMP_CEREAL_HPP__
+#define __EBISU_TIMESTAMP_CEREAL_HPP__
+
+#include "ebisu/timestamp/timestamp.hpp"
+#include "ebisu/timestamp/timestamp_initialization.hpp"
+#include "ebisu/timestamp/timestamp_logging.hpp"
+#include <cstdint>
+
+namespace ebisu {
+namespace timestamp {}  // namespace timestamp
+}  // namespace ebisu
+
+// custom <FcbPostNamespace cereal>
+
+namespace cereal {
+
+template <class Archive>
+int64_t save_minimal(Archive const &, fcs::timestamp::Timestamp_t const &ts) {
+  return fcs::timestamp::ticks(ts);
+}
+
+template <class Archive>
+void load_minimal(Archive const &, fcs::timestamp::Timestamp_t &ts,
+                  int64_t const &ticks) {
+  using namespace fcs::timestamp;
+  ts = Timestamp_t(Timestamp_t::time_rep_type(ticks));
+}
+}
+
+// end <FcbPostNamespace cereal>
+
+#endif  // __EBISU_TIMESTAMP_CEREAL_HPP__

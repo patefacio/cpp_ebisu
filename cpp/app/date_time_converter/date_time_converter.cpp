@@ -1,14 +1,14 @@
-#include "fcs/timestamp/conversion.hpp"
-#include "fcs/utils/block_indenter.hpp"
-#include "fcs/utils/streamers/containers.hpp"
-#include "fcs/utils/streamers/table.hpp"
+#include "ebisu/timestamp/conversion.hpp"
+#include "ebisu/utils/block_indenter.hpp"
+#include "ebisu/utils/streamers/containers.hpp"
+#include "ebisu/utils/streamers/table.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
-namespace fcs {
+namespace ebisu {
 namespace {
 char const* app_descr = R"(
 App for converting between various forms of date/time
@@ -72,7 +72,7 @@ struct Program_options {
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Program_options const& item) {
-    using fcs::utils::streamers::operator<<;
+    using ebisu::utils::streamers::operator<<;
     out << "Program_options(" << &item << ") {";
     out << "\n  help:" << item.help_;
     out << "\n  timestamp:" << item.timestamp_;
@@ -98,10 +98,10 @@ struct Program_options {
 
 // custom <FcbEndNamespace date_time_converter>
 
-void add_detail_row(fcs::utils::streamers::String_matrix_t& table,
-                    std::string const& input, fcs::timestamp::Timestamp_t ts) {
+void add_detail_row(ebisu::utils::streamers::String_matrix_t& table,
+                    std::string const& input, ebisu::timestamp::Timestamp_t ts) {
   using namespace utils::streamers;
-  using namespace fcs::timestamp;
+  using namespace ebisu::timestamp;
   String_list_t row;
   Date_t date{ts.date()};
   row.push_back(input);
@@ -117,10 +117,10 @@ void add_detail_row(fcs::utils::streamers::String_matrix_t& table,
 
 // end <FcbEndNamespace date_time_converter>
 
-}  // namespace fcs
+}  // namespace ebisu
 
 int main(int argc, char** argv) {
-  using namespace fcs;
+  using namespace ebisu;
   try {
     Program_options options = {argc, argv};
     if (options.help()) {
@@ -130,8 +130,8 @@ int main(int argc, char** argv) {
 
     // custom <main>
 
-    using namespace fcs::timestamp;
-    using namespace fcs::utils::streamers;
+    using namespace ebisu::timestamp;
+    using namespace ebisu::utils::streamers;
 
     String_matrix_t table;
     // first add reference times

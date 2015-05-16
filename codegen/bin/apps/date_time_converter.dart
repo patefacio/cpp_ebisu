@@ -1,7 +1,7 @@
 library bin.date_time_converter;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final date_time_converter = app('date_time_converter')
   ..descr = '''
@@ -23,12 +23,12 @@ Example:
 | 212280707214748639          | 212280707214748639 | 1413904014 | 20141021T150654.748639 | 2014-Oct-21 15:06:54.748639 | 2014-Oct-21 | 2456952 | 56951      |
 | 20010101T000000             | 211845110400000000 | 978307200  | 20010101T000000        | 2001-Jan-01 00:00:00        | 2001-Jan-01 | 2451911 | 51910      |
 '''
-  ..namespace = namespace(['fcs'])
+  ..namespace = namespace(['ebisu'])
   ..customBlocks = [ fcbEndNamespace ]
   ..includes = [
-    'fcs/timestamp/conversion.hpp',
-    'fcs/utils/streamers/table.hpp',
-    'fcs/timestamp/conversion.hpp',
+    'ebisu/timestamp/conversion.hpp',
+    'ebisu/utils/streamers/table.hpp',
+    'ebisu/timestamp/conversion.hpp',
     'stdexcept',
   ]
   ..args = [
@@ -44,9 +44,9 @@ Example:
     ..type = ArgType.STRING,
   ];
 
-addItems() => fcsInstallation.addApp(date_time_converter);
+addItems() => ebisuInstallation.addApp(date_time_converter);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

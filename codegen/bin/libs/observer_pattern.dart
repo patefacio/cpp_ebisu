@@ -1,11 +1,11 @@
 library libs.timestamp;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 import 'package:logging/logging.dart';
 
 final observer = lib('observer')
-  ..namespace = namespace([ 'fcs', 'patterns' ])
+  ..namespace = namespace([ 'ebisu', 'patterns' ])
   ..headers = [
     header('observer')
     ..customBlocks = [ fcbEndNamespace ]
@@ -62,7 +62,7 @@ Signaller part of observer pattern, where observers are kept sorted by priority'
     ],
   ];
 
-addItems() => fcsInstallation.addLibs([observer]);
+addItems() => ebisuInstallation.addLibs([observer]);
 
 main() {
   Logger.root
@@ -71,5 +71,5 @@ main() {
     ..level = Level.OFF;
 
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

@@ -1,12 +1,12 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/raii/api_initializer.hpp"
+#include "ebisu/raii/api_initializer.hpp"
 
 // custom <custom includes>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace raii {
 SCENARIO("functor runs on block exit") {
   GIVEN("functor in block") {
@@ -25,4 +25,4 @@ SCENARIO("functor runs on block exit") {
 }
 
 }  // namespace raii
-}  // namespace fcs
+}  // namespace ebisu

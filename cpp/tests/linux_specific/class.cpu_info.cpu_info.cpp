@@ -1,18 +1,18 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/linux_specific/cpu_info.hpp"
+#include "ebisu/linux_specific/cpu_info.hpp"
 
 // custom <custom includes>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace linux_specific {
 SCENARIO("cpu info") {
   GIVEN("the single cpu info instance") {
     // custom <(954218043)>
     using namespace std;
-    using namespace fcs::linux_specific;
+    using namespace ebisu::linux_specific;
 
     Cpu_info& cpu_info = Cpu_info::instance();
 
@@ -41,4 +41,4 @@ SCENARIO("cpu info") {
 }
 
 }  // namespace linux_specific
-}  // namespace fcs
+}  // namespace ebisu

@@ -2,10 +2,10 @@ library libs.raii;
 
 import "package:logging/logging.dart";
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final raii = lib('raii')
-  ..namespace = namespace([ 'fcs', 'raii' ])
+  ..namespace = namespace([ 'ebisu', 'raii' ])
   ..withStandardizedHeader(libCommonHeader, (Header header) {
     //print(header.contents);
   })
@@ -155,12 +155,12 @@ performed.
     ]
   ];
 
-addItems() => fcsInstallation.addLib(raii);
+addItems() => ebisuInstallation.addLib(raii);
 
 main() {
   addItems();
   Logger.root.onRecord.listen((LogRecord r) =>
       print("${r.loggerName} [${r.level}]:\t${r.message}"));
   Logger.root.level = Level.OFF;
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

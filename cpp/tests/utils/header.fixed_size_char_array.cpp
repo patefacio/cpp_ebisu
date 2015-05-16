@@ -1,12 +1,12 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/utils/fixed_size_char_array.hpp"
+#include "ebisu/utils/fixed_size_char_array.hpp"
 
 // custom <custom includes>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace utils {
 SCENARIO("sizeof matches array size") {
   GIVEN("fixed size char array of size six") {
@@ -101,4 +101,4 @@ SCENARIO("equality operator works") {
 }
 
 }  // namespace utils
-}  // namespace fcs
+}  // namespace ebisu

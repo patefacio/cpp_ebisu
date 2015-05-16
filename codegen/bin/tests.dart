@@ -1,11 +1,11 @@
 library tests;
 
-import '../lib/fcs_installation.dart';
+import '../lib/ebisu_installation.dart';
 
 addItems() {
 }
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

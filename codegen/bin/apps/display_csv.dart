@@ -1,18 +1,18 @@
 library bin.display_csv;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import '../../lib/fcs_installation.dart';
+import '../../lib/ebisu_installation.dart';
 
 final display_csv = app('display_csv')
-  ..namespace = namespace(['fcs'])
+  ..namespace = namespace(['ebisu'])
   ..requiredLibs = [
     'boost_date_time',
     'boost_regex',
   ];
 
-addItems() => fcsInstallation.addApp(display_csv);
+addItems() => ebisuInstallation.addApp(display_csv);
 
 main() {
   addItems();
-  fcsInstallation.generate();
+  ebisuInstallation.generate();
 }

@@ -1,18 +1,18 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "fcs/raii/change_tracker.hpp"
+#include "ebisu/raii/change_tracker.hpp"
 
 // custom <custom includes>
 // end <custom includes>
 
-namespace fcs {
+namespace ebisu {
 namespace raii {
 SCENARIO("change tracker next value") {
   GIVEN("an int change tracker assigned to one") {
     // custom <(542814227)>
 
-    using namespace fcs::raii;
+    using namespace ebisu::raii;
     Change_tracker<int> change_tracker{1};
 
     // end <(542814227)>
@@ -42,4 +42,4 @@ SCENARIO("change tracker next value") {
 }
 
 }  // namespace raii
-}  // namespace fcs
+}  // namespace ebisu
