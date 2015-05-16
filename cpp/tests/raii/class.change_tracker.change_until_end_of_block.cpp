@@ -16,8 +16,8 @@ SCENARIO("change until end of block") {
     WHEN("a block changes the value to three") {
       // custom <(485840119)>
       {
-        ebisu::raii::Change_until_end_of_block<int> change_until_end_of_block{x,
-                                                                            3};
+        ebisu::raii::Change_until_end_of_block<int> change_until_end_of_block{
+            x, 3};
         CHECK(x == 3);
       }
       // end <(485840119)>

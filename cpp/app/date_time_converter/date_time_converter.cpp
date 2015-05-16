@@ -99,7 +99,8 @@ struct Program_options {
 // custom <FcbEndNamespace date_time_converter>
 
 void add_detail_row(ebisu::utils::streamers::String_matrix_t& table,
-                    std::string const& input, ebisu::timestamp::Timestamp_t ts) {
+                    std::string const& input,
+                    ebisu::timestamp::Timestamp_t ts) {
   using namespace utils::streamers;
   using namespace ebisu::timestamp;
   String_list_t row;
