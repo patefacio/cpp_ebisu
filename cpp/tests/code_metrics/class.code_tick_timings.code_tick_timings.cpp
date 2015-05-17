@@ -9,16 +9,10 @@
 namespace ebisu {
 namespace orm {
 namespace code_metrics {
-SCENARIO("delete rows deletes rows") {
+SCENARIO("delete rows deletes rows") {}
+SCENARIO("insert rows inserts rows") {}
+SCENARIO("update rows updates rows") {}
 
-}SCENARIO("insert rows inserts rows") {
-
-}SCENARIO("update rows updates rows") {
-
-}
-
-
-} // namespace code_metrics
-} // namespace orm
-} // namespace ebisu
-
+}  // namespace code_metrics
+}  // namespace orm
+}  // namespace ebisu

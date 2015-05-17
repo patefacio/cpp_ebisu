@@ -1,4 +1,4 @@
-name: fcs
+name: cpp_ebisu
 version: 0.0.1
 author: Daniel Davidson <dbdavidson@yahoo.com>
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
   ebisu_cpp: "any"
   path: "any"
 
-# custom <fcs dependencies>
+# custom <ebisu dependencies>
 
   collection: ">=1.0.0"
   quiver: ">=0.21.0<0.22.0"  
@@ -15,18 +15,18 @@ dependencies:
   ebisu_cpp: "^0.0.23"
   ebisu_cpp_db: "^0.0.7"
    
-# end <fcs dependencies>
+# end <ebisu dependencies>
 
 dev_dependencies:
   yaml: "any"
   unittest: ">=0.11.0 < 0.12.0"
   browser: "any"
 
-# custom <fcs dev dependencies>
-# end <fcs dev dependencies>
+# custom <ebisu dev dependencies>
+# end <ebisu dev dependencies>
 
 dependency_overrides:
-# custom <fcs dependency overrides>
+# custom <ebisu dependency overrides>
 
   id:
     path: /home/dbdavidson/dev/open_source/id
@@ -40,10 +40,10 @@ dependency_overrides:
   ebisu_cpp_db:
     path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
     
-# end <fcs dependency overrides>
+# end <ebisu dependency overrides>
 
 transformers:
 
-# custom <fcs transformers>
-# end <fcs transformers>
+# custom <ebisu transformers>
+# end <ebisu transformers>
 

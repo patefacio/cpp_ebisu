@@ -15,14 +15,14 @@ namespace timestamp {}  // namespace timestamp
 namespace cereal {
 
 template <class Archive>
-int64_t save_minimal(Archive const &, fcs::timestamp::Timestamp_t const &ts) {
-  return fcs::timestamp::ticks(ts);
+int64_t save_minimal(Archive const &, ebisu::timestamp::Timestamp_t const &ts) {
+  return ebisu::timestamp::ticks(ts);
 }
 
 template <class Archive>
-void load_minimal(Archive const &, fcs::timestamp::Timestamp_t &ts,
+void load_minimal(Archive const &, ebisu::timestamp::Timestamp_t &ts,
                   int64_t const &ticks) {
-  using namespace fcs::timestamp;
+  using namespace ebisu::timestamp;
   ts = Timestamp_t(Timestamp_t::time_rep_type(ticks));
 }
 }
