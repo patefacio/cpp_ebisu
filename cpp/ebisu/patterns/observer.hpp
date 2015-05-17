@@ -1,11 +1,11 @@
-#ifndef __FCS_PATTERNS_OBSERVER_HPP__
-#define __FCS_PATTERNS_OBSERVER_HPP__
+#ifndef __EBISU_PATTERNS_OBSERVER_HPP__
+#define __EBISU_PATTERNS_OBSERVER_HPP__
 
 #include <boost/call_traits.hpp>
 #include <boost/type_traits/add_pointer.hpp>
 #include <set>
 
-namespace fcs {
+namespace ebisu {
 namespace patterns {
 /**
  Singaller part of the observer pattern.
@@ -86,6 +86,6 @@ class Signaller_prioritized {
 // end <FcbEndNamespace observer>
 
 }  // namespace patterns
-}  // namespace fcs
+}  // namespace ebisu
 
-#endif  // __FCS_PATTERNS_OBSERVER_HPP__
+#endif  // __EBISU_PATTERNS_OBSERVER_HPP__
