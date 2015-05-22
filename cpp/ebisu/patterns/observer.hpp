@@ -1,6 +1,8 @@
 #ifndef __EBISU_PATTERNS_OBSERVER_HPP__
 #define __EBISU_PATTERNS_OBSERVER_HPP__
 
+#include "ebisu/patterns/observer_initialization.hpp"
+#include "ebisu/patterns/observer_logging.hpp"
 #include <boost/call_traits.hpp>
 #include <boost/type_traits/add_pointer.hpp>
 #include <set>

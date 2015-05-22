@@ -171,7 +171,7 @@ comparisons.
 '''
       ..isSingleton = true
       ..withDefaultCtor((defaultCtor) =>
-          defaultCtor..hasCustom = true)
+          defaultCtor..includesProtectBlock = true)
       ..customBlocks = [ clsPrivate ]
       ..members = [
         member('processors')
