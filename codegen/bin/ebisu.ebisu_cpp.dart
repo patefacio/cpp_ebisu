@@ -19,7 +19,10 @@ main() {
     ebisuInstallation
       ..doc = 'C++ library'
       ..cppLoggers = [ /* TODO: cppLogger('ebisu'), cppLogger('goober')*/ ]
-      ..generate(generateBuildScripts: true, generateHeaderSmokeTest : false, generateDoxyFile : true);
+      ..generate(generateBuildScripts: true,
+          generateHeaderSmokeTest : false,
+          generateDoxyFile : true,
+          generateEmacs : true);
   }
 
   libs.addItems();
@@ -36,8 +39,15 @@ main() {
                   ]));
 
         generate();
+
+        ebisuInstallation.progeny
+          .where((p) => p is Header)
+          .forEach((l) => print(l.filePath));
+        
+          //ebisuInstallation.progeny.forEach((p) => print(p.detailedPath));
       });
   } else {
     generate();
   }
+
 }

@@ -5,7 +5,6 @@
 namespace ebisu {
 namespace {
 char const* app_descr = R"(
-null
 
 AllowedOptions)";
 }

@@ -4,9 +4,8 @@ import 'package:ebisu_cpp/ebisu_cpp.dart';
 import '../../lib/ebisu_installation.dart';
 
 final date_time_converter = app('date_time_converter')
+  ..brief = 'App for converting between various forms of date/time.'
   ..descr = '''
-App for converting between various forms of date/time
-
 Example:
 
 > date_time_converter -t '2014-Oct-21 15:06:54.748639' -t 212280707214748639 -d 20010101 -d 2456952 -d 56951 -t 20010101T000000

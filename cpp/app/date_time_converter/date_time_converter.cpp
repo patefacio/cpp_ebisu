@@ -1,3 +1,5 @@
+//! App for converting between various forms of date/time.
+
 #include "ebisu/timestamp/conversion.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
@@ -11,7 +13,7 @@
 namespace ebisu {
 namespace {
 char const* app_descr = R"(
-App for converting between various forms of date/time
+App for converting between various forms of date/time.
 
 Example:
 
@@ -28,7 +30,6 @@ Example:
 | 2014-Oct-21 15:06:54.748639 | 212280707214748639 | 1413904014 | 20141021T150654.748639 | 2014-Oct-21 15:06:54.748639 | 2014-Oct-21 | 2456952 | 56951      |
 | 212280707214748639          | 212280707214748639 | 1413904014 | 20141021T150654.748639 | 2014-Oct-21 15:06:54.748639 | 2014-Oct-21 | 2456952 | 56951      |
 | 20010101T000000             | 211845110400000000 | 978307200  | 20010101T000000        | 2001-Jan-01 00:00:00        | 2001-Jan-01 | 2451911 | 51910      |
-
 
 AllowedOptions)";
 }
