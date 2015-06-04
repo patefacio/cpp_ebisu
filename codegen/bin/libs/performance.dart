@@ -59,8 +59,14 @@ final performance = lib('performance')
       ..brief = 'Logs the results of timing a block of code'
       ..template = [ 'typename BLOCK_TIMER = Block_timer<>' ]
       ..usings = [
-        using('block_timer', 'BLOCK_TIMER'),
-        using('duration', 'typename Block_timer_t::Duration_t'),
+        using('clock', 'CLOCK'),
+        using('time_point', 'TIME_POINT'),
+        using('duration', 'DURATION'),
+      ]
+      ..template = [
+        'typename CLOCK = std::chrono::high_resolution_clock',
+        'typename TIME_POINT = typename CLOCK::time_point',
+        'typename DURATION = typename CLOCK::duration',
       ]
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [
@@ -77,10 +83,25 @@ final performance = lib('performance')
         ..type = 'std::ostream'
         ..refType = ref
         ..isByRef = true,
+        member('start')
+        ..doc = 'Start of timing - stamped on construction'
+        ..type = 'Time_point_t'
+        ..init = 'Clock_t::now()',
+        member('stop')
+        ..doc = 'Stop of timing - stamped on destruction'
+        ..type = 'Time_point_t',
         member('duration')
         ..doc = 'Duration of a timed block - value to be logged at destruction'
         ..type = 'Duration_t'
-        ..cppAccess = public,
+        ..access = ia
+      ]
+      ..testScenarios = [
+        testScenario('block timer logger',
+            given('a block timer')
+            ..whens = [
+                when('work is done in the block')
+                ..thens = [then('the timed values are logged')]
+            ])
       ],
 
       class_('streaming_block_timer')

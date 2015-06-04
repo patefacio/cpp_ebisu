@@ -50,11 +50,14 @@ class Block_timer {
 
 //! Logs the results of timing a block of code
 
-template <typename BLOCK_TIMER = Block_timer<> >
+template <typename CLOCK = std::chrono::high_resolution_clock,
+          typename TIME_POINT = typename CLOCK::time_point,
+          typename DURATION = typename CLOCK::duration>
 class Block_timer_logger {
  public:
-  using Block_timer_t = BLOCK_TIMER;
-  using Duration_t = typename Block_timer_t::Duration_t;
+  using Clock_t = CLOCK;
+  using Time_point_t = TIME_POINT;
+  using Duration_t = DURATION;
 
   Block_timer_logger(std::ostream& out, std::string const& description = "")
       : out_{out}, description_{description} {}
@@ -62,17 +65,14 @@ class Block_timer_logger {
   // custom <ClsPublic Block_timer_logger>
 
   ~Block_timer_logger() {
-    out_ << "Block (" << description_ << ") took " << duration.count() << " ticks where "
-         << Duration_t::period::num << " ticks = " << Duration_t::period::den
-         << " seconds\n";
+    stop_ = Clock_t::now();
+    duration_ = stop_ - start_;
+    out_ << "Block(" << description_ << "): " << duration_.count()
+         << " ticks (" << Duration_t::period::num
+         << " ticks = " << Duration_t::period::den << " seconds)\n";
   }
 
   // end <ClsPublic Block_timer_logger>
-
-  /**
-   Duration of a timed block - value to be logged at destruction
-  */
-  Duration_t duration{};
 
  private:
   /**
@@ -84,6 +84,21 @@ class Block_timer_logger {
    Stream to log results
   */
   std::ostream& out_;
+
+  /**
+   Start of timing - stamped on construction
+  */
+  Time_point_t start_{Clock_t::now()};
+
+  /**
+   Stop of timing - stamped on destruction
+  */
+  Time_point_t stop_{};
+
+  /**
+   Duration of a timed block - value to be logged at destruction
+  */
+  Duration_t duration_{};
 };
 
 //! Times a block of code and via RIIA logs results

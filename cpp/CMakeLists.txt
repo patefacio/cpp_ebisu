@@ -230,6 +230,26 @@ add_test(
   class.block_timers.block_timer)
 
 
+#   test for test_block_timer_logger
+#     (Lib:performance), (Header:block_timers), (Class:block_timer_logger), (Test:block_timer_logger)
+#   
+add_executable(class.block_timers.block_timer_logger
+  tests/performance/class.block_timers.block_timer_logger.cpp
+)
+
+target_link_libraries(class.block_timers.block_timer_logger
+# custom <catch test_block_timer_logger link requirements>
+  ${Boost_REGEX_LIBRARY}  
+# end <catch test_block_timer_logger link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(
+  class.block_timers.block_timer_logger
+  class.block_timers.block_timer_logger)
+
+
 #   test for test_code_packages
 #     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
 #   
