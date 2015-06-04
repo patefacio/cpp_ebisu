@@ -6,6 +6,7 @@ import 'libs/raii.dart' as raii;
 import 'libs/orm.dart' as orm;
 import 'libs/timestamp.dart' as timestamp;
 import 'libs/linux_specific.dart' as linux_specific;
+import 'libs/performance.dart' as performance;
 
 
 addItems() {
@@ -14,6 +15,7 @@ addItems() {
   raii.addItems();
   orm.addItems();
   timestamp.addItems();
+  performance.addItems();
 }
 
 main() {

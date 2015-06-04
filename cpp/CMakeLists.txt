@@ -211,6 +211,25 @@ add_test(
   class.api_initializer.functor_scope_exit)
 
 
+#   test for test_block_timer
+#     (Lib:performance), (Header:block_timers), (Class:block_timer), (Test:block_timer)
+#   
+add_executable(class.block_timers.block_timer
+  tests/performance/class.block_timers.block_timer.cpp
+)
+
+target_link_libraries(class.block_timers.block_timer
+# custom <catch test_block_timer link requirements>
+# end <catch test_block_timer link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(
+  class.block_timers.block_timer
+  class.block_timers.block_timer)
+
+
 #   test for test_code_packages
 #     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
 #   
