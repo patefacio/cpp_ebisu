@@ -10,9 +10,9 @@ dependencies:
 
   collection: ">=1.0.0"
   quiver: ">=0.21.0<0.22.0"  
-  id: ">=1.0.6<1.1.0"  
-  ebisu: "^0.3.4"
-  ebisu_cpp: "^0.0.23"
+  id: "^1.0.10"  
+  ebisu: "^0.6.1"
+  ebisu_cpp: "^0.3.2"
   ebisu_cpp_db: "^0.0.7"
    
 # end <ebisu dependencies>
@@ -28,11 +28,13 @@ dev_dependencies:
 dependency_overrides:
 # custom <ebisu dependency overrides>
 
-  id:
-    path: /home/dbdavidson/dev/open_source/id
+#  id:
+#    path: /home/dbdavidson/dev/open_source/id
 
-  ebisu:
-    path: /home/dbdavidson/dev/open_source/ebisu
+#  ebisu:
+#    path: /home/dbdavidson/dev/open_source/ebisu
+
+  ebisu: "^0.6.1"
 
   ebisu_cpp:
     path: /home/dbdavidson/dev/open_source/ebisu_cpp

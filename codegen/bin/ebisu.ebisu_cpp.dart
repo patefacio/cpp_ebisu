@@ -43,7 +43,7 @@ main() {
         ebisuInstallation.progeny
           .where((p) => p is Header)
           .forEach((l) => print(l.filePath));
-        
+
           //ebisuInstallation.progeny.forEach((p) => print(p.detailedPath));
       });
   } else {
