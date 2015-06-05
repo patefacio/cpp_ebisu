@@ -250,6 +250,25 @@ add_test(
   class.block_timers.block_timer_logger)
 
 
+#   test for test_block_rusage
+#     (Lib:performance), (Header:block_rusage), (Class:block_rusage), (Test:block_rusage)
+#   
+add_executable(class.block_rusage.block_rusage
+  tests/performance/class.block_rusage.block_rusage.cpp
+)
+
+target_link_libraries(class.block_rusage.block_rusage
+# custom <catch test_block_rusage link requirements>
+# end <catch test_block_rusage link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(
+  class.block_rusage.block_rusage
+  class.block_rusage.block_rusage)
+
+
 #   test for test_code_packages
 #     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
 #   

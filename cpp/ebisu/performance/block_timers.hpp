@@ -12,14 +12,21 @@ namespace ebisu {
 namespace performance {
 //! Times a block of code
 
-template <typename CLOCK = std::chrono::high_resolution_clock,
-          typename TIME_POINT = typename CLOCK::time_point,
-          typename DURATION = typename CLOCK::duration>
+/**
+ Uses RIIA to start a timer on construction, stop the timer on
+ destruction and calculate the difference. To be useful, the duration
+ needs to exist beyond the timing, so it is passed in by reference.
+
+ Rather than simply assign the timing to the duration, it is added so
+ the duration can be used with multiple timers.
+
+*/
+template <typename CLOCK = std::chrono::high_resolution_clock>
 class Block_timer {
  public:
   using Clock_t = CLOCK;
-  using Time_point_t = TIME_POINT;
-  using Duration_t = DURATION;
+  using Time_point_t = typename Clock_t::time_point;
+  using Duration_t = typename Clock_t::duration;
 
   Block_timer(Duration_t& duration) : duration_{duration} {}
 
@@ -27,7 +34,7 @@ class Block_timer {
 
   ~Block_timer() {
     stop_ = Clock_t::now();
-    duration_ = stop_ - start_;
+    duration_ += (stop_ - start_);
     performance_logger->info("Duration {} ticks where {} tick = {} seconds",
                              duration_.count(), Duration_t::period::num,
                              Duration_t::period::den);
@@ -50,14 +57,12 @@ class Block_timer {
 
 //! Logs the results of timing a block of code
 
-template <typename CLOCK = std::chrono::high_resolution_clock,
-          typename TIME_POINT = typename CLOCK::time_point,
-          typename DURATION = typename CLOCK::duration>
+template <typename CLOCK = std::chrono::high_resolution_clock>
 class Block_timer_logger {
  public:
   using Clock_t = CLOCK;
-  using Time_point_t = TIME_POINT;
-  using Duration_t = DURATION;
+  using Time_point_t = typename Clock_t::time_point;
+  using Duration_t = typename Clock_t::duration;
 
   Block_timer_logger(std::ostream& out, std::string const& description = "")
       : out_{out}, description_{description} {}
@@ -67,9 +72,9 @@ class Block_timer_logger {
   ~Block_timer_logger() {
     stop_ = Clock_t::now();
     duration_ = stop_ - start_;
-    out_ << "Block(" << description_ << "): " << duration_.count()
-         << " ticks (" << Duration_t::period::num
-         << " ticks = " << Duration_t::period::den << " seconds)\n";
+    out_ << "Block(" << description_ << "): " << duration_.count() << " ticks ("
+         << Duration_t::period::num << " ticks = " << Duration_t::period::den
+         << " seconds)\n";
   }
 
   // end <ClsPublic Block_timer_logger>
@@ -99,19 +104,6 @@ class Block_timer_logger {
    Duration of a timed block - value to be logged at destruction
   */
   Duration_t duration_{};
-};
-
-//! Times a block of code and via RIIA logs results
-
-/**
- Times a block and logs results
-
-*/
-template <typename T>
-class Streaming_block_timer {
- public:
-  // custom <ClsPublic Streaming_block_timer>
-  // end <ClsPublic Streaming_block_timer>
 };
 
 }  // namespace performance

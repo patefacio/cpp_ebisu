@@ -22,15 +22,21 @@ final performance = lib('performance')
 
       class_('block_timer')
       ..brief = 'Times a block of code'
+      ..doc = '''
+Uses RIIA to start a timer on construction, stop the timer on
+destruction and calculate the difference. To be useful, the duration
+needs to exist beyond the timing, so it is passed in by reference.
+
+Rather than simply assign the timing to the duration, it is added so
+the duration can be used with multiple timers.
+'''
       ..usings = [
         using('clock', 'CLOCK'),
-        using('time_point', 'TIME_POINT'),
-        using('duration', 'DURATION'),
+        using('time_point', 'typename Clock_t::time_point'),
+        using('duration', 'typename Clock_t::duration'),
       ]
       ..template = [
         'typename CLOCK = std::chrono::high_resolution_clock',
-        'typename TIME_POINT = typename CLOCK::time_point',
-        'typename DURATION = typename CLOCK::duration',
       ]
       ..memberCtors = [ memberCtor(['duration']) ]
       ..members = [
@@ -60,13 +66,11 @@ final performance = lib('performance')
       ..template = [ 'typename BLOCK_TIMER = Block_timer<>' ]
       ..usings = [
         using('clock', 'CLOCK'),
-        using('time_point', 'TIME_POINT'),
-        using('duration', 'DURATION'),
+        using('time_point', 'typename Clock_t::time_point'),
+        using('duration', 'typename Clock_t::duration'),
       ]
       ..template = [
         'typename CLOCK = std::chrono::high_resolution_clock',
-        'typename TIME_POINT = typename CLOCK::time_point',
-        'typename DURATION = typename CLOCK::duration',
       ]
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [
@@ -103,15 +107,57 @@ final performance = lib('performance')
                 ..thens = [then('the timed values are logged')]
             ])
       ],
+    ],
 
-      class_('streaming_block_timer')
-      ..brief = 'Times a block of code and via RIIA logs results'
-      ..descr = '''
-Times a block and logs results
-'''
-      ..template = [ 'typename T' ]
-      ..customBlocks = [clsPublic]
+    header('block_rusage')
+    ..brief = 'Utilities for tracking resource utilization (Linux)'
+    ..customBlocks = [fcbBeginNamespace, fcbEndNamespace]
+    ..includes = [
+      'sys/time.h',
+      'sys/resource.h',
+      'ebisu/utils/block_indenter.hpp',
+    ]
+    ..classes = [
+
+      class_('rusage_delta')
+      ..doc = 'Tracks start/stop and delta on rusage'
+      ..customBlocks = [ clsPublic ]
+      ..isStreamable = true
       ..members = [
+        member('start')
+        ..doc = 'Result of ru at start of block'
+        ..type = 'rusage'
+        ..cppAccess = public,
+        member('stop')
+        ..doc = 'Result of ru at end of block'
+        ..type = 'rusage'
+        ..cppAccess = public,
+        member('delta')
+        ..doc = 'Diff - stop - start'
+        ..type = 'rusage'
+        ..cppAccess = public,
+      ],
+
+      class_('block_rusage')
+      ..doc = 'Tracks resource utilization over a block'
+      ..memberCtors = [
+        memberCtor(['rusage_delta'])
+        ..includesProtectBlock = true
+      ]
+      ..customBlocks = [ clsPublic ]
+      ..members = [
+        member('rusage_delta')
+        ..type = 'Rusage_delta'
+        ..refType = ref
+        ..isByRef = true,
+      ]
+      ..testScenarios = [
+        testScenario('block rusage',
+            given('a block rusage')
+            ..whens = [
+                when('work is done in the block')
+                ..thens = [then('the rusage delta is captured')]
+            ])
       ],
     ]
   ];
