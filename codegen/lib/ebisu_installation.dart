@@ -6,7 +6,7 @@ import 'package:id/id.dart';
 
 String _getPath() {
   final script = Platform.script.toFilePath();
-  return script.substring(0, script.indexOf('fcs/codegen')) + 'fcs';
+  return script.substring(0, script.indexOf('cpp_ebisu/codegen')) + 'cpp_ebisu';
 }
 
 final ebisuInstallation = () {
