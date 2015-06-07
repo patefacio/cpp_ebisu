@@ -8,7 +8,7 @@ before_install:
   - echo $LANG
   - echo $LC_ALL
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install apt-transport-https && sudo apt-get install -y llvm-3.4 llvm-3.4-dev && sudo apt-get install cmake; fi
-  - cpp/cmake.gen.sh
+  - cd cpp && cmake.gen.sh
 
 script:
   - cd cmake_build/debug && cmake && ctest
