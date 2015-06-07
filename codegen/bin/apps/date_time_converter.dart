@@ -30,6 +30,7 @@ Example:
     'ebisu/timestamp/conversion.hpp',
     'stdexcept',
   ]
+  ..hasLogLevel = true
   ..args = [
     arg('timestamp')
     ..shortName = 't'

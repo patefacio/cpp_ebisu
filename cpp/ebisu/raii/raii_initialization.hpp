@@ -7,11 +7,17 @@
 namespace ebisu {
 namespace raii {
 /// Initialization function for raii
-inline void raii_init() { raii_logger->info("init of raii (version 0.0.1)"); }
+inline void raii_init() {
+#if defined(LIB_INIT_LOGGING)
+  raii_logger->info("init of raii (version 0.0.1)");
+#endif
+}
 
 /// Uninitialization function for raii
 inline void raii_uninit() {
+#if defined(LIB_INIT_LOGGING)
   raii_logger->info("uninit of raii (version 0.0.1)");
+#endif
 }
 
 /// Singleton for raii initializer

@@ -8,12 +8,16 @@ namespace ebisu {
 namespace performance {
 /// Initialization function for performance
 inline void performance_init() {
+#if defined(LIB_INIT_LOGGING)
   performance_logger->info("init of performance (version 0.0.1)");
+#endif
 }
 
 /// Uninitialization function for performance
 inline void performance_uninit() {
+#if defined(LIB_INIT_LOGGING)
   performance_logger->info("uninit of performance (version 0.0.1)");
+#endif
 }
 
 /// Singleton for performance initializer

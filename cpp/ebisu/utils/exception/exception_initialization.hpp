@@ -9,12 +9,16 @@ namespace utils {
 namespace exception {
 /// Initialization function for exception
 inline void exception_init() {
+#if defined(LIB_INIT_LOGGING)
   exception_logger->info("init of exception (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for exception
 inline void exception_uninit() {
+#if defined(LIB_INIT_LOGGING)
   exception_logger->info("uninit of exception (version 0.0.0)");
+#endif
 }
 
 /// Singleton for exception initializer

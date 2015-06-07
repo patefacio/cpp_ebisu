@@ -9,12 +9,16 @@ namespace orm {
 namespace code_metrics {
 /// Initialization function for code_metrics
 inline void code_metrics_init() {
+#if defined(LIB_INIT_LOGGING)
   code_metrics_logger->info("init of code_metrics (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for code_metrics
 inline void code_metrics_uninit() {
+#if defined(LIB_INIT_LOGGING)
   code_metrics_logger->info("uninit of code_metrics (version 0.0.0)");
+#endif
 }
 
 /// Singleton for code_metrics initializer

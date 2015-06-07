@@ -4,6 +4,7 @@
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
 #include "ebisu/utils/streamers/table.hpp"
+#include "spdlog/spdlog.h"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <stdexcept>
@@ -51,6 +52,8 @@ struct Program_options {
     if (parsed_options.count("date") > 0) {
       date_ = parsed_options["date"].as<std::vector<std::string> >();
     }
+
+    log_level_ = parsed_options["log-level"].as<std::string>();
   }
 
   static boost::program_options::options_description const& description() {
@@ -61,7 +64,10 @@ struct Program_options {
       options.add_options()("help,h", "Display help information")(
           "timestamp,t", value<std::vector<std::string> >(),
           "Some form of timestamp")(
-          "date,d", value<std::vector<std::string> >(), "Some form of date");
+          "date,d", value<std::vector<std::string> >(), "Some form of date")(
+          "log-level", value<std::string>()->default_value("off"),
+          "Specify log level [trace, debug, info, notice, warn, err, critical, "
+          "alert, emerg, off]");
     }
     return options;
   }
@@ -78,6 +84,7 @@ struct Program_options {
     out << "\n  help:" << item.help_;
     out << "\n  timestamp:" << item.timestamp_;
     out << "\n  date:" << item.date_;
+    out << "\n  log_level:" << item.log_level_;
     out << "\n}\n";
     return out;
   }
@@ -91,10 +98,14 @@ struct Program_options {
   //! getter for date_ (access is Ro)
   std::vector<std::string> const& date() const { return date_; }
 
+  //! getter for log_level_ (access is Ro)
+  std::string const& log_level() const { return log_level_; }
+
  private:
   bool help_{};
   std::vector<std::string> timestamp_{};
   std::vector<std::string> date_{};
+  std::string log_level_{};
 };
 
 // custom <FcbEndNamespace date_time_converter>
@@ -130,6 +141,30 @@ int main(int argc, char** argv) {
       return 0;
     }
 
+    std::string const desired_log_level{options.log_level()};
+    if (desired_log_level == "off") {
+      spdlog::set_level(spdlog::level::off);
+    } else if (desired_log_level == "info") {
+      spdlog::set_level(spdlog::level::info);
+    } else if (desired_log_level == "notice") {
+      spdlog::set_level(spdlog::level::notice);
+    } else if (desired_log_level == "warn") {
+      spdlog::set_level(spdlog::level::warn);
+    } else if (desired_log_level == "err") {
+      spdlog::set_level(spdlog::level::err);
+    } else if (desired_log_level == "critical") {
+      spdlog::set_level(spdlog::level::critical);
+    } else if (desired_log_level == "alert") {
+      spdlog::set_level(spdlog::level::alert);
+    } else if (desired_log_level == "emerg") {
+      spdlog::set_level(spdlog::level::emerg);
+    } else if (desired_log_level == "trace") {
+      spdlog::set_level(spdlog::level::trace);
+    } else {
+      throw std::invalid_argument(
+          "log_level must be one of: [trace, debug, info, notice, warn, err, "
+          "critical, alert, emerg, off]");
+    }
     // custom <main>
 
     using namespace ebisu::timestamp;

@@ -8,12 +8,16 @@ namespace ebisu {
 namespace utils {
 /// Initialization function for utils
 inline void utils_init() {
+#if defined(LIB_INIT_LOGGING)
   utils_logger->info("init of utils (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for utils
 inline void utils_uninit() {
+#if defined(LIB_INIT_LOGGING)
   utils_logger->info("uninit of utils (version 0.0.0)");
+#endif
 }
 
 /// Singleton for utils initializer

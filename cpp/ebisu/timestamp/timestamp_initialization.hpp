@@ -8,12 +8,16 @@ namespace ebisu {
 namespace timestamp {
 /// Initialization function for timestamp
 inline void timestamp_init() {
+#if defined(LIB_INIT_LOGGING)
   timestamp_logger->info("init of timestamp (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for timestamp
 inline void timestamp_uninit() {
+#if defined(LIB_INIT_LOGGING)
   timestamp_logger->info("uninit of timestamp (version 0.0.0)");
+#endif
 }
 
 /// Singleton for timestamp initializer

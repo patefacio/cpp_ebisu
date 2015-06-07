@@ -7,10 +7,18 @@
 namespace ebisu {
 namespace orm {
 /// Initialization function for orm
-inline void orm_init() { orm_logger->info("init of orm (version 0.0.0)"); }
+inline void orm_init() {
+#if defined(LIB_INIT_LOGGING)
+  orm_logger->info("init of orm (version 0.0.0)");
+#endif
+}
 
 /// Uninitialization function for orm
-inline void orm_uninit() { orm_logger->info("uninit of orm (version 0.0.0)"); }
+inline void orm_uninit() {
+#if defined(LIB_INIT_LOGGING)
+  orm_logger->info("uninit of orm (version 0.0.0)");
+#endif
+}
 
 /// Singleton for orm initializer
 inline ebisu::raii::Api_initializer<> orm_initializer_() {

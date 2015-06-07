@@ -8,12 +8,16 @@ namespace ebisu {
 namespace timestamp {
 /// Initialization function for conversion
 inline void conversion_init() {
+#if defined(LIB_INIT_LOGGING)
   conversion_logger->info("init of conversion (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for conversion
 inline void conversion_uninit() {
+#if defined(LIB_INIT_LOGGING)
   conversion_logger->info("uninit of conversion (version 0.0.0)");
+#endif
 }
 
 /// Singleton for conversion initializer

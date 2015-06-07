@@ -2,6 +2,7 @@ cmake_minimum_required (VERSION 2.8)
 
 include(CheckCXXCompilerFlag)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG")
 
 ######################################################################
 # Find boost and include desired components
@@ -16,12 +17,15 @@ find_package(Boost 1.54.0 COMPONENTS program_options system thread
 # end <boost lib components>
 )
 
+## TO ENABLE LIB INIT LOGGING MOVE THIS TO custom
+## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
+
 # custom <misc section>
 
 add_definitions(-DOTL_ODBC_UNIX)
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 
 # end <misc section>
 

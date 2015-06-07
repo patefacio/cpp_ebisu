@@ -8,12 +8,16 @@ namespace ebisu {
 namespace linux_specific {
 /// Initialization function for linux_specific
 inline void linux_specific_init() {
+#if defined(LIB_INIT_LOGGING)
   linux_specific_logger->info("init of linux_specific (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for linux_specific
 inline void linux_specific_uninit() {
+#if defined(LIB_INIT_LOGGING)
   linux_specific_logger->info("uninit of linux_specific (version 0.0.0)");
+#endif
 }
 
 /// Singleton for linux_specific initializer

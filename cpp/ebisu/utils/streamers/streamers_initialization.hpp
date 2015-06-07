@@ -9,12 +9,16 @@ namespace utils {
 namespace streamers {
 /// Initialization function for streamers
 inline void streamers_init() {
+#if defined(LIB_INIT_LOGGING)
   streamers_logger->info("init of streamers (version 0.0.0)");
+#endif
 }
 
 /// Uninitialization function for streamers
 inline void streamers_uninit() {
+#if defined(LIB_INIT_LOGGING)
   streamers_logger->info("uninit of streamers (version 0.0.0)");
+#endif
 }
 
 /// Singleton for streamers initializer
