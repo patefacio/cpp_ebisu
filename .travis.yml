@@ -8,7 +8,7 @@ before_install:
   - echo $LANG && pwd
   - echo $LC_ALL
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install apt-transport-https && sudo apt-get install -y llvm-3.4 llvm-3.4-dev && sudo apt-get install cmake; fi
-  - sudo add-apt-repository ppa:apokluda/boost1.53; sudo apt-get update; sudo apt-get install libboost1.53-all-dev
+  - sudo add-apt-repository ppa:apokluda/boost1.53 -y; sudo apt-get update; sudo apt-get install libboost1.53-all-dev
   - bin/cpp_prereq.sh
   - cd cpp && ./.cmake.gen.sh
 
