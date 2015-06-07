@@ -1,6 +1,7 @@
 *.~*~
 packages
 build
+cmake_build
 pubspec.lock
 doxydoc
 
