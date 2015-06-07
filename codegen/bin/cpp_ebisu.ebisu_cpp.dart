@@ -4,7 +4,6 @@ import 'schemas.dart' as schemas;
 import '../lib/ebisu_installation.dart';
 import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import 'package:ebisu_cpp/hdf5_support.dart';
 import 'package:logging/logging.dart';
 
 final _logger = new Logger('ebisu');
@@ -30,22 +29,7 @@ main() {
   apps.addItems();
 
   if(true) {
-    schemas.addItems()
-      .then((var _) {
-        ebisuInstallation
-          ..decorateWith(packetTableDecorator(
-                  [
-                    logGroup('rusage_delta'),
-                  ]));
-
-        generate();
-
-        ebisuInstallation.progeny
-          .where((p) => p is Header)
-          .forEach((l) => print(l.filePath));
-
-          //ebisuInstallation.progeny.forEach((p) => print(p.detailedPath));
-      });
+    schemas.addItems().then((var _) => generate());
   } else {
     generate();
   }

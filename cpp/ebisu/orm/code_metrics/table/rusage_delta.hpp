@@ -277,8 +277,6 @@ class Rusage_delta {
   using Row_t = std::pair<Pkey_t, Value_t>;
   using Row_list_t = std::vector<Row_t>;
 
-  friend class Rusage_delta_data_set_specifier;
-
   static Rusage_delta& instance() {
     static Rusage_delta instance_s;
     return instance_s;
@@ -576,7 +574,6 @@ class Rusage_delta {
         otl_cursor::direct_exec(*connection_, "DELETE FROM rusage_delta")};
     return size_t(rows_deleted);
   }
-  /// hdf5 goodness added here
 
  private:
   Rusage_delta() {}
