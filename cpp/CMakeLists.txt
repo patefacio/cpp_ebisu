@@ -48,8 +48,8 @@ include_directories(
   ${CMAKE_CURRENT_LIST_DIR}
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
-  ~/install/cpp/include
-  ~/install/cpp/include/catch  
+  ../install/catch/include
+  ../install/spdlog/include
 # end <include directories>
 
 )
