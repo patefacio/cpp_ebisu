@@ -1,7 +1,7 @@
 # custom <additional exports>
 
-export CC=/home/dbdavidson/install/llvm31/bin/clang
-export CXX=/home/dbdavidson/install/llvm31/bin/clang++
+export CC=clang
+export CXX=clang++
 
 # end <additional exports>
 
