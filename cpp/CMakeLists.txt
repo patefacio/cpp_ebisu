@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG")
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.55.0 COMPONENTS program_options system thread
+find_package(Boost 1.54.0 COMPONENTS program_options system thread
 # custom <boost lib components>
   date_time
   regex
@@ -271,80 +271,4 @@ target_link_libraries(class.block_rusage.block_rusage
 add_test(
   class.block_rusage.block_rusage
   class.block_rusage.block_rusage)
-
-
-#   test for test_code_packages
-#     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
-#   
-add_executable(class.code_packages.code_packages
-  tests/code_metrics/class.code_packages.code_packages.cpp
-)
-
-target_link_libraries(class.code_packages.code_packages
-# custom <catch test_code_packages link requirements>
-# end <catch test_code_packages link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
-add_test(
-  class.code_packages.code_packages
-  class.code_packages.code_packages)
-
-
-#   test for test_code_locations
-#     (Lib:code_metrics), (Header:code_locations), (Class:code_locations), (Test:code_locations)
-#   
-add_executable(class.code_locations.code_locations
-  tests/code_metrics/class.code_locations.code_locations.cpp
-)
-
-target_link_libraries(class.code_locations.code_locations
-# custom <catch test_code_locations link requirements>
-# end <catch test_code_locations link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
-add_test(
-  class.code_locations.code_locations
-  class.code_locations.code_locations)
-
-
-#   test for test_code_tick_timings
-#     (Lib:code_metrics), (Header:code_tick_timings), (Class:code_tick_timings), (Test:code_tick_timings)
-#   
-add_executable(class.code_tick_timings.code_tick_timings
-  tests/code_metrics/class.code_tick_timings.code_tick_timings.cpp
-)
-
-target_link_libraries(class.code_tick_timings.code_tick_timings
-# custom <catch test_code_tick_timings link requirements>
-# end <catch test_code_tick_timings link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
-add_test(
-  class.code_tick_timings.code_tick_timings
-  class.code_tick_timings.code_tick_timings)
-
-
-#   test for test_rusage_delta
-#     (Lib:code_metrics), (Header:rusage_delta), (Class:rusage_delta), (Test:rusage_delta)
-#   
-add_executable(class.rusage_delta.rusage_delta
-  tests/code_metrics/class.rusage_delta.rusage_delta.cpp
-)
-
-target_link_libraries(class.rusage_delta.rusage_delta
-# custom <catch test_rusage_delta link requirements>
-# end <catch test_rusage_delta link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
-add_test(
-  class.rusage_delta.rusage_delta
-  class.rusage_delta.rusage_delta)
 

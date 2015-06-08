@@ -28,7 +28,7 @@ main() {
 
   apps.addItems();
 
-  if(true) {
+  if(false) {
     schemas.addItems().then((var _) => generate());
   } else {
     generate();
