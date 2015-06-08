@@ -10,7 +10,10 @@ before_install:
   - sudo add-apt-repository ppa:boost-latest/ppa -y 
   - sudo apt-get update
   - sudo apt-get --yes --force-yes install boost1.55
-  - sudo apt-get install gcc-4.8
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -qq
+  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi  
   - bin/cpp_prereq.sh
   - cd cpp && ./.cmake.gen.sh && cd -
 
