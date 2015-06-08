@@ -28,7 +28,7 @@ class Block_timer {
   using Time_point_t = typename Clock_t::time_point;
   using Duration_t = typename Clock_t::duration;
 
-  Block_timer(Duration_t& duration) : duration_{duration} {}
+  Block_timer(Duration_t& duration) : duration_(duration) {}
 
   // custom <ClsPublic Block_timer>
 
@@ -65,7 +65,7 @@ class Block_timer_logger {
   using Duration_t = typename Clock_t::duration;
 
   Block_timer_logger(std::ostream& out, std::string const& description = "")
-      : out_{out}, description_{description} {}
+    : out_(out), description_(description) {}
 
   // custom <ClsPublic Block_timer_logger>
 

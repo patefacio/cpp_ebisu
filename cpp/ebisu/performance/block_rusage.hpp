@@ -115,7 +115,7 @@ class Rusage_delta {
 */
 class Block_rusage {
  public:
-  Block_rusage(Rusage_delta& rusage_delta) : rusage_delta_{rusage_delta} {
+  Block_rusage(Rusage_delta& rusage_delta) : rusage_delta_(rusage_delta) {
     // custom <Block_rusage(Rusage_delta & rusage_delta)>
     _get_rusage(rusage_delta_.start);
     // end <Block_rusage(Rusage_delta & rusage_delta)>

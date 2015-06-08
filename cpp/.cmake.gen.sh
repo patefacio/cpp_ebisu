@@ -1,7 +1,9 @@
 # custom <additional exports>
 
-export CC=clang
-export CXX=clang++
+#export CC=clang
+#export CXX=clang++
+export CC=gcc
+export CXX=g++
 
 # end <additional exports>
 
