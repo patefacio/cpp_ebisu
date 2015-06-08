@@ -18,7 +18,7 @@ before_install:
   - cd cpp && ./.cmake.gen.sh && cd -
 
 script:
-  - cd cmake_build/debug && make && ctest
-  - cd cmake_build/release && make && ctest  
+  - cd cmake_build/debug && make VERBOSE=1 && ctest
+  - cd cmake_build/release && make VERBOSE=1 && ctest  
 
   

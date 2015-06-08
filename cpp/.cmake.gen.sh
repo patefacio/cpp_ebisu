@@ -2,8 +2,8 @@
 
 #export CC=clang
 #export CXX=clang++
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 # end <additional exports>
 
