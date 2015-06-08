@@ -129,7 +129,7 @@ class Table_streamer {
 
   Table_streamer(Matrix_container_t const& matrix_container,
                  String_list_t const& header = String_list_t())
-      : matrix_container_{matrix_container}, header_{header} {}
+      : matrix_container_(matrix_container), header_(header) {}
 
   // custom <ClsPublic Table_streamer>
 
