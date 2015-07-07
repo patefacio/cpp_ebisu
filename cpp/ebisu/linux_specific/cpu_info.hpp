@@ -32,7 +32,7 @@ class Processor {
   using Proc_map_t = std::map<std::string, std::string>;
 
   Processor(int processor, Proc_map_t const& proc_map)
-      : processor_(processor), proc_map_(proc_map) {}
+      : processor_{processor}, proc_map_{proc_map} {}
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Processor const& item) {

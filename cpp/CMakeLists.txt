@@ -103,11 +103,11 @@ target_link_libraries(h5ds2csv
 #   test for test_umask_scoped_set
 #     (Lib:linux_specific), (Header:umask_scoped_set), (Test:umask_scoped_set)
 #   
-add_executable(header.umask_scoped_set
+add_executable(linux_specific.header.umask_scoped_set
   tests/linux_specific/header.umask_scoped_set.cpp
 )
 
-target_link_libraries(header.umask_scoped_set
+target_link_libraries(linux_specific.header.umask_scoped_set
 # custom <catch test_umask_scoped_set link requirements>
 # end <catch test_umask_scoped_set link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -115,18 +115,18 @@ target_link_libraries(header.umask_scoped_set
 )
 
 add_test(
-  header.umask_scoped_set
-  header.umask_scoped_set)
+  linux_specific.header.umask_scoped_set
+  linux_specific.header.umask_scoped_set)
 
 
 #   test for test_cpu_info
 #     (Lib:linux_specific), (Header:cpu_info), (Class:cpu_info), (Test:cpu_info)
 #   
-add_executable(class.cpu_info.cpu_info
+add_executable(linux_specific.class.cpu_info.cpu_info
   tests/linux_specific/class.cpu_info.cpu_info.cpp
 )
 
-target_link_libraries(class.cpu_info.cpu_info
+target_link_libraries(linux_specific.class.cpu_info.cpu_info
 # custom <catch test_cpu_info link requirements>
   ${Boost_REGEX_LIBRARY}
 # end <catch test_cpu_info link requirements>
@@ -135,18 +135,18 @@ target_link_libraries(class.cpu_info.cpu_info
 )
 
 add_test(
-  class.cpu_info.cpu_info
-  class.cpu_info.cpu_info)
+  linux_specific.class.cpu_info.cpu_info
+  linux_specific.class.cpu_info.cpu_info)
 
 
 #   test for test_fixed_size_char_array
 #     (Lib:utils), (Header:fixed_size_char_array), (Test:fixed_size_char_array)
 #   
-add_executable(header.fixed_size_char_array
+add_executable(utils.header.fixed_size_char_array
   tests/utils/header.fixed_size_char_array.cpp
 )
 
-target_link_libraries(header.fixed_size_char_array
+target_link_libraries(utils.header.fixed_size_char_array
 # custom <catch test_fixed_size_char_array link requirements>
 # end <catch test_fixed_size_char_array link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -154,18 +154,18 @@ target_link_libraries(header.fixed_size_char_array
 )
 
 add_test(
-  header.fixed_size_char_array
-  header.fixed_size_char_array)
+  utils.header.fixed_size_char_array
+  utils.header.fixed_size_char_array)
 
 
 #   test for test_change_tracker_next_value
 #     (Lib:raii), (Header:change_tracker), (Class:change_tracker_next_value), (Test:change_tracker_next_value)
 #   
-add_executable(class.change_tracker.change_tracker_next_value
+add_executable(raii.class.change_tracker.change_tracker_next_value
   tests/raii/class.change_tracker.change_tracker_next_value.cpp
 )
 
-target_link_libraries(class.change_tracker.change_tracker_next_value
+target_link_libraries(raii.class.change_tracker.change_tracker_next_value
 # custom <catch test_change_tracker_next_value link requirements>
 # end <catch test_change_tracker_next_value link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -173,18 +173,18 @@ target_link_libraries(class.change_tracker.change_tracker_next_value
 )
 
 add_test(
-  class.change_tracker.change_tracker_next_value
-  class.change_tracker.change_tracker_next_value)
+  raii.class.change_tracker.change_tracker_next_value
+  raii.class.change_tracker.change_tracker_next_value)
 
 
 #   test for test_change_until_end_of_block
 #     (Lib:raii), (Header:change_tracker), (Class:change_until_end_of_block), (Test:change_until_end_of_block)
 #   
-add_executable(class.change_tracker.change_until_end_of_block
+add_executable(raii.class.change_tracker.change_until_end_of_block
   tests/raii/class.change_tracker.change_until_end_of_block.cpp
 )
 
-target_link_libraries(class.change_tracker.change_until_end_of_block
+target_link_libraries(raii.class.change_tracker.change_until_end_of_block
 # custom <catch test_change_until_end_of_block link requirements>
 # end <catch test_change_until_end_of_block link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -192,18 +192,18 @@ target_link_libraries(class.change_tracker.change_until_end_of_block
 )
 
 add_test(
-  class.change_tracker.change_until_end_of_block
-  class.change_tracker.change_until_end_of_block)
+  raii.class.change_tracker.change_until_end_of_block
+  raii.class.change_tracker.change_until_end_of_block)
 
 
 #   test for test_functor_scope_exit
 #     (Lib:raii), (Header:api_initializer), (Class:functor_scope_exit), (Test:functor_scope_exit)
 #   
-add_executable(class.api_initializer.functor_scope_exit
+add_executable(raii.class.api_initializer.functor_scope_exit
   tests/raii/class.api_initializer.functor_scope_exit.cpp
 )
 
-target_link_libraries(class.api_initializer.functor_scope_exit
+target_link_libraries(raii.class.api_initializer.functor_scope_exit
 # custom <catch test_functor_scope_exit link requirements>
 # end <catch test_functor_scope_exit link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -211,18 +211,18 @@ target_link_libraries(class.api_initializer.functor_scope_exit
 )
 
 add_test(
-  class.api_initializer.functor_scope_exit
-  class.api_initializer.functor_scope_exit)
+  raii.class.api_initializer.functor_scope_exit
+  raii.class.api_initializer.functor_scope_exit)
 
 
 #   test for test_block_timer
 #     (Lib:performance), (Header:block_timers), (Class:block_timer), (Test:block_timer)
 #   
-add_executable(class.block_timers.block_timer
+add_executable(performance.class.block_timers.block_timer
   tests/performance/class.block_timers.block_timer.cpp
 )
 
-target_link_libraries(class.block_timers.block_timer
+target_link_libraries(performance.class.block_timers.block_timer
 # custom <catch test_block_timer link requirements>
 # end <catch test_block_timer link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -230,18 +230,18 @@ target_link_libraries(class.block_timers.block_timer
 )
 
 add_test(
-  class.block_timers.block_timer
-  class.block_timers.block_timer)
+  performance.class.block_timers.block_timer
+  performance.class.block_timers.block_timer)
 
 
 #   test for test_block_timer_logger
 #     (Lib:performance), (Header:block_timers), (Class:block_timer_logger), (Test:block_timer_logger)
 #   
-add_executable(class.block_timers.block_timer_logger
+add_executable(performance.class.block_timers.block_timer_logger
   tests/performance/class.block_timers.block_timer_logger.cpp
 )
 
-target_link_libraries(class.block_timers.block_timer_logger
+target_link_libraries(performance.class.block_timers.block_timer_logger
 # custom <catch test_block_timer_logger link requirements>
   ${Boost_REGEX_LIBRARY}  
 # end <catch test_block_timer_logger link requirements>
@@ -250,18 +250,18 @@ target_link_libraries(class.block_timers.block_timer_logger
 )
 
 add_test(
-  class.block_timers.block_timer_logger
-  class.block_timers.block_timer_logger)
+  performance.class.block_timers.block_timer_logger
+  performance.class.block_timers.block_timer_logger)
 
 
 #   test for test_block_rusage
 #     (Lib:performance), (Header:block_rusage), (Class:block_rusage), (Test:block_rusage)
 #   
-add_executable(class.block_rusage.block_rusage
+add_executable(performance.class.block_rusage.block_rusage
   tests/performance/class.block_rusage.block_rusage.cpp
 )
 
-target_link_libraries(class.block_rusage.block_rusage
+target_link_libraries(performance.class.block_rusage.block_rusage
 # custom <catch test_block_rusage link requirements>
 # end <catch test_block_rusage link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -269,6 +269,6 @@ target_link_libraries(class.block_rusage.block_rusage
 )
 
 add_test(
-  class.block_rusage.block_rusage
-  class.block_rusage.block_rusage)
+  performance.class.block_rusage.block_rusage
+  performance.class.block_rusage.block_rusage)
 
