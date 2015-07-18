@@ -55,6 +55,73 @@ final linux_specific = lib('linux_specific')
   ..requiresLogging = true
   ..namespace = namespace([ 'ebisu', 'linux_specific' ])
   ..headers = [
+    header('signal_handler')
+    ..doc = 'Support for catching signals and associating handlers'
+    ..includes = [ 'csignal', 'mutex' ]
+    ..doc = 'Support for consistent catching/handling of signals'
+    ..testScenarios = [
+      testScenario('catching signal', [
+        given('registered handler', [
+          when('signal sent', [
+            then('signal handled')
+          ])
+        ])
+      ])
+    ]
+    ..classes = [
+      class_('application_signal_handler')
+      ..doc = '''
+A singleton class to allow registration of common interrupting signal handlers.
+
+  - SIGHUP
+  - SIGINT
+  - SIGTERM
+  - SIGUSR1
+
+The singleton creates a thread which waits for signals. Clients can register
+handlers with [Application_signal_handler::add_handler]. When a signal is
+caught, the handlers are all called in turn. If any of the registered handlers
+returns true, the signal handler loop carries on as before. If all handlers
+return true, the [Application_signal_handler] is done and the thread will
+complete.
+
+A typical use case would be an application that you might not want to be killed
+with Ctrl-C. To achieve this include the header in the file with
+*main*. Register a handler to deal with the signal. Prior to exiting the *main*
+call Application_signal_handler::stop_handler_thread.
+'''
+      ..customBlocks = [ clsPublic, clsPrivate ]
+      ..template = [
+        'typename LOCK_TYPE = std::mutex',
+        'typename GUARD_TYPE = std::lock_guard< LOCK_TYPE >',
+      ]
+      ..defaultCtor.includesProtectBlock = true
+      ..dtor.includesProtectBlock = true
+      ..usings = [
+        using('thread', 'std::thread'),
+        usingUptr('thread', 'Thread_t'),
+        using('lock_type', 'LOCK_TYPE'),
+        using('guard_type', 'GUARD_TYPE'),
+        using('handler_function', 'std::function< bool(int) >'),
+        using('handler_function_list', 'std::vector< Handler_function_t >'),
+      ]
+      ..isSingleton = true
+      ..members = [
+        member('handler_function_list')
+        ..doc = 'User defined handler functions registered with [add_handler]'
+        ..type='Handler_function_list_t',
+        member('instance_lock')
+        ..doc = 'Lock protecting access to [handler_function_list_t]'
+        ..type='Lock_type_t',
+        member('handler_thread')
+        ..doc = 'Thread that calls sigwait to process signals'
+        ..type = 'Thread_uptr_t',
+        member('exit_requested')
+        ..doc = 'Used to cleanly exit via signal'
+        ..init = false,
+      ]
+    ],
+
     header('umask_scoped_set')
     ..includes = [
       'sys/types.h',
