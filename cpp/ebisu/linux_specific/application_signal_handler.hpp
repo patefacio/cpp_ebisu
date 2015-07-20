@@ -1,5 +1,5 @@
-#ifndef __EBISU_LINUX_SPECIFIC_SIGNAL_HANDLER_HPP__
-#define __EBISU_LINUX_SPECIFIC_SIGNAL_HANDLER_HPP__
+#ifndef __EBISU_LINUX_SPECIFIC_APPLICATION_SIGNAL_HANDLER_HPP__
+#define __EBISU_LINUX_SPECIFIC_APPLICATION_SIGNAL_HANDLER_HPP__
 
 #include "ebisu/linux_specific/linux_specific_initialization.hpp"
 #include "ebisu/linux_specific/linux_specific_logging.hpp"
@@ -15,18 +15,26 @@ namespace linux_specific {
    - SIGINT
    - SIGTERM
    - SIGUSR1
+   - SIGKILL
 
  The singleton creates a thread which waits for signals. Clients can register
  handlers with [Application_signal_handler::add_handler]. When a signal is
- caught, the handlers are all called in turn. If any of the registered handlers
- returns true, the signal handler loop carries on as before. If all handlers
- return true, the [Application_signal_handler] is done and the thread will
- complete.
+ caught, the handlers are each all called in turn. For all signals except
+ SIGKILL, f
+ any of the registered handlers returns true, the signal handler loop carries on
+ as before. If all handlers return true, the [Application_signal_handler] is
+ done
+ and the thread will complete.
+
+ If SIGKILL is caught, the handlers are each called in turn and the loop is
+ exited regardless of the handlers return values. This allows handlers to
+ attempt
+ cleanup before exit.
 
  A typical use case would be an application that you might not want to be killed
  with Ctrl-C. To achieve this include the header in the file with
  *main*. Register a handler to deal with the signal. Prior to exiting the *main*
- call Application_signal_handler::stop_handler_thread.
+ call [Application_signal_handler::stop_handler_thread].
 
 */
 template <typename LOCK_TYPE = std::mutex,
@@ -54,11 +62,18 @@ class Application_signal_handler {
 
   // custom <ClsPublic Application_signal_handler>
 
+  // Adds [handler] to list of handlers invoked when a signal is
+  // received.
   void add_handler(Handler_function_t const& handler) {
+    linux_specific_logger->info("Adding application signal handler");
     Guard_type_t guard(instance_lock_);
     handler_function_list_.push_back(handler);
   }
 
+  // Registers desire to exit handler thread
+  //
+  // Sets flag indicating desire to stop and sends SIGINT to be
+  // processed.
   void stop_handler_thread() {
     linux_specific_logger->info("Sending message to stop handler thread");
     exit_requested_ = true;
@@ -82,7 +97,8 @@ class Application_signal_handler {
         throw std::runtime_error("Unable to wait for signals");
       } else {
         linux_specific_logger->info("Calling user handlers");
-        if (!Application_signal_handler::instance().call_handlers(signal)) {
+        if (!Application_signal_handler::instance().call_handlers(signal) ||
+            signal == SIGKILL) {
           break;
         }
       }
@@ -110,6 +126,7 @@ class Application_signal_handler {
     sigaddset(&selected_signals, SIGINT);
     sigaddset(&selected_signals, SIGTERM);
     sigaddset(&selected_signals, SIGUSR1);
+    sigaddset(&selected_signals, SIGKILL);
     int rc(pthread_sigmask(SIG_BLOCK, &selected_signals, 0));
     if (rc) {
       throw std::runtime_error("Unable to mask signals");
@@ -151,7 +168,39 @@ class Application_signal_handler {
   bool exit_requested_{false};
 };
 
+/**
+ Class to clean up the application handler thread.
+
+ Use as an automatic variable in main to ensure cleanup.
+
+*/
+class Application_signal_handler_exit {
+ public:
+  Application_signal_handler_exit() = default;
+
+  Application_signal_handler_exit(
+      Application_signal_handler_exit const& other) = delete;
+
+  Application_signal_handler_exit& operator=(
+      Application_signal_handler_exit const&) = delete;
+
+  ~Application_signal_handler_exit() {
+    // custom <Application_signal_handler_exit dtor>
+
+    //////////////////////////////////////////////////////////////////////
+    // Clean up the signal handler thread
+    //////////////////////////////////////////////////////////////////////
+    auto& application_signal_handler = Application_signal_handler<>::instance();
+
+    linux_specific_logger->info("Stopping signal handler thread");
+
+    application_signal_handler.stop_handler_thread();
+
+    // end <Application_signal_handler_exit dtor>
+  }
+};
+
 }  // namespace linux_specific
 }  // namespace ebisu
 
-#endif  // __EBISU_LINUX_SPECIFIC_SIGNAL_HANDLER_HPP__
+#endif  // __EBISU_LINUX_SPECIFIC_APPLICATION_SIGNAL_HANDLER_HPP__

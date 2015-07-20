@@ -100,24 +100,24 @@ target_link_libraries(h5ds2csv
 # Test directives
 ######################################################################
 
-#   test for test_signal_handler
-#     (Lib:linux_specific), (Header:signal_handler), (Test:signal_handler)
+#   test for test_application_signal_handler
+#     (Lib:linux_specific), (Header:application_signal_handler), (Test:application_signal_handler)
 #   
-add_executable(linux_specific.header.signal_handler
-  tests/linux_specific/header.signal_handler.cpp
+add_executable(linux_specific.header.application_signal_handler
+  tests/linux_specific/header.application_signal_handler.cpp
 )
 
-target_link_libraries(linux_specific.header.signal_handler
-# custom <catch test_signal_handler link requirements>
-  -pthread
-# end <catch test_signal_handler link requirements>
+target_link_libraries(linux_specific.header.application_signal_handler
+# custom <catch test_application_signal_handler link requirements>
+    -pthread
+# end <catch test_application_signal_handler link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
 
 add_test(
-  linux_specific.header.signal_handler
-  linux_specific.header.signal_handler)
+  linux_specific.header.application_signal_handler
+  linux_specific.header.application_signal_handler)
 
 
 #   test for test_umask_scoped_set

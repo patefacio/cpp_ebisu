@@ -55,7 +55,7 @@ final linux_specific = lib('linux_specific')
   ..requiresLogging = true
   ..namespace = namespace([ 'ebisu', 'linux_specific' ])
   ..headers = [
-    header('signal_handler')
+    header('application_signal_handler')
     ..doc = 'Support for catching signals and associating handlers'
     ..includes = [ 'csignal', 'mutex' ]
     ..doc = 'Support for consistent catching/handling of signals'
@@ -77,18 +77,23 @@ A singleton class to allow registration of common interrupting signal handlers.
   - SIGINT
   - SIGTERM
   - SIGUSR1
+  - SIGKILL
 
 The singleton creates a thread which waits for signals. Clients can register
 handlers with [Application_signal_handler::add_handler]. When a signal is
-caught, the handlers are all called in turn. If any of the registered handlers
-returns true, the signal handler loop carries on as before. If all handlers
-return true, the [Application_signal_handler] is done and the thread will
-complete.
+caught, the handlers are each all called in turn. For all signals except SIGKILL, f
+any of the registered handlers returns true, the signal handler loop carries on
+as before. If all handlers return true, the [Application_signal_handler] is done
+and the thread will complete.
+
+If SIGKILL is caught, the handlers are each called in turn and the loop is
+exited regardless of the handlers return values. This allows handlers to attempt
+cleanup before exit.
 
 A typical use case would be an application that you might not want to be killed
 with Ctrl-C. To achieve this include the header in the file with
 *main*. Register a handler to deal with the signal. Prior to exiting the *main*
-call Application_signal_handler::stop_handler_thread.
+call [Application_signal_handler::stop_handler_thread].
 '''
       ..customBlocks = [ clsPublic, clsPrivate ]
       ..template = [
@@ -119,7 +124,18 @@ call Application_signal_handler::stop_handler_thread.
         member('exit_requested')
         ..doc = 'Used to cleanly exit via signal'
         ..init = false,
-      ]
+      ],
+
+      class_('application_signal_handler_exit')
+      ..doc = '''
+Class to clean up the application handler thread.
+
+Use as an automatic variable in main to ensure cleanup.
+'''
+      ..dtor.includesProtectBlock = true
+      ..defaultCtor.usesDefault = true
+      ..isNoncopyable = true,
+
     ],
 
     header('umask_scoped_set')

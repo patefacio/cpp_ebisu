@@ -135,6 +135,9 @@ void add_detail_row(ebisu::utils::streamers::String_matrix_t& table,
 int main(int argc, char** argv) {
   using namespace ebisu;
   try {
+    //////////////////////////////////////////////////////////////////////
+    // Read program options and display help if requested
+    //////////////////////////////////////////////////////////////////////
     Program_options options = {argc, argv};
     if (options.help()) {
       Program_options::show_help(std::cout);
@@ -165,6 +168,9 @@ int main(int argc, char** argv) {
           "log_level must be one of: [trace, debug, info, notice, warn, err, "
           "critical, alert, emerg, off]");
     }
+    //////////////////////////////////////////////////////////////////////
+    // User supplied date_time_converter protect block
+    //////////////////////////////////////////////////////////////////////
     // custom <main>
 
     using namespace ebisu::timestamp;
@@ -225,11 +231,14 @@ int main(int argc, char** argv) {
 
     // end <main>
 
-  } catch (std::exception const& e) {
-    std::cout << "Caught exception: " << e.what() << std::endl;
+  } catch (boost::program_options::error const& e) {
+    std::cerr << "Caught boost program options exception: " << e.what()
+              << std::endl;
     Program_options::show_help(std::cout);
     return -1;
+  } catch (std::exception const& e) {
+    std::cerr << "Caught exception: " << e.what() << std::endl;
+    return -1;
   }
-
   return 0;
 }

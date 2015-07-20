@@ -1,5 +1,6 @@
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
+#include "spdlog/spdlog.h"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <string>
@@ -33,12 +34,14 @@ struct Program_options {
     } else {
       std::ostringstream msg;
       msg << "h5ds2csv option 'input-file' is required";
-      throw std::runtime_error(msg.str());
+      throw boost::program_options::error(msg.str());
     }
 
     if (parsed_options.count("output-file") > 0) {
       output_file_ = parsed_options["output-file"].as<std::string>();
     }
+
+    log_level_ = parsed_options["log-level"].as<std::string>();
   }
 
   static boost::program_options::options_description const& description() {
@@ -52,7 +55,10 @@ struct Program_options {
           "input-file,i", value<std::vector<std::string> >(),
           "Name of hdf5 file containing data_set(s)")(
           "output-file,o", value<std::string>(),
-          "Name of hdf5 file containing data_set(s)");
+          "Name of hdf5 file containing data_set(s)")(
+          "log-level", value<std::string>()->default_value("off"),
+          "Specify log level [trace, debug, info, notice, warn, err, critical, "
+          "alert, emerg, off]");
     }
     return options;
   }
@@ -70,6 +76,7 @@ struct Program_options {
     out << "\n  data_set:" << item.data_set_;
     out << "\n  input_file:" << item.input_file_;
     out << "\n  output_file:" << item.output_file_;
+    out << "\n  log_level:" << item.log_level_;
     out << "\n}\n";
     return out;
   }
@@ -86,11 +93,15 @@ struct Program_options {
   //! getter for output_file_ (access is Ro)
   std::string const& output_file() const { return output_file_; }
 
+  //! getter for log_level_ (access is Ro)
+  std::string const& log_level() const { return log_level_; }
+
  private:
   bool help_{};
   std::vector<std::string> data_set_{};
   std::vector<std::string> input_file_{};
   std::string output_file_{};
+  std::string log_level_{};
 };
 
 }  // namespace ebisu
@@ -98,20 +109,53 @@ struct Program_options {
 int main(int argc, char** argv) {
   using namespace ebisu;
   try {
+    //////////////////////////////////////////////////////////////////////
+    // Read program options and display help if requested
+    //////////////////////////////////////////////////////////////////////
     Program_options options = {argc, argv};
     if (options.help()) {
       Program_options::show_help(std::cout);
       return 0;
     }
 
+    std::string const desired_log_level{options.log_level()};
+    if (desired_log_level == "off") {
+      spdlog::set_level(spdlog::level::off);
+    } else if (desired_log_level == "info") {
+      spdlog::set_level(spdlog::level::info);
+    } else if (desired_log_level == "notice") {
+      spdlog::set_level(spdlog::level::notice);
+    } else if (desired_log_level == "warn") {
+      spdlog::set_level(spdlog::level::warn);
+    } else if (desired_log_level == "err") {
+      spdlog::set_level(spdlog::level::err);
+    } else if (desired_log_level == "critical") {
+      spdlog::set_level(spdlog::level::critical);
+    } else if (desired_log_level == "alert") {
+      spdlog::set_level(spdlog::level::alert);
+    } else if (desired_log_level == "emerg") {
+      spdlog::set_level(spdlog::level::emerg);
+    } else if (desired_log_level == "trace") {
+      spdlog::set_level(spdlog::level::trace);
+    } else {
+      throw std::invalid_argument(
+          "log_level must be one of: [trace, debug, info, notice, warn, err, "
+          "critical, alert, emerg, off]");
+    }
+    //////////////////////////////////////////////////////////////////////
+    // User supplied h5ds2csv protect block
+    //////////////////////////////////////////////////////////////////////
     // custom <main>
     // end <main>
 
-  } catch (std::exception const& e) {
-    std::cout << "Caught exception: " << e.what() << std::endl;
+  } catch (boost::program_options::error const& e) {
+    std::cerr << "Caught boost program options exception: " << e.what()
+              << std::endl;
     Program_options::show_help(std::cout);
     return -1;
+  } catch (std::exception const& e) {
+    std::cerr << "Caught exception: " << e.what() << std::endl;
+    return -1;
   }
-
   return 0;
 }

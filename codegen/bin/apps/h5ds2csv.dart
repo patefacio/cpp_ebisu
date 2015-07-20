@@ -6,6 +6,9 @@ import '../../lib/ebisu_installation.dart';
 final h5ds2csv = app('h5ds2csv')
   ..descr = 'Converts data_sets in hdf5 files to csv'
   ..namespace = namespace(['ebisu'])
+  ..hasLogLevel = true
+  ..hasSignalHandler = false
+  ..hasQuitLoop = false
   ..args = [
     arg('data_set')
     ..descr = 'Name of data_set to make into csv'
