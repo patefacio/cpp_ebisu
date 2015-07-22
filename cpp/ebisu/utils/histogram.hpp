@@ -22,7 +22,7 @@ class Histogram_statistical {
       boost::iterator_range<typename std::vector<std::pair<T, T> >::iterator>;
 
   Histogram_statistical(int num_bins = 20, int cache_size = 10)
-      : num_bins_{num_bins}, cache_size_{cache_size} {}
+      : num_bins_(num_bins), cache_size_(cache_size) {}
 
   // custom <ClsPublic Histogram_statistical>
 
@@ -55,7 +55,7 @@ class Histogram {
   explicit template <typename IT>
 
   Histogram(IT begin, IT end, int num_bins = 20)
-      : num_bins_{num_bins} {
+      : num_bins_(num_bins) {
     // custom <Histogram(from_iterator)>
 
     std::pair<IT, IT> min_and_max(boost::minmax_element(begin, end));

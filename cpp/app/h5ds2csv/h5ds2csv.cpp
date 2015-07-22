@@ -121,6 +121,8 @@ int main(int argc, char** argv) {
     std::string const desired_log_level{options.log_level()};
     if (desired_log_level == "off") {
       spdlog::set_level(spdlog::level::off);
+    } else if (desired_log_level == "debug") {
+      spdlog::set_level(spdlog::level::debug);
     } else if (desired_log_level == "info") {
       spdlog::set_level(spdlog::level::info);
     } else if (desired_log_level == "notice") {
