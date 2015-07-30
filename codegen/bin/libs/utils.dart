@@ -41,6 +41,18 @@ final utils = lib('utils')
           given('array initialized with six chars', [],
               then('all chars are accessible'))),
 
+      testScenario('no null char',
+          given('array with no null chars', [],
+              then('streamer stops at array size'))),
+
+      testScenario('nassign',
+          given('array of size eight',
+              [
+                when('nassign on first four', [
+                  then('first four only assigned')
+                ])
+              ])),
+
       testScenario('equality operator works',
           given('array initted with string', [],
               [

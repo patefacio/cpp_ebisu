@@ -31,8 +31,7 @@ class Fixed_size_char_array {
 
   void operator=(char const* s) {
     if (this->operator const char*() != s) {
-      std::strncpy(&data_[0], s, LAST_INDEX);
-      data_[LAST_INDEX] = 0;
+      std::strncpy(&data_[0], s, ARRAY_SIZE);
     }
   }
 
@@ -44,9 +43,11 @@ class Fixed_size_char_array {
 
   char const& operator[](int i) const { return get_char_ref(i); }
 
-  operator std::string() const { return std::string(&data_[0]); }
+  operator std::string() const { return str(); }
 
-  std::string str() const { return std::string(&data_[0]); }
+  std::string str() const {
+    return std::string(&data_[0], strnlen(&data_[0], ARRAY_SIZE));
+  }
 
   void clear() { data_[0] = 0; }
 
@@ -74,6 +75,11 @@ class Fixed_size_char_array {
     return !(*this == other);
   }
 
+  void nassign(char const* c, size_t num) {
+    assert(num <= ARRAY_SIZE);
+    std::memcpy(&data_[0], c, num);
+  }
+
   // end <ClsPublic Fixed_size_char_array>
 
  private:
@@ -94,7 +100,7 @@ class Fixed_size_char_array {
 template <int ARRAY_SIZE>
 inline std::ostream& operator<<(std::ostream& out,
                                 Fixed_size_char_array<ARRAY_SIZE> const& item) {
-  out << item.operator char const*();
+  out.write(item.operator char const*(), ARRAY_SIZE);
   return out;
 }
 

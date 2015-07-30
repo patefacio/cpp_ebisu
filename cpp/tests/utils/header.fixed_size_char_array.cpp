@@ -32,8 +32,7 @@ SCENARIO("array size initialized with smaller cstr") {
     // end <(558622143)>
     THEN("result has two chars and null") {
       // custom <(415599617)>
-      CHECK(arr.operator std::string() == "ot");
-      CHECK(arr[2] == 0);
+      CHECK(arr.operator std::string() == "ott");
       // end <(415599617)>
     }
   }
@@ -70,6 +69,48 @@ SCENARIO("index operator works") {
       }
 
       // end <(581427270)>
+    }
+  }
+}
+SCENARIO("no null char") {
+  GIVEN("array with no null chars") {
+    // custom <(939678555)>
+
+    char const chars[] = "abcdeg";
+    Fixed_size_char_array<5> const& arr =
+        reinterpret_cast<Fixed_size_char_array<5> const&>(*chars);
+
+    // end <(939678555)>
+    THEN("streamer stops at array size") {
+      // custom <(51789331)>
+
+      REQUIRE(arr.str() == "abcde");
+
+      // end <(51789331)>
+    }
+  }
+}
+SCENARIO("nassign") {
+  GIVEN("array of size eight") {
+    // custom <(846450443)>
+
+    std::string const s{"12345678"};
+    Fixed_size_char_array<8> arr{s.c_str()};
+
+    // end <(846450443)>
+    WHEN("nassign on first four") {
+      // custom <(544959022)>
+
+      arr.nassign("abc", 3);
+
+      // end <(544959022)>
+      THEN("first four only assigned") {
+        // custom <(429009704)>
+
+        REQUIRE(arr.str() == "abc45678");
+
+        // end <(429009704)>
+      }
     }
   }
 }
