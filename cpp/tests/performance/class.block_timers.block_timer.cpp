@@ -13,7 +13,12 @@
 
 namespace ebisu {
 namespace performance {
+// custom <block_timer begin namespace>
+// end <block_timer begin namespace>
+
 SCENARIO("block timer") {
+  // custom <(755589436)>
+  // end <(755589436)>
   GIVEN("a block timer") {
     // custom <(827648022)>
     using namespace ebisu::performance;

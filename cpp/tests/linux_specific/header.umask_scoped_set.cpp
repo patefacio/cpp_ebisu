@@ -9,7 +9,12 @@
 
 namespace ebisu {
 namespace linux_specific {
+// custom <umask_scoped_set begin namespace>
+// end <umask_scoped_set begin namespace>
+
 SCENARIO("unit test umask scoped set") {
+  // custom <(823354383)>
+  // end <(823354383)>
   GIVEN("current umask is something") {
     // custom <(851442918)>
 

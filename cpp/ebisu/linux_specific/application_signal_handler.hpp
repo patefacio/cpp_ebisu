@@ -169,9 +169,9 @@ class Application_signal_handler {
 };
 
 /**
- Class to clean up the application handler thread.
+ Class to clean up application handler thread.
 
- Use as an automatic variable in main to ensure cleanup.
+ Use an automatic variable and RAII in main to ensure cleanup.
 
 */
 class Application_signal_handler_exit {

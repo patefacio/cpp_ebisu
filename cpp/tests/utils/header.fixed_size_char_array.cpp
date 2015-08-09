@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace utils {
+// custom <fixed_size_char_array begin namespace>
+// end <fixed_size_char_array begin namespace>
+
 SCENARIO("sizeof matches array size") {
+  // custom <(696307170)>
+  // end <(696307170)>
   GIVEN("fixed size char array of size six") {
     // custom <(506041385)>
 
@@ -25,6 +30,8 @@ SCENARIO("sizeof matches array size") {
   }
 }
 SCENARIO("array size initialized with smaller cstr") {
+  // custom <(989281246)>
+  // end <(989281246)>
   GIVEN("array size six inited with cstr size three") {
     // custom <(558622143)>
     Fixed_size_char_array<3> arr{"ottff"};
@@ -38,6 +45,8 @@ SCENARIO("array size initialized with smaller cstr") {
   }
 }
 SCENARIO("array size initialized with larger cstr") {
+  // custom <(811121160)>
+  // end <(811121160)>
   GIVEN("array size three inited with cstr size six") {
     // custom <(995830977)>
     Fixed_size_char_array<6> arr{"ab"};
@@ -54,6 +63,8 @@ SCENARIO("array size initialized with larger cstr") {
   }
 }
 SCENARIO("index operator works") {
+  // custom <(220485648)>
+  // end <(220485648)>
   GIVEN("array initialized with six chars") {
     // custom <(1022387932)>
 
@@ -73,6 +84,8 @@ SCENARIO("index operator works") {
   }
 }
 SCENARIO("no null char") {
+  // custom <(669588362)>
+  // end <(669588362)>
   GIVEN("array with no null chars") {
     // custom <(939678555)>
 
@@ -91,6 +104,8 @@ SCENARIO("no null char") {
   }
 }
 SCENARIO("nassign") {
+  // custom <(374273580)>
+  // end <(374273580)>
   GIVEN("array of size eight") {
     // custom <(846450443)>
 
@@ -115,6 +130,8 @@ SCENARIO("nassign") {
   }
 }
 SCENARIO("equality operator works") {
+  // custom <(25788391)>
+  // end <(25788391)>
   GIVEN("array initted with string") {
     // custom <(518352325)>
 

@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace linux_specific {
+// custom <cpu_info begin namespace>
+// end <cpu_info begin namespace>
+
 SCENARIO("cpu info") {
+  // custom <(28060639)>
+  // end <(28060639)>
   GIVEN("the single cpu info instance") {
     // custom <(954218043)>
     using namespace std;

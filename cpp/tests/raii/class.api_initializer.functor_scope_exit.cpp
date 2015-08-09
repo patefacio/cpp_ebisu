@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace raii {
+// custom <functor_scope_exit begin namespace>
+// end <functor_scope_exit begin namespace>
+
 SCENARIO("functor runs on block exit") {
+  // custom <(353523639)>
+  // end <(353523639)>
   GIVEN("functor in block") {
     // custom <(300063598)>
     std::cout << "Foo" << std::endl;

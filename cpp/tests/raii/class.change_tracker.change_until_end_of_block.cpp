@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace raii {
+// custom <change_until_end_of_block begin namespace>
+// end <change_until_end_of_block begin namespace>
+
 SCENARIO("change until end of block") {
+  // custom <(506588427)>
+  // end <(506588427)>
   GIVEN("an int initialized to one") {
     // custom <(841661806)>
     int x{1};

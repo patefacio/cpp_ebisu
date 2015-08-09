@@ -14,7 +14,12 @@
 
 namespace ebisu {
 namespace performance {
+// custom <block_timer_logger begin namespace>
+// end <block_timer_logger begin namespace>
+
 SCENARIO("block timer logger") {
+  // custom <(594809812)>
+  // end <(594809812)>
   GIVEN("a block timer") {
     // custom <(1053450319)>
 

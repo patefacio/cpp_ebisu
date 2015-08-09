@@ -171,6 +171,9 @@ class Processor {
   int processor() const { return processor_; }
 
  private:
+  /**
+   Map of processors
+  */
   Proc_map_t proc_map_{};
   int processor_{};
 };
@@ -178,7 +181,7 @@ class Processor {
 using Processor_list_t = std::vector<Processor>;
 
 /**
- Class to parse the cpuinfo file. This might be of use to interrogate
+ Class to parse cpuinfo file. This might be of use to interrogate
  from code the stats of the machine for better enabling <apple to apple>
  comparisons.
 
@@ -262,6 +265,9 @@ class Cpu_info {
     // end <Cpu_info defaultCtor>
   }
 
+  /**
+   List of processors
+  */
   Processor_list_t processors_{};
 };
 

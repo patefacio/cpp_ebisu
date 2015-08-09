@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace linux_specific {
+// custom <application_signal_handler begin namespace>
+// end <application_signal_handler begin namespace>
+
 SCENARIO("catching signal") {
+  // custom <(966206657)>
+  // end <(966206657)>
   GIVEN("registered handler") {
     // custom <(810705097)>
 

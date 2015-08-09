@@ -8,7 +8,12 @@
 
 namespace ebisu {
 namespace raii {
+// custom <change_tracker_next_value begin namespace>
+// end <change_tracker_next_value begin namespace>
+
 SCENARIO("change tracker next value") {
+  // custom <(475775796)>
+  // end <(475775796)>
   GIVEN("an int change tracker assigned to one") {
     // custom <(542814227)>
 

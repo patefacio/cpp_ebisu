@@ -128,9 +128,9 @@ call [Application_signal_handler::stop_handler_thread].
 
       class_('application_signal_handler_exit')
       ..doc = '''
-Class to clean up the application handler thread.
+Class to clean up application handler thread.
 
-Use as an automatic variable in main to ensure cleanup.
+Use an automatic variable and RAII in main to ensure cleanup.
 '''
       ..dtor.includesProtectBlock = true
       ..defaultCtor.usesDefault = true
@@ -228,11 +228,17 @@ cpuinfo.'''
       ..usings = [ 'Proc_map_t = std::map< std::string, std::string >' ]
       ..members = [
         member('proc_map')
+        ..doc = 'Map of processors'
         ..type = 'Proc_map_t'..isByRef = true..access = ro,
         member('processor')
         ..type = 'int'..access = ro
       ],
       class_('cpu_info')
+      ..descr = '''
+Class to parse cpuinfo file. This might be of use to interrogate
+from code the stats of the machine for better enabling <apple to apple>
+comparisons.
+'''
       ..testScenarios = [
         testScenario('cpu info')
         ..givens = [
@@ -248,17 +254,13 @@ cpuinfo.'''
       ]
       ..isStreamable = true
       ..usesStreamers = true
-      ..descr = '''
-Class to parse the cpuinfo file. This might be of use to interrogate
-from code the stats of the machine for better enabling <apple to apple>
-comparisons.
-'''
       ..isSingleton = true
       ..withDefaultCtor((defaultCtor) =>
           defaultCtor..includesProtectBlock = true)
       ..customBlocks = [ clsPrivate ]
       ..members = [
         member('processors')
+        ..doc = 'List of processors'
         ..type = 'Processor_list_t'..isByRef = true..access = ro
       ],
     ]

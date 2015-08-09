@@ -11,7 +11,12 @@ void use_data(char* data) { data[0] = 0; }
 
 namespace ebisu {
 namespace performance {
+// custom <block_rusage begin namespace>
+// end <block_rusage begin namespace>
+
 SCENARIO("block rusage") {
+  // custom <(845463434)>
+  // end <(845463434)>
   GIVEN("a block rusage") {
     // custom <(711407587)>
 
