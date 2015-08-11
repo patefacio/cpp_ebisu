@@ -159,6 +159,25 @@ add_test(
   linux_specific.class.cpu_info.cpu_info)
 
 
+#   test for test_buffer
+#     (Lib:utils), (Header:buffer), (Test:buffer)
+#   
+add_executable(utils.header.buffer
+  tests/utils/header.buffer.cpp
+)
+
+target_link_libraries(utils.header.buffer
+# custom <catch test_buffer link requirements>
+# end <catch test_buffer link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_test(
+  utils.header.buffer
+  utils.header.buffer)
+
+
 #   test for test_fixed_size_char_array
 #     (Lib:utils), (Header:fixed_size_char_array), (Test:fixed_size_char_array)
 #   

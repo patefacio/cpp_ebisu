@@ -21,6 +21,23 @@ final utils = lib('utils')
       class_('block_indenter')
       ..customBlocks = [ clsPublic ]
     ],
+    header('buffer')
+    ..doc = 'Basic functinos to help in dealing with buffer data'
+    ..customBlocks = [ fcbEndNamespace ]
+    ..usings = [
+      usingCptr('buffer', 'char')
+    ]
+    ..classes = [
+
+    ]
+    ..testScenarios = [
+      testScenario('binary data to literal',
+          given('buffer with data', [
+            when('binary_data_to_literal is called', [
+              then('data is written correctly')
+            ])
+          ])),
+    ],
     header('fixed_size_char_array')
     ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
     ..testScenarios = [
