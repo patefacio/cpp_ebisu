@@ -1,8 +1,6 @@
 #ifndef __EBISU_TIMESTAMP_CONVERSION_HPP__
 #define __EBISU_TIMESTAMP_CONVERSION_HPP__
 
-#include "ebisu/timestamp/conversion_initialization.hpp"
-#include "ebisu/timestamp/conversion_logging.hpp"
 #include "ebisu/timestamp/timestamp.hpp"
 #include <boost/date_time/posix_time/time_formatters.hpp>
 #include <boost/regex.hpp>

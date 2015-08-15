@@ -2,8 +2,6 @@
 #define __EBISU_UTILS_STREAMERS_PTR_SET_HPP__
 
 #include "ebisu/utils/streamers/streamers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <boost/ptr_container/ptr_set.hpp>
 #include <iosfwd>
 

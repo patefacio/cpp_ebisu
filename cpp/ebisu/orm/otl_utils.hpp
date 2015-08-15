@@ -2,8 +2,6 @@
 #define __EBISU_ORM_OTL_UTILS_HPP__
 
 #include "ebisu/orm/orm_common.hpp"
-#include "ebisu/orm/orm_initialization.hpp"
-#include "ebisu/orm/orm_logging.hpp"
 #include "ebisu/utils/fixed_size_char_array.hpp"
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/date_time/gregorian/formatters.hpp>

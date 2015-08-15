@@ -2,8 +2,6 @@
 #define __EBISU_UTILS_STREAMERS_ARRAY_HPP__
 
 #include "ebisu/utils/streamers/streamers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <array>
 #include <iosfwd>
 

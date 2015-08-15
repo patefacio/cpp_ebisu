@@ -3,8 +3,6 @@
 
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
-#include "ebisu/utils/utils_initialization.hpp"
-#include "ebisu/utils/utils_logging.hpp"
 #include <boost/accumulators/accumulators.hpp>
 #include <boost/accumulators/statistics/density.hpp>
 #include <boost/algorithm/minmax_element.hpp>

@@ -1,8 +1,6 @@
 #ifndef __EBISU_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 #define __EBISU_UTILS_FIXED_SIZE_CHAR_ARRAY_HPP__
 
-#include "ebisu/utils/utils_initialization.hpp"
-#include "ebisu/utils/utils_logging.hpp"
 #include <array>
 #include <cassert>
 #include <cstring>

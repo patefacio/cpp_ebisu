@@ -2,8 +2,6 @@
 #define __EBISU_TIMESTAMP_CEREAL_HPP__
 
 #include "ebisu/timestamp/timestamp.hpp"
-#include "ebisu/timestamp/timestamp_initialization.hpp"
-#include "ebisu/timestamp/timestamp_logging.hpp"
 #include <cstdint>
 
 namespace ebisu {

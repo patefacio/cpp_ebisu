@@ -1,8 +1,6 @@
 #ifndef __EBISU_UTILS_STREAMERS_STREAMERS_HPP__
 #define __EBISU_UTILS_STREAMERS_STREAMERS_HPP__
 
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <iosfwd>
 #include <memory>
 #include <sstream>

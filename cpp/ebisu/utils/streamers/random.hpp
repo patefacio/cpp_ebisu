@@ -5,8 +5,6 @@
 #include "ebisu/timestamp/timestamp.hpp"
 #include "ebisu/utils/fixed_size_char_array.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <cstdint>
 #include <iostream>
 #include <limits>

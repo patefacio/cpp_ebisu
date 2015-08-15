@@ -311,3 +311,18 @@ add_test(
   performance.class.block_rusage.block_rusage
   performance.class.block_rusage.block_rusage)
 
+
+######################################################################
+# Benchmark directives
+######################################################################
+add_executable(bench_make_exception
+  benchmarks/app/make_exception/make_exception.cpp
+)
+
+target_link_libraries(bench_make_exception
+# custom <benchmark makeException link requirements>
+# end <benchmark makeException link requirements>
+  benchmark
+  pthread
+)
+

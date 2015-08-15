@@ -2,7 +2,6 @@
 #define __EBISU_LINUX_SPECIFIC_CPU_INFO_HPP__
 
 #include "ebisu/linux_specific/linux_exceptions.hpp"
-#include "ebisu/linux_specific/linux_specific_initialization.hpp"
 #include "ebisu/linux_specific/linux_specific_logging.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/exception/make_exception.hpp"

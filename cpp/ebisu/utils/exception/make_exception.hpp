@@ -1,8 +1,6 @@
 #ifndef __EBISU_UTILS_EXCEPTION_MAKE_EXCEPTION_HPP__
 #define __EBISU_UTILS_EXCEPTION_MAKE_EXCEPTION_HPP__
 
-#include "ebisu/utils/exception/exception_initialization.hpp"
-#include "ebisu/utils/exception/exception_logging.hpp"
 #include <boost/exception/all.hpp>
 #include <exception>
 

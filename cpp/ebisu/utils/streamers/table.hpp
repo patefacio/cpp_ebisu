@@ -2,8 +2,6 @@
 #define __EBISU_UTILS_STREAMERS_TABLE_HPP__
 
 #include "ebisu/utils/streamers/containers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>
 #include <algorithm>

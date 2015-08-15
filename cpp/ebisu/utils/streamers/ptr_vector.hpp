@@ -2,8 +2,6 @@
 #define __EBISU_UTILS_STREAMERS_PTR_VECTOR_HPP__
 
 #include "ebisu/utils/streamers/streamers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <iosfwd>
 

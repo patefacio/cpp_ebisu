@@ -1,9 +1,6 @@
 #ifndef __EBISU_UTILS_VERSION_CONTROL_COMMIT_HPP__
 #define __EBISU_UTILS_VERSION_CONTROL_COMMIT_HPP__
 
-#include "ebisu/utils/utils_initialization.hpp"
-#include "ebisu/utils/utils_logging.hpp"
-
 namespace ebisu {
 namespace utils {
 /**

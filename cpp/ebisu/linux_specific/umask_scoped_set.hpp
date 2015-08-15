@@ -1,7 +1,6 @@
 #ifndef __EBISU_LINUX_SPECIFIC_UMASK_SCOPED_SET_HPP__
 #define __EBISU_LINUX_SPECIFIC_UMASK_SCOPED_SET_HPP__
 
-#include "ebisu/linux_specific/linux_specific_initialization.hpp"
 #include "ebisu/linux_specific/linux_specific_logging.hpp"
 #include <sys/stat.h>
 #include <sys/types.h>

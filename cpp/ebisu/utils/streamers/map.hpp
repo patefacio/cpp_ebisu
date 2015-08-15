@@ -2,8 +2,6 @@
 #define __EBISU_UTILS_STREAMERS_MAP_HPP__
 
 #include "ebisu/utils/streamers/streamers.hpp"
-#include "ebisu/utils/streamers/streamers_initialization.hpp"
-#include "ebisu/utils/streamers/streamers_logging.hpp"
 #include <iosfwd>
 #include <map>
 

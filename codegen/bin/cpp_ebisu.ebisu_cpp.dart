@@ -1,5 +1,6 @@
 import 'libs.dart' as libs;
 import 'apps.dart' as apps;
+import 'benchmarks.dart' as benchmarks;
 import 'schemas.dart' as schemas;
 import '../lib/ebisu_installation.dart';
 import 'package:ebisu/ebisu.dart';
@@ -28,10 +29,17 @@ main() {
 
   apps.addItems();
 
+  benchmarks.addBenchmarks();
+
   if(false) {
     schemas.addItems().then((var _) => generate());
   } else {
     generate();
   }
+
+  print('''
+**** NON GENERATED FILES ****
+${indentBlock(brCompact(nonGeneratedFiles))}
+''');
 
 }

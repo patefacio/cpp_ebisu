@@ -12,6 +12,5 @@ String _getPath() {
 final ebisuInstallation = () {
   useClangFormatter = true;
   return new Installation(new Id('ebisu'))
-    ..logsApiInitializations = true
     ..rootFilePath = _getPath();
 }();

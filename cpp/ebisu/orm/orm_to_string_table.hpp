@@ -2,8 +2,6 @@
 #define __EBISU_ORM_ORM_TO_STRING_TABLE_HPP__
 
 #include "ebisu/orm/orm_common.hpp"
-#include "ebisu/orm/orm_initialization.hpp"
-#include "ebisu/orm/orm_logging.hpp"
 #include "ebisu/utils/streamers/table.hpp"
 #include <string>
 
