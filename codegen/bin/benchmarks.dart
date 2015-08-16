@@ -5,7 +5,7 @@ import 'package:ebisu_cpp/ebisu_cpp.dart';
 import 'benchmarks/make_exception.ebisu.dart' as make_exception;
 
 addBenchmarks() {
-  ebisuInstallation.benchmarks.add(make_exception.makeExceptionBenchmark);
+  make_exception.addItems();
 }
 
 main() {
