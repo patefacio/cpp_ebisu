@@ -12,5 +12,6 @@ String _getPath() {
 final ebisuInstallation = () {
   useClangFormatter = true;
   return new Installation(new Id('ebisu'))
+    ..includeStackTrace = false
     ..rootFilePath = _getPath();
 }();

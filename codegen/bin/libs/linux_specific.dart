@@ -79,21 +79,23 @@ A singleton class to allow registration of common interrupting signal handlers.
   - SIGUSR1
   - SIGKILL
 
-The singleton creates a thread which waits for signals. Clients can register
-handlers with [Application_signal_handler::add_handler]. When a signal is
-caught, the handlers are each all called in turn. For all signals except SIGKILL, f
-any of the registered handlers returns true, the signal handler loop carries on
-as before. If all handlers return true, the [Application_signal_handler] is done
-and the thread will complete.
+The singleton creates a thread which waits for signals. Clients can
+register handlers with [Application_signal_handler::add_handler]. When
+a signal is caught, the handlers are each all called in turn. For all
+signals except SIGKILL, f any of the registered handlers returns true,
+the signal handler loop carries on as before. If all handlers return
+true, the [Application_signal_handler] is done and the thread will
+complete.
 
-If SIGKILL is caught, the handlers are each called in turn and the loop is
-exited regardless of the handlers return values. This allows handlers to attempt
-cleanup before exit.
+If SIGKILL is caught, the handlers are each called in turn and the
+loop is exited regardless of the handlers return values. This allows
+handlers to attempt cleanup before exit.
 
-A typical use case would be an application that you might not want to be killed
-with Ctrl-C. To achieve this include the header in the file with
-*main*. Register a handler to deal with the signal. Prior to exiting the *main*
-call [Application_signal_handler::stop_handler_thread].
+A typical use case would be an application that you might not want to
+be killed with Ctrl-C. To achieve this include the header in the file
+with *main*. Register a handler to deal with the signal. Prior to
+exiting the *main* call
+[Application_signal_handler::stop_handler_thread].
 '''
       ..customBlocks = [ clsPublic, clsPrivate ]
       ..template = [
