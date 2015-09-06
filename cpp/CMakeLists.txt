@@ -55,6 +55,81 @@ include_directories(
 )
 
 ######################################################################
+# Lib sources
+######################################################################
+set (EBISU_LINUX_SPECIFIC_SOURCES,
+  ebisu/linux_specific/application_signal_handler.hpp
+  ebisu/linux_specific/umask_scoped_set.hpp
+  ebisu/linux_specific/linux_exceptions.hpp
+  ebisu/linux_specific/cpu_info.hpp
+  ebisu/linux_specific/linux_specific_logging.hpp
+)
+
+set (EBISU_UTILS_SOURCES,
+  ebisu/utils/block_indenter.hpp
+  ebisu/utils/buffer.hpp
+  ebisu/utils/fixed_size_char_array.hpp
+  ebisu/utils/version_control_commit.hpp
+  ebisu/utils/histogram.hpp
+)
+
+set (EBISU_UTILS_EXCEPTION_SOURCES,
+  ebisu/utils/exception/make_exception.hpp
+)
+
+set (EBISU_UTILS_STREAMERS_SOURCES,
+  ebisu/utils/streamers/containers.hpp
+  ebisu/utils/streamers/streamers.hpp
+  ebisu/utils/streamers/random.hpp
+  ebisu/utils/streamers/table.hpp
+  ebisu/utils/streamers/vector.hpp
+  ebisu/utils/streamers/set.hpp
+  ebisu/utils/streamers/map.hpp
+  ebisu/utils/streamers/list.hpp
+  ebisu/utils/streamers/array.hpp
+  ebisu/utils/streamers/deque.hpp
+  ebisu/utils/streamers/ptr_map.hpp
+  ebisu/utils/streamers/ptr_set.hpp
+  ebisu/utils/streamers/ptr_vector.hpp
+)
+
+set (EBISU_RAII_SOURCES,
+  ebisu/raii/change_tracker.hpp
+  ebisu/raii/api_initializer.hpp
+  ebisu/raii/raii_common.hpp
+  ebisu/raii/raii_logging.hpp
+  ebisu/raii/raii_initialization.hpp
+)
+
+set (EBISU_ORM_SOURCES,
+  ebisu/orm/orm_to_string_table.hpp
+  ebisu/orm/otl_utils.hpp
+  ebisu/orm/orm_common.hpp
+)
+
+set (EBISU_TIMESTAMP_SOURCES,
+  ebisu/timestamp/timestamp.hpp
+  ebisu/timestamp/cereal.hpp
+)
+
+set (EBISU_TIMESTAMP_SOURCES,
+  ebisu/timestamp/conversion.hpp
+)
+
+set (EBISU_PERFORMANCE_SOURCES,
+  ebisu/performance/block_timers.hpp
+  ebisu/performance/block_rusage.hpp
+  ebisu/performance/performance_common.hpp
+  ebisu/performance/performance_logging.hpp
+  ebisu/performance/performance_initialization.hpp
+)
+
+set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
+  benchmarks/bench/make_exception/benchmark_make_exception.hpp
+)
+
+
+######################################################################
 # Application build directives
 ######################################################################
 add_executable(date_time_converter
