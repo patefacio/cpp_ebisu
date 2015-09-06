@@ -25,7 +25,7 @@ inline ebisu::raii::Api_initializer<> performance_initializer_() {
   static ebisu::raii::Api_initializer<> performance_initializer{
       performance_init, performance_uninit};
   return performance_initializer;
-};
+}
 
 /// Internal linkage (i.e. 1 per translation unit) initializer for performance
 namespace {

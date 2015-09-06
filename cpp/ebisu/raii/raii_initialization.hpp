@@ -25,7 +25,7 @@ inline ebisu::raii::Api_initializer<> raii_initializer_() {
   static ebisu::raii::Api_initializer<> raii_initializer{raii_init,
                                                          raii_uninit};
   return raii_initializer;
-};
+}
 
 /// Internal linkage (i.e. 1 per translation unit) initializer for raii
 namespace {
