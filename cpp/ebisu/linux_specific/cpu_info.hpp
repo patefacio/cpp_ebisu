@@ -187,6 +187,8 @@ using Processor_list_t = std::vector<Processor>;
 */
 class Cpu_info {
  public:
+  Cpu_info(Cpu_info const& other) = delete;
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Cpu_info const& item) {
     using ebisu::utils::streamers::operator<<;

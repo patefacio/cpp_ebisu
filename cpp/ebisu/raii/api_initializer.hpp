@@ -59,6 +59,8 @@ class Api_initializer_registry {
   using Uninit_list_t = std::list<Uninit_wrapper_ptr_t>;
   using Registry_t = std::map<Init_func_t, Uninit_wrapper_ptr_t>;
 
+  Api_initializer_registry(Api_initializer_registry const& other) = delete;
+
   static Api_initializer_registry& instance() {
     static Api_initializer_registry instance_s;
     return instance_s;

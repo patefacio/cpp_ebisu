@@ -46,6 +46,8 @@ class Application_signal_handler {
   using Handler_function_t = std::function<bool(int)>;
   using Handler_function_list_t = std::vector<Handler_function_t>;
 
+  Application_signal_handler(Application_signal_handler const& other) = delete;
+
   ~Application_signal_handler() {
     // custom <Application_signal_handler dtor>
     linux_specific_logger->info(

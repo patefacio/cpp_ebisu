@@ -144,6 +144,9 @@ target_link_libraries(date_time_converter
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
+
+# custom <date_time_converter exe additions>
+# end <date_time_converter exe additions>
 )
 
 add_executable(display_csv
@@ -156,6 +159,9 @@ target_link_libraries(display_csv
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
+
+# custom <display_csv exe additions>
+# end <display_csv exe additions>
 )
 
 add_executable(h5ds2csv
@@ -168,6 +174,9 @@ target_link_libraries(h5ds2csv
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
+
+# custom <h5ds2csv exe additions>
+# end <h5ds2csv exe additions>
 )
 
 
@@ -190,6 +199,9 @@ target_link_libraries(linux_specific.header.application_signal_handler
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_application_signal_handler test additions>
+# end <test_application_signal_handler test additions>
+
 add_test(
   linux_specific.header.application_signal_handler
   linux_specific.header.application_signal_handler)
@@ -208,6 +220,9 @@ target_link_libraries(linux_specific.header.umask_scoped_set
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
+
+# custom <test_umask_scoped_set test additions>
+# end <test_umask_scoped_set test additions>
 
 add_test(
   linux_specific.header.umask_scoped_set
@@ -229,6 +244,9 @@ target_link_libraries(linux_specific.class.cpu_info.cpu_info
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_cpu_info test additions>
+# end <test_cpu_info test additions>
+
 add_test(
   linux_specific.class.cpu_info.cpu_info
   linux_specific.class.cpu_info.cpu_info)
@@ -247,6 +265,9 @@ target_link_libraries(utils.header.buffer
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
+
+# custom <test_buffer test additions>
+# end <test_buffer test additions>
 
 add_test(
   utils.header.buffer
@@ -267,6 +288,9 @@ target_link_libraries(utils.header.fixed_size_char_array
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_fixed_size_char_array test additions>
+# end <test_fixed_size_char_array test additions>
+
 add_test(
   utils.header.fixed_size_char_array
   utils.header.fixed_size_char_array)
@@ -285,6 +309,9 @@ target_link_libraries(raii.class.change_tracker.change_tracker_next_value
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
+
+# custom <test_change_tracker_next_value test additions>
+# end <test_change_tracker_next_value test additions>
 
 add_test(
   raii.class.change_tracker.change_tracker_next_value
@@ -305,6 +332,9 @@ target_link_libraries(raii.class.change_tracker.change_until_end_of_block
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_change_until_end_of_block test additions>
+# end <test_change_until_end_of_block test additions>
+
 add_test(
   raii.class.change_tracker.change_until_end_of_block
   raii.class.change_tracker.change_until_end_of_block)
@@ -324,6 +354,9 @@ target_link_libraries(raii.class.api_initializer.functor_scope_exit
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_functor_scope_exit test additions>
+# end <test_functor_scope_exit test additions>
+
 add_test(
   raii.class.api_initializer.functor_scope_exit
   raii.class.api_initializer.functor_scope_exit)
@@ -342,6 +375,9 @@ target_link_libraries(performance.class.block_timers.block_timer
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
 )
+
+# custom <test_block_timer test additions>
+# end <test_block_timer test additions>
 
 add_test(
   performance.class.block_timers.block_timer
@@ -363,6 +399,9 @@ target_link_libraries(performance.class.block_timers.block_timer_logger
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_block_timer_logger test additions>
+# end <test_block_timer_logger test additions>
+
 add_test(
   performance.class.block_timers.block_timer_logger
   performance.class.block_timers.block_timer_logger)
@@ -382,6 +421,9 @@ target_link_libraries(performance.class.block_rusage.block_rusage
   ${Boost_THREAD_LIBRARY}
 )
 
+# custom <test_block_rusage test additions>
+# end <test_block_rusage test additions>
+
 add_test(
   performance.class.block_rusage.block_rusage
   performance.class.block_rusage.block_rusage)
@@ -393,6 +435,9 @@ add_test(
 add_executable(bench_make_exception
   benchmarks/app/make_exception/make_exception.cpp
 )
+
+# custom <make_exception bench additions>
+# end <make_exception bench additions>
 
 target_link_libraries(bench_make_exception
 # custom <benchmark makeException link requirements>

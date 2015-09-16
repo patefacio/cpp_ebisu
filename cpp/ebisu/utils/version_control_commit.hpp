@@ -9,6 +9,8 @@ namespace utils {
 */
 class Version_control_commit {
  public:
+  Version_control_commit(Version_control_commit const& other) = delete;
+
   static Version_control_commit& instance() {
     static Version_control_commit instance_s;
     return instance_s;

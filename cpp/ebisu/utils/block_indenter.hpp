@@ -7,6 +7,8 @@ namespace ebisu {
 namespace utils {
 class Block_current_indent {
  public:
+  Block_current_indent(Block_current_indent const& other) = delete;
+
   static Block_current_indent& instance() {
     static Block_current_indent instance_s;
     return instance_s;
