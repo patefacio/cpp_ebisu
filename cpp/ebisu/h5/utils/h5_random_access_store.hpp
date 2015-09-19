@@ -5,6 +5,7 @@
 #include "H5File.h"
 #include "H5PacketTable.h"
 #include "ebisu/h5/utils/h5_utils_logging.hpp"
+#include <boost/filesystem/path.hpp>
 #include <exception>
 #include <memory>
 #include <string>
@@ -51,19 +52,18 @@ class H5_random_access_store {
       : file_(file), open_type_(open_type), group_(group) {
     // custom <H5_random_access_store(create packet table)>
 
-    auto group = group_;
     group += H5_data_set_specifier_t::data_set_name();
     switch (open_type_) {
       case Open_create_e: {
         make_groups_in_path();
         packet_table_ = std::make_shared(
-            file_->getId(), const_cast<char*> group.c_str(),
+            file_->getId(), const_cast<char*>(group.c_str()),
             H5_data_set_specifier_t::compound_data_type_id(), 1 << 8, 5);
         break;
       }
       case Open_read_e: {
-        packet_table_ =
-            std::make_shared(file_->getId(), const_cast<char*> group.c_str());
+        packet_table_ = new FL_PacketTable(file_->getId(),
+                                           const_cast<char*>(group.c_str()));
         break;
       }
     }
@@ -79,7 +79,7 @@ class H5_random_access_store {
     hid_t current_group_id(file_->getId());
     Group_id_list_t group_ids;
     {
-      path path(group_path);
+      path path(group_);
       path::iterator it(path.begin());
       path::iterator end(path.end());
       ++it;

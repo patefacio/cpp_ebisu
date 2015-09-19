@@ -35,6 +35,9 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
 ######################################################################
 link_directories(
 # custom <link directories>
+
+  ~/dev/open_source/HDF518CMake/build/HDF_Group/HDF5/1.8.15-patch1/lib
+
 # end <link directories>
 
 )
@@ -48,8 +51,11 @@ include_directories(
   ${CMAKE_CURRENT_LIST_DIR}
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
+
   ../install/catch/include
   ../install/spdlog/include
+  ~/dev/open_source/HDF518CMake/build/HDF_Group/HDF5/1.8.15-patch1/include
+  
 # end <include directories>
 
 )

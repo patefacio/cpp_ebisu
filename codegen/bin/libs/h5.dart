@@ -27,6 +27,7 @@ existing packet table.'''
       'H5Cpp.h',
       'H5File.h',
       'H5PacketTable.h',
+      'boost/filesystem/path.hpp'
     ]
     ..classes = [
       class_('h5_random_access_store')

@@ -29,9 +29,9 @@ class Sample {
     H5_data_set_specifier() {
       compound_data_type_id_ = H5Tcreate(H5T_COMPOUND, sizeof(Sample));
       H5Tinsert(compound_data_type_id_, "age_in_years",
-                HOFFSET(Sample, age_in_years_), TODO_TYPE);
+                HOFFSET(Sample, age_in_years_), H5T_NATIVE_INT /*TODO*/);
       H5Tinsert(compound_data_type_id_, "height_in_inches",
-                HOFFSET(Sample, height_in_inches_), TODO_TYPE);
+                HOFFSET(Sample, height_in_inches_), H5T_NATIVE_INT /*TODO*/);
     }
 
     std::string const data_set_name_{"/h5_data_set_specifier"};
