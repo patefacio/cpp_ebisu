@@ -174,7 +174,7 @@ SCENARIO("simple h5 data set random access") {
   GIVEN("simple data set") {
     // custom <(569757557)>
 
-    const int num_records{10};
+    const int num_records{10000};
 
     {
       auto file = std::make_shared<H5::H5File>("sample.hdf5", H5F_ACC_TRUNC);
