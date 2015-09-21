@@ -39,11 +39,12 @@ inline std::ostream& operator<<(std::ostream& out, Store_open_type e) {
  H5_DATA_SET_SPECIFIER.
 
 */
-template <typename TYPE_STORED, typename H5_DATA_SET_SPECIFIER = TYPE_STORED>
+template <typename TYPE_STORED>
 class H5_random_access_store {
  public:
   using H5_file_sptr_t = std::shared_ptr<H5::H5File>;
-  using H5_data_set_specifier_t = H5_DATA_SET_SPECIFIER;
+  using Record_t = TYPE_STORED;
+  using H5_data_set_specifier_t = typename Record_t::H5_data_set_specifier;
   using Group_id_list_t = std::vector<hid_t>;
   using Packet_table_uptr_t = std::unique_ptr<FL_PacketTable>;
 
@@ -52,24 +53,48 @@ class H5_random_access_store {
       : file_(file), open_type_(open_type), group_(group) {
     // custom <H5_random_access_store(create packet table)>
 
-    group += H5_data_set_specifier_t::data_set_name();
+    group_ += H5_data_set_specifier_t::DATA_SET_NAME;
     switch (open_type_) {
       case Open_create_e: {
         make_groups_in_path();
-        packet_table_ = std::make_shared(
-            file_->getId(), const_cast<char*>(group.c_str()),
-            H5_data_set_specifier_t::compound_data_type_id(), 1 << 8, 5);
+        packet_table_ = std::make_unique<FL_PacketTable>(
+            file_->getId(), const_cast<char*>(group_.c_str()),
+            H5_data_set_specifier_t::instance().compound_data_type_id(), 1 << 8,
+            5);
         break;
       }
       case Open_read_e: {
-        packet_table_ = new FL_PacketTable(file_->getId(),
-                                           const_cast<char*>(group.c_str()));
+        packet_table_ = std::make_unique<FL_PacketTable>(
+            file_->getId(), const_cast<char*>(group_.c_str()));
         break;
       }
     }
 
     // end <H5_random_access_store(create packet table)>
   }
+
+  // custom <ClsPublic H5_random_access_store>
+
+  hsize_t size() const { return packet_table_->GetPacketCount(); }
+
+  void get(hsize_t index, TYPE_STORED& result) {
+    if (packet_table_->GetPacket(index, &result) < 0) {
+      std::ostringstream msg;
+      msg << "Failed call to GetPacket";
+      throw std::runtime_error(msg.str());
+    }
+  }
+
+  void append(TYPE_STORED const& additional) {
+    if (packet_table_->AppendPacket(const_cast<TYPE_STORED*>(&additional)) <
+        0) {
+      std::ostringstream msg;
+      msg << "Failed call to AppendPacket";
+      throw std::runtime_error(msg.str());
+    }
+  }
+
+  // end <ClsPublic H5_random_access_store>
 
  private:
   // custom <ClsPrivate H5_random_access_store>
@@ -137,7 +162,7 @@ class H5_random_access_store {
   /**
    The group indicating where to find the data set
   */
-  std::string const group_;
+  std::string group_;
 
   /**
    Pointer to the packet table

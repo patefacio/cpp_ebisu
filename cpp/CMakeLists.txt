@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8)
 
 include(CheckCXXCompilerFlag)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG")
 
 ######################################################################
@@ -14,6 +14,7 @@ find_package(Boost 1.54.0 COMPONENTS program_options system thread
 # custom <boost lib components>
   date_time
   regex
+  filesystem
 # end <boost lib components>
 )
 
@@ -132,6 +133,7 @@ set (EBISU_PERFORMANCE_SOURCES,
 
 set (EBISU_H5_UTILS_SOURCES,
   ebisu/h5/utils/h5_random_access_store.hpp
+  ebisu/h5/utils/h5_utils_logging.hpp
 )
 
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
@@ -462,6 +464,16 @@ add_executable(h5_utils.class.h5_random_access_store.h5_random_access_store
 
 target_link_libraries(h5_utils.class.h5_random_access_store.h5_random_access_store
 # custom <catch test_h5_random_access_store link requirements>
+
+  -lhdf5_hl_cpp
+  -lhdf5_hl
+  -lhdf5_cpp
+  -lhdf5
+  -lszip
+  -lz
+  -ldl
+  ${Boost_FILESYSTEM_LIBRARY}
+  
 # end <catch test_h5_random_access_store link requirements>
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
