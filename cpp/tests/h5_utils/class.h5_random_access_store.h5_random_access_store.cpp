@@ -188,12 +188,13 @@ SCENARIO("simple h5 data set random access") {
             static_cast<unsigned long long>(i), static_cast<double>(i + 0.5),
             static_cast<long double>(i + 0.5), static_cast<char>(i)});
       }
+      REQUIRE(store.size() == num_records);
     }
 
     {
       auto file = std::make_shared<H5::H5File>("sample.hdf5", H5F_ACC_RDONLY);
       auto store = H5_random_access_store<Sample>(file, Open_read_e, "/");
-
+      REQUIRE(store.size() == num_records);
       Sample s;
       for (int i = 0; i < num_records; ++i) {
         store.get(i, s);
