@@ -136,6 +136,11 @@ set (EBISU_H5_UTILS_SOURCES,
   ebisu/h5/utils/h5_utils_logging.hpp
 )
 
+set (EBISU_MONGO_SOURCES,
+  ebisu/mongo/connection_registry.hpp
+  ebisu/mongo/mongo_logging.hpp
+)
+
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
   benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
@@ -483,6 +488,29 @@ target_link_libraries(h5_utils.class.h5_random_access_store.h5_random_access_sto
 add_test(
   h5_utils.class.h5_random_access_store.h5_random_access_store
   h5_utils.class.h5_random_access_store.h5_random_access_store)
+
+
+#   test for test_mongo
+#     (Lib:mongo), (Test:mongo)
+#   
+add_executable(mongo.lib.mongo
+  tests/mongo/lib.mongo.cpp
+)
+
+# custom <test_mongo test additions>
+# end <test_mongo test additions>
+
+target_link_libraries(mongo.lib.mongo
+# custom <catch test_mongo link requirements>
+# end <catch test_mongo link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  mongo.lib.mongo
+  mongo.lib.mongo)
 
 
 ######################################################################
