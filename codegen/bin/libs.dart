@@ -26,5 +26,3 @@ main() {
   addItems();
   ebisuInstallation.generate();
 }
-
-// end <library libs>

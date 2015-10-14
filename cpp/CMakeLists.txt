@@ -138,6 +138,7 @@ set (EBISU_H5_UTILS_SOURCES,
 
 set (EBISU_MONGO_SOURCES,
   ebisu/mongo/connection_registry.hpp
+  ebisu/mongo/mongo_ini.hpp
   ebisu/mongo/mongo_logging.hpp
 )
 
