@@ -49,7 +49,7 @@ class Sample {
       H5Tinsert(compound_data_type_id_, "m_long_long",
                 HOFFSET(Sample, m_long_long_), H5T_NATIVE_LLONG);
       H5Tinsert(compound_data_type_id_, "m_unsigned_int",
-                HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT32);
+                HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT);
       H5Tinsert(compound_data_type_id_, "m_unsigned_long",
                 HOFFSET(Sample, m_unsigned_long_), H5T_NATIVE_ULONG);
       H5Tinsert(compound_data_type_id_, "m_unsigned_long_long",
