@@ -4,7 +4,6 @@
 #include "ebisu/h5/utils/h5_random_access_store.hpp"
 
 // custom <custom includes>
-#include <memory>
 // end <custom includes>
 
 namespace ebisu {
@@ -16,6 +15,7 @@ namespace utils {
 class Sample {
  public:
   friend class H5_data_set_specifier;
+  using Char_10_bytes_t = std::array<char, 10>;
 
   class H5_data_set_specifier {
    public:
@@ -60,6 +60,11 @@ class Sample {
                 HOFFSET(Sample, m_long_double_), H5T_NATIVE_LDOUBLE);
       H5Tinsert(compound_data_type_id_, "m_sentinal",
                 HOFFSET(Sample, m_sentinal_), H5T_NATIVE_CHAR);
+      auto m_str_10_bytes_type = H5Tcopy(H5T_C_S1);
+      H5Tset_size(m_str_10_bytes_type, 10);
+      H5Tset_strpad(m_str_10_bytes_type, H5T_STR_NULLPAD);
+      H5Tinsert(compound_data_type_id_, "m_str_10_bytes",
+                HOFFSET(Sample, m_str_10_bytes_), m_str_10_bytes_type);
     }
 
     hid_t compound_data_type_id_{};
@@ -71,7 +76,8 @@ class Sample {
          short m_short, int m_int, long m_long, long long m_long_long,
          unsigned int m_unsigned_int, unsigned long m_unsigned_long,
          unsigned long long m_unsigned_long_long, double m_double,
-         long double m_long_double, char m_sentinal)
+         long double m_long_double, char m_sentinal,
+         Char_10_bytes_t const& m_str_10_bytes)
       : m_char_(m_char),
         m_unsigned_char_(m_unsigned_char),
         m_signed_char_(m_signed_char),
@@ -84,10 +90,12 @@ class Sample {
         m_unsigned_long_long_(m_unsigned_long_long),
         m_double_(m_double),
         m_long_double_(m_long_double),
-        m_sentinal_(m_sentinal) {}
+        m_sentinal_(m_sentinal),
+        m_str_10_bytes_(m_str_10_bytes) {}
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Sample const& item) {
+    using ebisu::utils::streamers::operator<<;
     out << "Sample(" << &item << ") {";
     out << "\n  m_char:" << item.m_char_;
     out << "\n  m_unsigned_char:" << item.m_unsigned_char_;
@@ -102,6 +110,7 @@ class Sample {
     out << "\n  m_double:" << item.m_double_;
     out << "\n  m_long_double:" << item.m_long_double_;
     out << "\n  m_sentinal:" << item.m_sentinal_;
+    out << "\n  m_str_10_bytes:" << item.m_str_10_bytes_;
     out << "\n}\n";
     return out;
   }
@@ -151,6 +160,9 @@ class Sample {
   //! getter for m_sentinal_ (access is Ro)
   char m_sentinal() const { return m_sentinal_; }
 
+  //! getter for m_str_10_bytes_ (access is Ro)
+  Char_10_bytes_t const& m_str_10_bytes() const { return m_str_10_bytes_; }
+
  private:
   char const m_char_{0};
   unsigned char const m_unsigned_char_{0};
@@ -165,6 +177,7 @@ class Sample {
   double const m_double_{0};
   long double const m_long_double_{0};
   char const m_sentinal_{0};
+  Char_10_bytes_t const m_str_10_bytes_{};
 };
 SCENARIO("simple h5 data set random access") {
   // custom <(632911136)>
@@ -181,12 +194,21 @@ SCENARIO("simple h5 data set random access") {
       auto store = H5_random_access_store<Sample>(file, Open_create_e, "/");
 
       for (int i = 0; i < num_records; ++i) {
-        store.append(Sample{
-            static_cast<char>(i), static_cast<unsigned char>(i),
-            static_cast<signed char>(i), static_cast<short>(i), i, i, i,
-            static_cast<unsigned>(i), static_cast<unsigned long>(i),
-            static_cast<unsigned long long>(i), static_cast<double>(i + 0.5),
-            static_cast<long double>(i + 0.5), static_cast<char>(i)});
+        store.append(
+            Sample{static_cast<char>(i),
+                   static_cast<unsigned char>(i),
+                   static_cast<signed char>(i),
+                   static_cast<short>(i),
+                   i,
+                   i,
+                   i,
+                   static_cast<unsigned>(i),
+                   static_cast<unsigned long>(i),
+                   static_cast<unsigned long long>(i),
+                   static_cast<double>(i + 0.5),
+                   static_cast<long double>(i + 0.5),
+                   static_cast<char>(i),
+                   {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}});
       }
       REQUIRE(store.size() == num_records);
     }
@@ -211,6 +233,11 @@ SCENARIO("simple h5 data set random access") {
         REQUIRE(static_cast<unsigned long long>(i) == s.m_unsigned_long_long());
         REQUIRE(static_cast<double>(i + 0.5) == s.m_double());
         REQUIRE(static_cast<long double>(i + 0.5) == s.m_long_double());
+        REQUIRE(std::string("abcdefghij") == &s.m_str_10_bytes()[0]);
+
+        if (i == 42) {
+          std::cout << s;
+        }
       }
     }
 

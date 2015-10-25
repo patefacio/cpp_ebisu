@@ -20,13 +20,15 @@ existing packet table.'''
       ]
       ..usings = []
       ..includes = [
+        'array',
         'memory',
         'string',
         'exception',
         'H5Cpp.h',
         'H5File.h',
         'H5PacketTable.h',
-        'boost/filesystem/path.hpp'
+        'boost/filesystem/path.hpp',
+        'ebisu/utils/streamers/array.hpp',
       ]
       ..classes = [
         class_('h5_random_access_store')
@@ -75,25 +77,64 @@ H5_DATA_SET_SPECIFIER.
           ..testScenarios = [
             testScenario('simple h5 data set random access',
                 [given('simple data set', [])])
-              ..preCodeBlock.snippets.add(addH5DataSetSpecifier(class_('sample')
-                ..defaultCtor.usesDefault = true
-                ..isImmutable = true
-                ..isStreamable = true
-                ..members = [
-                  member('m_char')..type = 'char'..init = 0,
-                  member('m_unsigned_char')..type = 'unsigned char'..init = 0,
-                  member('m_signed_char')..type = 'signed char'..init = 0,
-                  member('m_short')..type = 'short'..init = 0,
-                  member('m_int')..type = 'int'..init = 0,
-                  member('m_long')..type = 'long'..init = 0,
-                  member('m_long_long')..type = 'long long'..init = 0,
-                  member('m_unsigned_int')..type = 'unsigned int'..init = 0,
-                  member('m_unsigned_long')..type = 'unsigned long'..init = 0,
-                  member('m_unsigned_long_long')..type = 'unsigned long long'..init = 0,
-                  member('m_double')..type = 'double'..init = 0,
-                  member('m_long_double')..type = 'long double'..init = 0,
-                  member('m_sentinal')..type = 'char'..init = 0,
-                ]).definition)
+              ..preCodeBlock.snippets.add(addH5DataSetSpecifier(
+                  class_('sample')
+                    ..defaultCtor.usesDefault = true
+                    ..isImmutable = true
+                    ..isStreamable = true
+                    ..usesStreamers = true
+                    ..usings = [
+                      using('char_10_bytes_t', 'std::array<char, 10>')
+                    ]
+                    ..members = [
+                      member('m_char')
+                        ..type = 'char'
+                        ..init = 0,
+                      member('m_unsigned_char')
+                        ..type = 'unsigned char'
+                        ..init = 0,
+                      member('m_signed_char')
+                        ..type = 'signed char'
+                        ..init = 0,
+                      member('m_short')
+                        ..type = 'short'
+                        ..init = 0,
+                      member('m_int')
+                        ..type = 'int'
+                        ..init = 0,
+                      member('m_long')
+                        ..type = 'long'
+                        ..init = 0,
+                      member('m_long_long')
+                        ..type = 'long long'
+                        ..init = 0,
+                      member('m_unsigned_int')
+                        ..type = 'unsigned int'
+                        ..init = 0,
+                      member('m_unsigned_long')
+                        ..type = 'unsigned long'
+                        ..init = 0,
+                      member('m_unsigned_long_long')
+                        ..type = 'unsigned long long'
+                        ..init = 0,
+                      member('m_double')
+                        ..type = 'double'
+                        ..init = 0,
+                      member('m_long_double')
+                        ..type = 'long double'
+                        ..init = 0,
+                      member('m_sentinal')
+                        ..type = 'char'
+                        ..init = 0,
+                      member('m_str_10_bytes')
+                        ..type = 'Char_10_bytes_t'
+                        ..isByRef = true,
+                    ],
+                  ((String cppType) {
+                    return cppType == 'Char_10_bytes_t'
+                        ? new PacketMemberString(10)
+                        : cppTypeToHdf5Type(cppType);
+                  })).definition)
           ]
       ],
   ];

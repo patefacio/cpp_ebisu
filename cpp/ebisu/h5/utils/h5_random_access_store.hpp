@@ -5,7 +5,9 @@
 #include "H5File.h"
 #include "H5PacketTable.h"
 #include "ebisu/h5/utils/h5_utils_logging.hpp"
+#include "ebisu/utils/streamers/array.hpp"
 #include <boost/filesystem/path.hpp>
+#include <array>
 #include <exception>
 #include <memory>
 #include <string>
