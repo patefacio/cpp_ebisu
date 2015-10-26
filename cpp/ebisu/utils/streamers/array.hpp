@@ -10,12 +10,20 @@ namespace utils {
 namespace streamers {
 // custom <FcbBeginNamespace array>
 
-//! Support for streaming std::list
+//! Streams an std::array of objects
 template <typename T, size_t N>
 inline std::ostream& operator<<(std::ostream& out,
                                 std::array<T, N> const& arr) {
   return print_scalar_collection(out, arr);
 }
+
+//! Streams std::array as character string instead of array of chars
+template <size_t N>
+inline std::ostream& operator<<(std::ostream& out,
+                                std::array<char, N> const& arr) {
+  return out.write(&arr[0], N);
+}
+
 
 // end <FcbBeginNamespace array>
 
