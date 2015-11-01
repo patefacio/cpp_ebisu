@@ -1,6 +1,6 @@
+#include "ebisu/logger/logger.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
-#include "spdlog/spdlog.h"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <string>

@@ -1,10 +1,10 @@
 //! App for converting between various forms of date/time.
 
+#include "ebisu/logger/logger.hpp"
 #include "ebisu/timestamp/conversion.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
 #include "ebisu/utils/streamers/table.hpp"
-#include "spdlog/spdlog.h"
 #include <boost/program_options.hpp>
 #include <iostream>
 #include <stdexcept>

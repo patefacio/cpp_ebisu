@@ -194,21 +194,20 @@ SCENARIO("simple h5 data set random access") {
       auto store = H5_random_access_store<Sample>(file, Open_create_e, "/");
 
       for (int i = 0; i < num_records; ++i) {
-        store.append(
-            Sample{static_cast<char>(i),
-                   static_cast<unsigned char>(i),
-                   static_cast<signed char>(i),
-                   static_cast<short>(i),
-                   i,
-                   i,
-                   i,
-                   static_cast<unsigned>(i),
-                   static_cast<unsigned long>(i),
-                   static_cast<unsigned long long>(i),
-                   static_cast<double>(i + 0.5),
-                   static_cast<long double>(i + 0.5),
-                   static_cast<char>(i),
-                   {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'}});
+        store.append(Sample{static_cast<char>(i),
+                            static_cast<unsigned char>(i),
+                            static_cast<signed char>(i),
+                            static_cast<short>(i),
+                            i,
+                            i,
+                            i,
+                            static_cast<unsigned>(i),
+                            static_cast<unsigned long>(i),
+                            static_cast<unsigned long long>(i),
+                            static_cast<double>(i + 0.5),
+                            static_cast<long double>(i + 0.5),
+                            static_cast<char>(i),
+                            {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'}});
       }
       REQUIRE(store.size() == num_records);
     }

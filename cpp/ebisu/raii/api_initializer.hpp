@@ -1,9 +1,9 @@
 #ifndef __EBISU_RAII_API_INITIALIZER_HPP__
 #define __EBISU_RAII_API_INITIALIZER_HPP__
 
+#include "ebisu/logger/logger.hpp"
 #include "ebisu/raii/raii_common.hpp"
 #include "ebisu/raii/raii_logging.hpp"
-#include "spdlog/spdlog.h"
 #include <list>
 #include <map>
 #include <memory>
