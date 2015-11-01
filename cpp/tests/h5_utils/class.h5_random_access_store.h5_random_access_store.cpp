@@ -208,7 +208,7 @@ SCENARIO("simple h5 data set random access") {
                    static_cast<double>(i + 0.5),
                    static_cast<long double>(i + 0.5),
                    static_cast<char>(i),
-                   {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}});
+                   {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'}});
       }
       REQUIRE(store.size() == num_records);
     }
@@ -233,13 +233,15 @@ SCENARIO("simple h5 data set random access") {
         REQUIRE(static_cast<unsigned long long>(i) == s.m_unsigned_long_long());
         REQUIRE(static_cast<double>(i + 0.5) == s.m_double());
         REQUIRE(static_cast<long double>(i + 0.5) == s.m_long_double());
-        REQUIRE(std::string("abcdefghij") == &s.m_str_10_bytes()[0]);
+        REQUIRE(std::string("abcdefghi") == &s.m_str_10_bytes()[0]);
 
         if (i == 42) {
           std::cout << s;
         }
       }
     }
+
+    h5_utils_logger->info("Writing a cool log ({}!)", "super cool");
 
     // end <(569757557)>
   }

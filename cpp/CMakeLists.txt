@@ -142,6 +142,10 @@ set (EBISU_MONGO_SOURCES,
   ebisu/mongo/mongo_logging.hpp
 )
 
+set (EBISU_LOGGER_SOURCES,
+  ebisu/logger/logger.hpp
+)
+
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
   benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
@@ -512,6 +516,29 @@ target_link_libraries(mongo.lib.mongo
 add_test(
   mongo.lib.mongo
   mongo.lib.mongo)
+
+
+#   test for test_logger
+#     (Lib:logger), (Header:logger), (Test:logger)
+#   
+add_executable(logger.header.logger
+  tests/logger/header.logger.cpp
+)
+
+# custom <test_logger test additions>
+# end <test_logger test additions>
+
+target_link_libraries(logger.header.logger
+# custom <catch test_logger link requirements>
+# end <catch test_logger link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  logger.header.logger
+  logger.header.logger)
 
 
 ######################################################################

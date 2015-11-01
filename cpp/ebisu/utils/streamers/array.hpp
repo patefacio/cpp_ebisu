@@ -24,7 +24,6 @@ inline std::ostream& operator<<(std::ostream& out,
   return out.write(&arr[0], N);
 }
 
-
 // end <FcbBeginNamespace array>
 
 }  // namespace streamers
