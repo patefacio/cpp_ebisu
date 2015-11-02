@@ -17,7 +17,6 @@ class Logger {
 
   template <typename... Args>
   void trace(Args... args) {
-    std::cout << "BAM " << std::endl;
     impl_->trace(args...);
   }
   template <typename... Args>
