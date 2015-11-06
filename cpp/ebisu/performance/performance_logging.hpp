@@ -39,10 +39,12 @@ namespace {
 // If logging is desired for *release* mode, define RELEASE_HAS_LOGGING
 #if defined(DEBUG) || defined(RELEASE_HAS_LOGGING)
 using Performance_logger_t = Performance_logger<spdlog::logger>;
+#define PERFORMANCE_TRACE(...) performance_logger->trace(__VA_ARGS__)
 #else
 using Performance_logger_t =
     Performance_logger<ebisu::logger::Null_logger_impl>;
 Performance_logger_t performance_logger_impl;
+#define PERFORMANCE_TRACE(...) (void)0
 #endif
 
 Performance_logger_t::Logger_impl_t performance_logger =

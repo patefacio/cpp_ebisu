@@ -40,9 +40,11 @@ namespace {
 // If logging is desired for *release* mode, define RELEASE_HAS_LOGGING
 #if defined(DEBUG) || defined(RELEASE_HAS_LOGGING)
 using H5_utils_logger_t = H5_utils_logger<spdlog::logger>;
+#define H5_UTILS_TRACE(...) h5_utils_logger->trace(__VA_ARGS__)
 #else
 using H5_utils_logger_t = H5_utils_logger<ebisu::logger::Null_logger_impl>;
 H5_utils_logger_t h5_utils_logger_impl;
+#define H5_UTILS_TRACE(...) (void)0
 #endif
 
 H5_utils_logger_t::Logger_impl_t h5_utils_logger = H5_utils_logger_t::logger();

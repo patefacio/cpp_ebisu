@@ -39,9 +39,11 @@ namespace {
 // If logging is desired for *release* mode, define RELEASE_HAS_LOGGING
 #if defined(DEBUG) || defined(RELEASE_HAS_LOGGING)
 using Mongo_logger_t = Mongo_logger<spdlog::logger>;
+#define MONGO_TRACE(...) mongo_logger->trace(__VA_ARGS__)
 #else
 using Mongo_logger_t = Mongo_logger<ebisu::logger::Null_logger_impl>;
 Mongo_logger_t mongo_logger_impl;
+#define MONGO_TRACE(...) (void)0
 #endif
 
 Mongo_logger_t::Logger_impl_t mongo_logger = Mongo_logger_t::logger();
