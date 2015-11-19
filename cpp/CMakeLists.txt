@@ -25,8 +25,11 @@ find_package(Boost 1.54.0 COMPONENTS program_options system thread
 
 add_definitions(-DOTL_ODBC_UNIX)
 
+##### Add --save-temps to see assembly
+##### Add -Winline to see what is not inlined (gcc)
+
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 
 # end <misc section>
 
@@ -146,6 +149,14 @@ set (EBISU_LOGGER_SOURCES,
   ebisu/logger/logger.hpp
 )
 
+set (EBISU_ORM_CODE_METRICS_SOURCES,
+  ebisu/orm/code_metrics/code_metrics_common.hpp
+  ebisu/orm/code_metrics/table/code_packages.hpp
+  ebisu/orm/code_metrics/table/code_locations.hpp
+  ebisu/orm/code_metrics/table/code_tick_timings.hpp
+  ebisu/orm/code_metrics/table/rusage_delta.hpp
+)
+
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
   benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
@@ -195,6 +206,7 @@ add_executable(h5ds2csv
 
 target_link_libraries(h5ds2csv
 # custom <h5ds2csv libs>
+  -pthread
 # end <h5ds2csv libs>
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
@@ -539,6 +551,98 @@ target_link_libraries(logger.header.logger
 add_test(
   logger.header.logger
   logger.header.logger)
+
+
+#   test for test_code_packages
+#     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
+#   
+add_executable(code_metrics.class.code_packages.code_packages
+  tests/code_metrics/class.code_packages.code_packages.cpp
+)
+
+# custom <test_code_packages test additions>
+# end <test_code_packages test additions>
+
+target_link_libraries(code_metrics.class.code_packages.code_packages
+# custom <catch test_code_packages link requirements>
+# end <catch test_code_packages link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  code_metrics.class.code_packages.code_packages
+  code_metrics.class.code_packages.code_packages)
+
+
+#   test for test_code_locations
+#     (Lib:code_metrics), (Header:code_locations), (Class:code_locations), (Test:code_locations)
+#   
+add_executable(code_metrics.class.code_locations.code_locations
+  tests/code_metrics/class.code_locations.code_locations.cpp
+)
+
+# custom <test_code_locations test additions>
+# end <test_code_locations test additions>
+
+target_link_libraries(code_metrics.class.code_locations.code_locations
+# custom <catch test_code_locations link requirements>
+# end <catch test_code_locations link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  code_metrics.class.code_locations.code_locations
+  code_metrics.class.code_locations.code_locations)
+
+
+#   test for test_code_tick_timings
+#     (Lib:code_metrics), (Header:code_tick_timings), (Class:code_tick_timings), (Test:code_tick_timings)
+#   
+add_executable(code_metrics.class.code_tick_timings.code_tick_timings
+  tests/code_metrics/class.code_tick_timings.code_tick_timings.cpp
+)
+
+# custom <test_code_tick_timings test additions>
+# end <test_code_tick_timings test additions>
+
+target_link_libraries(code_metrics.class.code_tick_timings.code_tick_timings
+# custom <catch test_code_tick_timings link requirements>
+# end <catch test_code_tick_timings link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  code_metrics.class.code_tick_timings.code_tick_timings
+  code_metrics.class.code_tick_timings.code_tick_timings)
+
+
+#   test for test_rusage_delta
+#     (Lib:code_metrics), (Header:rusage_delta), (Class:rusage_delta), (Test:rusage_delta)
+#   
+add_executable(code_metrics.class.rusage_delta.rusage_delta
+  tests/code_metrics/class.rusage_delta.rusage_delta.cpp
+)
+
+# custom <test_rusage_delta test additions>
+# end <test_rusage_delta test additions>
+
+target_link_libraries(code_metrics.class.rusage_delta.rusage_delta
+# custom <catch test_rusage_delta link requirements>
+# end <catch test_rusage_delta link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  code_metrics.class.rusage_delta.rusage_delta
+  code_metrics.class.rusage_delta.rusage_delta)
 
 
 ######################################################################

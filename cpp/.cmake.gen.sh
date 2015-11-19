@@ -1,11 +1,11 @@
 #!/bin/bash
 # custom <additional exports>
 
-export CC=clang
-export CXX=clang++
+#export CC=clang
+#export CXX=clang++
 
-#export CC=gcc-4.9
-#export CXX=g++-4.9
+export CC=gcc-4.9
+export CXX=g++-4.9
 
 # end <additional exports>
 

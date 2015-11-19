@@ -115,8 +115,8 @@ class H5_random_access_store {
         if (!H5Lexists(current_group_id, current_group.c_str(), H5P_DEFAULT)) {
           hid_t new_group_id(H5Gcreate(current_group_id, current_group.c_str(),
                                        H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT));
-          h5_utils_logger->info("Creating group: {} result gid: {}",
-                                current_group.c_str(), new_group_id);
+          H5_UTILS_TRACE("Creating group: {} result gid: {}",
+                         current_group.c_str(), new_group_id);
           if (new_group_id > 0) {
             current_group_id = new_group_id;
           } else {

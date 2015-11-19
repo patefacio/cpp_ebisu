@@ -31,7 +31,7 @@ main() {
 
   benchmarks.addBenchmarks();
 
-  if(false) {
+  if(true) {
     schemas.addItems().then((var _) => generate());
   } else {
     generate();

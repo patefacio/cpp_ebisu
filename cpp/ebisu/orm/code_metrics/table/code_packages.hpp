@@ -2,8 +2,6 @@
 #define __EBISU_ORM_CODE_METRICS_TABLE_CODE_PACKAGES_HPP__
 
 #include "ebisu/orm/code_metrics/code_metrics_common.hpp"
-#include "ebisu/orm/code_metrics/code_metrics_initialization.hpp"
-#include "ebisu/orm/code_metrics/code_metrics_logging.hpp"
 #include "ebisu/orm/orm_to_string_table.hpp"
 #include "ebisu/orm/otl_utils.hpp"
 #include "ebisu/utils/block_indenter.hpp"
@@ -125,6 +123,8 @@ class Code_packages {
   using Value_list_t = VALUE_LIST_TYPE;
   using Row_t = std::pair<Pkey_t, Value_t>;
   using Row_list_t = std::vector<Row_t>;
+
+  Code_packages(Code_packages const& other) = delete;
 
   static Code_packages& instance() {
     static Code_packages instance_s;

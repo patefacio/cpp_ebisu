@@ -241,6 +241,7 @@ SCENARIO("simple h5 data set random access") {
     }
 
     h5_utils_logger->info("Writing a cool log ({}!)", "super cool");
+    H5_UTILS_TRACE("Writing a cool log ({}!)", "super cooler");
 
     // end <(569757557)>
   }

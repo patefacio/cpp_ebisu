@@ -18,7 +18,7 @@ dependencies:
     git:
       url: git://github.com/patefacio/ebisu_cpp_db
       ref: HEAD
-   
+
 # end <ebisu dependencies>
 
 dev_dependencies:
@@ -40,8 +40,8 @@ dependency_overrides:
 
 #  ebisu: "^0.6.1"
 
-#  ebisu_cpp:
-#    path: /home/dbdavidson/dev/open_source/ebisu_cpp
+  ebisu_cpp:
+    path: /home/dbdavidson/dev/open_source/ebisu_cpp
 
 #  ebisu_cpp_db:
 #    path: /home/dbdavidson/dev/open_source/ebisu_cpp_db

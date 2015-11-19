@@ -8,16 +8,18 @@ namespace orm {
 namespace code_metrics {
 class Connection_code_metrics {
  public:
-  static Connection_code_metrics &instance() {
+  Connection_code_metrics(Connection_code_metrics const& other) = delete;
+
+  static Connection_code_metrics& instance() {
     static Connection_code_metrics instance_s;
     return instance_s;
   }
 
-  otl_connect *connection() { return tss_connection_.get(); }
+  otl_connect* connection() { return tss_connection_.get(); }
 
  private:
   Connection_code_metrics() {
-    otl_connect *connection = new otl_connect;
+    otl_connect* connection = new otl_connect;
     connection->rlogon("DSN=code_metrics", 0);
     tss_connection_.reset(connection);
   }

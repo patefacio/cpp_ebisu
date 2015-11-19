@@ -1,7 +1,6 @@
 library libs.orm;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
-import 'package:ebisu_cpp/mongo_support.dart';
 import '../../lib/ebisu_installation.dart';
 
 final mongo_utils = lib('mongo')

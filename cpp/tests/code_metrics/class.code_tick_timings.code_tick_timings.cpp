@@ -9,10 +9,24 @@
 namespace ebisu {
 namespace orm {
 namespace code_metrics {
-SCENARIO("delete rows deletes rows") {}
-SCENARIO("insert rows inserts rows") {}
-SCENARIO("update rows updates rows") {}
+namespace table {
+// custom <code_tick_timings begin namespace>
+// end <code_tick_timings begin namespace>
 
+SCENARIO("delete rows deletes rows") {
+  // custom <(58720189)>
+  // end <(58720189)>
+}
+SCENARIO("insert rows inserts rows") {
+  // custom <(406305211)>
+  // end <(406305211)>
+}
+SCENARIO("update rows updates rows") {
+  // custom <(789631843)>
+  // end <(789631843)>
+}
+
+}  // namespace table
 }  // namespace code_metrics
 }  // namespace orm
 }  // namespace ebisu

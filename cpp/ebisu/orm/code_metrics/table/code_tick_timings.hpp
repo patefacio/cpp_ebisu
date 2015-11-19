@@ -3,8 +3,6 @@
 
 #include "code_locations.hpp"
 #include "ebisu/orm/code_metrics/code_metrics_common.hpp"
-#include "ebisu/orm/code_metrics/code_metrics_initialization.hpp"
-#include "ebisu/orm/code_metrics/code_metrics_logging.hpp"
 #include "ebisu/orm/orm_to_string_table.hpp"
 #include "ebisu/orm/otl_utils.hpp"
 #include "ebisu/utils/block_indenter.hpp"
@@ -175,6 +173,8 @@ class Code_tick_timings {
   using Value_list_t = VALUE_LIST_TYPE;
   using Row_t = std::pair<Pkey_t, Value_t>;
   using Row_list_t = std::vector<Row_t>;
+
+  Code_tick_timings(Code_tick_timings const& other) = delete;
 
   static Code_tick_timings& instance() {
     static Code_tick_timings instance_s;
