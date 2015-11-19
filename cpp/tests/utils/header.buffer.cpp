@@ -20,8 +20,8 @@ SCENARIO("binary data to literal") {
     // custom <(425426083)>
 
     using namespace utils;
-    char const *buff_start = "this is a test";
-    char const *buff_end = buff_start + std::strlen(buff_start);
+    char const* buff_start = "this is a test";
+    char const* buff_end = buff_start + std::strlen(buff_start);
 
     // end <(425426083)>
     WHEN("binary data to literal is called") {

@@ -58,7 +58,7 @@ class Change_tracker_next_value {
 
   // custom <ClsPublic Change_tracker_next_value>
 
-  Change_tracker_next_value(Change_tracker_t &tracker, T next_value)
+  Change_tracker_next_value(Change_tracker_t& tracker, T next_value)
       : tracker_(tracker), next_value_(next_value) {}
 
   ~Change_tracker_next_value() { tracker_.next_value(next_value_); }
@@ -66,13 +66,13 @@ class Change_tracker_next_value {
   // end <ClsPublic Change_tracker_next_value>
 
   //! getter for tracker_ (access is Ro)
-  Change_tracker_t const &tracker() const { return tracker_; }
+  Change_tracker_t const& tracker() const { return tracker_; }
 
   //! getter for next_value_ (access is Ro)
   T next_value() const { return next_value_; }
 
  private:
-  Change_tracker_t &tracker_;
+  Change_tracker_t& tracker_;
   T next_value_{};
 };
 
@@ -88,7 +88,7 @@ class Change_until_end_of_block {
   // custom <ClsPublic Change_until_end_of_block>
 
   Change_until_end_of_block(
-      T &target, typename boost::call_traits<T>::param_type new_value)
+      T& target, typename boost::call_traits<T>::param_type new_value)
       : target_{target}, saved_value_{target} {
     target_ = new_value;
   }
@@ -107,7 +107,7 @@ class Change_until_end_of_block {
   /**
    Reference to the item being changed for duration of block
   */
-  T &target_;
+  T& target_;
 
   /**
    Value saved on construction and used to reset on block exit
