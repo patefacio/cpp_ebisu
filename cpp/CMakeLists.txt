@@ -39,8 +39,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 ######################################################################
 link_directories(
 # custom <link directories>
+
 /usr/local/HDF_Group/HDF5/1.8.16/lib
-#/usr/local/lib
+
 # end <link directories>
 
 )
@@ -55,9 +56,9 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
 
+  /usr/local/HDF_Group/HDF5/1.8.16/include
   ../install/catch/include
   ../install/spdlog/include
-  ~/dev/open_source/HDF518CMake/build/HDF_Group/HDF5/1.8.15-patch1/include
   
 # end <include directories>
 
@@ -146,6 +147,10 @@ set (EBISU_MONGO_SOURCES,
 
 set (EBISU_LOGGER_SOURCES,
   ebisu/logger/logger.hpp
+)
+
+set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
+  benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
 
 
@@ -543,4 +548,17 @@ add_test(
 ######################################################################
 # Benchmark directives
 ######################################################################
+add_executable(bench_make_exception
+  benchmarks/app/make_exception/make_exception.cpp
+)
+
+# custom <make_exception bench additions>
+# end <make_exception bench additions>
+
+target_link_libraries(bench_make_exception
+# custom <benchmark makeException link requirements>
+# end <benchmark makeException link requirements>
+  benchmark
+  pthread
+)
 

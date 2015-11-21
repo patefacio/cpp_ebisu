@@ -29,9 +29,9 @@ main() {
 
   apps.addItems();
 
+  benchmarks.addBenchmarks();
 
   if(false) {
-    benchmarks.addBenchmarks();
     schemas.addItems().then((var _) => generate());
   } else {
     generate();
