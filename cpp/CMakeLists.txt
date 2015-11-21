@@ -39,9 +39,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 ######################################################################
 link_directories(
 # custom <link directories>
-
-  ~/dev/open_source/HDF518CMake/build/HDF_Group/HDF5/1.8.15-patch1/lib
-
+/usr/local/HDF_Group/HDF5/1.8.16/lib
+#/usr/local/lib
 # end <link directories>
 
 )
@@ -475,11 +474,11 @@ add_executable(h5_utils.class.h5_random_access_store.h5_random_access_store
 target_link_libraries(h5_utils.class.h5_random_access_store.h5_random_access_store
 # custom <catch test_h5_random_access_store link requirements>
 
-  -lhdf5_hl_cpp
-  -lhdf5_hl
-  -lhdf5_cpp
-  -lhdf5
-  -lszip
+  -lhdf5_hl_cpp-static
+  -lhdf5_hl-static
+  -lhdf5_cpp-static
+  -lhdf5-static
+  -lszip-static
   -lz
   -ldl
   ${Boost_FILESYSTEM_LIBRARY}
