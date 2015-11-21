@@ -36,17 +36,17 @@ inline std::ostream& operator<<(std::ostream& out, Store_open_type e) {
 }
 
 /**
- Stores objects of type TYPE_STORED in an hdf5 data_set for basic random access
- whose hdf5 data_set type (when used for creation) is specified by
- H5_DATA_SET_SPECIFIER.
+ Stores objects of with schema specified by DSS - a dataset sepcifier.
+ DSS must define type *typename DSS::Record_t* which is the type of the
+ instances being stored/read from the recordset.
 
 */
-template <typename TYPE_STORED>
+template <typename DSS>
 class H5_random_access_store {
  public:
   using H5_file_sptr_t = std::shared_ptr<H5::H5File>;
-  using Record_t = TYPE_STORED;
-  using H5_data_set_specifier_t = typename Record_t::H5_data_set_specifier;
+  using H5_data_set_specifier_t = DSS;
+  using Record_t = typename DSS::Record_t;
   using Group_id_list_t = std::vector<hid_t>;
   using Packet_table_uptr_t = std::unique_ptr<FL_PacketTable>;
 
@@ -79,7 +79,7 @@ class H5_random_access_store {
 
   hsize_t size() const { return packet_table_->GetPacketCount(); }
 
-  void get(hsize_t index, TYPE_STORED& result) {
+  void get(hsize_t index, Record_t& result) {
     if (packet_table_->GetPacket(index, &result) < 0) {
       std::ostringstream msg;
       msg << "Failed call to GetPacket";
@@ -87,9 +87,8 @@ class H5_random_access_store {
     }
   }
 
-  void append(TYPE_STORED const& additional) {
-    if (packet_table_->AppendPacket(const_cast<TYPE_STORED*>(&additional)) <
-        0) {
+  void append(Record_t const& additional) {
+    if (packet_table_->AppendPacket(const_cast<Record_t*>(&additional)) < 0) {
       std::ostringstream msg;
       msg << "Failed call to AppendPacket";
       throw std::runtime_error(msg.str());

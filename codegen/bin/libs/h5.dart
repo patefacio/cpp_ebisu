@@ -33,17 +33,16 @@ existing packet table.'''
       ..classes = [
         class_('h5_random_access_store')
           ..doc = '''
-Stores objects of type TYPE_STORED in an hdf5 data_set for basic random access
-whose hdf5 data_set type (when used for creation) is specified by
-H5_DATA_SET_SPECIFIER.
+Stores objects of with schema specified by DSS - a dataset sepcifier.
+DSS must define type *typename DSS::Record_t* which is the type of the
+instances being stored/read from the recordset.
 '''
-          ..template = ['typename TYPE_STORED',]
+          ..template = ['typename DSS',]
           ..customBlocks = [clsPrivate, clsPublic]
           ..usings = [
             usingSptr('h5_file', 'H5::H5File'),
-            using('record', 'TYPE_STORED'),
-            using('h5_data_set_specifier',
-                'typename Record_t::H5_data_set_specifier'),
+            using('h5_data_set_specifier', 'DSS'),
+            using('record', 'typename DSS::Record_t'),
             using('group_id_list', 'std::vector<hid_t>'),
             usingUptr('packet_table', 'FL_PacketTable'),
           ]
@@ -75,66 +74,79 @@ H5_DATA_SET_SPECIFIER.
               ..type = 'Packet_table_uptr_t',
           ]
           ..testScenarios = [
-            testScenario('simple h5 data set random access',
-                [given('simple data set', [])])
-              ..preCodeBlock.snippets.add(addH5DataSetSpecifier(
-                  class_('sample')
-                    ..defaultCtor.usesDefault = true
-                    ..isImmutable = true
-                    ..isStreamable = true
-                    ..usesStreamers = true
-                    ..usings = [
-                      using('char_10_bytes_t', 'std::array<char, 10>')
-                    ]
-                    ..members = [
-                      member('m_char')
-                        ..type = 'char'
-                        ..init = 0,
-                      member('m_unsigned_char')
-                        ..type = 'unsigned char'
-                        ..init = 0,
-                      member('m_signed_char')
-                        ..type = 'signed char'
-                        ..init = 0,
-                      member('m_short')
-                        ..type = 'short'
-                        ..init = 0,
-                      member('m_int')
-                        ..type = 'int'
-                        ..init = 0,
-                      member('m_long')
-                        ..type = 'long'
-                        ..init = 0,
-                      member('m_long_long')
-                        ..type = 'long long'
-                        ..init = 0,
-                      member('m_unsigned_int')
-                        ..type = 'unsigned int'
-                        ..init = 0,
-                      member('m_unsigned_long')
-                        ..type = 'unsigned long'
-                        ..init = 0,
-                      member('m_unsigned_long_long')
-                        ..type = 'unsigned long long'
-                        ..init = 0,
-                      member('m_double')
-                        ..type = 'double'
-                        ..init = 0,
-                      member('m_long_double')
-                        ..type = 'long double'
-                        ..init = 0,
-                      member('m_sentinal')
-                        ..type = 'char'
-                        ..init = 0,
-                      member('m_str_10_bytes')
-                        ..type = 'Char_10_bytes_t'
-                        ..isByRef = true,
-                    ],
-                  ((String cppType) {
-                    return cppType == 'Char_10_bytes_t'
-                        ? new PacketMemberString(10)
-                        : cppTypeToHdf5Type(cppType);
-                  })).definition)
+            () {
+              final sample = class_('sample')
+                ..defaultCtor.usesDefault = true
+                ..isImmutable = true
+                ..isStreamable = true
+                ..usesStreamers = true
+                ..usings = [
+                  using('char_10_bytes_t', 'std::array<char, 10>')
+                ]
+                ..members = [
+                  member('m_char')
+                  ..type = 'char'
+                  ..init = 0,
+                  member('m_unsigned_char')
+                  ..type = 'unsigned char'
+                  ..init = 0,
+                  member('m_signed_char')
+                  ..type = 'signed char'
+                  ..init = 0,
+                  member('m_short')
+                  ..type = 'short'
+                  ..init = 0,
+                  member('m_int')
+                  ..type = 'int'
+                  ..init = 0,
+                  member('m_long')
+                  ..type = 'long'
+                  ..init = 0,
+                  member('m_long_long')
+                  ..type = 'long long'
+                  ..init = 0,
+                  member('m_unsigned_int')
+                  ..type = 'unsigned int'
+                  ..init = 0,
+                  member('m_unsigned_long')
+                  ..type = 'unsigned long'
+                  ..init = 0,
+                  member('m_unsigned_long_long')
+                  ..type = 'unsigned long long'
+                  ..init = 0,
+                  member('m_double')
+                  ..type = 'double'
+                  ..init = 0,
+                  member('m_long_double')
+                  ..type = 'long double'
+                  ..init = 0,
+                  member('m_sentinal')
+                  ..type = 'char'
+                  ..init = 0,
+                  member('m_str_10_bytes')
+                  ..type = 'Char_10_bytes_t'
+                  ..isByRef = true,
+                ];
+
+              mapper(String cppType) => cppType == 'Char_10_bytes_t'
+                ? new PacketMemberString(10)
+                : cppTypeToHdf5Type(cppType);
+
+              final dss = createH5DataSetSpecifier(sample, mapper);
+              final sampleScenario =
+                  testScenario('simple h5 data set random access');
+              sampleScenario
+                ..preCodeBlock.snippets.add('''
+namespace scoped {
+${sample.definition}
+
+${dss.definition}
+}
+''')
+                ..withGiven('simple data set', (Given given) {
+                });
+              return sampleScenario;
+            }()
           ]
       ],
   ];

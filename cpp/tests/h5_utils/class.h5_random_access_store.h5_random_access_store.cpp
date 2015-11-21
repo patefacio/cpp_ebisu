@@ -12,63 +12,11 @@ namespace utils {
 // custom <h5_random_access_store begin namespace>
 // end <h5_random_access_store begin namespace>
 
+namespace scoped {
 class Sample {
  public:
-  friend class H5_data_set_specifier;
+  friend class Sample_h5_dss;
   using Char_10_bytes_t = std::array<char, 10>;
-
-  class H5_data_set_specifier {
-   public:
-    static constexpr char const* DATA_SET_NAME{"/sample"};
-
-    H5_data_set_specifier(H5_data_set_specifier const& other) = delete;
-
-    static H5_data_set_specifier& instance() {
-      static H5_data_set_specifier instance_s;
-      return instance_s;
-    }
-
-    //! getter for compound_data_type_id_ (access is Ro)
-    hid_t compound_data_type_id() const { return compound_data_type_id_; }
-
-   private:
-    H5_data_set_specifier() {
-      compound_data_type_id_ = H5Tcreate(H5T_COMPOUND, sizeof(Sample));
-      H5Tinsert(compound_data_type_id_, "m_char", HOFFSET(Sample, m_char_),
-                H5T_NATIVE_CHAR);
-      H5Tinsert(compound_data_type_id_, "m_unsigned_char",
-                HOFFSET(Sample, m_unsigned_char_), H5T_NATIVE_UCHAR);
-      H5Tinsert(compound_data_type_id_, "m_signed_char",
-                HOFFSET(Sample, m_signed_char_), H5T_NATIVE_SCHAR);
-      H5Tinsert(compound_data_type_id_, "m_short", HOFFSET(Sample, m_short_),
-                H5T_NATIVE_SHORT);
-      H5Tinsert(compound_data_type_id_, "m_int", HOFFSET(Sample, m_int_),
-                H5T_NATIVE_INT);
-      H5Tinsert(compound_data_type_id_, "m_long", HOFFSET(Sample, m_long_),
-                H5T_NATIVE_LONG);
-      H5Tinsert(compound_data_type_id_, "m_long_long",
-                HOFFSET(Sample, m_long_long_), H5T_NATIVE_LLONG);
-      H5Tinsert(compound_data_type_id_, "m_unsigned_int",
-                HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT);
-      H5Tinsert(compound_data_type_id_, "m_unsigned_long",
-                HOFFSET(Sample, m_unsigned_long_), H5T_NATIVE_ULONG);
-      H5Tinsert(compound_data_type_id_, "m_unsigned_long_long",
-                HOFFSET(Sample, m_unsigned_long_long_), H5T_NATIVE_ULLONG);
-      H5Tinsert(compound_data_type_id_, "m_double", HOFFSET(Sample, m_double_),
-                H5T_NATIVE_DOUBLE);
-      H5Tinsert(compound_data_type_id_, "m_long_double",
-                HOFFSET(Sample, m_long_double_), H5T_NATIVE_LDOUBLE);
-      H5Tinsert(compound_data_type_id_, "m_sentinal",
-                HOFFSET(Sample, m_sentinal_), H5T_NATIVE_CHAR);
-      auto m_str_10_bytes_type = H5Tcopy(H5T_C_S1);
-      H5Tset_size(m_str_10_bytes_type, 10);
-      H5Tset_strpad(m_str_10_bytes_type, H5T_STR_NULLPAD);
-      H5Tinsert(compound_data_type_id_, "m_str_10_bytes",
-                HOFFSET(Sample, m_str_10_bytes_), m_str_10_bytes_type);
-    }
-
-    hid_t compound_data_type_id_{};
-  };
 
   Sample() = default;
 
@@ -113,10 +61,6 @@ class Sample {
     out << "\n  m_str_10_bytes:" << item.m_str_10_bytes_;
     out << "\n}\n";
     return out;
-  }
-
-  static H5_data_set_specifier const& data_set_specifier() {
-    return H5_data_set_specifier::instance();
   }
 
   //! getter for m_char_ (access is Ro)
@@ -179,6 +123,62 @@ class Sample {
   char const m_sentinal_{0};
   Char_10_bytes_t const m_str_10_bytes_{};
 };
+
+class Sample_h5_dss {
+ public:
+  using Record_t = Sample;
+
+  static constexpr char const* DATA_SET_NAME{"/sample"};
+
+  Sample_h5_dss(Sample_h5_dss const& other) = delete;
+
+  static Sample_h5_dss& instance() {
+    static Sample_h5_dss instance_s;
+    return instance_s;
+  }
+
+  //! getter for compound_data_type_id_ (access is Ro)
+  hid_t compound_data_type_id() const { return compound_data_type_id_; }
+
+ private:
+  Sample_h5_dss() {
+    compound_data_type_id_ = H5Tcreate(H5T_COMPOUND, sizeof(Sample));
+    H5Tinsert(compound_data_type_id_, "m_char", HOFFSET(Sample, m_char_),
+              H5T_NATIVE_CHAR);
+    H5Tinsert(compound_data_type_id_, "m_unsigned_char",
+              HOFFSET(Sample, m_unsigned_char_), H5T_NATIVE_UCHAR);
+    H5Tinsert(compound_data_type_id_, "m_signed_char",
+              HOFFSET(Sample, m_signed_char_), H5T_NATIVE_SCHAR);
+    H5Tinsert(compound_data_type_id_, "m_short", HOFFSET(Sample, m_short_),
+              H5T_NATIVE_SHORT);
+    H5Tinsert(compound_data_type_id_, "m_int", HOFFSET(Sample, m_int_),
+              H5T_NATIVE_INT);
+    H5Tinsert(compound_data_type_id_, "m_long", HOFFSET(Sample, m_long_),
+              H5T_NATIVE_LONG);
+    H5Tinsert(compound_data_type_id_, "m_long_long",
+              HOFFSET(Sample, m_long_long_), H5T_NATIVE_LLONG);
+    H5Tinsert(compound_data_type_id_, "m_unsigned_int",
+              HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT);
+    H5Tinsert(compound_data_type_id_, "m_unsigned_long",
+              HOFFSET(Sample, m_unsigned_long_), H5T_NATIVE_ULONG);
+    H5Tinsert(compound_data_type_id_, "m_unsigned_long_long",
+              HOFFSET(Sample, m_unsigned_long_long_), H5T_NATIVE_ULLONG);
+    H5Tinsert(compound_data_type_id_, "m_double", HOFFSET(Sample, m_double_),
+              H5T_NATIVE_DOUBLE);
+    H5Tinsert(compound_data_type_id_, "m_long_double",
+              HOFFSET(Sample, m_long_double_), H5T_NATIVE_LDOUBLE);
+    H5Tinsert(compound_data_type_id_, "m_sentinal",
+              HOFFSET(Sample, m_sentinal_), H5T_NATIVE_CHAR);
+    auto m_str_10_bytes_type = H5Tcopy(H5T_C_S1);
+    H5Tset_size(m_str_10_bytes_type, 10);
+    H5Tset_strpad(m_str_10_bytes_type, H5T_STR_NULLPAD);
+    H5Tinsert(compound_data_type_id_, "m_str_10_bytes",
+              HOFFSET(Sample, m_str_10_bytes_), m_str_10_bytes_type);
+  }
+
+  hid_t compound_data_type_id_{};
+};
+}
 SCENARIO("simple h5 data set random access") {
   // custom <(632911136)>
 
@@ -187,11 +187,13 @@ SCENARIO("simple h5 data set random access") {
   GIVEN("simple data set") {
     // custom <(569757557)>
 
+    using namespace scoped;
     const int num_records{10000};
 
     {
       auto file = std::make_shared<H5::H5File>("sample.hdf5", H5F_ACC_TRUNC);
-      auto store = H5_random_access_store<Sample>(file, Open_create_e, "/");
+      auto store =
+          H5_random_access_store<Sample_h5_dss>(file, Open_create_e, "/");
 
       for (int i = 0; i < num_records; ++i) {
         store.append(Sample{static_cast<char>(i),
@@ -214,7 +216,8 @@ SCENARIO("simple h5 data set random access") {
 
     {
       auto file = std::make_shared<H5::H5File>("sample.hdf5", H5F_ACC_RDONLY);
-      auto store = H5_random_access_store<Sample>(file, Open_read_e, "/");
+      auto store =
+          H5_random_access_store<Sample_h5_dss>(file, Open_read_e, "/");
       REQUIRE(store.size() == num_records);
       Sample s;
       for (int i = 0; i < num_records; ++i) {
