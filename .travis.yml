@@ -15,6 +15,7 @@ before_install:
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi  
   - bin/cpp_prereq.sh
+  - bin/install_cmake.sh
   - bin/install_hdf5.sh
   - cd cpp && ./.cmake.gen.sh && cd -
 
