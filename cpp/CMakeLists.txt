@@ -149,10 +149,6 @@ set (EBISU_LOGGER_SOURCES,
   ebisu/logger/logger.hpp
 )
 
-set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES,
-  benchmarks/bench/make_exception/benchmark_make_exception.hpp
-)
-
 
 ######################################################################
 # Application build directives
@@ -548,17 +544,4 @@ add_test(
 ######################################################################
 # Benchmark directives
 ######################################################################
-add_executable(bench_make_exception
-  benchmarks/app/make_exception/make_exception.cpp
-)
-
-# custom <make_exception bench additions>
-# end <make_exception bench additions>
-
-target_link_libraries(bench_make_exception
-# custom <benchmark makeException link requirements>
-# end <benchmark makeException link requirements>
-  benchmark
-  pthread
-)
 
