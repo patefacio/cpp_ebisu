@@ -15,7 +15,7 @@ before_install:
   - sudo apt-get update -qq
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-  - sudo apt-get purge mongodb-10gen
+  - sudo apt-get --purge remove mongodb-10gen
   - sudo apt-get install -y --force-yes mongodb-dev mongodb-clients 
   - bin/cpp_prereq.sh
   - bin/install_cmake.sh
