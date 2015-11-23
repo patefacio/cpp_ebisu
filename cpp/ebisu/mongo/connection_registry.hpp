@@ -1,7 +1,9 @@
 #ifndef __EBISU_MONGO_CONNECTION_REGISTRY_HPP__
 #define __EBISU_MONGO_CONNECTION_REGISTRY_HPP__
 
+#include "ebisu/mongo/mongo_ini.hpp"
 #include "ebisu/mongo/mongo_logging.hpp"
+#include "mongo/client/dbclient.h"
 #include <mutex>
 
 namespace ebisu {
@@ -11,6 +13,11 @@ class Connection_registry {
  public:
   using Lock_t = LOCK;
   using Guard_t = GUARD;
+  using Database_configuration_map_t =
+      Mongo_ini_parser::Database_configuration_map_t;
+  using Tss_connection_ptr_t =
+      boost::thread_specific_ptr< ::mongo::DBClientConnection>*;
+  using Thread_connection_map_t = std::map<std::string, Tss_connection_ptr_t>;
 
   Connection_registry(Connection_registry const& other) = delete;
 
@@ -21,6 +28,10 @@ class Connection_registry {
 
  private:
   Connection_registry() {}
+
+  Database_configuration_map_t database_configuration_map_{};
+  Lock_t lock_{};
+  Thread_connection_map_t thread_connection_map_{};
 };
 
 }  // namespace mongo
