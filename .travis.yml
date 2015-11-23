@@ -18,8 +18,8 @@ before_install:
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+  - sudo apt-get install -y libboost-dev mongodb-dev mongodb-clients 
   - bin/cpp_prereq.sh
-  - bin/install_mongo.sh
   - bin/install_cmake.sh
   - bin/install_benchmark.sh  
   - bin/install_hdf5.sh

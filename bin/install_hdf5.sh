@@ -8,5 +8,5 @@ tar xvfz build_dir/CMake-hdf5-1.8.16/SZip.tar.gz -C build_dir
 cd build_dir/SZip && $MY_CMAKE . && sudo make install && cd -
 tar xvfz build_dir/CMake-hdf5-1.8.16/ZLib.tar.gz -C build_dir
 cd build_dir/ZLib && $MY_CMAKE . && sudo make install && cd -
-cd build_dir/CMake-hdf5-1.8.16_build && sudo make install && cd -
+cd build_dir/CMake-hdf5-1.8.16_build && sudo make -j6 install && cd -
 
