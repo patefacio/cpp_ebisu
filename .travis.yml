@@ -12,12 +12,12 @@ before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install apt-transport-https && sudo apt-get install -y llvm-3.4 llvm-3.4-dev && sudo apt-get install cmake; fi
   - sudo apt-get update
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo add-apt-repository ppa:boost-latest/ppa -y
   - sudo apt-get update -qq
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   - sudo apt-get --purge remove mongodb-10gen
   - sudo apt-get install -y --force-yes mongodb-dev mongodb-clients
-  - sudo add-apt-repository ppa:boost-latest/ppa -y
   - sudo apt-get install libboost1.54-all-dev
   - bin/cpp_prereq.sh
   - bin/install_cmake.sh
