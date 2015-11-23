@@ -18,7 +18,7 @@ before_install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   - sudo apt-get --yes --force-yes install boost1.54
   - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-  - sudo apt-get install -y --force-yes mongodb-dev mongodb-clients 
+  - sudo apt-get install -y --force-yes libboost-dev mongodb-dev mongodb-clients 
   - bin/cpp_prereq.sh
   - bin/install_cmake.sh
   - bin/install_benchmark.sh  
