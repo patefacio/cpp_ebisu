@@ -41,6 +41,7 @@ link_directories(
 # custom <link directories>
 
 /usr/local/HDF_Group/HDF5/1.8.16/lib
+/opt/mongo-client-install/lib
 
 # end <link directories>
 
@@ -59,6 +60,7 @@ include_directories(
   /usr/local/HDF_Group/HDF5/1.8.16/include
   ../install/catch/include
   ../install/spdlog/include
+  /opt/mongo-client-install/include
   
 # end <include directories>
 
