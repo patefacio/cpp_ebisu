@@ -17,14 +17,16 @@ class Sample {
  public:
   friend class Sample_h5_dss;
   using Char_10_bytes_t = std::array<char, 10>;
+  using Unrecognizable_t = int;
+  using Buffer_t = std::array<char, 16>;
 
   Sample() = default;
 
   Sample(char m_char, unsigned char m_unsigned_char, signed char m_signed_char,
          short m_short, int m_int, long m_long, long long m_long_long,
-         unsigned int m_unsigned_int, unsigned long m_unsigned_long,
-         unsigned long long m_unsigned_long_long, double m_double,
-         long double m_long_double, char m_sentinal,
+         Buffer_t bogus, unsigned int m_unsigned_int,
+         unsigned long m_unsigned_long, unsigned long long m_unsigned_long_long,
+         double m_double, long double m_long_double, char m_sentinal,
          Char_10_bytes_t const& m_str_10_bytes)
       : m_char_(m_char),
         m_unsigned_char_(m_unsigned_char),
@@ -33,6 +35,7 @@ class Sample {
         m_int_(m_int),
         m_long_(m_long),
         m_long_long_(m_long_long),
+        bogus_(bogus),
         m_unsigned_int_(m_unsigned_int),
         m_unsigned_long_(m_unsigned_long),
         m_unsigned_long_long_(m_unsigned_long_long),
@@ -52,6 +55,7 @@ class Sample {
     out << "\n  m_int:" << item.m_int_;
     out << "\n  m_long:" << item.m_long_;
     out << "\n  m_long_long:" << item.m_long_long_;
+    out << "\n  bogus:" << item.bogus_;
     out << "\n  m_unsigned_int:" << item.m_unsigned_int_;
     out << "\n  m_unsigned_long:" << item.m_unsigned_long_;
     out << "\n  m_unsigned_long_long:" << item.m_unsigned_long_long_;
@@ -84,6 +88,9 @@ class Sample {
   //! getter for m_long_long_ (access is Ro)
   long long m_long_long() const { return m_long_long_; }
 
+  //! getter for bogus_ (access is Ro)
+  Buffer_t bogus() const { return bogus_; }
+
   //! getter for m_unsigned_int_ (access is Ro)
   unsigned int m_unsigned_int() const { return m_unsigned_int_; }
 
@@ -115,6 +122,11 @@ class Sample {
   int const m_int_{0};
   long const m_long_{0};
   long long const m_long_long_{0};
+
+  /**
+   Should be ignored for hdf5
+  */
+  Buffer_t const bogus_{};
   unsigned int const m_unsigned_int_{0};
   unsigned long const m_unsigned_long_{0};
   unsigned long long const m_unsigned_long_long_{0};
@@ -157,6 +169,9 @@ class Sample_h5_dss {
               H5T_NATIVE_LONG);
     H5Tinsert(compound_data_type_id_, "m_long_long",
               HOFFSET(Sample, m_long_long_), H5T_NATIVE_LLONG);
+    auto bogus__type = H5Tcreate(H5T_OPAQUE, sizeof(Sample::bogus_));
+    H5Tinsert(compound_data_type_id_, "bogus", HOFFSET(Sample, bogus_),
+              bogus__type);
     H5Tinsert(compound_data_type_id_, "m_unsigned_int",
               HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT);
     H5Tinsert(compound_data_type_id_, "m_unsigned_long",
@@ -188,28 +203,33 @@ SCENARIO("simple h5 data set random access") {
     // custom <(569757557)>
 
     using namespace scoped;
-    const int num_records{10000};
+    const int num_records{1};
 
     {
       auto file = std::make_shared<H5::H5File>("sample.hdf5", H5F_ACC_TRUNC);
       auto store =
           H5_random_access_store<Sample_h5_dss>(file, Open_create_e, "/");
+      const Sample::Unrecognizable_t bogus = 42;
 
       for (int i = 0; i < num_records; ++i) {
-        store.append(Sample{static_cast<char>(i),
-                            static_cast<unsigned char>(i),
-                            static_cast<signed char>(i),
-                            static_cast<short>(i),
-                            i,
-                            i,
-                            i,
-                            static_cast<unsigned>(i),
-                            static_cast<unsigned long>(i),
-                            static_cast<unsigned long long>(i),
-                            static_cast<double>(i + 0.5),
-                            static_cast<long double>(i + 0.5),
-                            static_cast<char>(i),
-                            {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'}});
+        auto sample = Sample{static_cast<char>(i),
+                             static_cast<unsigned char>(i),
+                             static_cast<signed char>(i),
+                             static_cast<short>(i),
+                             i,
+                             i,
+                             i,
+                             {},
+                             static_cast<unsigned>(i),
+                             static_cast<unsigned long>(i),
+                             static_cast<unsigned long long>(i),
+                             static_cast<double>(i + 0.5),
+                             static_cast<long double>(i + 0.5),
+                             static_cast<char>(i),
+                             {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'}};
+
+        std::cout << sample;
+        store.append(sample);
       }
       REQUIRE(store.size() == num_records);
     }
@@ -219,9 +239,11 @@ SCENARIO("simple h5 data set random access") {
       auto store =
           H5_random_access_store<Sample_h5_dss>(file, Open_read_e, "/");
       REQUIRE(store.size() == num_records);
+      std::cout << "About to read " << std::endl;
       Sample s;
       for (int i = 0; i < num_records; ++i) {
         store.get(i, s);
+        std::cout << s;
 
         REQUIRE(static_cast<char>(i) == s.m_char());
         REQUIRE(static_cast<unsigned char>(i) == s.m_unsigned_char());
@@ -230,6 +252,7 @@ SCENARIO("simple h5 data set random access") {
         REQUIRE(static_cast<int>(i) == s.m_int());
         REQUIRE(static_cast<long>(i) == s.m_long());
         REQUIRE(static_cast<long long>(i) == s.m_long_long());
+        // REQUIRE(static_cast<int>(i) == s.bogus());
         REQUIRE(static_cast<unsigned int>(i) == s.m_unsigned_int());
         REQUIRE(static_cast<unsigned long>(i) == s.m_unsigned_long());
         REQUIRE(static_cast<unsigned long long>(i) == s.m_unsigned_long_long());

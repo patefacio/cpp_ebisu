@@ -81,7 +81,9 @@ instances being stored/read from the recordset.
                 ..isStreamable = true
                 ..usesStreamers = true
                 ..usings = [
-                  using('char_10_bytes_t', 'std::array<char, 10>')
+                  using('char_10_bytes_t', 'std::array<char, 10>'),
+                  using('unrecognizable', 'int'),
+                  using('buffer', 'std::array< char, 16 >'),
                 ]
                 ..members = [
                   member('m_char')
@@ -105,6 +107,9 @@ instances being stored/read from the recordset.
                   member('m_long_long')
                   ..type = 'long long'
                   ..init = 0,
+                  member('bogus')
+                  ..doc = 'Should be ignored for hdf5'
+                  ..type = 'Buffer_t',
                   member('m_unsigned_int')
                   ..type = 'unsigned int'
                   ..init = 0,
