@@ -16,6 +16,10 @@ class Logger {
   // custom <ClsPublic Logger>
 
   template <typename... Args>
+  void set_level(Args... args) {
+    impl_->set_level(args...);
+  }
+  template <typename... Args>
   void trace(Args... args) {
     impl_->trace(args...);
   }
@@ -62,6 +66,8 @@ class Null_logger_impl {
  public:
   // custom <ClsPublic Null_logger_impl>
 
+  template <typename... Args>
+  void set_level(Args... args) {}
   template <typename... Args>
   void trace(Args... args) {}
   template <typename... Args>
