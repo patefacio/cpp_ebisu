@@ -12,12 +12,8 @@ dependencies:
   quiver: ">=0.21.0<0.22.0"  
   id: "^1.0.10"  
   ebisu: "^0.6.3"
-  ebisu_cpp: "^0.3.3"
+  ebisu_cpp: "^0.3.8"
 #  ebisu_cpp_db: "0.0.7"
-  ebisu_cpp_db:
-    git:
-      url: git://github.com/patefacio/ebisu_cpp_db
-      ref: HEAD
 
 # end <ebisu dependencies>
 
@@ -40,11 +36,15 @@ dependency_overrides:
 
 #  ebisu: "^0.6.1"
 
-  ebisu_cpp:
-    path: /home/dbdavidson/dev/open_source/ebisu_cpp
+#  ebisu_cpp:
+#    path: /home/dbdavidson/dev/open_source/ebisu_cpp
 
-#  ebisu_cpp_db:
-#    path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
+#    git:
+#      url: git://github.com/patefacio/ebisu_cpp_db
+#      ref: HEAD
+
+  ebisu_cpp_db:
+    path: /home/dbdavidson/dev/open_source/ebisu_cpp_db
     
 # end <ebisu dependency overrides>
 
