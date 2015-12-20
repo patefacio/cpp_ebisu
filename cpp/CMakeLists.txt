@@ -243,6 +243,12 @@ set (EBISU_LOGGER_SOURCES
 install(FILES ebisu/logger/logger.hpp
   DESTINATION ${DESTDIR}/include/ebisu/logger)
 
+set (EBISU_ENVIRONMENT_SOURCES
+  ebisu/environment/environment.hpp
+)
+install(FILES ebisu/environment/environment.hpp
+  DESTINATION ${DESTDIR}/include/ebisu/environment)
+
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES
   benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
@@ -270,21 +276,6 @@ target_link_libraries(date_time_converter
   ${Boost_THREAD_LIBRARY}
 )
 
-add_executable(display_csv
-  app/display_csv/display_csv.cpp
-)
-
-# custom <display_csv exe additions>
-# end <display_csv exe additions>
-
-target_link_libraries(display_csv
-# custom <display_csv libs>
-# end <display_csv libs>
-  ${Boost_PROGRAM_OPTIONS_LIBRARY}
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-)
-
 add_executable(h5ds2csv
   app/h5ds2csv/h5ds2csv.cpp
 )
@@ -296,6 +287,22 @@ target_link_libraries(h5ds2csv
 # custom <h5ds2csv libs>
   -pthread
 # end <h5ds2csv libs>
+  ${Boost_PROGRAM_OPTIONS_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)
+
+add_executable(environment
+  app/environment/environment.cpp
+)
+
+# custom <environment exe additions>
+# end <environment exe additions>
+
+target_link_libraries(environment
+# custom <environment libs>
+  ${Boost_REGEX_LIBRARY}
+# end <environment libs>
   ${Boost_PROGRAM_OPTIONS_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
   ${Boost_THREAD_LIBRARY}
@@ -641,6 +648,30 @@ add_test(
   test.logger.header.logger)
 
 
+#   test for test_environment
+#     (Lib:environment), (Header:environment), (Test:environment)
+#   
+add_executable(test.environment.header.environment
+  tests/environment/header.environment.cpp
+)
+
+# custom <test_environment test additions>
+# end <test_environment test additions>
+
+target_link_libraries(test.environment.header.environment
+# custom <catch test_environment link requirements>
+  ${Boost_REGEX_LIBRARY}  
+# end <catch test_environment link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.environment.header.environment
+  test.environment.header.environment)
+
+
 ######################################################################
 # Benchmark directives
 ######################################################################
@@ -664,8 +695,8 @@ target_link_libraries(bench_make_exception
 ######################################################################
 install(TARGETS
     date_time_converter
-  display_csv
   h5ds2csv
+  environment
   test.linux_specific.header.application_signal_handler
   test.linux_specific.header.umask_scoped_set
   test.linux_specific.class.cpu_info.cpu_info
@@ -680,6 +711,7 @@ install(TARGETS
   test.h5_utils.class.h5_random_access_store.h5_random_access_store
   test.mongo.lib.mongo
   test.logger.header.logger
+  test.environment.header.environment
   bench_make_exception
 
   RUNTIME DESTINATION ${DESTDIR}/bin

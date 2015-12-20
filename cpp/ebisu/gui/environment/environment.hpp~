@@ -1,0 +1,41 @@
+#ifndef __EBISU_GUI_ENVIRONMENT_ENVIRONMENT_HPP__
+#define __EBISU_GUI_ENVIRONMENT_ENVIRONMENT_HPP__
+
+#include "QtWidgets/QSplitter"
+#include "QtWidgets/QTableWidget"
+
+namespace ebisu {
+namespace gui {
+namespace environment {
+class Tree_path_model : public QAbstractItemModel {
+  Q_OBJECT
+
+ public:
+  // custom <ClsPublic Tree_path_model>
+  // end <ClsPublic Tree_path_model>
+
+ private:
+  Header_array_t column_headers_{};
+  size_t column_count_{};
+};
+
+class Q_environment : public QWidget {
+  Q_OBJECT
+
+ public:
+  // custom <ClsPublic Q_environment>
+  // end <ClsPublic Q_environment>
+
+ private:
+  QTableWidget* variable_list_table_{};
+  QSplitter* spitter_{};
+  Tree_path_model* tree_path_model_{};
+  QSplitter* path_splitter_{};
+  QTableWidget* problem_table_{};
+};
+
+}  // namespace environment
+}  // namespace gui
+}  // namespace ebisu
+
+#endif  // __EBISU_GUI_ENVIRONMENT_ENVIRONMENT_HPP__

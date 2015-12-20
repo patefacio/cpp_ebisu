@@ -10,6 +10,7 @@ import 'libs/performance.dart' as performance;
 import 'libs/h5.dart' as h5;
 import 'libs/mongo.dart' as mongo;
 import 'libs/logger.dart' as logger;
+import 'libs/environment.dart' as environment;
 
 
 addItems() {
@@ -22,6 +23,7 @@ addItems() {
   h5.addItems();
   mongo.addItems();
   logger.addItems();
+  environment.addItems();
 }
 
 main() {
