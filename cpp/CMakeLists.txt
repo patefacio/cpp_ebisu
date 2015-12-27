@@ -25,6 +25,12 @@ find_package(Boost 1.54.0 COMPONENTS program_options system thread
 
 add_definitions(-DOTL_ODBC_UNIX)
 
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed.
+set(CMAKE_AUTOMOC ON)
+find_package(Qt5Widgets)
+
 ##### Add --save-temps to see assembly
 ##### Add -Winline to see what is not inlined (gcc)
 
@@ -301,6 +307,7 @@ add_executable(environment
 
 target_link_libraries(environment
 # custom <environment libs>
+  Qt5::Widgets  
   ${Boost_REGEX_LIBRARY}
 # end <environment libs>
   ${Boost_PROGRAM_OPTIONS_LIBRARY}

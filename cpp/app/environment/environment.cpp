@@ -1,3 +1,6 @@
+#include "QtWidgets/QApplication"
+#include "QtWidgets/QPushButton"
+#include "ebisu/environment/environment.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
@@ -70,6 +73,13 @@ int main(int argc, char** argv) {
     // User supplied environment protect block
     //////////////////////////////////////////////////////////////////////
     // custom <main>
+
+    QApplication app(argc, argv);
+    QPushButton button("Hello world !");
+    button.show();
+
+    return app.exec();
+
     // end <main>
 
   } catch (boost::program_options::error const& e) {

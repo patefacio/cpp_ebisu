@@ -7,6 +7,10 @@ import '../../lib/ebisu_installation.dart';
 final environment = qtApp('environment')
   ..namespace = namespace(['ebisu', 'gui'])
   ..includes = [
+    'ebisu/environment/environment.hpp',
+    //    'ebisu/gui/environment/environment.hpp',
+    'QtWidgets/QApplication',
+    'QtWidgets/QPushButton',
   ];
 
 addItems() => ebisuInstallation.addApp(environment);
