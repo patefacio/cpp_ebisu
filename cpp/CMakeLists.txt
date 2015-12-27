@@ -29,7 +29,11 @@ add_definitions(-DOTL_ODBC_UNIX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
-find_package(Qt5Widgets)
+
+find_package(Qt5 COMPONENTS Widgets)
+
+message(status " Found qt include dirs: " ${Qt5Widgets_INCLUDE_DIRS})
+message(status " Found qt libs: " ${Qt5Widgets_LIBRARIES})
 
 ##### Add --save-temps to see assembly
 ##### Add -Winline to see what is not inlined (gcc)
