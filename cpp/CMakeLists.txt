@@ -30,7 +30,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt5 COMPONENTS Widgets)
+find_package(Qt5Widgets)
 
 message(status " Found qt include dirs: " ${Qt5Widgets_INCLUDE_DIRS})
 message(status " Found qt libs: " ${Qt5Widgets_LIBRARIES})
