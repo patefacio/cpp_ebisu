@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 2.8)
 
 include(CheckCXXCompilerFlag)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fPIE")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG -fPIE")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG")
 
 ######################################################################
 # Find boost and include desired components
@@ -22,6 +22,9 @@ find_package(Boost 1.54.0 COMPONENTS program_options system thread
 ## set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 
 # custom <misc section>
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIE")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fPIE")
 
 add_definitions(-DOTL_ODBC_UNIX)
 
@@ -314,7 +317,9 @@ target_include_directories(environment PUBLIC ${Qt5Widgets_INCLUDE_DIRS})
 
 target_link_libraries(environment
 # custom <environment libs>
-  Qt5::Widgets  
+  Qt5::Widgets
+  ${Boost_DATE_TIME_LIBRARY}
+  ${Boost_FILESYSTEM_LIBRARY}  
   ${Boost_REGEX_LIBRARY}
 # end <environment libs>
   ${Boost_PROGRAM_OPTIONS_LIBRARY}

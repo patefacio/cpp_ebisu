@@ -6,9 +6,10 @@ import '../../lib/ebisu_installation.dart';
 
 final environment = qtApp('environment')
   ..namespace = namespace(['ebisu', 'gui'])
+  ..customBlocks = [ fcbEndNamespace ]
   ..includes = [
     'ebisu/environment/environment.hpp',
-    //    'ebisu/gui/environment/environment.hpp',
+    'ebisu/gui/environment/environment.hpp',
     'QApplication',
     'QPushButton',
   ];
