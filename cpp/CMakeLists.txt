@@ -67,7 +67,6 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
 
-  ${Qt5Widgets_INCLUDE_DIRS}
   /usr/local/HDF_Group/HDF5/1.8.16/include
   ../install/catch/include
   ../install/spdlog/include
@@ -308,6 +307,9 @@ add_executable(environment
 )
 
 # custom <environment exe additions>
+
+target_include_directories(environment PUBLIC ${Qt5Widgets_INCLUDE_DIRS})
+
 # end <environment exe additions>
 
 target_link_libraries(environment
