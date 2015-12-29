@@ -20,6 +20,7 @@ before_install:
   - bin/cpp_prereq.sh
   - bin/install_qt.sh
   - bin/install_cmake.sh
+  - export CMAKE=build_dir/cmake-3.4.0-Linux-x86_64/bin/cmake
   - bin/install_mongo.sh  
   - bin/install_benchmark.sh  
   - bin/install_hdf5.sh
