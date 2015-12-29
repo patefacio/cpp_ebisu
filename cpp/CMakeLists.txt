@@ -67,6 +67,7 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 # custom <include directories>
 
+  ${Qt5Widgets_INCLUDE_DIRS}
   /usr/local/HDF_Group/HDF5/1.8.16/include
   ../install/catch/include
   ../install/spdlog/include
