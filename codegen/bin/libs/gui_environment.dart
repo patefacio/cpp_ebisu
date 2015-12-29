@@ -8,7 +8,7 @@ final environment = lib('environment')
   ..namespace = namespace([ 'ebisu', 'gui' ])
   ..headers = [
     header('environment')
-    ..includes.add('QtWidgets/QHeaderView')
+    ..includes.add('QHeaderView')
     ..namespace = namespace(['ebisu', 'gui', 'environment'])
     ..classes = [
       qtClass('tree_path_model')

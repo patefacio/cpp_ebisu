@@ -9,8 +9,8 @@ final environment = qtApp('environment')
   ..includes = [
     'ebisu/environment/environment.hpp',
     //    'ebisu/gui/environment/environment.hpp',
-    'QtWidgets/QApplication',
-    'QtWidgets/QPushButton',
+    'QApplication',
+    'QPushButton',
   ];
 
 addItems() => ebisuInstallation.addApp(environment);

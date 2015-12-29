@@ -1,5 +1,5 @@
-#include "QtWidgets/QApplication"
-#include "QtWidgets/QPushButton"
+#include "QApplication"
+#include "QPushButton"
 #include "ebisu/environment/environment.hpp"
 #include "ebisu/utils/block_indenter.hpp"
 #include <boost/program_options.hpp>

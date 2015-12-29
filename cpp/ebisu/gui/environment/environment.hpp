@@ -1,10 +1,10 @@
 #ifndef __EBISU_GUI_ENVIRONMENT_ENVIRONMENT_HPP__
 #define __EBISU_GUI_ENVIRONMENT_ENVIRONMENT_HPP__
 
-#include "QtWidgets/QHeaderView"
-#include "QtWidgets/QSplitter"
-#include "QtWidgets/QTableWidget"
-#include "QtWidgets/QTreeView"
+#include "QHeaderView"
+#include "QSplitter"
+#include "QTableWidget"
+#include "QTreeView"
 #include <array>
 
 namespace ebisu {
