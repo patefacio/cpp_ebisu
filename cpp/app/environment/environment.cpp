@@ -81,8 +81,8 @@ int main(int argc, char** argv) {
     using namespace ebisu::gui::environment;
 
     QApplication app(argc, argv);
-    //Q_environment env(nullptr);
-    //env.show();
+    Q_environment env(nullptr);
+    env.show();
 
     return app.exec();
 
