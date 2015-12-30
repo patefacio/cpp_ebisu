@@ -30,8 +30,6 @@ add_definitions(-DOTL_ODBC_UNIX)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Instruct CMake to run moc automatically when needed.
-set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5Widgets)
 
@@ -317,6 +315,7 @@ target_include_directories(environment PUBLIC ${Qt5Widgets_INCLUDE_DIRS})
 
 target_link_libraries(environment
 # custom <environment libs>
+  gui_environment
   Qt5::Widgets
   ${Boost_DATE_TIME_LIBRARY}
   ${Boost_FILESYSTEM_LIBRARY}  
@@ -678,7 +677,7 @@ add_executable(test.environment.header.environment
 # end <test_environment test additions>
 
 target_link_libraries(test.environment.header.environment
-# custom <catch test_environment link requirements>
+  # custom <catch test_environment link requirements>
   ${Boost_REGEX_LIBRARY}  
 # end <catch test_environment link requirements>
   ${Boost_SYSTEM_LIBRARY}
@@ -736,3 +735,5 @@ install(TARGETS
   RUNTIME DESTINATION ${DESTDIR}/bin
   LIBRARY DESTINATION ${DESTDIR}/lib
   ARCHIVE DESTINATION ${DESTDIR}/lib/static)
+
+add_subdirectory(lib/ebisu/gui/environment)

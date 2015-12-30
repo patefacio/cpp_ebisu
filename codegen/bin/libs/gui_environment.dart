@@ -5,19 +5,19 @@ import 'package:ebisu_cpp/qt_support.dart';
 import '../../lib/ebisu_installation.dart';
 
 final environment = lib('environment')
-  ..namespace = namespace([ 'ebisu', 'gui' ])
+  ..namespace = namespace(['ebisu', 'gui', 'environment'])
   ..impls = [
-      //    impl('tree_path_model'),
-      //    impl('q_environment'),
+    impl('tree_path_model')..customBlocks = [fcbBeginNamespace]..includes.add('ebisu/gui/environment/q_environment.hpp'),
+    impl('q_environment')..customBlocks = [fcbBeginNamespace]..includes.add('ebisu/gui/environment/q_environment.hpp'),
   ]
   ..headers = [
-    header('environment')
+    header('q_environment')
     ..includes.addAll([
       'QHeaderView', 'vector',
       'QBoxLayout', 'QLabel',
-      'ebisu/utils/streamers/vector.hpp', 'ebisu/timestamp/timestamp.hpp'
+      'ebisu/utils/streamers/vector.hpp', 'ebisu/timestamp/timestamp.hpp',
+      'ebisu/environment/environment.hpp',
     ])
-    ..namespace = namespace(['ebisu', 'gui', 'environment'])
     ..classes = [
       class_('tree_data_item')
       ..defaultMemberAccess = ro

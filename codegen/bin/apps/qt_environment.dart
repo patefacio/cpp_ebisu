@@ -9,7 +9,7 @@ final environment = qtApp('environment')
   ..customBlocks = [ fcbEndNamespace ]
   ..includes = [
     'ebisu/environment/environment.hpp',
-    'ebisu/gui/environment/environment.hpp',
+    'ebisu/gui/environment/q_environment.hpp',
     'QApplication',
     'QPushButton',
   ];
