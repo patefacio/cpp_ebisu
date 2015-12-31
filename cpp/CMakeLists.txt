@@ -312,6 +312,8 @@ add_executable(environment
 
 # custom <environment exe additions>
 
+set_source_files_properties(app/environment/environment.cpp PROPERTIES COMPILE_FLAGS -fPIE)
+
 target_include_directories(environment PUBLIC ${Qt5Widgets_INCLUDE_DIRS})
 
 # end <environment exe additions>
