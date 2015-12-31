@@ -11,6 +11,7 @@ import 'libs/h5.dart' as h5;
 import 'libs/mongo.dart' as mongo;
 import 'libs/logger.dart' as logger;
 import 'libs/environment.dart' as environment;
+import 'libs/gui_environment.dart' as gui_environment;
 
 
 addItems() {
@@ -24,6 +25,7 @@ addItems() {
   mongo.addItems();
   logger.addItems();
   environment.addItems();
+  gui_environment.addItems();
 }
 
 main() {

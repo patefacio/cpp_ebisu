@@ -260,6 +260,12 @@ set (EBISU_ENVIRONMENT_SOURCES
 install(FILES ebisu/environment/environment.hpp
   DESTINATION ${DESTDIR}/include/ebisu/environment)
 
+set (EBISU_GUI_ENVIRONMENT_SOURCES
+  ebisu/gui/environment/q_environment.hpp
+)
+install(FILES ebisu/gui/environment/q_environment.hpp
+  DESTINATION ${DESTDIR}/include/ebisu/gui/environment)
+
 set (BENCHMARKS_BENCH_MAKE_EXCEPTION_SOURCES
   benchmarks/bench/make_exception/benchmark_make_exception.hpp
 )
@@ -736,4 +742,7 @@ install(TARGETS
   LIBRARY DESTINATION ${DESTDIR}/lib
   ARCHIVE DESTINATION ${DESTDIR}/lib/static)
 
+######################################################################
+# Libs with cpp files
+######################################################################
 add_subdirectory(lib/ebisu/gui/environment)

@@ -4,7 +4,7 @@ import 'package:ebisu_cpp/ebisu_cpp.dart';
 import 'package:ebisu_cpp/qt_support.dart';
 import '../../lib/ebisu_installation.dart';
 
-final environment = lib('environment')
+final guiEnvironment = lib('gui_environment')
   ..namespace = namespace(['ebisu', 'gui', 'environment'])
   ..impls = [
     impl('tree_path_model')..customBlocks = [fcbBeginNamespace]..includes.add('ebisu/gui/environment/q_environment.hpp'),
@@ -67,7 +67,7 @@ final environment = lib('environment')
     ]
   ];
 
-addItems() => ebisuInstallation.addLibs([ environment ]);
+addItems() => ebisuInstallation.addLibs([ guiEnvironment ]);
 
 main() {
   addItems();

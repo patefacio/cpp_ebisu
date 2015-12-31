@@ -191,7 +191,6 @@ class Q_environment : public QWidget {
         tree_path_view_(new QTreeView()),
         path_splitter_(new QSplitter(Qt::Vertical)),
         problem_table_(new QTableWidget()) {
-
     populate_variable_list();
     populate_parsed_paths();
     populate_problem_table();
