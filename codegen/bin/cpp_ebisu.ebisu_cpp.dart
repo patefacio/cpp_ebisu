@@ -18,6 +18,7 @@ main() {
   generate() {
     ebisuInstallation
       ..doc = 'C++ library'
+      ..installationBuilder = new CmakeInstallationBuilder.fromInstallation(ebisuInstallation)
       ..cppLoggers = [ /* TODO: cppLogger('ebisu'), cppLogger('goober')*/ ]
       ..generate(generateBuildScripts: true,
           generateHeaderSmokeTest : false,
