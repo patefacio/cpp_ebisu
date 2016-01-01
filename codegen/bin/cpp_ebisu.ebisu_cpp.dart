@@ -5,6 +5,7 @@ import 'schemas.dart' as schemas;
 import '../lib/ebisu_installation.dart';
 import 'package:ebisu/ebisu.dart';
 import 'package:ebisu_cpp/ebisu_cpp.dart';
+import 'package:ebisu_cpp/qt_support.dart';
 import 'package:logging/logging.dart';
 
 final _logger = new Logger('ebisu');
@@ -19,8 +20,11 @@ main() {
     ebisuInstallation
       ..doc = 'C++ library'
       ..installationBuilder = new CmakeInstallationBuilder.fromInstallation(ebisuInstallation)
-      ..cppLoggers = [ /* TODO: cppLogger('ebisu'), cppLogger('goober')*/ ]
-      ..generate(generateBuildScripts: true,
+      ..cppLoggers = [ /* TODO: cppLogger('ebisu'), cppLogger('goober')*/ ];
+
+    addQtSupport(ebisuInstallation);
+
+    ebisuInstallation.generate(generateBuildScripts: true,
           generateHeaderSmokeTest : false,
           generateDoxyFile : true,
           generateEmacs : true);
