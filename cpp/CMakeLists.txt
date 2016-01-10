@@ -112,6 +112,11 @@ install(FILES ebisu/mongo/mongo_logging.hpp DESTINATION ${DESTDIR}/include/ebisu
 install(FILES ebisu/logger/logger.hpp DESTINATION ${DESTDIR}/include/ebisu/logger)
 install(FILES ebisu/environment/environment.hpp DESTINATION ${DESTDIR}/include/ebisu/environment)
 install(FILES ebisu/gui/environment/q_environment.hpp DESTINATION ${DESTDIR}/include/ebisu/gui/environment)
+install(FILES ebisu/orm/code_metrics/code_metrics_common.hpp DESTINATION ${DESTDIR}/include/ebisu/orm/code_metrics)
+install(FILES ebisu/orm/code_metrics/table/code_packages.hpp DESTINATION ${DESTDIR}/include/ebisu/orm/code_metrics/table)
+install(FILES ebisu/orm/code_metrics/table/code_locations.hpp DESTINATION ${DESTDIR}/include/ebisu/orm/code_metrics/table)
+install(FILES ebisu/orm/code_metrics/table/code_tick_timings.hpp DESTINATION ${DESTDIR}/include/ebisu/orm/code_metrics/table)
+install(FILES ebisu/orm/code_metrics/table/rusage_delta.hpp DESTINATION ${DESTDIR}/include/ebisu/orm/code_metrics/table)
 install(FILES benchmarks/bench/make_exception/benchmark_make_exception.hpp DESTINATION ${DESTDIR}/include/benchmarks/bench/make_exception)
 # custom <lib_public_headers>
 # end <lib_public_headers>
@@ -544,6 +549,102 @@ add_test(
   test.environment.header.environment)
 
 install(TARGETS test.environment.header.environment RUNTIME DESTINATION ${DESTDIR}/bin)
+
+#   test for test_code_packages
+#     (Lib:code_metrics), (Header:code_packages), (Class:code_packages), (Test:code_packages)
+#   
+add_executable(test.code_metrics.class.code_packages.code_packages
+  tests/code_metrics/class.code_packages.code_packages.cpp
+)
+
+# custom <test_code_packages test additions>
+# end <test_code_packages test additions>
+
+target_link_libraries(test.code_metrics.class.code_packages.code_packages
+# custom <catch test_code_packages link requirements>
+# end <catch test_code_packages link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.code_metrics.class.code_packages.code_packages
+  test.code_metrics.class.code_packages.code_packages)
+
+install(TARGETS test.code_metrics.class.code_packages.code_packages RUNTIME DESTINATION ${DESTDIR}/bin)
+
+#   test for test_code_locations
+#     (Lib:code_metrics), (Header:code_locations), (Class:code_locations), (Test:code_locations)
+#   
+add_executable(test.code_metrics.class.code_locations.code_locations
+  tests/code_metrics/class.code_locations.code_locations.cpp
+)
+
+# custom <test_code_locations test additions>
+# end <test_code_locations test additions>
+
+target_link_libraries(test.code_metrics.class.code_locations.code_locations
+# custom <catch test_code_locations link requirements>
+# end <catch test_code_locations link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.code_metrics.class.code_locations.code_locations
+  test.code_metrics.class.code_locations.code_locations)
+
+install(TARGETS test.code_metrics.class.code_locations.code_locations RUNTIME DESTINATION ${DESTDIR}/bin)
+
+#   test for test_code_tick_timings
+#     (Lib:code_metrics), (Header:code_tick_timings), (Class:code_tick_timings), (Test:code_tick_timings)
+#   
+add_executable(test.code_metrics.class.code_tick_timings.code_tick_timings
+  tests/code_metrics/class.code_tick_timings.code_tick_timings.cpp
+)
+
+# custom <test_code_tick_timings test additions>
+# end <test_code_tick_timings test additions>
+
+target_link_libraries(test.code_metrics.class.code_tick_timings.code_tick_timings
+# custom <catch test_code_tick_timings link requirements>
+# end <catch test_code_tick_timings link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.code_metrics.class.code_tick_timings.code_tick_timings
+  test.code_metrics.class.code_tick_timings.code_tick_timings)
+
+install(TARGETS test.code_metrics.class.code_tick_timings.code_tick_timings RUNTIME DESTINATION ${DESTDIR}/bin)
+
+#   test for test_rusage_delta
+#     (Lib:code_metrics), (Header:rusage_delta), (Class:rusage_delta), (Test:rusage_delta)
+#   
+add_executable(test.code_metrics.class.rusage_delta.rusage_delta
+  tests/code_metrics/class.rusage_delta.rusage_delta.cpp
+)
+
+# custom <test_rusage_delta test additions>
+# end <test_rusage_delta test additions>
+
+target_link_libraries(test.code_metrics.class.rusage_delta.rusage_delta
+# custom <catch test_rusage_delta link requirements>
+# end <catch test_rusage_delta link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.code_metrics.class.rusage_delta.rusage_delta
+  test.code_metrics.class.rusage_delta.rusage_delta)
+
+install(TARGETS test.code_metrics.class.rusage_delta.rusage_delta RUNTIME DESTINATION ${DESTDIR}/bin)
 add_executable(bench_make_exception
   benchmarks/app/make_exception/make_exception.cpp
 )
