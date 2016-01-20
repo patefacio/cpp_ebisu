@@ -7,10 +7,4 @@
 #include "ebisu/utils/streamers/set.hpp"
 #include "ebisu/utils/streamers/vector.hpp"
 
-namespace ebisu {
-namespace utils {
-namespace streamers {}  // namespace streamers
-}  // namespace utils
-}  // namespace ebisu
-
 #endif  // __EBISU_UTILS_STREAMERS_CONTAINERS_HPP__

@@ -30,7 +30,7 @@ include_directories(
   ../install/catch/include
   ../install/spdlog/include
   /opt/mongo-client-install/include
-  
+  .
 # end <include directories>
 )
 

@@ -4,10 +4,6 @@
 #include "ebisu/timestamp/timestamp.hpp"
 #include <cstdint>
 
-namespace ebisu {
-namespace timestamp {}  // namespace timestamp
-}  // namespace ebisu
-
 // custom <FcbPostNamespace cereal>
 
 namespace cereal {
