@@ -16,9 +16,11 @@ namespace scoped {
 class Sample {
  public:
   friend class Sample_h5_dss;
+  class Sample_h5_dss;
   using Char_10_bytes_t = std::array<char, 10>;
   using Unrecognizable_t = int;
   using Buffer_t = std::array<char, 16>;
+  using H5_dss_t = Sample_h5_dss;
 
   Sample() = default;
 
