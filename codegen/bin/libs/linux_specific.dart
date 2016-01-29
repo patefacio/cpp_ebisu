@@ -187,8 +187,8 @@ work. umask settings play a role.'''
       ..doc = 'Indicates parsing of system file failed'
       ..usings = ['filename_tag = boost::error_info<struct tag_filename_tag, std::string>']
       ..bases = [
-        base('boost::exception')..isVirtual = true..access = public,
-        base('std::exception')..isVirtual = true..access = public,
+        base('boost::exception')..isVirtual = true..cppAccess = public,
+        base('std::exception')..isVirtual = true..cppAccess = public,
       ]
     ],
     header('cpu_info')

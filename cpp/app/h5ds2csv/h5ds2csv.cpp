@@ -1,5 +1,4 @@
 #include "ebisu/logger/logger.hpp"
-#include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>

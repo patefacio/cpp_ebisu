@@ -77,7 +77,9 @@ unsigned int my_trace_level = 0x1 |   // 1st level of tracing
                               0x20;   // 6th level of tracing
 //#define OTL_TRACE_LEVEL my_trace_level
 #define OTL_TRACE_STREAM std::cerr
+#if !defined(OTL_TRACE_LINE_PREFIX)
 #define OTL_TRACE_LINE_PREFIX "OTL => "
+#endif
 
 #include <iostream>
 #include "otlv4.h"

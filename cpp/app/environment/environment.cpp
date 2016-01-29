@@ -2,7 +2,6 @@
 #include "QPushButton"
 #include "ebisu/environment/environment.hpp"
 #include "ebisu/gui/environment/q_environment.hpp"
-#include "ebisu/utils/block_indenter.hpp"
 #include <boost/program_options.hpp>
 #include <iostream>
 

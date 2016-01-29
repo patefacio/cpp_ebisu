@@ -1,7 +1,6 @@
 #ifndef __EBISU_ENVIRONMENT_ENVIRONMENT_HPP__
 #define __EBISU_ENVIRONMENT_ENVIRONMENT_HPP__
 
-#include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/map.hpp"
 #include "ebisu/utils/streamers/vector.hpp"
 #include <boost/filesystem.hpp>

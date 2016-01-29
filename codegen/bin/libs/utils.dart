@@ -39,7 +39,7 @@ final utils = lib('utils')
           ])),
     ],
     header('fixed_size_char_array')
-    ..includes = [ 'cstring', 'cassert', 'array', 'string' ]
+    ..includes = [ 'cstring', 'cassert', 'array', 'string', 'ostream' ]
     ..testScenarios = [
 
       testScenario('sizeof matches array size',

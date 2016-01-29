@@ -3,7 +3,6 @@
 
 #include "ebisu/linux_specific/linux_exceptions.hpp"
 #include "ebisu/linux_specific/linux_specific_logging.hpp"
-#include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/exception/make_exception.hpp"
 #include "ebisu/utils/streamers/map.hpp"
 #include "ebisu/utils/streamers/vector.hpp"

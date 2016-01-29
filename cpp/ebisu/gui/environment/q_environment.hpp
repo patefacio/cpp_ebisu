@@ -9,7 +9,6 @@
 #include "QTreeView"
 #include "ebisu/environment/environment.hpp"
 #include "ebisu/timestamp/timestamp.hpp"
-#include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/vector.hpp"
 #include <array>
 #include <iosfwd>

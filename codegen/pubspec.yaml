@@ -11,9 +11,9 @@ dependencies:
   collection: ">=1.0.0"
   quiver: ">=0.21.0<0.22.0"  
   id: "^1.0.10"  
-  ebisu: "^0.6.13"
-  ebisu_cpp: "^0.3.12"
-  ebisu_cpp_db: "0.0.8"
+  ebisu: "^0.6.14"
+  ebisu_cpp: "^0.3.14"
+  ebisu_cpp_db: "0.0.10"
 
 # end <ebisu dependencies>
 

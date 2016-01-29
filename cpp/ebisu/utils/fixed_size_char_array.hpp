@@ -4,6 +4,7 @@
 #include <array>
 #include <cassert>
 #include <cstring>
+#include <ostream>
 #include <string>
 
 namespace ebisu {

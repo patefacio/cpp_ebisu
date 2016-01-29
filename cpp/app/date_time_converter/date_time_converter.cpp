@@ -2,7 +2,6 @@
 
 #include "ebisu/logger/logger.hpp"
 #include "ebisu/timestamp/conversion.hpp"
-#include "ebisu/utils/block_indenter.hpp"
 #include "ebisu/utils/streamers/containers.hpp"
 #include "ebisu/utils/streamers/table.hpp"
 #include <boost/program_options.hpp>
