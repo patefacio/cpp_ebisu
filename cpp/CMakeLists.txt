@@ -64,6 +64,96 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 # end <misc section>
 enable_testing()
 add_subdirectory(lib/ebisu/gui/environment)
+add_library(lib_linux_specific INTERFACE)
+target_sources(lib_linux_specific INTERFACE
+ ebisu/linux_specific/application_signal_handler.hpp
+ ebisu/linux_specific/umask_scoped_set.hpp
+ ebisu/linux_specific/linux_exceptions.hpp
+ ebisu/linux_specific/cpu_info.hpp
+ ebisu/linux_specific/linux_specific_logging.hpp
+)
+add_library(lib_utils INTERFACE)
+target_sources(lib_utils INTERFACE
+ ebisu/utils/block_indenter.hpp
+ ebisu/utils/buffer.hpp
+ ebisu/utils/fixed_size_char_array.hpp
+ ebisu/utils/version_control_commit.hpp
+ ebisu/utils/histogram.hpp
+)
+add_library(lib_exception INTERFACE)
+target_sources(lib_exception INTERFACE
+ ebisu/utils/exception/make_exception.hpp
+)
+add_library(lib_streamers INTERFACE)
+target_sources(lib_streamers INTERFACE
+ ebisu/utils/streamers/containers.hpp
+ ebisu/utils/streamers/streamers.hpp
+ ebisu/utils/streamers/random.hpp
+ ebisu/utils/streamers/table.hpp
+ ebisu/utils/streamers/vector.hpp
+ ebisu/utils/streamers/set.hpp
+ ebisu/utils/streamers/map.hpp
+ ebisu/utils/streamers/list.hpp
+ ebisu/utils/streamers/array.hpp
+ ebisu/utils/streamers/deque.hpp
+ ebisu/utils/streamers/ptr_map.hpp
+ ebisu/utils/streamers/ptr_set.hpp
+ ebisu/utils/streamers/ptr_vector.hpp
+)
+add_library(lib_raii INTERFACE)
+target_sources(lib_raii INTERFACE
+ ebisu/raii/change_tracker.hpp
+ ebisu/raii/api_initializer.hpp
+ ebisu/raii/raii_common.hpp
+ ebisu/raii/raii_logging.hpp
+ ebisu/raii/raii_initialization.hpp
+)
+add_library(lib_orm INTERFACE)
+target_sources(lib_orm INTERFACE
+ ebisu/orm/orm_to_string_table.hpp
+ ebisu/orm/otl_utils.hpp
+ ebisu/orm/orm_common.hpp
+)
+add_library(lib_timestamp INTERFACE)
+target_sources(lib_timestamp INTERFACE
+ ebisu/timestamp/timestamp.hpp
+ ebisu/timestamp/cereal.hpp
+)
+add_library(lib_conversion INTERFACE)
+target_sources(lib_conversion INTERFACE
+ ebisu/timestamp/conversion.hpp
+)
+add_library(lib_performance INTERFACE)
+target_sources(lib_performance INTERFACE
+ ebisu/performance/block_timers.hpp
+ ebisu/performance/block_rusage.hpp
+ ebisu/performance/performance_common.hpp
+ ebisu/performance/performance_logging.hpp
+ ebisu/performance/performance_initialization.hpp
+)
+add_library(lib_h5_utils INTERFACE)
+target_sources(lib_h5_utils INTERFACE
+ ebisu/h5/utils/h5_random_access_store.hpp
+ ebisu/h5/utils/h5_utils_logging.hpp
+)
+add_library(lib_mongo INTERFACE)
+target_sources(lib_mongo INTERFACE
+ ebisu/mongo/connection_registry.hpp
+ ebisu/mongo/mongo_ini.hpp
+ ebisu/mongo/mongo_logging.hpp
+)
+add_library(lib_logger INTERFACE)
+target_sources(lib_logger INTERFACE
+ ebisu/logger/logger.hpp
+)
+add_library(lib_environment INTERFACE)
+target_sources(lib_environment INTERFACE
+ ebisu/environment/environment.hpp
+)
+add_library(lib_benchmark_make_exception INTERFACE)
+target_sources(lib_benchmark_make_exception INTERFACE
+ benchmarks/bench/make_exception/benchmark_make_exception.hpp
+)
 install(FILES ebisu/linux_specific/application_signal_handler.hpp DESTINATION ${DESTDIR}/include/ebisu/linux_specific)
 install(FILES ebisu/linux_specific/umask_scoped_set.hpp DESTINATION ${DESTDIR}/include/ebisu/linux_specific)
 install(FILES ebisu/linux_specific/linux_exceptions.hpp DESTINATION ${DESTDIR}/include/ebisu/linux_specific)
