@@ -66,6 +66,20 @@ inline std::ostream& operator<<(std::ostream& out,
   return out;
 }
 
+//! Support for streaming std::unique_ptr
+template <typename T>
+inline std::ostream& operator<<(std::ostream& out,
+                                std::unique_ptr<T> const& p) {
+  T* item(p.get());
+  if (item) {
+    T const& i(*item);
+    out << i;
+  } else {
+    out << "(null)";
+  }
+  return out;
+}
+
 template <typename T>
 inline std::string stream_to_string(T const& t) {
   std::ostringstream out;
