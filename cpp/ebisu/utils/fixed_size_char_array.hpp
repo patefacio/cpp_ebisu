@@ -4,7 +4,7 @@
 #include <array>
 #include <cassert>
 #include <cstring>
-#include <ostream>
+#include <iostream>
 #include <string>
 
 namespace ebisu {
@@ -101,6 +101,13 @@ inline std::ostream& operator<<(std::ostream& out,
                                 Fixed_size_char_array<ARRAY_SIZE> const& item) {
   out.write(item.operator char const*(), ARRAY_SIZE);
   return out;
+}
+
+template <int ARRAY_SIZE>
+inline std::istream& operator>>(std::istream& in,
+                                Fixed_size_char_array<ARRAY_SIZE> & item) {
+  in.read(item.operator char *(), ARRAY_SIZE);
+  return in;
 }
 
 // end <ClsPostDecl Fixed_size_char_array>

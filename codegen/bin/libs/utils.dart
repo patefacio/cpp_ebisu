@@ -39,7 +39,7 @@ final utils = lib('utils')
           ])),
     ],
     header('fixed_size_char_array')
-    ..includes = [ 'cstring', 'cassert', 'array', 'string', 'ostream' ]
+    ..includes = [ 'cstring', 'cassert', 'array', 'string', 'iostream' ]
     ..testScenarios = [
 
       testScenario('sizeof matches array size',
@@ -77,6 +77,8 @@ final utils = lib('utils')
                 then('does not equal another string'),
                 then('str accessor works')
               ])),
+
+      testScenario('streaming'),
 
     ]
     ..classes = [

@@ -82,8 +82,6 @@ unsigned int my_trace_level = 0x1 |   // 1st level of tracing
 #endif
 
 #include <iostream>
-#include "otlv4.h"
-using Orm_timestamp_t = otl_datetime;
 using Orm_bigint_t = long long;
 
 // end <FcbPostNamespace orm_common>

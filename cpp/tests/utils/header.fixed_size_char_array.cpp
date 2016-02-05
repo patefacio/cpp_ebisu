@@ -157,6 +157,21 @@ SCENARIO("equality operator works") {
     }
   }
 }
+SCENARIO("streaming") {
+  // custom <(172526230)>
+
+  using Buffer_t = Fixed_size_char_array<10>;
+  Buffer_t buff { "0123456789" };
+  std::ostringstream out;
+  out << buff;
+  REQUIRE(out.str() == "0123456789");
+
+  std::istringstream in("0123456789");
+  in >> buff;
+  REQUIRE(in.str() == "0123456789");
+
+  // end <(172526230)>
+}
 
 }  // namespace utils
 }  // namespace ebisu
