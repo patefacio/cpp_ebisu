@@ -99,6 +99,7 @@ target_sources(lib_streamers INTERFACE
  ebisu/utils/streamers/ptr_map.hpp
  ebisu/utils/streamers/ptr_set.hpp
  ebisu/utils/streamers/ptr_vector.hpp
+ ebisu/utils/streamers/printer.hpp
 )
 add_library(lib_raii INTERFACE)
 target_sources(lib_raii INTERFACE
@@ -178,6 +179,7 @@ install(FILES ebisu/utils/streamers/deque.hpp DESTINATION ${DESTDIR}/include/ebi
 install(FILES ebisu/utils/streamers/ptr_map.hpp DESTINATION ${DESTDIR}/include/ebisu/utils/streamers)
 install(FILES ebisu/utils/streamers/ptr_set.hpp DESTINATION ${DESTDIR}/include/ebisu/utils/streamers)
 install(FILES ebisu/utils/streamers/ptr_vector.hpp DESTINATION ${DESTDIR}/include/ebisu/utils/streamers)
+install(FILES ebisu/utils/streamers/printer.hpp DESTINATION ${DESTDIR}/include/ebisu/utils/streamers)
 install(FILES ebisu/raii/change_tracker.hpp DESTINATION ${DESTDIR}/include/ebisu/raii)
 install(FILES ebisu/raii/api_initializer.hpp DESTINATION ${DESTDIR}/include/ebisu/raii)
 install(FILES ebisu/raii/raii_common.hpp DESTINATION ${DESTDIR}/include/ebisu/raii)

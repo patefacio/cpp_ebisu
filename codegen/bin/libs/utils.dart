@@ -286,11 +286,69 @@ addItems() {
 
     ];
 
+  final printerHeader = header('printer')
+    ..classes = [
+
+      class_('printer_state')
+      ..doc = '''
+State of current print_instance request as propogated down a call stack.
+'''
+      ..isStruct = true
+      ..defaultCppAccess = public
+      ..members = [
+        member('bytes_accessed')
+        ..doc = 'Current number of bytes accessed'
+        ..init = 0,
+        member('frame')
+        ..doc = '''
+Current frame for the printer.
+
+Used to determine if the current frame is the original opening frame
+(ie frame 0) and therefore on completion should append a
+[final_separator].
+'''
+        ..init = 0,
+      ]
+      ..addFullMemberCtor(),
+
+      class_('printer_spec')
+      ..doc = '''
+Printer specification passed to [print_instance] methods, supporting
+more controlled/advanced print capabilities.  For example, some times
+it is helpful to print some [max_bytes] bytes from an instance of an
+object coming off the wire.
+'''
+      ..isImmutable = true
+      ..members = [
+        member('max_bytes')
+        ..doc = 'Ensure that at most [max_bytes] of *instance* are accessed during printing'
+        ..init = 0,
+        member('name_types')..init = true,
+        member('name_members')..init = true,
+        member('member_separator')..type = 'std::string'..init = ',',
+        member('name_value_separator')..type = 'std::string'..init = '=',
+        member('instance_separator')..type = 'std::string',
+        member('final_separator')..type = 'std::string'..init = r'\n',
+      ],
+
+      class_('printer_descriptor')
+      ..doc = '''
+Combines the immutable spec witht the mutable state which together
+propogate through a call stack on a [print_instance] request.
+'''
+      ..members = [
+        member('printer_spec')..type = 'Printer_spec',
+        member('printer_state')..type = 'Printer_state',
+      ]
+    ];
+
   containers.headers.addAll(
     _containers.keys.map((c) =>
         header(c)
         ..includes = _containers[c]
         ..customBlocks = [fcbBeginNamespace]));
+
+  containers.headers.add(printerHeader);
 
   ebisuInstallation.addLib(containers);
 }

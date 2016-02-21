@@ -105,8 +105,8 @@ inline std::ostream& operator<<(std::ostream& out,
 
 template <int ARRAY_SIZE>
 inline std::istream& operator>>(std::istream& in,
-                                Fixed_size_char_array<ARRAY_SIZE> & item) {
-  in.read(item.operator char *(), ARRAY_SIZE);
+                                Fixed_size_char_array<ARRAY_SIZE>& item) {
+  in.read(item.operator char*(), ARRAY_SIZE);
   return in;
 }
 
