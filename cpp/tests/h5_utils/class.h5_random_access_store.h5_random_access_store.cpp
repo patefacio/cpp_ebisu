@@ -271,7 +271,8 @@ SCENARIO("simple h5 data set random access") {
     std::ostringstream msg;
     auto lev = h5_utils_logger->level();
     msg << "log level is " << lev;
-    h5_utils_logger->info("Writing a cool log ({}!) level {}", "super cool", msg.str());
+    h5_utils_logger->info("Writing a cool log ({}!) level {}", "super cool",
+                          msg.str());
 
     H5_UTILS_TRACE("Writing a cool log ({}!) level {}", "super cooler", lev);
 

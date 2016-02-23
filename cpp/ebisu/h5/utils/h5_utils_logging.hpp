@@ -38,7 +38,7 @@ namespace {
 ////////////////////////////////////////////////////////////////////////////////
 // Logging takes place by default in DEBUG mode only
 // If logging is desired for *release* mode, define RELEASE_HAS_LOGGING
-#if defined(DEBUG) || defined(RELEASE_HAS_LOGGING)
+#if !defined(NDEBUG) || defined(RELEASE_HAS_LOGGING)
 using H5_utils_logger_t = H5_utils_logger<spdlog::logger>;
 #define H5_UTILS_TRACE(...) h5_utils_logger->trace(__VA_ARGS__)
 #else

@@ -37,7 +37,7 @@ namespace {
 ////////////////////////////////////////////////////////////////////////////////
 // Logging takes place by default in DEBUG mode only
 // If logging is desired for *release* mode, define RELEASE_HAS_LOGGING
-#if defined(DEBUG) || defined(RELEASE_HAS_LOGGING)
+#if !defined(NDEBUG) || defined(RELEASE_HAS_LOGGING)
 using Linux_specific_logger_t = Linux_specific_logger<spdlog::logger>;
 #define LINUX_SPECIFIC_TRACE(...) linux_specific_logger->trace(__VA_ARGS__)
 #else
