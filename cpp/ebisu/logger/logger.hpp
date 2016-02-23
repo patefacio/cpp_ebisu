@@ -56,6 +56,8 @@ class Logger {
     impl_->emerg(args...);
   }
 
+  auto level() const { return impl_->level(); }
+
   // end <ClsPublic Logger>
 
  private:
@@ -88,6 +90,9 @@ class Null_logger_impl {
   void emerg(Args... args) {}
 
   Null_logger_impl* operator->() { return this; }
+  Null_logger_impl const* operator->() const { return this; }
+
+  auto level() const { return spdlog::level::level_enum{}; }
 
   // end <ClsPublic Null_logger_impl>
 };

@@ -31,20 +31,20 @@ struct Printer_state {
 };
 
 /**
- Printer specification passed to print_instance methods, supporting
- more controlled/advanced print functions.  For example, some times it
- is helpful to print some [N] bytes from an instance of an object
- coming off the wire.
+ Printer specification passed to [print_instance] methods, supporting
+ more controlled/advanced print capabilities.  For example, some times
+ it is helpful to print some [max_bytes] bytes from an instance of an
+ object coming off the wire.
 
 */
 class Printer_spec {
  public:
-  Printer_spec(int max_bytes_accessed, bool name_types, bool name_members,
+  Printer_spec(int max_bytes, bool name_types, bool name_members,
                std::string const& member_separator,
                std::string const& name_value_separator,
                std::string const& instance_separator,
                std::string const& final_separator)
-      : max_bytes_accessed_(max_bytes_accessed),
+      : max_bytes_(max_bytes),
         name_types_(name_types),
         name_members_(name_members),
         member_separator_(member_separator),
@@ -52,8 +52,8 @@ class Printer_spec {
         instance_separator_(instance_separator),
         final_separator_(final_separator) {}
 
-  //! getter for max_bytes_accessed_ (access is Ro)
-  int max_bytes_accessed() const { return max_bytes_accessed_; }
+  //! getter for max_bytes_ (access is Ro)
+  int max_bytes() const { return max_bytes_; }
 
   //! getter for name_types_ (access is Ro)
   bool name_types() const { return name_types_; }
@@ -79,7 +79,7 @@ class Printer_spec {
   /**
    Ensure that at most [max_bytes] of *instance* are accessed during printing
   */
-  int const max_bytes_accessed_;
+  int const max_bytes_;
   bool const name_types_;
   bool const name_members_;
   std::string const member_separator_;
