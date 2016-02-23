@@ -11,6 +11,8 @@ namespace streamers {
 
 */
 struct Printer_state {
+  Printer_state() = default;
+
   Printer_state(int bytes_accessed, int frame)
       : bytes_accessed(bytes_accessed), frame(frame) {}
 
@@ -39,53 +41,30 @@ struct Printer_state {
 */
 class Printer_spec {
  public:
-  Printer_spec(int max_bytes, bool name_types, bool name_members,
-               std::string const& member_separator,
-               std::string const& name_value_separator,
-               std::string const& instance_separator,
-               std::string const& final_separator)
-      : max_bytes_(max_bytes),
-        name_types_(name_types),
-        name_members_(name_members),
-        member_separator_(member_separator),
-        name_value_separator_(name_value_separator),
-        instance_separator_(instance_separator),
-        final_separator_(final_separator) {}
+  Printer_spec(int max_bytes = 0, bool name_types = false,
+               bool name_members = true,
+               std::string const& member_separator = ",",
+               std::string const& name_value_separator = "=",
+               std::string const& instance_separator = ",",
+               std::string const& final_separator = "\n")
+      : max_bytes(max_bytes),
+        name_types(name_types),
+        name_members(name_members),
+        member_separator(member_separator),
+        name_value_separator(name_value_separator),
+        instance_separator(instance_separator),
+        final_separator(final_separator) {}
 
-  //! getter for max_bytes_ (access is Ro)
-  int max_bytes() const { return max_bytes_; }
-
-  //! getter for name_types_ (access is Ro)
-  bool name_types() const { return name_types_; }
-
-  //! getter for name_members_ (access is Ro)
-  bool name_members() const { return name_members_; }
-
-  //! getter for member_separator_ (access is Ro)
-  std::string const& member_separator() const { return member_separator_; }
-
-  //! getter for name_value_separator_ (access is Ro)
-  std::string const& name_value_separator() const {
-    return name_value_separator_;
-  }
-
-  //! getter for instance_separator_ (access is Ro)
-  std::string const& instance_separator() const { return instance_separator_; }
-
-  //! getter for final_separator_ (access is Ro)
-  std::string const& final_separator() const { return final_separator_; }
-
- private:
   /**
    Ensure that at most [max_bytes] of *instance* are accessed during printing
   */
-  int const max_bytes_;
-  bool const name_types_;
-  bool const name_members_;
-  std::string const member_separator_;
-  std::string const name_value_separator_;
-  std::string const instance_separator_;
-  std::string const final_separator_;
+  int max_bytes{};
+  bool name_types{};
+  bool name_members{};
+  std::string member_separator{};
+  std::string name_value_separator{};
+  std::string instance_separator{};
+  std::string final_separator{};
 };
 
 /**
@@ -94,9 +73,15 @@ class Printer_spec {
 
 */
 class Printer_descriptor {
- private:
-  Printer_spec printer_spec_{};
-  Printer_state printer_state_{};
+ public:
+  Printer_descriptor(Printer_spec const& printer_spec)
+      : printer_spec(printer_spec) {}
+
+  // custom <ClsPublic Printer_descriptor>
+  // end <ClsPublic Printer_descriptor>
+
+  Printer_spec const printer_spec;
+  Printer_state printer_state{};
 };
 
 }  // namespace streamers

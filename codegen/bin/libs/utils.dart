@@ -1,6 +1,7 @@
 library libs.utils;
 
 import 'package:ebisu_cpp/ebisu_cpp.dart';
+import 'package:ebisu/ebisu.dart';
 import '../../lib/ebisu_installation.dart';
 
 final utils = lib('utils')
@@ -294,6 +295,7 @@ addItems() {
 State of current print_instance request as propogated down a call stack.
 '''
       ..isStruct = true
+      ..defaultCtor.usesDefault = true
       ..defaultCppAccess = public
       ..members = [
         member('bytes_accessed')
@@ -318,17 +320,28 @@ more controlled/advanced print capabilities.  For example, some times
 it is helpful to print some [max_bytes] bytes from an instance of an
 object coming off the wire.
 '''
-      ..isImmutable = true
+      ..defaultCppAccess = public
+      ..memberCtors = [
+        memberCtor([
+          memberCtorParm('max_bytes')..defaultValue = '0',
+          memberCtorParm('name_types')..defaultValue = 'false',
+          memberCtorParm('name_members')..defaultValue = 'true',
+          memberCtorParm('member_separator')..defaultValue = doubleQuote(','),
+          memberCtorParm('name_value_separator')..defaultValue = doubleQuote('='),
+          memberCtorParm('instance_separator')..defaultValue = doubleQuote(','),
+          memberCtorParm('final_separator')..defaultValue = doubleQuote(r'\n'),
+        ])
+      ]
       ..members = [
         member('max_bytes')
         ..doc = 'Ensure that at most [max_bytes] of *instance* are accessed during printing'
-        ..init = 0,
-        member('name_types')..init = true,
-        member('name_members')..init = true,
-        member('member_separator')..type = 'std::string'..init = ',',
-        member('name_value_separator')..type = 'std::string'..init = '=',
+        ..type = 'int',
+        member('name_types')..type = 'bool',
+        member('name_members')..type = 'bool',
+        member('member_separator')..type = 'std::string',
+        member('name_value_separator')..type = 'std::string',
         member('instance_separator')..type = 'std::string',
-        member('final_separator')..type = 'std::string'..init = r'\n',
+        member('final_separator')..type = 'std::string',
       ],
 
       class_('printer_descriptor')
@@ -336,10 +349,13 @@ object coming off the wire.
 Combines the immutable spec witht the mutable state which together
 propogate through a call stack on a [print_instance] request.
 '''
+      ..defaultCppAccess = public
+      ..customBlocks = [ clsPublic ]
+      ..memberCtors = [ memberCtor(['printer_spec']) ]
       ..members = [
-        member('printer_spec')..type = 'Printer_spec',
-        member('printer_state')..type = 'Printer_state',
-      ]
+        member('printer_spec')..type = 'Printer_spec'..isConst = true..isByRef = true..hasNoInit = true,
+        member('printer_state')..type = 'Printer_state'..isByRef = true,
+      ],
     ];
 
   containers.headers.addAll(
