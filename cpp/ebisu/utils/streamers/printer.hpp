@@ -8,7 +8,6 @@ namespace utils {
 namespace streamers {
 /**
  State of current print_instance request as propogated down a call stack.
-
 */
 struct Printer_state {
   Printer_state() = default;
@@ -27,17 +26,15 @@ struct Printer_state {
    Used to determine if the current frame is the original opening frame
    (ie frame 0) and therefore on completion should append a
    [final_separator].
-
   */
   int frame{0};
 };
 
 /**
  Printer specification passed to [print_instance] methods, supporting
- more controlled/advanced print capabilities.  For example, some times
- it is helpful to print some [max_bytes] bytes from an instance of an
- object coming off the wire.
-
+ more controlled/advanced print capabilities.  For example, sometimes
+ it is helpful to print the first [max_bytes] bytes from an instance of
+ an object coming off the wire.
 */
 class Printer_spec {
  public:
@@ -70,7 +67,6 @@ class Printer_spec {
 /**
  Combines the immutable spec with the mutable state which together
  propogate through a call stack on a [print_instance] request.
-
 */
 class Printer_descriptor {
  public:
@@ -109,14 +105,75 @@ inline std::ostream& print_instance(
 }
 
 inline std::ostream& print_instance(
-    std::ostream& out, double item,
+    std::ostream& out, std::string const& item,
     ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
   out << item;
   return out;
 }
 
 inline std::ostream& print_instance(
-    std::ostream& out, std::string const& item,
+    std::ostream& out, short item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+
+inline std::ostream& print_instance(
+    std::ostream& out, long item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, long long item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, unsigned int item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, unsigned long item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, unsigned long long item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, double item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, long double item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, char item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, signed char item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  out << item;
+  return out;
+}
+inline std::ostream& print_instance(
+    std::ostream& out, unsigned char item,
     ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
   out << item;
   return out;

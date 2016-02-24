@@ -293,8 +293,7 @@ addItems() {
 
       class_('printer_state')
       ..doc = '''
-State of current print_instance request as propogated down a call stack.
-'''
+State of current print_instance request as propogated down a call stack.'''
       ..isStruct = true
       ..defaultCtor.usesDefault = true
       ..defaultCppAccess = public
@@ -308,8 +307,7 @@ Current frame for the printer.
 
 Used to determine if the current frame is the original opening frame
 (ie frame 0) and therefore on completion should append a
-[final_separator].
-'''
+[final_separator].'''
         ..init = 0,
       ]
       ..addFullMemberCtor(),
@@ -317,10 +315,9 @@ Used to determine if the current frame is the original opening frame
       class_('printer_spec')
       ..doc = '''
 Printer specification passed to [print_instance] methods, supporting
-more controlled/advanced print capabilities.  For example, some times
-it is helpful to print some [max_bytes] bytes from an instance of an
-object coming off the wire.
-'''
+more controlled/advanced print capabilities.  For example, sometimes
+it is helpful to print the first [max_bytes] bytes from an instance of
+an object coming off the wire.'''
       ..defaultCppAccess = public
       ..memberCtors = [
         memberCtor([
@@ -349,8 +346,7 @@ object coming off the wire.
       class_('printer_descriptor')
       ..doc = '''
 Combines the immutable spec with the mutable state which together
-propogate through a call stack on a [print_instance] request.
-'''
+propogate through a call stack on a [print_instance] request.'''
       ..defaultCppAccess = public
       ..customBlocks = [ clsPublic ]
       ..memberCtors = [ memberCtor(['printer_spec']) ]
