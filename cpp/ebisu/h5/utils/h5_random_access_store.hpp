@@ -24,9 +24,9 @@ enum Store_open_type { Open_create_e, Open_read_e };
 inline char const* to_c_str(Store_open_type e) {
   switch (e) {
     case Store_open_type::Open_create_e:
-      return "Open_create_e";
+      return "Open Create";
     case Store_open_type::Open_read_e:
-      return "Open_read_e";
+      return "Open Read";
     default: { return "Invalid Store_open_type"; }
   }
 }

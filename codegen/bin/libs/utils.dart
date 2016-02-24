@@ -288,6 +288,7 @@ addItems() {
     ];
 
   final printerHeader = header('printer')
+    ..customBlocks = [ fcbEndNamespace ]
     ..classes = [
 
       class_('printer_state')
@@ -326,9 +327,9 @@ object coming off the wire.
           memberCtorParm('max_bytes')..defaultValue = '0',
           memberCtorParm('name_types')..defaultValue = 'false',
           memberCtorParm('name_members')..defaultValue = 'true',
+          memberCtorParm('nested_indent')..defaultValue = 'false',
           memberCtorParm('member_separator')..defaultValue = doubleQuote(','),
           memberCtorParm('name_value_separator')..defaultValue = doubleQuote('='),
-          memberCtorParm('instance_separator')..defaultValue = doubleQuote(','),
           memberCtorParm('final_separator')..defaultValue = doubleQuote(r'\n'),
         ])
       ]
@@ -338,6 +339,7 @@ object coming off the wire.
         ..type = 'int',
         member('name_types')..type = 'bool',
         member('name_members')..type = 'bool',
+        member('nested_indent')..type = 'bool',
         member('member_separator')..type = 'std::string',
         member('name_value_separator')..type = 'std::string',
         member('instance_separator')..type = 'std::string',
@@ -346,7 +348,7 @@ object coming off the wire.
 
       class_('printer_descriptor')
       ..doc = '''
-Combines the immutable spec witht the mutable state which together
+Combines the immutable spec with the mutable state which together
 propogate through a call stack on a [print_instance] request.
 '''
       ..defaultCppAccess = public
