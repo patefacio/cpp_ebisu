@@ -564,30 +564,6 @@ add_test(
 
 install(TARGETS test.h5_utils.class.h5_random_access_store.h5_random_access_store RUNTIME DESTINATION ${DESTDIR}/bin)
 
-#   test for test_mongo
-#     (Lib:mongo), (Test:mongo)
-#   
-add_executable(test.mongo.lib.mongo
-  tests/mongo/lib.mongo.cpp
-)
-
-# custom <test_mongo test additions>
-# end <test_mongo test additions>
-
-target_link_libraries(test.mongo.lib.mongo
-# custom <catch test_mongo link requirements>
-# end <catch test_mongo link requirements>
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-  pthread
-)
-
-add_test(
-  test.mongo.lib.mongo
-  test.mongo.lib.mongo)
-
-install(TARGETS test.mongo.lib.mongo RUNTIME DESTINATION ${DESTDIR}/bin)
-
 #   test for test_logger
 #     (Lib:logger), (Header:logger), (Test:logger)
 #   

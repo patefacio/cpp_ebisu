@@ -62,14 +62,15 @@ final mongo_utils = lib('mongo')
     ]
   ]
   ..testScenarios = [
-    testScenario('connection_registry')
-    ..includes.addAll([
-      'ebisu/mongo/connection_registry.hpp'
-    ]),
-    testScenario('mongo_ini_parser')
-    ..includes.addAll([
-      'ebisu/mongo/mongo_ini.hpp'
-    ])
+    /// TODO Add back after move to mongo-cxx driver
+    // testScenario('connection_registry')
+    // ..includes.addAll([
+    //   'ebisu/mongo/connection_registry.hpp'
+    // ]),
+    // testScenario('mongo_ini_parser')
+    // ..includes.addAll([
+    //   'ebisu/mongo/mongo_ini.hpp'
+    // ])
   ];
 
 addItems() => ebisuInstallation.addLibs([mongo_utils]);
