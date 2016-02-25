@@ -43,7 +43,6 @@ using Linux_specific_logger_t = Linux_specific_logger<spdlog::logger>;
 #else
 using Linux_specific_logger_t =
     Linux_specific_logger<ebisu::logger::Null_logger_impl>;
-Linux_specific_logger_t linux_specific_logger_impl;
 #define LINUX_SPECIFIC_TRACE(...) (void)0
 #endif
 

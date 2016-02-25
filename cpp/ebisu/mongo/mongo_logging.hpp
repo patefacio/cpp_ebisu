@@ -42,7 +42,6 @@ using Mongo_logger_t = Mongo_logger<spdlog::logger>;
 #define MONGO_TRACE(...) mongo_logger->trace(__VA_ARGS__)
 #else
 using Mongo_logger_t = Mongo_logger<ebisu::logger::Null_logger_impl>;
-Mongo_logger_t mongo_logger_impl;
 #define MONGO_TRACE(...) (void)0
 #endif
 

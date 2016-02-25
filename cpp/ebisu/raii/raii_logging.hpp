@@ -42,7 +42,6 @@ using Raii_logger_t = Raii_logger<spdlog::logger>;
 #define RAII_TRACE(...) raii_logger->trace(__VA_ARGS__)
 #else
 using Raii_logger_t = Raii_logger<ebisu::logger::Null_logger_impl>;
-Raii_logger_t raii_logger_impl;
 #define RAII_TRACE(...) (void)0
 #endif
 

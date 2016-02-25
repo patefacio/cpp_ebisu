@@ -43,7 +43,6 @@ using Performance_logger_t = Performance_logger<spdlog::logger>;
 #else
 using Performance_logger_t =
     Performance_logger<ebisu::logger::Null_logger_impl>;
-Performance_logger_t performance_logger_impl;
 #define PERFORMANCE_TRACE(...) (void)0
 #endif
 
