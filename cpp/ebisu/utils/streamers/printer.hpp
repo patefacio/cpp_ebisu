@@ -1,6 +1,7 @@
 #ifndef __EBISU_UTILS_STREAMERS_PRINTER_HPP__
 #define __EBISU_UTILS_STREAMERS_PRINTER_HPP__
 
+#include <ostream>
 #include <string>
 
 namespace ebisu {

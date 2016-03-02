@@ -24,6 +24,8 @@ class Fixed_size_char_array {
 
   explicit Fixed_size_char_array(char const* s) { this->operator=(s); }
 
+  explicit Fixed_size_char_array(std::string const& s) { this->operator=(s); }
+
   Fixed_size_char_array(Fixed_size_char_array const& other) {
     this->operator=(other.operator char const*());
   }
@@ -31,6 +33,12 @@ class Fixed_size_char_array {
   void operator=(char const* s) {
     if (this->operator const char*() != s) {
       std::strncpy(&data_[0], s, ARRAY_SIZE);
+    }
+  }
+
+  void operator=(std::string const& s) {
+    if (!s.empty()) {
+      std::memcpy(&data_[0], s.c_str(), ARRAY_SIZE);
     }
   }
 
@@ -63,6 +71,11 @@ class Fixed_size_char_array {
       return (0 == std::strncmp(const_cast<char*>(this->operator char const*()),
                                 other, ARRAY_SIZE));
     }
+  }
+
+  bool operator==(std::string const& s) const {
+    return 0 == std::strncmp(s.c_str(), &data_[0],
+                             std::min(s.size(), size_t(ARRAY_SIZE)));
   }
 
   bool operator<(Fixed_size_char_array const& other) const {

@@ -83,6 +83,34 @@ SCENARIO("index operator works") {
     }
   }
 }
+SCENARIO("construct and assign from string") {
+  // custom <(92339134)>
+  // end <(92339134)>
+  GIVEN("a string") {
+    // custom <(666658020)>
+
+    std::string foobar{"foobar"};
+
+    // end <(666658020)>
+    THEN("construct and check") {
+      // custom <(77670180)>
+
+      Fixed_size_char_array<10> fsca{foobar};
+      REQUIRE(fsca == foobar);
+
+      // end <(77670180)>
+    }
+    THEN("assign and check") {
+      // custom <(238794491)>
+
+      Fixed_size_char_array<10> fsca;
+      fsca = foobar;
+      REQUIRE(fsca == foobar);
+
+      // end <(238794491)>
+    }
+  }
+}
 SCENARIO("no null char") {
   // custom <(669588362)>
   // end <(669588362)>
