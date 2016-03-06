@@ -19,19 +19,19 @@ namespace utils {
  H5_random_access_store may create a packet table or be created from an
  existing packet table.
 */
-enum Store_open_type { Open_create_e, Open_read_e };
+enum StoreOpenType { OPEN_CREATE, OPEN_READ };
 
-inline char const* to_c_str(Store_open_type e) {
+inline char const* to_c_str(StoreOpenType e) {
   switch (e) {
-    case Store_open_type::Open_create_e:
+    case StoreOpenType::OPEN_CREATE:
       return "Open Create";
-    case Store_open_type::Open_read_e:
+    case StoreOpenType::OPEN_READ:
       return "Open Read";
-    default: { return "Invalid Store_open_type"; }
+    default: { return "Invalid StoreOpenType"; }
   }
 }
 
-inline std::ostream& operator<<(std::ostream& out, Store_open_type e) {
+inline std::ostream& operator<<(std::ostream& out, StoreOpenType e) {
   return out << to_c_str(e);
 }
 
@@ -42,16 +42,16 @@ inline std::ostream& operator<<(std::ostream& out, Store_open_type e) {
 
 */
 template <typename DSS>
-class H5_random_access_store {
+class H5RandomAccessStore {
  public:
-  using H5_file_sptr_t = std::shared_ptr<H5::H5File>;
-  using H5_data_set_specifier_t = DSS;
-  using Record_t = typename DSS::Record_t;
-  using Group_id_list_t = std::vector<hid_t>;
-  using Packet_table_uptr_t = std::unique_ptr<FL_PacketTable>;
+  using H5FileSptr = std::shared_ptr<H5::H5File>;
+  using H5DataSetSpecifier = DSS;
+  using Record = typename DSS::Record_t;
+  using GroupIdList = std::vector<hid_t>;
+  using PacketTableUptr = std::unique_ptr<FL_PacketTable>;
 
-  H5_random_access_store(H5_file_sptr_t const& file, Store_open_type open_type,
-                         std::string const& group)
+  H5RandomAccessStore(H5_file_sptr_t const& file, Store_open_type open_type,
+                      std::string const& group)
       : file_(file), open_type_(open_type), group_(group) {
     // custom <H5_random_access_store(create packet table)>
 

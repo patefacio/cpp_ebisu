@@ -12,14 +12,14 @@
 namespace ebisu {
 namespace utils {
 template <typename T = double>
-class Histogram_statistical {
+class HistogramStatistical {
  public:
-  using Accumulator_t = boost::accumulators::accumulator_set<
+  using AccumulatorT = boost::accumulators::accumulator_set<
       T, boost::accumulators::features<boost::accumulators::tag::density> >;
-  using Hist_results_t =
+  using HistResultsT =
       boost::iterator_range<typename std::vector<std::pair<T, T> >::iterator>;
 
-  Histogram_statistical(int num_bins = 20, int cache_size = 10)
+  HistogramStatistical(int num_bins = 20, int cache_size = 10)
       : num_bins_(num_bins), cache_size_(cache_size) {}
 
   // custom <ClsPublic Histogram_statistical>
@@ -48,7 +48,7 @@ class Histogram_statistical {
 template <typename T = double>
 class Histogram {
  public:
-  using Result_vector_t = std::vector<T>;
+  using ResultVector = std::vector<T>;
 
   explicit template <typename IT>
 

@@ -15,12 +15,12 @@ namespace utils {
 namespace scoped {
 class Sample {
  public:
-  friend class Sample_h5_dss;
-  class Sample_h5_dss;
-  using Char_10_bytes_t = std::array<char, 10>;
-  using Unrecognizable_t = int;
-  using Buffer_t = std::array<char, 16>;
-  using H5_dss_t = Sample_h5_dss;
+  friend class SampleH5Dss;
+  class SampleH5Dss;
+  using Char10BytesT = std::array<char, 10>;
+  using Unrecognizable = int;
+  using Buffer = std::array<char, 16>;
+  using H5Dss = SampleH5Dss;
 
   Sample() = default;
 
@@ -138,16 +138,16 @@ class Sample {
   Char_10_bytes_t const m_str_10_bytes_{};
 };
 
-class Sample_h5_dss {
+class SampleH5Dss {
  public:
-  using Record_t = Sample;
+  using Record = Sample;
 
-  static constexpr char const* DATA_SET_NAME{"/sample"};
+  static constexpr char const* kDataSetName{"/sample"};
 
-  Sample_h5_dss(Sample_h5_dss const& other) = delete;
+  SampleH5Dss(SampleH5Dss const& other) = delete;
 
-  static Sample_h5_dss& instance() {
-    static Sample_h5_dss instance_s;
+  static SampleH5Dss& instance() {
+    static SampleH5Dss instance_s;
     return instance_s;
   }
 
@@ -155,7 +155,7 @@ class Sample_h5_dss {
   hid_t compound_data_type_id() const { return compound_data_type_id_; }
 
  private:
-  Sample_h5_dss() {
+  SampleH5Dss() {
     compound_data_type_id_ = H5Tcreate(H5T_COMPOUND, sizeof(Sample));
     H5Tinsert(compound_data_type_id_, "m_char", HOFFSET(Sample, m_char_),
               H5T_NATIVE_CHAR);

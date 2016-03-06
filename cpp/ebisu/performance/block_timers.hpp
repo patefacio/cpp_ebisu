@@ -22,13 +22,13 @@ namespace performance {
 
 */
 template <typename CLOCK = std::chrono::high_resolution_clock>
-class Block_timer {
+class BlockTimer {
  public:
-  using Clock_t = CLOCK;
-  using Time_point_t = typename Clock_t::time_point;
-  using Duration_t = typename Clock_t::duration;
+  using Clock = CLOCK;
+  using TimePoint = typename Clock_t::time_point;
+  using Duration = typename Clock_t::duration;
 
-  Block_timer(Duration_t& duration) : duration_(duration) {}
+  BlockTimer(Duration_t& duration) : duration_(duration) {}
 
   // custom <ClsPublic Block_timer>
 
@@ -58,13 +58,13 @@ class Block_timer {
 //! Logs the results of timing a block of code
 
 template <typename CLOCK = std::chrono::high_resolution_clock>
-class Block_timer_logger {
+class BlockTimerLogger {
  public:
-  using Clock_t = CLOCK;
-  using Time_point_t = typename Clock_t::time_point;
-  using Duration_t = typename Clock_t::duration;
+  using Clock = CLOCK;
+  using TimePoint = typename Clock_t::time_point;
+  using Duration = typename Clock_t::duration;
 
-  Block_timer_logger(std::ostream& out, std::string const& description = "")
+  BlockTimerLogger(std::ostream& out, std::string const& description = "")
       : out_(out), description_(description) {}
 
   // custom <ClsPublic Block_timer_logger>

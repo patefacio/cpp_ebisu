@@ -10,13 +10,13 @@
 namespace ebisu {
 namespace utils {
 template <int ARRAY_SIZE>
-class Fixed_size_char_array {
+class FixedSizeCharArray {
  public:
-  using Array_t = std::array<char, ARRAY_SIZE>;
+  using ArrayT = std::array<char, ARRAY_SIZE>;
 
-  static constexpr int BUFFER_SIZE{ARRAY_SIZE};
+  static constexpr int kBufferSize{ARRAY_SIZE};
 
-  static constexpr int LAST_INDEX{ARRAY_SIZE - 1};
+  static constexpr int kLastIndex{ARRAY_SIZE - 1};
 
   // custom <ClsPublic Fixed_size_char_array>
 

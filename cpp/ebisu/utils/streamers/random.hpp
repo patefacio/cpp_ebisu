@@ -13,7 +13,7 @@
 namespace ebisu {
 namespace utils {
 namespace streamers {
-class Random_source {
+class RandomSource {
  public:
   // custom <ClsPublic Random_source>
 

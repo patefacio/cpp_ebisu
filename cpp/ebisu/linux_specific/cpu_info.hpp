@@ -27,7 +27,7 @@ namespace linux_specific {
 */
 class Processor {
  public:
-  using Proc_map_t = std::map<std::string, std::string>;
+  using ProcMap = std::map<std::string, std::string>;
 
   Processor(int processor, Proc_map_t const& proc_map)
       : processor_(processor), proc_map_(proc_map) {}
@@ -176,7 +176,7 @@ class Processor {
   int processor_{};
 };
 
-using Processor_list_t = std::vector<Processor>;
+using ProcessorList = std::vector<Processor>;
 
 /**
  Class to parse cpuinfo file. This might be of use to interrogate
@@ -184,21 +184,21 @@ using Processor_list_t = std::vector<Processor>;
  comparisons.
 
 */
-class Cpu_info {
+class CpuInfo {
  public:
-  Cpu_info(Cpu_info const& other) = delete;
+  CpuInfo(CpuInfo const& other) = delete;
 
   friend inline std::ostream& operator<<(std::ostream& out,
-                                         Cpu_info const& item) {
+                                         CpuInfo const& item) {
     using ebisu::utils::streamers::operator<<;
-    out << "Cpu_info(" << &item << ") {";
+    out << "CpuInfo(" << &item << ") {";
     out << "\n  processors:" << item.processors_;
     out << "\n}\n";
     return out;
   }
 
-  static Cpu_info& instance() {
-    static Cpu_info instance_s;
+  static CpuInfo& instance() {
+    static CpuInfo instance_s;
     return instance_s;
   }
 
@@ -210,7 +210,7 @@ class Cpu_info {
 
   // end <ClsPrivate Cpu_info>
 
-  Cpu_info() {
+  CpuInfo() {
     // custom <Cpu_info defaultCtor>
 
     using namespace std;

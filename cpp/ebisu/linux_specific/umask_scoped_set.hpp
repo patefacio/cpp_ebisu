@@ -14,13 +14,12 @@ namespace linux_specific {
  therefore an entry in /dev/shm, but to share it the permissions must
  work. umask settings play a role.
 */
-class Umask_scoped_set {
+class UmaskScopedSet {
  public:
   /**
    Construct Umask_scoped_set with specified *new_mode*
   */
-  explicit Umask_scoped_set(mode_t new_mode)
-      : previous_mode_(umask(new_mode)) {}
+  explicit UmaskScopedSet(mode_t new_mode) : previous_mode_(umask(new_mode)) {}
 
   // custom <ClsPublic Umask_scoped_set>
 

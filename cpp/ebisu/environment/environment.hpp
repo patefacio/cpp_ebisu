@@ -20,11 +20,11 @@ namespace environment {
 */
 class Environment {
  public:
-  using Environment_map_t = std::map<std::string, std::string>;
-  using Path_variable_set_t = std::set<std::string>;
-  using Path_t = boost::filesystem::path;
-  using Path_list_t = std::vector<Path_t>;
-  using Path_variable_map_t = std::map<std::string, Path_list_t>;
+  using EnvironmentMap = std::map<std::string, std::string>;
+  using PathVariableSet = std::set<std::string>;
+  using Path = boost::filesystem::path;
+  using PathList = std::vector<Path_t>;
+  using PathVariableMap = std::map<std::string, Path_list_t>;
 
   Environment(Environment const& other) = delete;
 

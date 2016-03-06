@@ -10,10 +10,10 @@ namespace streamers {
 /**
  State of current print_instance request as propogated down a call stack.
 */
-struct Printer_state {
-  Printer_state() = default;
+struct PrinterState {
+  PrinterState() = default;
 
-  Printer_state(int bytes_accessed, int frame)
+  PrinterState(int bytes_accessed, int frame)
       : bytes_accessed(bytes_accessed), frame(frame) {}
 
   /**
@@ -37,13 +37,13 @@ struct Printer_state {
  it is helpful to print the first [max_bytes] bytes from an instance of
  an object coming off the wire.
 */
-class Printer_spec {
+class PrinterSpec {
  public:
-  Printer_spec(int max_bytes = 0, bool name_types = false,
-               bool name_members = true, bool nested_indent = false,
-               std::string const& member_separator = ",",
-               std::string const& name_value_separator = "=",
-               std::string const& final_separator = "\n")
+  PrinterSpec(int max_bytes = 0, bool name_types = false,
+              bool name_members = true, bool nested_indent = false,
+              std::string const& member_separator = ",",
+              std::string const& name_value_separator = "=",
+              std::string const& final_separator = "\n")
       : max_bytes(max_bytes),
         name_types(name_types),
         name_members(name_members),
@@ -69,9 +69,9 @@ class Printer_spec {
  Combines the immutable spec with the mutable state which together
  propogate through a call stack on a [print_instance] request.
 */
-class Printer_descriptor {
+class PrinterDescriptor {
  public:
-  Printer_descriptor(Printer_spec const& printer_spec)
+  PrinterDescriptor(Printer_spec const& printer_spec)
       : printer_spec(printer_spec) {}
 
   // custom <ClsPublic Printer_descriptor>

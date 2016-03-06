@@ -9,25 +9,25 @@
 namespace ebisu {
 namespace mongo {
 template <typename LOCK = std::mutex, typename GUARD = std::lock_guard<LOCK> >
-class Connection_registry {
+class ConnectionRegistry {
  public:
-  using Lock_t = LOCK;
-  using Guard_t = GUARD;
-  using Database_configuration_map_t =
+  using Lock = LOCK;
+  using Guard = GUARD;
+  using DatabaseConfigurationMap =
       Mongo_ini_parser::Database_configuration_map_t;
-  using Tss_connection_ptr_t =
+  using TssConnectionPtr =
       boost::thread_specific_ptr< ::mongo::DBClientConnection>*;
-  using Thread_connection_map_t = std::map<std::string, Tss_connection_ptr_t>;
+  using ThreadConnectionMap = std::map<std::string, Tss_connection_ptr_t>;
 
-  Connection_registry(Connection_registry const& other) = delete;
+  ConnectionRegistry(ConnectionRegistry const& other) = delete;
 
-  static Connection_registry& instance() {
-    static Connection_registry instance_s;
+  static ConnectionRegistry& instance() {
+    static ConnectionRegistry instance_s;
     return instance_s;
   }
 
  private:
-  Connection_registry() {}
+  ConnectionRegistry() {}
 
   Database_configuration_map_t database_configuration_map_{};
   Lock_t lock_{};

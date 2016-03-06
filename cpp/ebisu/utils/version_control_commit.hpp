@@ -7,17 +7,17 @@ namespace utils {
  Provide static data with git commit for quickly identifying contents of build
  with linux strings program
 */
-class Version_control_commit {
+class VersionControlCommit {
  public:
-  Version_control_commit(Version_control_commit const& other) = delete;
+  VersionControlCommit(VersionControlCommit const& other) = delete;
 
-  static Version_control_commit& instance() {
-    static Version_control_commit instance_s;
+  static VersionControlCommit& instance() {
+    static VersionControlCommit instance_s;
     return instance_s;
   }
 
  private:
-  Version_control_commit() {}
+  VersionControlCommit() {}
 
   char const* const git_commit_{};
   char const* const search_string_{};

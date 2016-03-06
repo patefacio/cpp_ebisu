@@ -7,9 +7,9 @@
 
 namespace ebisu {
 namespace timestamp {
-using Timestamp_t = boost::posix_time::ptime;
-using Time_duration_t = boost::posix_time::time_duration;
-using Date_t = boost::gregorian::date;
+using TimestampT = boost::posix_time::ptime;
+using TimeDurationT = boost::posix_time::time_duration;
+using DateT = boost::gregorian::date;
 
 // custom <FcbEndNamespace timestamp>
 

@@ -13,24 +13,24 @@ namespace make_exception {
 
 // end <FcbBeginNamespace benchmark_make_exception>
 
-class Boost_style_exception : public virtual std::exception,
-                              public virtual boost::exception {};
+class BoostStyleException : public virtual std::exception,
+                            public virtual boost::exception {};
 
-class Sample_exception : public virtual std::runtime_error,
-                         public virtual boost::exception {
+class SampleException : public virtual std::runtime_error,
+                        public virtual boost::exception {
  public:
   /// Constructs exception object with explanatory what_arg accessible through
   /// what().
-  explicit Sample_exception(const std::string& what_arg)
+  explicit SampleException(const std::string& what_arg)
       : std::runtime_error(what_arg) {}
 
   /// Constructs exception object with explanatory what_arg accessible through
   /// what().
-  explicit Sample_exception(const char* what_arg)
+  explicit SampleException(const char* what_arg)
       : std::runtime_error(what_arg) {}
 };
 
-class Benchmark_make_exception : public ::benchmark::Fixture {
+class BenchmarkMakeException : public ::benchmark::Fixture {
  public:
   // custom <ClsPublic Benchmark_make_exception>
 

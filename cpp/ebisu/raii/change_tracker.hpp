@@ -17,7 +17,7 @@ namespace raii {
  previous value.
 */
 template <typename T>
-class Change_tracker {
+class ChangeTracker {
  public:
   // custom <ClsPublic Change_tracker>
 
@@ -52,9 +52,9 @@ class Change_tracker {
  value and the current value will be assigned the next value.
 */
 template <typename T>
-class Change_tracker_next_value {
+class ChangeTrackerNextValue {
  public:
-  using Change_tracker_t = Change_tracker<T>;
+  using ChangeTracker = Change_tracker<T>;
 
   // custom <ClsPublic Change_tracker_next_value>
 
@@ -83,7 +83,7 @@ class Change_tracker_next_value {
  destruction restores the original state.
 */
 template <typename T>
-class Change_until_end_of_block {
+class ChangeUntilEndOfBlock {
  public:
   // custom <ClsPublic Change_until_end_of_block>
 

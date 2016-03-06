@@ -37,26 +37,26 @@ namespace linux_specific {
 */
 template <typename LOCK_TYPE = std::mutex,
           typename GUARD_TYPE = std::lock_guard<LOCK_TYPE> >
-class Application_signal_handler {
+class ApplicationSignalHandler {
  public:
-  using Thread_t = std::thread;
-  using Thread_uptr_t = std::unique_ptr<Thread_t>;
-  using Lock_type_t = LOCK_TYPE;
-  using Guard_type_t = GUARD_TYPE;
-  using Handler_function_t = std::function<bool(int)>;
-  using Handler_function_list_t = std::vector<Handler_function_t>;
+  using Thread = std::thread;
+  using ThreadUptr = std::unique_ptr<Thread_t>;
+  using LockType = LOCK_TYPE;
+  using GuardType = GUARD_TYPE;
+  using HandlerFunction = std::function<bool(int)>;
+  using HandlerFunctionList = std::vector<Handler_function_t>;
 
-  Application_signal_handler(Application_signal_handler const& other) = delete;
+  ApplicationSignalHandler(ApplicationSignalHandler const& other) = delete;
 
-  ~Application_signal_handler() {
+  ~ApplicationSignalHandler() {
     // custom <Application_signal_handler dtor>
     linux_specific_logger->info(
         "Destroyed application signal handler singleton");
     // end <Application_signal_handler dtor>
   }
 
-  static Application_signal_handler& instance() {
-    static Application_signal_handler instance_s;
+  static ApplicationSignalHandler& instance() {
+    static ApplicationSignalHandler instance_s;
     return instance_s;
   }
 
@@ -116,7 +116,7 @@ class Application_signal_handler {
 
   // end <ClsPrivate Application_signal_handler>
 
-  Application_signal_handler() {
+  ApplicationSignalHandler() {
     // custom <Application_signal_handler defaultCtor>
 
     linux_specific_logger->info("Created application signal handler singleton");
@@ -174,17 +174,17 @@ class Application_signal_handler {
  Use an automatic variable and RAII in main to ensure cleanup.
 
 */
-class Application_signal_handler_exit {
+class ApplicationSignalHandlerExit {
  public:
-  Application_signal_handler_exit() = default;
+  ApplicationSignalHandlerExit() = default;
 
-  Application_signal_handler_exit(
-      Application_signal_handler_exit const& other) = delete;
+  ApplicationSignalHandlerExit(ApplicationSignalHandlerExit const& other) =
+      delete;
 
-  Application_signal_handler_exit& operator=(
-      Application_signal_handler_exit const&) = delete;
+  ApplicationSignalHandlerExit& operator=(ApplicationSignalHandlerExit const&) =
+      delete;
 
-  ~Application_signal_handler_exit() {
+  ~ApplicationSignalHandlerExit() {
     // custom <Application_signal_handler_exit dtor>
 
     //////////////////////////////////////////////////////////////////////

@@ -18,16 +18,16 @@
 namespace ebisu {
 namespace gui {
 namespace environment {
-class Tree_data_item {
+class TreeDataItem {
  public:
-  using Tree_data_item_ptr_t = Tree_data_item *;
-  using Tree_data_item_sptr_t = std::shared_ptr<Tree_data_item>;
-  using Tree_data_item_list_t = std::vector<Tree_data_item_sptr_t>;
+  using TreeDataItemPtr = Tree_data_item *;
+  using TreeDataItemSptr = std::shared_ptr<Tree_data_item>;
+  using TreeDataItemList = std::vector<Tree_data_item_sptr_t>;
 
-  Tree_data_item(std::string const &data, int row,
-                 Tree_data_item_ptr_t parent = nullptr,
-                 std::string const &file_size = std::string(),
-                 std::string const &last_modified = std::string())
+  TreeDataItem(std::string const &data, int row,
+               Tree_data_item_ptr_t parent = nullptr,
+               std::string const &file_size = std::string(),
+               std::string const &last_modified = std::string())
       : data_(data),
         row_(row),
         parent_(parent),
@@ -35,9 +35,9 @@ class Tree_data_item {
         last_modified_(last_modified) {}
 
   friend inline std::ostream &operator<<(std::ostream &out,
-                                         Tree_data_item const &item) {
+                                         TreeDataItem const &item) {
     using ebisu::utils::streamers::operator<<;
-    out << "Tree_data_item(" << &item << ") {";
+    out << "TreeDataItem(" << &item << ") {";
     out << "\n  data:" << item.data_;
     out << "\n  row:" << item.row_;
     out << "\n  parent:" << item.parent_;
@@ -93,13 +93,13 @@ class Tree_data_item {
   Tree_data_item_list_t children_{};
 };
 
-class Tree_path_model : public QAbstractItemModel {
+class TreePathModel : public QAbstractItemModel {
   Q_OBJECT
 
  public:
-  using Header_array_t = std::array<char const *, 3>;
-  using Tree_data_item_sptr_t = Tree_data_item::Tree_data_item_sptr_t;
-  using Tree_data_item_ptr_t = Tree_data_item::Tree_data_item_ptr_t;
+  using HeaderArray = std::array<char const *, 3>;
+  using TreeDataItemSptr = Tree_data_item::Tree_data_item_sptr_t;
+  using TreeDataItemPtr = Tree_data_item::Tree_data_item_ptr_t;
 
   // custom <ClsPublic Tree_path_model>
 
@@ -176,7 +176,7 @@ class Tree_path_model : public QAbstractItemModel {
   Tree_data_item_sptr_t root_{};
 };
 
-class Q_environment : public QWidget {
+class QEnvironment : public QWidget {
   Q_OBJECT
 
  public:

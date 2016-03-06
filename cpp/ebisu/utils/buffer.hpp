@@ -3,7 +3,7 @@
 
 namespace ebisu {
 namespace utils {
-using Buffer_cptr_t = char const*;
+using BufferCptr = char const*;
 
 // custom <FcbEndNamespace buffer>
 
