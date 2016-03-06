@@ -12,11 +12,10 @@ namespace linux_specific {
 /**
  Indicates parsing of system file failed
 */
-class System_file_parse_exception : public virtual boost::exception,
-                                    public virtual std::exception {
+class SystemFileParseException : public virtual boost::exception,
+                                 public virtual std::exception {
  public:
-  using Filename_tag_t =
-      boost::error_info<struct tag_filename_tag, std::string>;
+  using FilenameTag = boost::error_info<struct tag_filename_tag, std::string>;
 };
 
 }  // namespace linux_specific

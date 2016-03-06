@@ -15,185 +15,183 @@ namespace utils {
 namespace scoped {
 class Sample {
  public:
-  friend class Sample_h5_dss;
-  class Sample_h5_dss;
-  using Char_10_bytes_t = std::array<char, 10>;
-  using Unrecognizable_t = int;
-  using Buffer_t = std::array<char, 16>;
-  using H5_dss_t = Sample_h5_dss;
+  friend class SampleH5Dss;
+  class SampleH5Dss;
+  using Char10BytesT = std::array<char, 10>;
+  using Unrecognizable = int;
+  using Buffer = std::array<char, 16>;
+  using H5Dss = SampleH5Dss;
 
   Sample() = default;
 
-  Sample(char m_char, unsigned char m_unsigned_char, signed char m_signed_char,
-         short m_short, int m_int, long m_long, long long m_long_long,
-         Buffer_t bogus, unsigned int m_unsigned_int,
-         unsigned long m_unsigned_long, unsigned long long m_unsigned_long_long,
-         double m_double, long double m_long_double, char m_sentinal,
-         Char_10_bytes_t const& m_str_10_bytes)
-      : m_char_(m_char),
-        m_unsigned_char_(m_unsigned_char),
-        m_signed_char_(m_signed_char),
-        m_short_(m_short),
-        m_int_(m_int),
-        m_long_(m_long),
-        m_long_long_(m_long_long),
+  Sample(char mChar, unsigned char mUnsignedChar, signed char mSignedChar,
+         short mShort, int mInt, long mLong, long long mLongLong,
+         Buffer_t bogus, unsigned int mUnsignedInt, unsigned long mUnsignedLong,
+         unsigned long long mUnsignedLongLong, double mDouble,
+         long double mLongDouble, char mSentinal,
+         Char_10_bytes_t const& mStr10Bytes)
+      : mChar_(mChar),
+        mUnsignedChar_(mUnsignedChar),
+        mSignedChar_(mSignedChar),
+        mShort_(mShort),
+        mInt_(mInt),
+        mLong_(mLong),
+        mLongLong_(mLongLong),
         bogus_(bogus),
-        m_unsigned_int_(m_unsigned_int),
-        m_unsigned_long_(m_unsigned_long),
-        m_unsigned_long_long_(m_unsigned_long_long),
-        m_double_(m_double),
-        m_long_double_(m_long_double),
-        m_sentinal_(m_sentinal),
-        m_str_10_bytes_(m_str_10_bytes) {}
+        mUnsignedInt_(mUnsignedInt),
+        mUnsignedLong_(mUnsignedLong),
+        mUnsignedLongLong_(mUnsignedLongLong),
+        mDouble_(mDouble),
+        mLongDouble_(mLongDouble),
+        mSentinal_(mSentinal),
+        mStr10Bytes_(mStr10Bytes) {}
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Sample const& item) {
     using ebisu::utils::streamers::operator<<;
     out << "Sample(" << &item << ") {";
-    out << "\n  m_char:" << item.m_char_;
-    out << "\n  m_unsigned_char:" << item.m_unsigned_char_;
-    out << "\n  m_signed_char:" << item.m_signed_char_;
-    out << "\n  m_short:" << item.m_short_;
-    out << "\n  m_int:" << item.m_int_;
-    out << "\n  m_long:" << item.m_long_;
-    out << "\n  m_long_long:" << item.m_long_long_;
+    out << "\n  mChar:" << item.mChar_;
+    out << "\n  mUnsignedChar:" << item.mUnsignedChar_;
+    out << "\n  mSignedChar:" << item.mSignedChar_;
+    out << "\n  mShort:" << item.mShort_;
+    out << "\n  mInt:" << item.mInt_;
+    out << "\n  mLong:" << item.mLong_;
+    out << "\n  mLongLong:" << item.mLongLong_;
     out << "\n  bogus:" << item.bogus_;
-    out << "\n  m_unsigned_int:" << item.m_unsigned_int_;
-    out << "\n  m_unsigned_long:" << item.m_unsigned_long_;
-    out << "\n  m_unsigned_long_long:" << item.m_unsigned_long_long_;
-    out << "\n  m_double:" << item.m_double_;
-    out << "\n  m_long_double:" << item.m_long_double_;
-    out << "\n  m_sentinal:" << item.m_sentinal_;
-    out << "\n  m_str_10_bytes:" << item.m_str_10_bytes_;
+    out << "\n  mUnsignedInt:" << item.mUnsignedInt_;
+    out << "\n  mUnsignedLong:" << item.mUnsignedLong_;
+    out << "\n  mUnsignedLongLong:" << item.mUnsignedLongLong_;
+    out << "\n  mDouble:" << item.mDouble_;
+    out << "\n  mLongDouble:" << item.mLongDouble_;
+    out << "\n  mSentinal:" << item.mSentinal_;
+    out << "\n  mStr10Bytes:" << item.mStr10Bytes_;
     out << "\n}\n";
     return out;
   }
 
-  //! getter for m_char_ (access is Ro)
-  char m_char() const { return m_char_; }
+  //! getter for mChar_ (access is Ro)
+  char mChar() const { return mChar_; }
 
-  //! getter for m_unsigned_char_ (access is Ro)
-  unsigned char m_unsigned_char() const { return m_unsigned_char_; }
+  //! getter for mUnsignedChar_ (access is Ro)
+  unsigned char mUnsignedChar() const { return mUnsignedChar_; }
 
-  //! getter for m_signed_char_ (access is Ro)
-  signed char m_signed_char() const { return m_signed_char_; }
+  //! getter for mSignedChar_ (access is Ro)
+  signed char mSignedChar() const { return mSignedChar_; }
 
-  //! getter for m_short_ (access is Ro)
-  short m_short() const { return m_short_; }
+  //! getter for mShort_ (access is Ro)
+  short mShort() const { return mShort_; }
 
-  //! getter for m_int_ (access is Ro)
-  int m_int() const { return m_int_; }
+  //! getter for mInt_ (access is Ro)
+  int mInt() const { return mInt_; }
 
-  //! getter for m_long_ (access is Ro)
-  long m_long() const { return m_long_; }
+  //! getter for mLong_ (access is Ro)
+  long mLong() const { return mLong_; }
 
-  //! getter for m_long_long_ (access is Ro)
-  long long m_long_long() const { return m_long_long_; }
+  //! getter for mLongLong_ (access is Ro)
+  long long mLongLong() const { return mLongLong_; }
 
   //! getter for bogus_ (access is Ro)
   Buffer_t bogus() const { return bogus_; }
 
-  //! getter for m_unsigned_int_ (access is Ro)
-  unsigned int m_unsigned_int() const { return m_unsigned_int_; }
+  //! getter for mUnsignedInt_ (access is Ro)
+  unsigned int mUnsignedInt() const { return mUnsignedInt_; }
 
-  //! getter for m_unsigned_long_ (access is Ro)
-  unsigned long m_unsigned_long() const { return m_unsigned_long_; }
+  //! getter for mUnsignedLong_ (access is Ro)
+  unsigned long mUnsignedLong() const { return mUnsignedLong_; }
 
-  //! getter for m_unsigned_long_long_ (access is Ro)
-  unsigned long long m_unsigned_long_long() const {
-    return m_unsigned_long_long_;
-  }
+  //! getter for mUnsignedLongLong_ (access is Ro)
+  unsigned long long mUnsignedLongLong() const { return mUnsignedLongLong_; }
 
-  //! getter for m_double_ (access is Ro)
-  double m_double() const { return m_double_; }
+  //! getter for mDouble_ (access is Ro)
+  double mDouble() const { return mDouble_; }
 
-  //! getter for m_long_double_ (access is Ro)
-  long double m_long_double() const { return m_long_double_; }
+  //! getter for mLongDouble_ (access is Ro)
+  long double mLongDouble() const { return mLongDouble_; }
 
-  //! getter for m_sentinal_ (access is Ro)
-  char m_sentinal() const { return m_sentinal_; }
+  //! getter for mSentinal_ (access is Ro)
+  char mSentinal() const { return mSentinal_; }
 
-  //! getter for m_str_10_bytes_ (access is Ro)
-  Char_10_bytes_t const& m_str_10_bytes() const { return m_str_10_bytes_; }
+  //! getter for mStr10Bytes_ (access is Ro)
+  Char_10_bytes_t const& mStr10Bytes() const { return mStr10Bytes_; }
 
  private:
-  char const m_char_{0};
-  unsigned char const m_unsigned_char_{0};
-  signed char const m_signed_char_{0};
-  short const m_short_{0};
-  int const m_int_{0};
-  long const m_long_{0};
-  long long const m_long_long_{0};
+  char const mChar_{0};
+  unsigned char const mUnsignedChar_{0};
+  signed char const mSignedChar_{0};
+  short const mShort_{0};
+  int const mInt_{0};
+  long const mLong_{0};
+  long long const mLongLong_{0};
 
   /**
    Should be ignored for hdf5
   */
   Buffer_t const bogus_{};
-  unsigned int const m_unsigned_int_{0};
-  unsigned long const m_unsigned_long_{0};
-  unsigned long long const m_unsigned_long_long_{0};
-  double const m_double_{0};
-  long double const m_long_double_{0};
-  char const m_sentinal_{0};
-  Char_10_bytes_t const m_str_10_bytes_{};
+  unsigned int const mUnsignedInt_{0};
+  unsigned long const mUnsignedLong_{0};
+  unsigned long long const mUnsignedLongLong_{0};
+  double const mDouble_{0};
+  long double const mLongDouble_{0};
+  char const mSentinal_{0};
+  Char_10_bytes_t const mStr10Bytes_{};
 };
 
-class Sample_h5_dss {
+class SampleH5Dss {
  public:
-  using Record_t = Sample;
+  using Record = Sample;
 
   static constexpr char const* DATA_SET_NAME{"/sample"};
 
-  Sample_h5_dss(Sample_h5_dss const& other) = delete;
+  SampleH5Dss(SampleH5Dss const& other) = delete;
 
-  static Sample_h5_dss& instance() {
-    static Sample_h5_dss instance_s;
+  static SampleH5Dss& instance() {
+    static SampleH5Dss instance_s;
     return instance_s;
   }
 
-  //! getter for compound_data_type_id_ (access is Ro)
-  hid_t compound_data_type_id() const { return compound_data_type_id_; }
+  //! getter for compoundDataTypeId_ (access is Ro)
+  hid_t compoundDataTypeId() const { return compoundDataTypeId_; }
 
  private:
-  Sample_h5_dss() {
+  SampleH5Dss() {
     compound_data_type_id_ = H5Tcreate(H5T_COMPOUND, sizeof(Sample));
-    H5Tinsert(compound_data_type_id_, "m_char", HOFFSET(Sample, m_char_),
+    H5Tinsert(compound_data_type_id_, "mChar", HOFFSET(Sample, mChar_),
               H5T_NATIVE_CHAR);
-    H5Tinsert(compound_data_type_id_, "m_unsigned_char",
-              HOFFSET(Sample, m_unsigned_char_), H5T_NATIVE_UCHAR);
-    H5Tinsert(compound_data_type_id_, "m_signed_char",
-              HOFFSET(Sample, m_signed_char_), H5T_NATIVE_SCHAR);
-    H5Tinsert(compound_data_type_id_, "m_short", HOFFSET(Sample, m_short_),
+    H5Tinsert(compound_data_type_id_, "mUnsignedChar",
+              HOFFSET(Sample, mUnsignedChar_), H5T_NATIVE_UCHAR);
+    H5Tinsert(compound_data_type_id_, "mSignedChar",
+              HOFFSET(Sample, mSignedChar_), H5T_NATIVE_SCHAR);
+    H5Tinsert(compound_data_type_id_, "mShort", HOFFSET(Sample, mShort_),
               H5T_NATIVE_SHORT);
-    H5Tinsert(compound_data_type_id_, "m_int", HOFFSET(Sample, m_int_),
+    H5Tinsert(compound_data_type_id_, "mInt", HOFFSET(Sample, mInt_),
               H5T_NATIVE_INT);
-    H5Tinsert(compound_data_type_id_, "m_long", HOFFSET(Sample, m_long_),
+    H5Tinsert(compound_data_type_id_, "mLong", HOFFSET(Sample, mLong_),
               H5T_NATIVE_LONG);
-    H5Tinsert(compound_data_type_id_, "m_long_long",
-              HOFFSET(Sample, m_long_long_), H5T_NATIVE_LLONG);
+    H5Tinsert(compound_data_type_id_, "mLongLong", HOFFSET(Sample, mLongLong_),
+              H5T_NATIVE_LLONG);
     auto bogus__type = H5Tcreate(H5T_OPAQUE, sizeof(Sample::bogus_));
     H5Tinsert(compound_data_type_id_, "bogus", HOFFSET(Sample, bogus_),
               bogus__type);
-    H5Tinsert(compound_data_type_id_, "m_unsigned_int",
-              HOFFSET(Sample, m_unsigned_int_), H5T_NATIVE_UINT);
-    H5Tinsert(compound_data_type_id_, "m_unsigned_long",
-              HOFFSET(Sample, m_unsigned_long_), H5T_NATIVE_ULONG);
-    H5Tinsert(compound_data_type_id_, "m_unsigned_long_long",
-              HOFFSET(Sample, m_unsigned_long_long_), H5T_NATIVE_ULLONG);
-    H5Tinsert(compound_data_type_id_, "m_double", HOFFSET(Sample, m_double_),
+    H5Tinsert(compound_data_type_id_, "mUnsignedInt",
+              HOFFSET(Sample, mUnsignedInt_), H5T_NATIVE_UINT);
+    H5Tinsert(compound_data_type_id_, "mUnsignedLong",
+              HOFFSET(Sample, mUnsignedLong_), H5T_NATIVE_ULONG);
+    H5Tinsert(compound_data_type_id_, "mUnsignedLongLong",
+              HOFFSET(Sample, mUnsignedLongLong_), H5T_NATIVE_ULLONG);
+    H5Tinsert(compound_data_type_id_, "mDouble", HOFFSET(Sample, mDouble_),
               H5T_NATIVE_DOUBLE);
-    H5Tinsert(compound_data_type_id_, "m_long_double",
-              HOFFSET(Sample, m_long_double_), H5T_NATIVE_LDOUBLE);
-    H5Tinsert(compound_data_type_id_, "m_sentinal",
-              HOFFSET(Sample, m_sentinal_), H5T_NATIVE_CHAR);
-    auto m_str_10_bytes_type = H5Tcopy(H5T_C_S1);
-    H5Tset_size(m_str_10_bytes_type, 10);
-    H5Tset_strpad(m_str_10_bytes_type, H5T_STR_NULLPAD);
-    H5Tinsert(compound_data_type_id_, "m_str_10_bytes",
-              HOFFSET(Sample, m_str_10_bytes_), m_str_10_bytes_type);
+    H5Tinsert(compound_data_type_id_, "mLongDouble",
+              HOFFSET(Sample, mLongDouble_), H5T_NATIVE_LDOUBLE);
+    H5Tinsert(compound_data_type_id_, "mSentinal", HOFFSET(Sample, mSentinal_),
+              H5T_NATIVE_CHAR);
+    auto mStr10Bytes_type = H5Tcopy(H5T_C_S1);
+    H5Tset_size(mStr10Bytes_type, 10);
+    H5Tset_strpad(mStr10Bytes_type, H5T_STR_NULLPAD);
+    H5Tinsert(compound_data_type_id_, "mStr10Bytes",
+              HOFFSET(Sample, mStr10Bytes_), mStr10Bytes_type);
   }
 
-  hid_t compound_data_type_id_{};
+  hid_t compoundDataTypeId_{};
 };
 }
 SCENARIO("simple h5 data set random access") {

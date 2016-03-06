@@ -47,7 +47,7 @@ instances being stored/read from the recordset.
             usingUptr('packet_table', 'FL_PacketTable'),
           ]
           ..memberCtors = [
-            memberCtor(['file', 'open_type', 'group'])
+            memberCtor(['file', 'openType', 'group'])
               ..tag = 'create packet table'
               ..includesProtectBlock = true
           ]

@@ -27,16 +27,16 @@ namespace linux_specific {
 */
 class Processor {
  public:
-  using Proc_map_t = std::map<std::string, std::string>;
+  using ProcMap = std::map<std::string, std::string>;
 
-  Processor(int processor, Proc_map_t const& proc_map)
-      : processor_(processor), proc_map_(proc_map) {}
+  Processor(int processor, Proc_map_t const& procMap)
+      : processor_(processor), procMap_(procMap) {}
 
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Processor const& item) {
     using ebisu::utils::streamers::operator<<;
     out << "Processor(" << &item << ") {";
-    out << "\n  proc_map:" << item.proc_map_;
+    out << "\n  procMap:" << item.procMap_;
     out << "\n  processor:" << item.processor_;
     out << "\n}\n";
     return out;
@@ -162,8 +162,8 @@ class Processor {
     return (found != proc_map_.end()) ? found->second : "";
   }
 
-  //! getter for proc_map_ (access is Ro)
-  Proc_map_t const& proc_map() const { return proc_map_; }
+  //! getter for procMap_ (access is Ro)
+  Proc_map_t const& procMap() const { return procMap_; }
 
   //! getter for processor_ (access is Ro)
   int processor() const { return processor_; }
@@ -172,11 +172,11 @@ class Processor {
   /**
    Map of processors
   */
-  Proc_map_t proc_map_{};
+  Proc_map_t procMap_{};
   int processor_{};
 };
 
-using Processor_list_t = std::vector<Processor>;
+using ProcessorList = std::vector<Processor>;
 
 /**
  Class to parse cpuinfo file. This might be of use to interrogate
@@ -184,21 +184,21 @@ using Processor_list_t = std::vector<Processor>;
  comparisons.
 
 */
-class Cpu_info {
+class CpuInfo {
  public:
-  Cpu_info(Cpu_info const& other) = delete;
+  CpuInfo(CpuInfo const& other) = delete;
 
   friend inline std::ostream& operator<<(std::ostream& out,
-                                         Cpu_info const& item) {
+                                         CpuInfo const& item) {
     using ebisu::utils::streamers::operator<<;
-    out << "Cpu_info(" << &item << ") {";
+    out << "CpuInfo(" << &item << ") {";
     out << "\n  processors:" << item.processors_;
     out << "\n}\n";
     return out;
   }
 
-  static Cpu_info& instance() {
-    static Cpu_info instance_s;
+  static CpuInfo& instance() {
+    static CpuInfo instance_s;
     return instance_s;
   }
 
@@ -210,7 +210,7 @@ class Cpu_info {
 
   // end <ClsPrivate Cpu_info>
 
-  Cpu_info() {
+  CpuInfo() {
     // custom <Cpu_info defaultCtor>
 
     using namespace std;

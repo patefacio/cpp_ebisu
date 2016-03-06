@@ -141,7 +141,7 @@ the duration can be used with multiple timers.
       class_('block_rusage')
       ..doc = 'Tracks resource utilization over a block'
       ..memberCtors = [
-        memberCtor(['rusage_delta'])
+        memberCtor(['rusageDelta'])
         ..includesProtectBlock = true
       ]
       ..customBlocks = [ clsPublic ]

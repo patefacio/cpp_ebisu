@@ -5,12 +5,12 @@
 
 namespace ebisu {
 namespace utils {
-class Block_current_indent {
+class BlockCurrentIndent {
  public:
-  Block_current_indent(Block_current_indent const& other) = delete;
+  BlockCurrentIndent(BlockCurrentIndent const& other) = delete;
 
-  static Block_current_indent& instance() {
-    static Block_current_indent instance_s;
+  static BlockCurrentIndent& instance() {
+    static BlockCurrentIndent instance_s;
     return instance_s;
   }
 
@@ -79,12 +79,12 @@ class Block_current_indent {
 
   // end <ClsPrivate Block_current_indent>
 
-  Block_current_indent() {}
+  BlockCurrentIndent() {}
 
-  boost::thread_specific_ptr<int> indentation_length_{};
+  boost::thread_specific_ptr<int> indentationLength_{};
 };
 
-class Block_indenter {
+class BlockIndenter {
  public:
   // custom <ClsPublic Block_indenter>
 

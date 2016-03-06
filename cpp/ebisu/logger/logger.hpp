@@ -9,7 +9,7 @@ namespace logger {
 template <typename LOGGER_IMPL = std::shared_ptr<spdlog::logger> >
 class Logger {
  public:
-  using Logger_impl_t = LOGGER_IMPL;
+  using LoggerImpl = LOGGER_IMPL;
 
   Logger(Logger_impl_t impl) : impl_(impl) {}
 
@@ -64,7 +64,7 @@ class Logger {
   Logger_impl_t impl_{};
 };
 
-class Null_logger_impl {
+class NullLoggerImpl {
  public:
   // custom <ClsPublic Null_logger_impl>
 

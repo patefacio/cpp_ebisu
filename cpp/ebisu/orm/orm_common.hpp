@@ -20,17 +20,17 @@ namespace orm {
 /**
  List of strings
 */
-using String_list_t = std::vector<std::string>;
+using StringList = std::vector<std::string>;
 
 /**
  Standard table of strings
 */
-using String_table_t = std::vector<String_list_t>;
-using Date_t = boost::gregorian::date;
-using Date_set_t = std::set<Date_t>;
+using StringTable = std::vector<String_list_t>;
+using Date = boost::gregorian::date;
+using DateSet = std::set<Date_t>;
 
 template <int OTL_LOG_LEVEL = 0>
-class Otl_log_level {
+class OtlLogLevel {
  public:
   // custom <ClsPublic Otl_log_level>
 

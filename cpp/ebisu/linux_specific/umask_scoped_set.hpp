@@ -14,13 +14,12 @@ namespace linux_specific {
  therefore an entry in /dev/shm, but to share it the permissions must
  work. umask settings play a role.
 */
-class Umask_scoped_set {
+class UmaskScopedSet {
  public:
   /**
    Construct Umask_scoped_set with specified *new_mode*
   */
-  explicit Umask_scoped_set(mode_t new_mode)
-      : previous_mode_(umask(new_mode)) {}
+  explicit UmaskScopedSet(mode_t new_mode) : previousMode_(umask(new_mode)) {}
 
   // custom <ClsPublic Umask_scoped_set>
 
@@ -28,14 +27,14 @@ class Umask_scoped_set {
 
   // end <ClsPublic Umask_scoped_set>
 
-  //! getter for previous_mode_ (access is Ro)
-  mode_t previous_mode() const { return previous_mode_; }
+  //! getter for previousMode_ (access is Ro)
+  mode_t previousMode() const { return previousMode_; }
 
  private:
   /**
    Original mode, restored to on destruction
   */
-  mode_t previous_mode_;
+  mode_t previousMode_;
 };
 
 }  // namespace linux_specific

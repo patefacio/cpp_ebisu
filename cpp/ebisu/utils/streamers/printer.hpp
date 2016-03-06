@@ -10,16 +10,16 @@ namespace streamers {
 /**
  State of current print_instance request as propogated down a call stack.
 */
-struct Printer_state {
-  Printer_state() = default;
+struct PrinterState {
+  PrinterState() = default;
 
-  Printer_state(int bytes_accessed, int frame)
-      : bytes_accessed(bytes_accessed), frame(frame) {}
+  PrinterState(int bytesAccessed, int frame)
+      : bytesAccessed(bytesAccessed), frame(frame) {}
 
   /**
    Current number of bytes accessed
   */
-  int bytes_accessed{0};
+  int bytesAccessed{0};
 
   /**
    Current frame for the printer.
@@ -37,48 +37,48 @@ struct Printer_state {
  it is helpful to print the first [max_bytes] bytes from an instance of
  an object coming off the wire.
 */
-class Printer_spec {
+class PrinterSpec {
  public:
-  Printer_spec(int max_bytes = 0, bool name_types = false,
-               bool name_members = true, bool nested_indent = false,
-               std::string const& member_separator = ",",
-               std::string const& name_value_separator = "=",
-               std::string const& final_separator = "\n")
-      : max_bytes(max_bytes),
-        name_types(name_types),
-        name_members(name_members),
-        nested_indent(nested_indent),
-        member_separator(member_separator),
-        name_value_separator(name_value_separator),
-        final_separator(final_separator) {}
+  PrinterSpec(int maxBytes = 0, bool nameTypes = false, bool nameMembers = true,
+              bool nestedIndent = false,
+              std::string const& memberSeparator = ",",
+              std::string const& nameValueSeparator = "=",
+              std::string const& finalSeparator = "\n")
+      : maxBytes(maxBytes),
+        nameTypes(nameTypes),
+        nameMembers(nameMembers),
+        nestedIndent(nestedIndent),
+        memberSeparator(memberSeparator),
+        nameValueSeparator(nameValueSeparator),
+        finalSeparator(finalSeparator) {}
 
   /**
    Ensure that at most [max_bytes] of *instance* are accessed during printing
   */
-  int max_bytes{};
-  bool name_types{};
-  bool name_members{};
-  bool nested_indent{};
-  std::string member_separator{};
-  std::string name_value_separator{};
-  std::string instance_separator{};
-  std::string final_separator{};
+  int maxBytes{};
+  bool nameTypes{};
+  bool nameMembers{};
+  bool nestedIndent{};
+  std::string memberSeparator{};
+  std::string nameValueSeparator{};
+  std::string instanceSeparator{};
+  std::string finalSeparator{};
 };
 
 /**
  Combines the immutable spec with the mutable state which together
  propogate through a call stack on a [print_instance] request.
 */
-class Printer_descriptor {
+class PrinterDescriptor {
  public:
-  Printer_descriptor(Printer_spec const& printer_spec)
-      : printer_spec(printer_spec) {}
+  PrinterDescriptor(Printer_spec const& printerSpec)
+      : printerSpec(printerSpec) {}
 
   // custom <ClsPublic Printer_descriptor>
   // end <ClsPublic Printer_descriptor>
 
-  Printer_spec const printer_spec;
-  Printer_state printer_state{};
+  Printer_spec const printerSpec;
+  Printer_state printerState{};
 };
 
 // custom <FcbEndNamespace printer>

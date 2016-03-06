@@ -32,8 +32,8 @@ final guiEnvironment = lib('gui_environment')
       ..memberCtors = [
         memberCtor(['data', 'row',
           memberCtorParm('parent')..defaultValue = 'nullptr',
-          memberCtorParm('file_size')..defaultValue = 'std::string()',
-          memberCtorParm('last_modified')..defaultValue = 'std::string()',])
+          memberCtorParm('fileSize')..defaultValue = 'std::string()',
+          memberCtorParm('lastModified')..defaultValue = 'std::string()',])
       ]
       ..members = [
         member('data')..type = 'std::string',

@@ -11,16 +11,16 @@
 
 namespace ebisu {
 namespace raii {
-using Void_func_t = void (*)(void);
+using VoidFunc = void (*)(void);
 
 //! Ensure functor is run on obect destruction
 
 template <typename FUNCTOR = Void_func_t>
-class Functor_scope_exit {
+class FunctorScopeExit {
  public:
-  using Functor_t = FUNCTOR;
+  using Functor = FUNCTOR;
 
-  explicit Functor_scope_exit(Functor_t functor) : functor_(functor) {}
+  explicit FunctorScopeExit(Functor_t functor) : functor_(functor) {}
 
   // custom <ClsPublic Functor_scope_exit>
 
@@ -50,19 +50,19 @@ class Functor_scope_exit {
 
 */
 template <typename INIT_FUNC = Void_func_t, typename UNINIT_FUNC = Void_func_t>
-class Api_initializer_registry {
+class ApiInitializerRegistry {
  public:
-  using Init_func_t = INIT_FUNC;
-  using Uninit_func_t = UNINIT_FUNC;
-  using Functor_scope_exit_t = Functor_scope_exit<Uninit_func_t>;
-  using Uninit_wrapper_ptr_t = std::shared_ptr<Functor_scope_exit_t>;
-  using Uninit_list_t = std::list<Uninit_wrapper_ptr_t>;
-  using Registry_t = std::map<Init_func_t, Uninit_wrapper_ptr_t>;
+  using InitFunc = INIT_FUNC;
+  using UninitFunc = UNINIT_FUNC;
+  using FunctorScopeExit = Functor_scope_exit<Uninit_func_t>;
+  using UninitWrapperPtr = std::shared_ptr<Functor_scope_exit_t>;
+  using UninitList = std::list<Uninit_wrapper_ptr_t>;
+  using Registry = std::map<Init_func_t, Uninit_wrapper_ptr_t>;
 
-  Api_initializer_registry(Api_initializer_registry const& other) = delete;
+  ApiInitializerRegistry(ApiInitializerRegistry const& other) = delete;
 
-  static Api_initializer_registry& instance() {
-    static Api_initializer_registry instance_s;
+  static ApiInitializerRegistry& instance() {
+    static ApiInitializerRegistry instance_s;
     return instance_s;
   }
 
@@ -100,18 +100,18 @@ class Api_initializer_registry {
   // end <ClsPublic Api_initializer_registry>
 
  private:
-  Api_initializer_registry() {}
+  ApiInitializerRegistry() {}
 
   Registry_t registry_{};
-  Uninit_list_t registry_ordered_{};
+  Uninit_list_t registryOrdered_{};
 };
 
 //! Provide consistent *init*/*uninit* behavior
 
 template <typename INIT_FUNC = Void_func_t, typename UNINIT_FUNC = Void_func_t>
-class Api_initializer {
+class ApiInitializer {
  public:
-  using Api_initializer_registry_t =
+  using ApiInitializerRegistryT =
       Api_initializer_registry<INIT_FUNC, UNINIT_FUNC>;
 
   // custom <ClsPublic Api_initializer>

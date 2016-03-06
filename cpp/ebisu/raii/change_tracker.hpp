@@ -17,7 +17,7 @@ namespace raii {
  previous value.
 */
 template <typename T>
-class Change_tracker {
+class ChangeTracker {
  public:
   // custom <ClsPublic Change_tracker>
 
@@ -52,9 +52,9 @@ class Change_tracker {
  value and the current value will be assigned the next value.
 */
 template <typename T>
-class Change_tracker_next_value {
+class ChangeTrackerNextValue {
  public:
-  using Change_tracker_t = Change_tracker<T>;
+  using ChangeTracker = Change_tracker<T>;
 
   // custom <ClsPublic Change_tracker_next_value>
 
@@ -68,12 +68,12 @@ class Change_tracker_next_value {
   //! getter for tracker_ (access is Ro)
   Change_tracker_t const& tracker() const { return tracker_; }
 
-  //! getter for next_value_ (access is Ro)
-  T next_value() const { return next_value_; }
+  //! getter for nextValue_ (access is Ro)
+  T nextValue() const { return nextValue_; }
 
  private:
   Change_tracker_t& tracker_;
-  T next_value_{};
+  T nextValue_{};
 };
 
 //! Change and use value within block, revert to original on scope exit.
@@ -83,7 +83,7 @@ class Change_tracker_next_value {
  destruction restores the original state.
 */
 template <typename T>
-class Change_until_end_of_block {
+class ChangeUntilEndOfBlock {
  public:
   // custom <ClsPublic Change_until_end_of_block>
 
@@ -100,8 +100,8 @@ class Change_until_end_of_block {
   //! getter for target_ (access is Ro)
   T target() const { return target_; }
 
-  //! getter for saved_value_ (access is Ro)
-  T saved_value() const { return saved_value_; }
+  //! getter for savedValue_ (access is Ro)
+  T savedValue() const { return savedValue_; }
 
  private:
   /**
@@ -112,7 +112,7 @@ class Change_until_end_of_block {
   /**
    Value saved on construction and used to reset on block exit
   */
-  T saved_value_{};
+  T savedValue_{};
 };
 
 }  // namespace raii

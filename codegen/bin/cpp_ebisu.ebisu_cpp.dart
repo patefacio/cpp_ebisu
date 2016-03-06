@@ -16,6 +16,7 @@ main() {
         print("${r.loggerName} [${r.level}]:\t${r.message}"))
     ..level = Level.SEVERE;
 
+  defaultCppNamer = new QtNamer();
   generate() {
     ebisuInstallation
       ..doc = 'C++ library'

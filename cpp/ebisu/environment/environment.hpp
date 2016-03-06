@@ -20,11 +20,11 @@ namespace environment {
 */
 class Environment {
  public:
-  using Environment_map_t = std::map<std::string, std::string>;
-  using Path_variable_set_t = std::set<std::string>;
-  using Path_t = boost::filesystem::path;
-  using Path_list_t = std::vector<Path_t>;
-  using Path_variable_map_t = std::map<std::string, Path_list_t>;
+  using EnvironmentMap = std::map<std::string, std::string>;
+  using PathVariableSet = std::set<std::string>;
+  using Path = boost::filesystem::path;
+  using PathList = std::vector<Path_t>;
+  using PathVariableMap = std::map<std::string, Path_list_t>;
 
   Environment(Environment const& other) = delete;
 
@@ -33,7 +33,7 @@ class Environment {
     using ebisu::utils::streamers::operator<<;
     out << "Environment(" << &item << ") {";
     out << "\n  environment:" << item.environment_;
-    out << "\n  path_variable_map:" << item.path_variable_map_;
+    out << "\n  pathVariableMap:" << item.pathVariableMap_;
     out << "\n}\n";
     return out;
   }
@@ -46,9 +46,9 @@ class Environment {
   //! getter for environment_ (access is Ro)
   Environment_map_t const& environment() const { return environment_; }
 
-  //! getter for path_variable_map_ (access is Ro)
-  Path_variable_map_t const& path_variable_map() const {
-    return path_variable_map_;
+  //! getter for pathVariableMap_ (access is Ro)
+  Path_variable_map_t const& pathVariableMap() const {
+    return pathVariableMap_;
   }
 
  private:
@@ -104,7 +104,7 @@ class Environment {
   Environment() { read_environment(); }
 
   Environment_map_t environment_{};
-  Path_variable_map_t path_variable_map_{};
+  Path_variable_map_t pathVariableMap_{};
 };
 
 }  // namespace environment

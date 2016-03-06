@@ -10,9 +10,9 @@
 namespace ebisu {
 namespace utils {
 template <int ARRAY_SIZE>
-class Fixed_size_char_array {
+class FixedSizeCharArray {
  public:
-  using Array_t = std::array<char, ARRAY_SIZE>;
+  using ArrayT = std::array<char, ARRAY_SIZE>;
 
   static constexpr int BUFFER_SIZE{ARRAY_SIZE};
 

@@ -10,10 +10,10 @@
 
 namespace ebisu {
 namespace mongo {
-class Mongo_database_config {
+class MongoDatabaseConfig {
  public:
-  Mongo_database_config(std::string const& server, std::string const& user,
-                        std::string const& password)
+  MongoDatabaseConfig(std::string const& server, std::string const& user,
+                      std::string const& password)
       : server_(server), user_(user), password_(password) {}
 
   //! getter for server_ (access is Ro)
@@ -31,12 +31,11 @@ class Mongo_database_config {
   std::string const password_;
 };
 
-class Mongo_ini_parser {
+class MongoIniParser {
  public:
-  using Database_configuration_map_t =
-      std::map<std::string, Mongo_database_config>;
+  using DatabaseConfigurationMap = std::map<std::string, Mongo_database_config>;
 
-  Mongo_ini_parser() {
+  MongoIniParser() {
     // custom <Mongo_ini_parser defaultCtor>
 
     find_ini_file();
@@ -62,13 +61,13 @@ class Mongo_ini_parser {
   // end <ClsPublic Mongo_ini_parser>
 
  private:
-  Database_configuration_map_t database_configuration_map_{};
-  boost::program_options::options_description mongo_options_description_{};
+  Database_configuration_map_t databaseConfigurationMap_{};
+  boost::program_options::options_description mongoOptionsDescription_{};
 
   /**
    The ini found when searching in $HOME and environment
   */
-  std::string ini_file_path_{};
+  std::string iniFilePath_{};
 };
 
 }  // namespace mongo

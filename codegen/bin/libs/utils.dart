@@ -152,8 +152,8 @@ Hist_results_t = boost::iterator_range<
           ]
           ..memberCtors = [
             memberCtor([
-              memberCtorParm('num_bins')..defaultValue = '20',
-              memberCtorParm('cache_size')..defaultValue = '10'
+              memberCtorParm('numBins')..defaultValue = '20',
+              memberCtorParm('cacheSize')..defaultValue = '10'
             ])
           ],
         class_('histogram')
@@ -171,7 +171,7 @@ Hist_results_t = boost::iterator_range<
               ..access = ro,
           ]
           ..memberCtors = [
-            memberCtor([memberCtorParm('num_bins')..defaultValue = '20'])
+            memberCtor([memberCtorParm('numBins')..defaultValue = '20'])
               ..decls = ['IT begin', 'IT end']
               ..isExplicit = true
               ..template = 'typename IT'
@@ -282,7 +282,7 @@ addItems() {
             ]
             ..memberCtors = [
               memberCtor([
-                'matrix_container',
+                'matrixContainer',
                 memberCtorParm('header')..defaultValue = 'String_list_t()'
               ]),
             ]
@@ -322,14 +322,14 @@ an object coming off the wire.'''
         ..defaultCppAccess = public
         ..memberCtors = [
           memberCtor([
-            memberCtorParm('max_bytes')..defaultValue = '0',
-            memberCtorParm('name_types')..defaultValue = 'false',
-            memberCtorParm('name_members')..defaultValue = 'true',
-            memberCtorParm('nested_indent')..defaultValue = 'false',
-            memberCtorParm('member_separator')..defaultValue = doubleQuote(','),
-            memberCtorParm('name_value_separator')
+            memberCtorParm('maxBytes')..defaultValue = '0',
+            memberCtorParm('nameTypes')..defaultValue = 'false',
+            memberCtorParm('nameMembers')..defaultValue = 'true',
+            memberCtorParm('nestedIndent')..defaultValue = 'false',
+            memberCtorParm('memberSeparator')..defaultValue = doubleQuote(','),
+            memberCtorParm('nameValueSeparator')
               ..defaultValue = doubleQuote('='),
-            memberCtorParm('final_separator')
+            memberCtorParm('finalSeparator')
               ..defaultValue = doubleQuote(r'\n'),
           ])
         ]
@@ -353,7 +353,7 @@ propogate through a call stack on a [print_instance] request.'''
         ..defaultCppAccess = public
         ..customBlocks = [clsPublic]
         ..memberCtors = [
-          memberCtor(['printer_spec'])
+          memberCtor(['printerSpec'])
         ]
         ..members = [
           member('printer_spec')

@@ -18,31 +18,31 @@
 namespace ebisu {
 namespace gui {
 namespace environment {
-class Tree_data_item {
+class TreeDataItem {
  public:
-  using Tree_data_item_ptr_t = Tree_data_item *;
-  using Tree_data_item_sptr_t = std::shared_ptr<Tree_data_item>;
-  using Tree_data_item_list_t = std::vector<Tree_data_item_sptr_t>;
+  using TreeDataItemPtr = Tree_data_item *;
+  using TreeDataItemSptr = std::shared_ptr<Tree_data_item>;
+  using TreeDataItemList = std::vector<Tree_data_item_sptr_t>;
 
-  Tree_data_item(std::string const &data, int row,
-                 Tree_data_item_ptr_t parent = nullptr,
-                 std::string const &file_size = std::string(),
-                 std::string const &last_modified = std::string())
+  TreeDataItem(std::string const &data, int row,
+               Tree_data_item_ptr_t parent = nullptr,
+               std::string const &fileSize = std::string(),
+               std::string const &lastModified = std::string())
       : data_(data),
         row_(row),
         parent_(parent),
-        file_size_(file_size),
-        last_modified_(last_modified) {}
+        fileSize_(fileSize),
+        lastModified_(lastModified) {}
 
   friend inline std::ostream &operator<<(std::ostream &out,
-                                         Tree_data_item const &item) {
+                                         TreeDataItem const &item) {
     using ebisu::utils::streamers::operator<<;
-    out << "Tree_data_item(" << &item << ") {";
+    out << "TreeDataItem(" << &item << ") {";
     out << "\n  data:" << item.data_;
     out << "\n  row:" << item.row_;
     out << "\n  parent:" << item.parent_;
-    out << "\n  file_size:" << item.file_size_;
-    out << "\n  last_modified:" << item.last_modified_;
+    out << "\n  fileSize:" << item.fileSize_;
+    out << "\n  lastModified:" << item.lastModified_;
     out << "\n  children:" << item.children_;
     out << "\n}\n";
     return out;
@@ -75,11 +75,11 @@ class Tree_data_item {
   //! getter for parent_ (access is Ro)
   Tree_data_item_ptr_t parent() const { return parent_; }
 
-  //! getter for file_size_ (access is Ro)
-  std::string const &file_size() const { return file_size_; }
+  //! getter for fileSize_ (access is Ro)
+  std::string const &fileSize() const { return fileSize_; }
 
-  //! getter for last_modified_ (access is Ro)
-  std::string const &last_modified() const { return last_modified_; }
+  //! getter for lastModified_ (access is Ro)
+  std::string const &lastModified() const { return lastModified_; }
 
   //! getter for children_ (access is Ro)
   Tree_data_item_list_t children() const { return children_; }
@@ -88,18 +88,18 @@ class Tree_data_item {
   std::string data_{};
   int row_{0};
   Tree_data_item_ptr_t parent_{};
-  std::string file_size_{};
-  std::string last_modified_{};
+  std::string fileSize_{};
+  std::string lastModified_{};
   Tree_data_item_list_t children_{};
 };
 
-class Tree_path_model : public QAbstractItemModel {
+class TreePathModel : public QAbstractItemModel {
   Q_OBJECT
 
  public:
-  using Header_array_t = std::array<char const *, 3>;
-  using Tree_data_item_sptr_t = Tree_data_item::Tree_data_item_sptr_t;
-  using Tree_data_item_ptr_t = Tree_data_item::Tree_data_item_ptr_t;
+  using HeaderArray = std::array<char const *, 3>;
+  using TreeDataItemSptr = Tree_data_item::Tree_data_item_sptr_t;
+  using TreeDataItemPtr = Tree_data_item::Tree_data_item_ptr_t;
 
   // custom <ClsPublic Tree_path_model>
 
@@ -176,7 +176,7 @@ class Tree_path_model : public QAbstractItemModel {
   Tree_data_item_sptr_t root_{};
 };
 
-class Q_environment : public QWidget {
+class QEnvironment : public QWidget {
   Q_OBJECT
 
  public:
@@ -210,12 +210,12 @@ class Q_environment : public QWidget {
   // end <ClsPublic Q_environment>
 
  private:
-  QTableWidget *variable_list_table_{};
+  QTableWidget *variableListTable_{};
   QSplitter *splitter_{};
-  Tree_path_model *tree_path_model_{};
-  QTreeView *tree_path_view_{};
-  QSplitter *path_splitter_{};
-  QTableWidget *problem_table_{};
+  Tree_path_model *treePathModel_{};
+  QTreeView *treePathView_{};
+  QSplitter *pathSplitter_{};
+  QTableWidget *problemTable_{};
 };
 
 }  // namespace environment

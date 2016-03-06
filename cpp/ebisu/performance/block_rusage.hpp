@@ -79,11 +79,11 @@ std::ostream& operator<<(std::ostream& out, rusage const& r) {
 /**
  Tracks start/stop and delta on rusage
 */
-class Rusage_delta {
+class RusageDelta {
  public:
   friend inline std::ostream& operator<<(std::ostream& out,
-                                         Rusage_delta const& item) {
-    out << "Rusage_delta(" << &item << ") {";
+                                         RusageDelta const& item) {
+    out << "RusageDelta(" << &item << ") {";
     out << "\n  start:" << item.start;
     out << "\n  stop:" << item.stop;
     out << "\n  delta:" << item.delta;
@@ -113,12 +113,11 @@ class Rusage_delta {
 /**
  Tracks resource utilization over a block
 */
-class Block_rusage {
+class BlockRusage {
  public:
-  Block_rusage(Rusage_delta& rusage_delta) : rusage_delta_(rusage_delta) {
-    // custom <Block_rusage(Rusage_delta & rusage_delta)>
-    _get_rusage(rusage_delta_.start);
-    // end <Block_rusage(Rusage_delta & rusage_delta)>
+  BlockRusage(Rusage_delta& rusageDelta) : rusageDelta_(rusageDelta) {
+    // custom <Block_rusage(Rusage_delta & rusageDelta)>
+    // end <Block_rusage(Rusage_delta & rusageDelta)>
   }
 
   // custom <ClsPublic Block_rusage>
@@ -141,7 +140,7 @@ class Block_rusage {
   // end <ClsPublic Block_rusage>
 
  private:
-  Rusage_delta& rusage_delta_;
+  Rusage_delta& rusageDelta_;
 };
 
 // custom <FcbEndNamespace block_rusage>

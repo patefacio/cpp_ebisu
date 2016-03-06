@@ -161,7 +161,7 @@ therefore an entry in /dev/shm, but to share it the permissions must
 work. umask settings play a role.'''
       ..memberCtors = [
         memberCtor([
-          memberCtorParm('previous_mode')
+          memberCtorParm('previousMode')
           ..parmDecl = 'mode_t new_mode'
           ..init = 'umask(new_mode)'
         ])
@@ -209,7 +209,7 @@ work. umask settings play a role.'''
       ..isStreamable = true
       ..usesStreamers = true
       ..usingsPostDecl = [ using('Processor_list', 'std::vector< Processor >') ]
-      ..memberCtors = [ memberCtor(['processor', 'proc_map']) ]
+      ..memberCtors = [ memberCtor(['processor', 'procMap']) ]
       ..withCustomBlock(clsPublic, (CodeBlock cb) {
         cb.snippets
           .add(

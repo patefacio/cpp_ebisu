@@ -613,7 +613,7 @@ add_test(
 
 install(TARGETS test.environment.header.environment RUNTIME DESTINATION ${DESTDIR}/bin)
 add_executable(bench_make_exception
-  benchmarks/app/make_exception/make_exception.cpp
+  benchmarks/app/make_exception/make_exception.cc
 )
 
 # custom <make_exception bench additions>
