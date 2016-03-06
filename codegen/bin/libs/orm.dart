@@ -29,8 +29,8 @@ final orm = lib('orm')
       ..doc = 'List of strings',
       using('string_table', 'std::vector< String_list_t >')
       ..doc = 'Standard table of strings',
-      'Date_t = boost::gregorian::date',
-      'Date_set_t = std::set< Date_t >',
+      using('date', 'boost::gregorian::date'),
+      using('date_set', 'std::set< Date_t >'),
     ];
   })
   ..headers = [
