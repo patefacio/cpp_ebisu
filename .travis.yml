@@ -29,6 +29,7 @@ before_install:
   # - cd cpp && ./.cmake.gen.sh && cd -
 
 script:
+  echo SUCCESS
   #  - cd cmake_build/debug && make VERBOSE=1 && ctest && cd -
   #  - cd cmake_build/release && make VERBOSE=1 && ctest && cd -
 
