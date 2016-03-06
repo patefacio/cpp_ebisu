@@ -48,7 +48,7 @@ class Histogram_statistical {
 template <typename T = double>
 class Histogram {
  public:
-  using Result_vector_t = vector<T>;
+  using Result_vector_t = std::vector<T>;
 
   explicit template <typename IT>
 

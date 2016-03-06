@@ -157,7 +157,7 @@ Hist_results_t = boost::iterator_range<
             ])
           ],
         class_('histogram')
-          ..usings = ['Result_vector_t = vector< T >']
+          ..usings = [using('result_vector', 'std::vector< T >')]
           ..template = ['typename T = double']
           ..opOut
           ..members = [
