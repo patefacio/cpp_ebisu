@@ -208,7 +208,7 @@ work. umask settings play a role.'''
       class_('processor')
       ..isStreamable = true
       ..usesStreamers = true
-      ..usingsPostDecl = [ 'Processor_list_t = std::vector< Processor >' ]
+      ..usingsPostDecl = [ using('Processor_list', 'std::vector< Processor >') ]
       ..memberCtors = [ memberCtor(['processor', 'proc_map']) ]
       ..withCustomBlock(clsPublic, (CodeBlock cb) {
         cb.snippets
@@ -227,7 +227,7 @@ std::string $entry() const {
 Information stored on a processor basis in cpuinfo.
 The fields in this class are dynamically generated from parsing
 cpuinfo.'''
-      ..usings = [ 'Proc_map_t = std::map< std::string, std::string >' ]
+      ..usings = [ using('proc_map', 'std::map< std::string, std::string >') ]
       ..members = [
         member('proc_map')
         ..doc = 'Map of processors'
