@@ -1,6 +1,7 @@
 #ifndef __EBISU_UTILS_STREAMERS_PRINTER_HPP__
 #define __EBISU_UTILS_STREAMERS_PRINTER_HPP__
 
+#include "ebisu/utils/streamers/streamers.hpp"
 #include <ostream>
 #include <string>
 

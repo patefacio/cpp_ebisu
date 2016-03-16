@@ -385,6 +385,30 @@ add_test(
 
 install(TARGETS test.utils.header.fixed_size_char_array RUNTIME DESTINATION ${DESTDIR}/bin)
 
+#   test for test_streamers
+#     (Lib:streamers), (Header:streamers), (Test:streamers)
+#   
+add_executable(test.streamers.header.streamers
+  tests/streamers/header.streamers.cpp
+)
+
+# custom <test_streamers test additions>
+# end <test_streamers test additions>
+
+target_link_libraries(test.streamers.header.streamers
+# custom <catch test_streamers link requirements>
+# end <catch test_streamers link requirements>
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  pthread
+)
+
+add_test(
+  test.streamers.header.streamers
+  test.streamers.header.streamers)
+
+install(TARGETS test.streamers.header.streamers RUNTIME DESTINATION ${DESTDIR}/bin)
+
 #   test for test_change_tracker_next_value
 #     (Lib:raii), (Header:change_tracker), (Class:change_tracker_next_value), (Test:change_tracker_next_value)
 #   

@@ -218,7 +218,10 @@ addItems() {
         ],
       header('streamers')
         ..customBlocks = [fcbBeginNamespace]
-        ..includes = ['memory', 'iosfwd', 'sstream',],
+        ..includes = ['memory', 'iosfwd', 'sstream',]
+      ..testScenarios = [
+        testScenario('int 8s show as numbers')
+      ],
       header('random')
         ..test.includes.addAll([
           'ebisu/utils/streamers/containers.hpp',
@@ -290,7 +293,7 @@ addItems() {
     ];
 
   final printerHeader = header('printer')
-    ..includes = ['ostream']
+    ..includes = ['ostream', 'ebisu/utils/streamers/streamers.hpp']
     ..customBlocks = [fcbEndNamespace]
     ..classes = [
       class_('printer_state')

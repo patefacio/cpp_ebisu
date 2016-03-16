@@ -87,6 +87,16 @@ inline std::string stream_to_string(T const& t) {
   return out.str();
 }
 
+inline std::ostream& operator<<(std::ostream& out, std::uint8_t i) {
+  out << static_cast<unsigned int>(i);
+  return out;
+}
+
+inline std::ostream& operator<<(std::ostream& out, std::int8_t i) {
+  out << static_cast<int>(i);
+  return out;
+}
+
 // end <FcbBeginNamespace streamers>
 
 }  // namespace streamers
