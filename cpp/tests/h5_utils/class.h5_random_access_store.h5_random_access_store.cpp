@@ -146,6 +146,12 @@ class Sample_h5_dss {
 
   Sample_h5_dss(Sample_h5_dss const& other) = delete;
 
+  Sample_h5_dss(Sample_h5_dss&& other) = delete;
+
+  Sample_h5_dss& operator=(Sample_h5_dss const&) = delete;
+
+  Sample_h5_dss& operator=(Sample_h5_dss&&) = delete;
+
   static Sample_h5_dss& instance() {
     static Sample_h5_dss instance_s;
     return instance_s;

@@ -48,6 +48,13 @@ class Application_signal_handler {
 
   Application_signal_handler(Application_signal_handler const& other) = delete;
 
+  Application_signal_handler(Application_signal_handler&& other) = delete;
+
+  Application_signal_handler& operator=(Application_signal_handler const&) =
+      delete;
+
+  Application_signal_handler& operator=(Application_signal_handler&&) = delete;
+
   ~Application_signal_handler() {
     // custom <Application_signal_handler dtor>
     linux_specific_logger->info(

@@ -188,6 +188,12 @@ class Cpu_info {
  public:
   Cpu_info(Cpu_info const& other) = delete;
 
+  Cpu_info(Cpu_info&& other) = delete;
+
+  Cpu_info& operator=(Cpu_info const&) = delete;
+
+  Cpu_info& operator=(Cpu_info&&) = delete;
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Cpu_info const& item) {
     using ebisu::utils::streamers::operator<<;

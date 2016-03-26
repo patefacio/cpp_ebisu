@@ -61,6 +61,12 @@ class Api_initializer_registry {
 
   Api_initializer_registry(Api_initializer_registry const& other) = delete;
 
+  Api_initializer_registry(Api_initializer_registry&& other) = delete;
+
+  Api_initializer_registry& operator=(Api_initializer_registry const&) = delete;
+
+  Api_initializer_registry& operator=(Api_initializer_registry&&) = delete;
+
   static Api_initializer_registry& instance() {
     static Api_initializer_registry instance_s;
     return instance_s;

@@ -11,6 +11,12 @@ class Version_control_commit {
  public:
   Version_control_commit(Version_control_commit const& other) = delete;
 
+  Version_control_commit(Version_control_commit&& other) = delete;
+
+  Version_control_commit& operator=(Version_control_commit const&) = delete;
+
+  Version_control_commit& operator=(Version_control_commit&&) = delete;
+
   static Version_control_commit& instance() {
     static Version_control_commit instance_s;
     return instance_s;

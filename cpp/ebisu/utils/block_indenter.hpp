@@ -9,6 +9,12 @@ class Block_current_indent {
  public:
   Block_current_indent(Block_current_indent const& other) = delete;
 
+  Block_current_indent(Block_current_indent&& other) = delete;
+
+  Block_current_indent& operator=(Block_current_indent const&) = delete;
+
+  Block_current_indent& operator=(Block_current_indent&&) = delete;
+
   static Block_current_indent& instance() {
     static Block_current_indent instance_s;
     return instance_s;

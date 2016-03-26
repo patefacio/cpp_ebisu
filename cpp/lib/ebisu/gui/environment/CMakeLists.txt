@@ -18,5 +18,5 @@ target_compile_options(gui_environment PRIVATE "-fPIE")
 # custom <target_compile_options>
 # end <target_compile_options>
 
-install(TARGETS gui_environment ARCHIVE DESTINATION ${DESTDIR}/lib/static)
+install(TARGETS gui_environment ARCHIVE DESTINATION ${DESTDIR}lib/static)
 

@@ -21,6 +21,12 @@ class Connection_registry {
 
   Connection_registry(Connection_registry const& other) = delete;
 
+  Connection_registry(Connection_registry&& other) = delete;
+
+  Connection_registry& operator=(Connection_registry const&) = delete;
+
+  Connection_registry& operator=(Connection_registry&&) = delete;
+
   static Connection_registry& instance() {
     static Connection_registry instance_s;
     return instance_s;

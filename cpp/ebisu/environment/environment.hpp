@@ -28,6 +28,12 @@ class Environment {
 
   Environment(Environment const& other) = delete;
 
+  Environment(Environment&& other) = delete;
+
+  Environment& operator=(Environment const&) = delete;
+
+  Environment& operator=(Environment&&) = delete;
+
   friend inline std::ostream& operator<<(std::ostream& out,
                                          Environment const& item) {
     using ebisu::utils::streamers::operator<<;

@@ -181,6 +181,16 @@ inline std::ostream& print_instance(
   return out;
 }
 
+template <typename T, size_t SIZE>
+inline std::ostream& print_instance(
+    std::ostream& out, std::array<T, SIZE> const& item,
+    ebisu::utils::streamers::Printer_descriptor& printer_descriptor) {
+  for (auto const& i : item) {
+    out << i;
+  }
+  return out;
+}
+
 // end <FcbEndNamespace printer>
 
 }  // namespace streamers

@@ -18,7 +18,7 @@ SCENARIO("int 8s show as numbers") {
   {
     std::int8_t i = 42;
     char x = '*';
-    REQUIRE(x==i);
+    REQUIRE(x == i);
     {
       std::ostringstream s;
       s << i << std::endl;
