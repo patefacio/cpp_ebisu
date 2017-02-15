@@ -47,7 +47,7 @@ instances being stored/read from the recordset.
             usingUptr('packet_table', 'FL_PacketTable'),
           ]
           ..memberCtors = [
-            memberCtor(['file', 'open_type', 'group'])
+            memberCtor(['file', 'open_type', 'dataset_path'])
               ..tag = 'create packet table'
               ..includesProtectBlock = true
           ]
@@ -65,9 +65,10 @@ instances being stored/read from the recordset.
               ..type = 'Store_open_type'
               ..isConst = true
               ..hasNoInit = true,
-            member('group')
-              ..doc = 'The group indicating where to find the data set'
+            member('dataset_path')
+              ..doc = 'The fully qualified path to the named dataset'
               ..type = 'std::string'
+              ..access = ro
               ..hasNoInit = true,
             member('packet_table')
               ..doc = 'Pointer to the packet table'
