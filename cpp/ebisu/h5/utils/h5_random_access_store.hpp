@@ -51,7 +51,7 @@ class H5_random_access_store {
   using Packet_table_uptr_t = std::unique_ptr<FL_PacketTable>;
 
   H5_random_access_store(H5_file_sptr_t const& file, Store_open_type open_type,
-                         std::string const& dataset_path)
+                         std::string const& dataset_path = "/")
       : file_(file), open_type_(open_type), dataset_path_(dataset_path) {
     // custom <H5_random_access_store(create packet table)>
 
@@ -136,7 +136,7 @@ class H5_random_access_store {
           hid_t new_group_id(H5Gcreate(current_group_id, current_group.c_str(),
                                        H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT));
           h5_utils_logger->info("Creating group: {} result gid: {}",
-                         current_group.c_str(), new_group_id);
+                                current_group.c_str(), new_group_id);
           if (new_group_id > 0) {
             current_group_id = new_group_id;
           } else {
@@ -148,7 +148,7 @@ class H5_random_access_store {
           hid_t existing_group_id(
               H5Gopen2(current_group_id, current_group.c_str(), H5P_DEFAULT));
           h5_utils_logger->info("Opening existing group: {} result gid: {}",
-                         current_group.c_str(), existing_group_id);
+                                current_group.c_str(), existing_group_id);
           if (existing_group_id > 0) {
             current_group_id = existing_group_id;
           } else {

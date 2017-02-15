@@ -47,7 +47,7 @@ instances being stored/read from the recordset.
             usingUptr('packet_table', 'FL_PacketTable'),
           ]
           ..memberCtors = [
-            memberCtor(['file', 'open_type', 'dataset_path'])
+            memberCtor(['file', 'open_type', memberCtorParm('dataset_path')..defaultValue = '"/"'])
               ..tag = 'create packet table'
               ..includesProtectBlock = true
           ]
