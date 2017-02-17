@@ -7,8 +7,8 @@
 
 #include <boost/lexical_cast.hpp>
 #include <boost/regex.hpp>
-#include <regex>
 #include <cstdint>
+#include <regex>
 
 // end <custom includes>
 

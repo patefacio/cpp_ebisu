@@ -44,9 +44,11 @@ rusage operator-(rusage stop, rusage start) {
 std::ostream& operator<<(std::ostream& out, rusage const& r) {
   ebisu::utils::Block_indenter indenter;
   char const* indent(indenter.current_indentation_text());
-  out << '\n' << indent << " user time:" << r.ru_utime.tv_sec << "(s) "
+  out << '\n'
+      << indent << " user time:" << r.ru_utime.tv_sec << "(s) "
       << r.ru_utime.tv_usec << "(micro)";
-  out << '\n' << indent << " system time:" << r.ru_stime.tv_sec << "(s) "
+  out << '\n'
+      << indent << " system time:" << r.ru_stime.tv_sec << "(s) "
       << r.ru_stime.tv_usec << "(micro)";
   out << '\n' << indent << " maximum resident set size:" << r.ru_maxrss;
 

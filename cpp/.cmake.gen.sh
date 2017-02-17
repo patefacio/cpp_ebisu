@@ -3,8 +3,8 @@
 
 CMAKE=${CMAKE-`which cmake`}
 
-export CC=gcc-4.9
-export CXX=g++-4.9
+export CC=gcc
+export CXX=g++
 
 #export CC=clang
 #export CXX=clang++

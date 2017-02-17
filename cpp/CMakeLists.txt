@@ -12,7 +12,7 @@ include_directories(
 
 # custom <include directories>
 
-  /usr/local/HDF_Group/HDF5/1.8.16/include
+  /usr/local/HDF_Group/HDF5/1.10.0/include
   ../install/catch/include
   ../install/spdlog/include
   /opt/mongo-client-install/include
@@ -24,7 +24,7 @@ link_directories(
 
 # custom <link directories>
 
-/usr/local/HDF_Group/HDF5/1.8.16/lib
+/usr/local/HDF_Group/HDF5/1.10.0/lib
 /opt/mongo-client-install/lib
 
 # end <link directories>
@@ -49,7 +49,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DLIB_INIT_LOGGING")
 
 # end <misc section>
 enable_testing()
-add_subdirectory(lib/ebisu/gui/environment)
 add_library(lib_linux_specific INTERFACE)
 target_sources(lib_linux_specific INTERFACE
  ebisu/linux_specific/application_signal_handler.hpp
@@ -189,7 +188,6 @@ install(FILES ebisu/mongo/mongo_ini.hpp DESTINATION ${DESTDIR}include/ebisu/mong
 install(FILES ebisu/mongo/mongo_logging.hpp DESTINATION ${DESTDIR}include/ebisu/mongo)
 install(FILES ebisu/logger/logger.hpp DESTINATION ${DESTDIR}include/ebisu/logger)
 install(FILES ebisu/environment/environment.hpp DESTINATION ${DESTDIR}include/ebisu/environment)
-install(FILES ebisu/gui/environment/q_environment.hpp DESTINATION ${DESTDIR}include/ebisu/gui/environment)
 install(FILES benchmarks/bench/make_exception/benchmark_make_exception.hpp DESTINATION ${DESTDIR}include/benchmarks/bench/make_exception)
 # custom <lib_public_headers>
 # end <lib_public_headers>
@@ -221,30 +219,6 @@ target_link_libraries(h5ds2csv
 # custom <h5ds2csv libs>
   -pthread
 # end <h5ds2csv libs>
-  boost_program_options
-  boost_system
-  boost_regex
-  boost_filesystem
-  boost_thread
-)
-add_executable(environment
-  app/environment/environment.cpp
-)
-
-# custom <environment exe additions>
-
-set_source_files_properties(app/environment/environment.cpp PROPERTIES COMPILE_FLAGS -fPIE)
-
-target_include_directories(environment PUBLIC ${Qt5Widgets_INCLUDE_DIRS})
-
-# end <environment exe additions>
-
-target_link_libraries(environment
-# custom <environment libs>
-  gui_environment
-  Qt5::Widgets
-  boost_date_time
-# end <environment libs>
   boost_program_options
   boost_system
   boost_regex

@@ -8,7 +8,7 @@ import 'apps/qt_environment.dart' as qt_environment;
 addItems() {
   date_time_converter.addItems();
   h5ds2csv.addItems();
-  qt_environment.addItems();
+  //qt_environment.addItems();
 }
 
 main() {

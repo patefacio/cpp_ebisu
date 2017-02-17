@@ -65,8 +65,7 @@ struct Program_options {
           "Some form of timestamp")(
           "date,d", value<std::vector<std::string> >(), "Some form of date")(
           "log-level", value<std::string>()->default_value("off"),
-          "Specify log level [trace, debug, info, notice, warn, err, critical, "
-          "alert, emerg, off]");
+          "Specify log level [trace, debug, info, warn, err, critical, off]");
     }
     return options;
   }
@@ -118,7 +117,8 @@ void add_detail_row(ebisu::utils::streamers::String_matrix_t& table,
   Date_t date{ts.date()};
   row.push_back(input);
   row.push_back(boost::lexical_cast<std::string>(ticks(ts)));
-  row.push_back(boost::lexical_cast<std::string>(to_time_t(ts)));
+  row.push_back(
+      boost::lexical_cast<std::string>(ebisu::timestamp::to_time_t(ts)));
   row.push_back(boost::posix_time::to_iso_string(ts));
   row.push_back(boost::lexical_cast<std::string>(ts));
   row.push_back(boost::lexical_cast<std::string>(date));
@@ -150,18 +150,12 @@ int main(int argc, char** argv) {
       spdlog::set_level(spdlog::level::debug);
     } else if (desired_log_level == "info") {
       spdlog::set_level(spdlog::level::info);
-    } else if (desired_log_level == "notice") {
-      spdlog::set_level(spdlog::level::notice);
     } else if (desired_log_level == "warn") {
       spdlog::set_level(spdlog::level::warn);
     } else if (desired_log_level == "err") {
       spdlog::set_level(spdlog::level::err);
     } else if (desired_log_level == "critical") {
       spdlog::set_level(spdlog::level::critical);
-    } else if (desired_log_level == "alert") {
-      spdlog::set_level(spdlog::level::alert);
-    } else if (desired_log_level == "emerg") {
-      spdlog::set_level(spdlog::level::emerg);
     } else if (desired_log_level == "trace") {
       spdlog::set_level(spdlog::level::trace);
     } else {

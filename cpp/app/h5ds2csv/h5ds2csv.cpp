@@ -56,8 +56,7 @@ struct Program_options {
           "output-file,o", value<std::string>(),
           "Name of hdf5 file containing data_set(s)")(
           "log-level", value<std::string>()->default_value("off"),
-          "Specify log level [trace, debug, info, notice, warn, err, critical, "
-          "alert, emerg, off]");
+          "Specify log level [trace, debug, info, warn, err, critical, off]");
     }
     return options;
   }
@@ -124,18 +123,12 @@ int main(int argc, char** argv) {
       spdlog::set_level(spdlog::level::debug);
     } else if (desired_log_level == "info") {
       spdlog::set_level(spdlog::level::info);
-    } else if (desired_log_level == "notice") {
-      spdlog::set_level(spdlog::level::notice);
     } else if (desired_log_level == "warn") {
       spdlog::set_level(spdlog::level::warn);
     } else if (desired_log_level == "err") {
       spdlog::set_level(spdlog::level::err);
     } else if (desired_log_level == "critical") {
       spdlog::set_level(spdlog::level::critical);
-    } else if (desired_log_level == "alert") {
-      spdlog::set_level(spdlog::level::alert);
-    } else if (desired_log_level == "emerg") {
-      spdlog::set_level(spdlog::level::emerg);
     } else if (desired_log_level == "trace") {
       spdlog::set_level(spdlog::level::trace);
     } else {

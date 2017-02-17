@@ -4,8 +4,8 @@
 namespace benchmarks {
 namespace bench {
 namespace make_exception {
-BENCHMARK_F(Benchmark_make_exception,
-            MakeExceptionBasic)(benchmark::State& st) {
+BENCHMARK_F(Benchmark_make_exception, MakeExceptionBasic)
+(benchmark::State& st) {
   // custom <make_exception_basic benchmark pre while>
   // end <make_exception_basic benchmark pre while>
 
@@ -23,8 +23,8 @@ BENCHMARK_F(Benchmark_make_exception,
   // custom <make_exception_basic benchmark post while>
   // end <make_exception_basic benchmark post while>
 }
-BENCHMARK_F(Benchmark_make_exception,
-            MakeExceptionWithFunctionName)(benchmark::State& st) {
+BENCHMARK_F(Benchmark_make_exception, MakeExceptionWithFunctionName)
+(benchmark::State& st) {
   // custom <make_exception_with_function_name benchmark pre while>
   // end <make_exception_with_function_name benchmark pre while>
 

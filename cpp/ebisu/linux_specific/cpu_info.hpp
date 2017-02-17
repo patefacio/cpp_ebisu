@@ -137,6 +137,11 @@ class Processor {
     return (found != proc_map_.end()) ? found->second : "";
   }
 
+  std::string bugs() const {
+    auto found = proc_map_.find("bugs");
+    return (found != proc_map_.end()) ? found->second : "";
+  }
+
   std::string bogomips() const {
     auto found = proc_map_.find("bogomips");
     return (found != proc_map_.end()) ? found->second : "";

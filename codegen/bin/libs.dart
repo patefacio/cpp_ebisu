@@ -25,7 +25,7 @@ addItems() {
   mongo.addItems();
   logger.addItems();
   environment.addItems();
-  gui_environment.addItems();
+  //gui_environment.addItems();
 }
 
 main() {

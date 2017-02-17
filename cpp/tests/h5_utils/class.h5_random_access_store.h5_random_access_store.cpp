@@ -142,7 +142,7 @@ class Sample_h5_dss {
  public:
   using Record_t = Sample;
 
-  static constexpr char const* DATA_SET_NAME{"/sample"};
+  static constexpr char const* DATA_SET_NAME{"sample"};
 
   Sample_h5_dss(Sample_h5_dss const& other) = delete;
 

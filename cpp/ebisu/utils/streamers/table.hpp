@@ -2,9 +2,9 @@
 #define __EBISU_UTILS_STREAMERS_TABLE_HPP__
 
 #include "ebisu/utils/streamers/containers.hpp"
+#include <algorithm>
 #include <boost/lexical_cast.hpp>
 #include <boost/range.hpp>
-#include <algorithm>
 #include <iostream>
 #include <vector>
 

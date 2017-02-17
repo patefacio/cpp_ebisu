@@ -52,8 +52,7 @@ class Histogram {
 
   explicit template <typename IT>
 
-  Histogram(IT begin, IT end, int num_bins = 20)
-      : num_bins_(num_bins) {
+  Histogram(IT begin, IT end, int num_bins = 20) : num_bins_(num_bins) {
     // custom <Histogram(from_iterator)>
 
     std::pair<IT, IT> min_and_max(boost::minmax_element(begin, end));

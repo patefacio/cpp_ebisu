@@ -5,9 +5,9 @@
 
 // custom <custom includes>
 
-#include <thread>
-#include <sstream>
 #include "ebisu/performance/block_timers.hpp"
+#include <sstream>
+#include <thread>
 
 // end <custom includes>
 
