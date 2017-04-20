@@ -91,8 +91,8 @@ inline bool convert_to_date_from_modjulian(std::string const& timestamp,
   return false;
 }
 
-time_t to_time_t(Timestamp_t t) {
-  Timestamp_t epoch{boost::gregorian::date(1970, 1, 1)};
+inline time_t to_time_t(Timestamp_t t) {
+  static Timestamp_t const epoch{boost::gregorian::date(1970, 1, 1)};
   auto secs = (t - epoch).total_seconds();
   return time_t{secs};
 }

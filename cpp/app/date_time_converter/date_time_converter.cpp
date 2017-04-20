@@ -124,6 +124,8 @@ void add_detail_row(ebisu::utils::streamers::String_matrix_t& table,
   row.push_back(boost::lexical_cast<std::string>(date));
   row.push_back(boost::lexical_cast<std::string>(date.julian_day()));
   row.push_back(boost::lexical_cast<std::string>(date.modjulian_day()));
+  auto tm = to_tm(ts);
+  row.push_back(boost::lexical_cast<std::string>(mktime(&tm)));
   table.push_back(row);
 }
 
@@ -219,8 +221,8 @@ int main(int argc, char** argv) {
       }
     }
 
-    String_list_t header{"input",     "ticks", "time_t", "iso",
-                         "timestamp", "date",  "julian", "modjulian"};
+    String_list_t header{"input", "ticks",  "time_t",    "iso",    "timestamp",
+                         "date",  "julian", "modjulian", "unix_ts"};
     Table_streamer<> table_streamer{table, header};
     table_streamer.print_string_table(std::cout);
 

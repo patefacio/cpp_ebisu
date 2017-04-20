@@ -10,11 +10,13 @@ dependencies:
 
   collection: ">=1.0.0"
   quiver: ">=0.21.0<0.22.0"  
-  id: "^1.0.10"  
-  ebisu: "^0.6.18"
+  id: "^1.0.15"  
+  ebisu: #"^0.7.3"
+    path: ../../ebisu  
 
-  ebisu_cpp: #"^0.3.19"
-    git: git://github.com/patefacio/ebisu_cpp
+  ebisu_cpp: #"^0.3.22"
+    path: ../../ebisu_cpp
+
 
   ebisu_cpp_db: #"^0.0.10"
     git: git://github.com/patefacio/ebisu_cpp_db
@@ -32,25 +34,12 @@ dev_dependencies:
 dependency_overrides:
 # custom <ebisu dependency overrides>
 
-#  id:
-#    path: ../id
+  ebisu:
+    path: ../../ebisu
 
-#  ebisu:
-#    path: ../ebisu
+  ebisu_cpp: #"^0.3.22"
+    path: ../../ebisu_cpp
 
-#  ebisu: "^0.6.1"
-
-  ebisu_cpp:
-    git: git://github.com/patefacio/ebisu_cpp
-#    path: ../ebisu_cpp
-
-#    git:
-#      url: git://github.com/patefacio/ebisu_cpp_db
-#      ref: HEAD
-
-#  ebisu_cpp_db:
-#    path: ../ebisu_cpp_db
-    
 # end <ebisu dependency overrides>
 
 transformers:

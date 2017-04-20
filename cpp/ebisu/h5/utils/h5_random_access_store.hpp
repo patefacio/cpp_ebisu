@@ -87,6 +87,8 @@ class H5_random_access_store {
 
   hsize_t size() const { return packet_table_->GetPacketCount(); }
 
+  bool empty() const { return size() == 0; }
+
   void get(hsize_t index, Record_t& result) const {
     if (packet_table_->GetPacket(index, &result) < 0) {
       std::ostringstream msg;
