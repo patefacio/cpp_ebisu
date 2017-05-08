@@ -71,11 +71,30 @@ class H5_random_access_store {
             file_->getId(), const_cast<char*>(dataset_path_.c_str()),
             H5_data_set_specifier_t::instance().compound_data_type_id(), 1 << 8,
             5);
+
+        if (!packet_table_->IsValid()) {
+          std::ostringstream msg;
+          msg << "Attempt to create dataset: " << dataset_path_ << " in file "
+              << file_->getFileName() << " failed";
+          throw std::runtime_error(msg.str());
+        }
+
         break;
       }
       case Open_read_e: {
+        h5_utils_logger->info("opening dataset {} in {}", dataset_path_,
+                              file_->getFileName());
+
         packet_table_ = std::make_unique<FL_PacketTable>(
             file_->getId(), const_cast<char*>(dataset_path_.c_str()));
+
+        if (!packet_table_->IsValid()) {
+          std::ostringstream msg;
+          msg << "Attempt to read dataset: " << dataset_path_ << " in file "
+              << file_->getFileName() << " failed";
+          throw std::runtime_error(msg.str());
+        }
+
         break;
       }
     }
