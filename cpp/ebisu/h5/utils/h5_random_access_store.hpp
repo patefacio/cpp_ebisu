@@ -99,20 +99,6 @@ class H5_random_access_store {
       }
     }
 
-    Record_t first() const {
-      assert(!empty());
-      Record_t result;
-      get(0, result);
-      return result;
-    }
-
-    Record_t last() const {
-      assert(!empty());
-      Record_t result;
-      get(size()-1, result);
-      return result;
-    }
-
     // end <H5_random_access_store(create packet table)>
   }
 
@@ -120,6 +106,20 @@ class H5_random_access_store {
 
   // custom <ClsPublic H5_random_access_store>
 
+  Record_t first() const {
+    assert(!empty());
+    Record_t result;
+    get(0, result);
+    return result;
+  }
+
+  Record_t last() const {
+    assert(!empty());
+    Record_t result;
+    get(size()-1, result);
+    return result;
+  }
+  
   hsize_t size() const { return packet_table_->GetPacketCount(); }
 
   bool empty() const { return size() == 0; }
