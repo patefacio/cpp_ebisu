@@ -99,8 +99,24 @@ class H5_random_access_store {
       }
     }
 
+    Record_t first() const {
+      assert(!empty());
+      Record_t result;
+      get(0, result);
+      return result;
+    }
+
+    Record_t last() const {
+      assert(!empty());
+      Record_t result;
+      get(size()-1, result);
+      return result;
+    }
+
     // end <H5_random_access_store(create packet table)>
   }
+
+  
 
   // custom <ClsPublic H5_random_access_store>
 
